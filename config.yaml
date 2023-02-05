@@ -14,7 +14,6 @@ minify:
   disableXML: true
   minifyOutput: true
 
-
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: ExampleSite
@@ -83,9 +82,7 @@ params:
 
   socialIcons:
     - name: twitter
-      url: "https://twitter.com/"
-    - name: stackoverflow
-      url: "https://stackoverflow.com"
+      url: "https://twitter.com/_least_action"
     - name: github
       url: "https://github.com/mr-markovian"
     - name: linkedin
