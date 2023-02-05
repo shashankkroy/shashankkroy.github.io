@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Research Statement on Shashank&#39;s Home</title>
+    <link>https://shashankkroy.github.io/research-statement/</link>
+    <description>Recent content in Research Statement on Shashank&#39;s Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/research-statement/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Covariant lyapunov vectors: Why are they interesting?</title>
+      <link>https://shashankkroy.github.io/research-statement/clv/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/research-statement/clv/</guid>
+      <description>A brief overview of CLV and a few results</description>
+      <content:encoded><![CDATA[<h1 id="instability-property-of-a-dynamical-system-and-data-assimilation">Instability property of a dynamical system and data assimilation</h1>
+<p>Instability properties of a chaotic nonlinear dynamical system are characterized globally by lyapunov exponent and locally by lyapunov vectors, which correspond to the directions associated with those rates.
+Unstable subspaces of a system has been shown to improve forecasts in ocean-atmosphere coupled models when the assimilation takes into account \cite{Vannitsem(2016)}.
+When a time evolving system is only accessible via noisy and sparse observations and with no information of the initial conditions, identifying a trajectory is extremely difficult using only the model and methods of nonlinear filtering provide best estimates of the true state and help us estimate the underlying trajectory the system evolves on with some uncertainty estimate. The best estimates over time does not constitute a dynamical trajectory and but is always near the true trajectory in some distance metric. We formulated this problem into using the filter estimate over time as a proxy of the true trajectory perturbed by the error statistics.</p>
+<h2 id="covariant-lyapunov-vectors">Covariant Lyapunov Vectors</h2>
+<p>Covariant lyapunov vectors are non-orthogonal basis to the tangent space of a dynamical system, where the $i^{th}$ clv orresponds to the direction along which an infinitesimal error grows or decays with the rate which is equal to the lyapunov $\lambda_i$ in the forward and the time reverse ddynamics respectively. They are covarinat, time-invariant and their computation is costlier than the commonly used backward lyapunov vectors which are orthogonal by construction. CLVs encode more information in terms of theri mutual angle, which is not present in other orthogonal vectors. Accessing this required their computation which is slightly more involved the backward lyapunov vectors, whic are usually the product of Benettin&rsquo;s algorithm extensively used to compute lyapunov exponents.</p>
+<p>Below we have CLVs of Lorenz-63, which is a 3-dimensional chaotic ODE system and has a butterfly shaped attractor for a specific set of values of the parameters $(\sigma,\rho,\beta)=(10,28,8/3)$. We plot the 1st CLV and 2nd CLV for their first two components. The ODE for this system is written below.
+$$
+\frac{dx}{dt}=\sigma \left(y-x\right),
+\frac{dy}{dt}=x\left(\rho-z\right)-y,
+\frac{dz}{dt}=xy-\beta z $$</p>
+<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/images/enhanced_L63_attr_12.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<p>Plotting the first two components of the vectors is shown below. An interesting thing to note is that there is a gradual change in the directions of the vectors as we move along the trajectory. Moreover, two nearby points on the attractor have some degree of similarity in terms of the directions of the vectors themselves. Since there computation needs an underlying trajectory, some degree of their smoothness may be of some merit when applying some supervised machine learning methods to learn and predict them.</p>
+<p>Below is CLV 1, where we only ploy the X and Z component of the vectors.
+<img loading="lazy" src="/images/CLV1_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<p>Below is CLV 2, where we only ploy the X and Z component of the vectors.
+<img loading="lazy" src="/images/CLV2_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<h2 id="research-problem">Research Problem</h2>
+<p>The specific questions which we ask about lyapunov vectors and exponents in context of the filtering problem are as follows:</p>
+<ul>
+<li>How sensitive are the backward and covariant lyapunov vectors and the corresponding exponents to perturbations in the underlying trajectory?</li>
+<li>Under what conditions can one recover them from a filter estimated trajectory instead of the true trajectory of the dynamical system?</li>
+<li>How robust are unstable subspaces to the perturbation strength $\sigma$, and are they more robust than the individual vectors themselves?</li>
+</ul>
+<p>The above questions are relevant to both nonlinear dynamics and weather forecasting techniques since the underlying true trajectory is not accessible but are required in order to compute the LVs. What one can do best is to use the best estimate of the true state given observations upto a certain time. This comes with a caveat that the filter estimates or the analysis mean over time is not a dynamical trajectory of the system, i.e. there is not intial condition on the
+model which can generate this trajectory starting from a certain initial condition. The true trajectory
+lies near the analysis mean which is quantifies by the error in the estimates themselves. The
+sensitivity of BLVs and CLVs for a particular system tells us the limitations of what can be reconstructed from the filter estimates themselves.</p>
+<p>In high-dimensions, I used Lorenz-96 in order to explore dimensional dependence added to the sensitivity problem. Another interesting  directions is using principle angles(to cite), which summarize the angle between two different subspaces, and seeing how they change with $\sigma$, which I found to be more robust than the individual vectors themselves. Such study is useful in context of problems where subspaces are more important than the individual vectors themselves. Once the above results are interpretable, we can then reconstruct lyapunov vectors from a filter generated trajectory using partial and noisy observations and a model.</p>
+<h2 id="possible-directions-for-future-work">Possible directions for future work</h2>
+<p>A set of directions for future work directly following the current work are:</p>
+<ul>
+<li>Combining the ideas of assimilation in unstable subspace and stability, are the two related to each other?</li>
+<li>Capturing the effect of model errors themselves on the computed lyapunov vectors.</li>
+<li>Using the subspaces computed from reanalysis data which can be used to restrict the uncertainty in forecasts and analysis in data assimilation cycles.</li>
+<li>The degree of similarity in the lyapunov vectors between two nearby points on the attractor in phase space which may be important machine learning methods trained on vectors computed once along a trajectory be used to predict vectors at neaby points in the phase space.</li>
+<li>Studying structure of CLVs for discretized PDE systems such as Kuramoto-sivashinksy equation which has a finite dimensional attractor to shed light on CLV localization problem.</li>
+</ul>
+<h3 id="references">references</h3>
+<p>[1] Pazo, Diego and Szendro, Ivan G. and Lopez, Juan M. and Rodriguez, Miguel, <a href="https://link.aps.org/doi/10.1103/PhysRevE.78.016209">A.Structure of characteristic Lyapunov vectors in spatiotemporal chaos</a>, 2008.</p>
+<p>[1] Vannitsem and Lucarini,<a href="https://doi.org/10.1088/1751-8113/49/22/224001">Statistical and dynamical properties of covariant lyapunov vectors in a coupled atmosphere-ocean model-multiscale effects, geometric degeneracy, and error dynamics</a>,Journal of Physics A: Mathematical and Theoretical, 2016.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Numerical filter stability: Do wrong priors at t=0 affect long term posterior?</title>
+      <link>https://shashankkroy.github.io/research-statement/filter-stability/</link>
+      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/research-statement/filter-stability/</guid>
+      <description>understanding filter stability and it&amp;#39;s importance</description>
+      <content:encoded><![CDATA[<h2 id="general-overview-of-the-problem">General overview of the problem</h2>
+<p>Weather, ocean, atmosphere to name a few are physical systems in numerical weather prediction which have huge degrees of freedom and are modelled uisng coupled nonlinear PDEs. When a general nonlinear dynamical system is chaotic, two nearby states evolve and deaprt from each other and predictability skill of such systems is very much limited to time-scales which are fixed by the exponents called lyapunov exponents. In practice, purely model based prediction is impossible for such systems as unavoidable errors in initial conditons, model parameters and error in the model equations themselves get quickly amplifiled, making the error huge and essenstially of the size of the attractor (Palmer(2013)).</p>
+<h2 id="data-assimilation">Data assimilation</h2>
+<p>Data assimilation is a way to force the numerical model using observations from the real system in order to keep it near the true state of the system. It enables both short and long-term prediction by combining the model estimates and the observations in a statistially optimal way. The partial observations provide information of the true state indirectly, where as the model serves to take in account various physical conservation laws and their constraint, making the estimation of the full state possible even with only partial and noisy observations.</p>
+<p>For a dynamical system evolving in real time where the full state is not observed or is observed partially and indirectly, bayesian formalism combines the model outputs with the serially arriving observations allowing one to reasonably estimate the state at time t along with their related uncertainty. Since estimating the full density is impossible in high-dimensions, important statistics describing the pdf are estimated such as mean and covariance and how they evolve in time. Various data assimilation algorithms differ in their specific assumptions and approximations in order to optimally combine the model and the observations making the sequential estimation of such statistics computationally tractable in high-dimensions. Two popular class of such sequential filters are ensemble kalman filters and particle filters.</p>
+<h2 id="bayesian-filtering-algorithms-for-data-assimilation">Bayesian filtering algorithms for data assimilation</h2>
+<p>Bayesian filtering is defined as the sequential estimation of the conditional distribution in phase space of the state of a physical system coming from an assumed model taking into account the likelihood of new information arriving from the observations (Cohen(1997)).
+Filtering is followed by prediction, where the goal is to predict the the evolution of the system and it&rsquo;s flow dependent uncertainty accounting for possible source of errors which result may grow at later time in future. Below is a schematic picture of a bayeisan filtering mechanism.</p>
+<p><img loading="lazy" src="/images/enkf_schematic.png" type="" alt="schematicpicture"  /></p>
+<p>At a given time $k$ , the probability density distribution of the true state conditioned on observations upto time $k$ is called the analysis probability density. This is then propagated in time by solving fokker-planck equation, or by using  monte-carlo methods to integate the ensembles representing the distribution to obtain prior distribution at time $k+1$, called forecast probability density distribution at time $k+1$, before using the information about the observation $y_{k+1}$. Assuming that given $x_{k+1}$, the observations $y_{K+1}$ is conditionally independent of all previous observations and states,  we get the likelihood for the observation $y_{k+1}$ is obtained using the observation model and the measurement noise distribtution is given by $\rho(y_{k+1}|x_{k+1})$. Using bayes&rsquo; theorem, we have</p>
+<p>$$\rho\left(x_{k+1}|Y_{k+1}\right)=\frac{\rho\left(y_{k+1}|x_{k+1}\right)\rho\left(x_{k+1}|Y_{k}\right)}{ \rho\left(y_{k+1}|Y_{k}\right)}$$</p>
+<p>since the true state is unknown, all filtering algorithms makes an arbitraty choice for $\rho(x_0)$ at the time of filter initialization. It becomes crucial that these distributions become independent of the initial choice used in initializing the filter so that quantities estimates using the posterior are eventually independent of our arbitrary and often wrong choice of $\rho(x_0)$. As an example, the following picture demonstrates how stability looks like in one of the component out of the whole state vector,</p>
+<p><img loading="lazy" src="/images/stabilit_enkf_picture_x36_cropped.png" type="" alt="A schematic plot for enkf"  /></p>
+<p>where we have two different initial distribution $\mu_1$ and $\mu_2$ both of which are far from $x_0$, the true initial condition. Over many assimilation, the two posterior ensembles starting with different initial distribution are seen to come closer to each other.</p>
+<h3 id="definition-of-filter-stability">Definition of filter stability</h3>
+<p>Filter stability is the property that the posterior distribution computed sequentially over long time is independent of the choice of the distribution at $k=0$ used to initialize the filtering algorithm. The rate at which the filter achieves this independece,  the better are the estimates of various quantities which utilize the posterior distribution.</p>
+<p>Mathematically, we can define it using a distance $D$ on the space of probaility distributions $P(\mathcal{R}^d)$.
+Given two different initial distributions {$\nu_1, \nu_2$} for $x_0$ with $\hat\pi_n(\nu_1)$ and $\hat\pi_n(\nu_2)$ being the posterior obtained after assimilating all observation $y_{1:n}$ upto time $n$, then for filter stability to hold, we have
+$$\lim_{n\to\infty}\mathbf E[D(\hat\pi_n(\nu_1), \hat\pi_n(\nu_2))] = 0$$</p>
+<p>where, $D$ is a distance on $P(\mathcal{R}^d)$, the space of probability measures on $\mathcal{R}^d$ and the expectation is over observation noise accounting for different noise realizations (mandal(2021)).
+In our work, we have chosen Sinkhorn distance, a distance well motivated by the ideas of optimal transport, which has several merits over other distances such as total variation, apart from being computationally cheaper. This distace utilizes two samples from their respective distributions in order to compute the distance between them upto it&rsquo;s statistical errors. Below is a simple plot explaining the above behaviour for EnKF.</p>
+<p>In the above picture,</p>
+<p>We have used <strong>Sinkhorn distance</strong>  to compute these distance. I talk about this distance in another post.</p>
+<h3 id="references">References</h3>
+<p>[1] Carrassi, A., Bocquet, M., Bertino, L., Evensen,<a href="https://doi.org/10.1002/wcc.535">Data assimilation in the geosciences: An overview of methods, issues, and perspectives</a></p>
+<p>[2] G. Evensen,<a href="https://doi.org/10.1007/s10236-003-0036-9">The Ensemble Kalman Filter: theoretical formulation and practical implementation</a>,Ocean Dynamics.</p>
+<p>[3] Kevin K W Cheung,<a href="https://doi.org/10.1017/S1350482701003073">A review of ensemble forecasting techniques with a focus on tropical cyclone forecasting</a>,Meteorological Applications, Royal Meteorological Society.</p>
+<p>[4] Mandal, Pinak and Roy, Shashank Kumar and Apte, Amit,<a href="https://ieeexplore.ieee.org/document/9703185">Stability of nonlinear filters-numerical explorations of particle and ensemble Kalman filters</a>, 2021 Seventh Indian Control Conference (ICC).</p>
+<p>[4] Aude Genevay, Thesis-Entropy-regularized optimal transport for machine learning,Paris Sciences et Letters,2019.</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
