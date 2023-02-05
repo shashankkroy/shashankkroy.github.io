@@ -1,4 +1,4 @@
-baseURL: "https://examplesite.com/"
+baseURL: "https://shashankkroy.github.io/"
 title: Shashank's Home
 paginate: 5
 theme: PaperModX
@@ -16,7 +16,7 @@ minify:
 
 
 params:
-  env: development # to enable google analytics, opengraph, twitter-cards and schema.
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: ExampleSite
   description: "ExampleSite description"
   keywords: [Blog, Portfolio, PaperMod]
