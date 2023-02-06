@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</loc>
+    <loc>https://shashankkroy.github.io/research-statement/clv/</loc>
     <lastmod>2023-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://shashankkroy.github.io/research-statement/clv/</loc>
+    <loc>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</loc>
     <lastmod>2023-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://shashankkroy.github.io/tags/lorenz-63/</loc>
@@ -36,21 +36,18 @@
     <lastmod>2022-10-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://shashankkroy.github.io/tags/example/</loc>
-    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://shashankkroy.github.io/tags/markdown/</loc>
-    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://shashankkroy.github.io/posts/markdown-syntax.zh/</loc>
-    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://shashankkroy.github.io/posts/</loc>
-    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://shashankkroy.github.io/tags/syntax/</loc>
-    <lastmod>2022-04-12T00:00:00+00:00</lastmod>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://shashankkroy.github.io/posts/markdown-syntax/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://shashankkroy.github.io/posts/</loc>
+    <lastmod>2019-03-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://shashankkroy.github.io/tags/syntax/</loc>
     <lastmod>2019-03-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://shashankkroy.github.io/tags/privacy/</loc>
@@ -71,6 +68,14 @@
   </url><url>
     <loc>https://shashankkroy.github.io/curriculum-vitae/</loc>
   </url><url>
+    <loc>https://shashankkroy.github.io/tags/hypothesis-testing/</loc>
+  </url><url>
+    <loc>https://shashankkroy.github.io/posts/hypothesis_testing/</loc>
+  </url><url>
+    <loc>https://shashankkroy.github.io/tags/p-value/</loc>
+  </url><url>
     <loc>https://shashankkroy.github.io/search/</loc>
+  </url><url>
+    <loc>https://shashankkroy.github.io/tags/statistics/</loc>
   </url>
 </urlset>
