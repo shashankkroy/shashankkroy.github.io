@@ -85,6 +85,8 @@ params:
       url: "https://twitter.com/_least_action"
     - name: github
       url: "https://github.com/mr-markovian"
+    - name: github
+      url: "https://github.com/shashankkroy"
     - name: linkedin
       url: "https://www.linkedin.com/in/shashankroy/"
     - name: instagram
