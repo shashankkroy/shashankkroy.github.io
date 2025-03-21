@@ -1,5 +1,5 @@
 baseURL: "https://shashankkroy.github.io/"
-title: Shashank's Home
+title: Shashank Roy
 paginate: 5
 theme: PaperModX
 
@@ -56,16 +56,16 @@ params:
   label:
     text: "Home"
     icon: /apple-touch-icon.png
-    iconHeight: 35
+    iconHeight: 30
 
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
     title: Shashank Kumar Roy
-    subtitle: "PhD Research Scholar, ICTS-TIFR"
-    imageUrl: "images/profile_pic.png"
-    imageWidth: 150
-    imageHeight: 120
+    subtitle: "Research and Development Engineer, IMT Atlantique, France"
+    imageUrl: "images/IMG_E1175.jpg"
+    imageWidth: 350
+    imageHeight: 350
     imageTitle: my image
     buttons:
       - name: About me
@@ -85,7 +85,7 @@ params:
       url: "https://twitter.com/_least_action"
     - name: github
       url: "https://github.com/mr-markovian"
-    - name: github
+    - name: github 
       url: "https://github.com/shashankkroy"
     - name: linkedin
       url: "https://www.linkedin.com/in/shashankroy/"
