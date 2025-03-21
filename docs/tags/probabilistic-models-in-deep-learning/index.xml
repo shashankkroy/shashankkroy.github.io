@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>probabilistic models in deep learning on Shashank Roy</title>
+    <link>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</link>
+    <description>Recent content in probabilistic models in deep learning on Shashank Roy</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Diffusion models and Stochastic differential equations</title>
+      <link>https://shashankkroy.github.io/posts/diffusion-models/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
+      <description>Understanding diffusion models: what makes them so good?</description>
+      <content:encoded><![CDATA[<p>What is diffusion? 
+Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
+to the state of disorder. But why?</p>
+<p>Here is a simple animation of what diffusion means in physics.</p>
+<p>Here is an example of how we can simulate a simple diffusion proces using particles.</p>
+<p>The two examples may look different, but the first process describes the evolution of the diffusion process. While if we 
+want to write down the profile instead of the particles themselves, the picture corresponds to the second one.</p>
+<h1 id="the-tale-of-how-the-age-old-diffusion-becomes-popular-again">The tale of how the age old diffusion becomes popular again</h1>
+<h1 id="the-past">The past</h1>
+<h1 id="the-present">The present</h1>
+<h1 id="the-future">The future</h1>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Lorenz-63 on Shashank&#39;s Home</title>
+    <title>Lorenz-63 on Shashank Roy</title>
     <link>https://shashankkroy.github.io/tags/lorenz-63/</link>
-    <description>Recent content in Lorenz-63 on Shashank&#39;s Home</description>
+    <description>Recent content in Lorenz-63 on Shashank Roy</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/lorenz-63/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -19,10 +19,10 @@ Unstable subspaces of a system has been shown to improve forecasts in ocean-atmo
 When a time evolving system is only accessible via noisy and sparse observations and with no information of the initial conditions, identifying a trajectory is extremely difficult using only the model and methods of nonlinear filtering provide best estimates of the true state and help us estimate the underlying trajectory the system evolves on with some uncertainty estimate. The best estimates over time does not constitute a dynamical trajectory and but is always near the true trajectory in some distance metric. We formulated this problem into using the filter estimate over time as a proxy of the true trajectory perturbed by the error statistics.</p>
 <h2 id="covariant-lyapunov-vectors">Covariant Lyapunov Vectors</h2>
 <p>Covariant lyapunov vectors are non-orthogonal basis to the tangent space of a dynamical system, where the $i^{th}$ clv orresponds to the direction along which an infinitesimal error grows or decays with the rate which is equal to the lyapunov $\lambda_i$ in the forward and the time reverse ddynamics respectively. They are covarinat, time-invariant and their computation is costlier than the commonly used backward lyapunov vectors which are orthogonal by construction. CLVs encode more information in terms of theri mutual angle, which is not present in other orthogonal vectors. Accessing this required their computation which is slightly more involved the backward lyapunov vectors, whic are usually the product of Benettin&rsquo;s algorithm extensively used to compute lyapunov exponents.</p>
-<p>Below we have CLVs of Lorenz-63, which is a 3-dimensional chaotic ODE system and has a butterfly shaped attractor for a specific set of values of the parameters $(\sigma,\rho,\beta)=(10,28,8/3)$. We plot the 1st CLV and 2nd CLV for their first two components. The ODE for this system is written below.
+<p>Below we have CLVs of Lorenz-63, which is a 3-dimensional chaotic ODE system and has a butterfly shaped attractor for a specific set of values of the parameters $(\sigma,\rho,\beta)=(10,28,8/3)$. We plot the 1st CLV and 2nd CLV for their first two components. The ODE for this system is written below. 
 $$
-\frac{dx}{dt}=\sigma \left(y-x\right),
-\frac{dy}{dt}=x\left(\rho-z\right)-y,
+\frac{dx}{dt}=\sigma \left(y-x\right), 
+\frac{dy}{dt}=x\left(\rho-z\right)-y, 
 \frac{dz}{dt}=xy-\beta z $$</p>
 <p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/images/enhanced_L63_attr_12.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
 <p>Plotting the first two components of the vectors is shown below. An interesting thing to note is that there is a gradual change in the directions of the vectors as we move along the trajectory. Moreover, two nearby points on the attractor have some degree of similarity in terms of the directions of the vectors themselves. Since there computation needs an underlying trajectory, some degree of their smoothness may be of some merit when applying some supervised machine learning methods to learn and predict them.</p>

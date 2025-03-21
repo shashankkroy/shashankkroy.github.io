@@ -1,11 +1,71 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Tags on Shashank&#39;s Home</title>
+    <title>Tags on Shashank Roy</title>
     <link>https://shashankkroy.github.io/tags/</link>
-    <description>Recent content in Tags on Shashank&#39;s Home</description>
+    <description>Recent content in Tags on Shashank Roy</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>chaos theory</title>
+      <link>https://shashankkroy.github.io/tags/chaos-theory/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/chaos-theory/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>diffusion models</title>
+      <link>https://shashankkroy.github.io/tags/diffusion-models/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/diffusion-models/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>dynamical systems</title>
+      <link>https://shashankkroy.github.io/tags/dynamical-systems/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/dynamical-systems/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>ordinary differential equations</title>
+      <link>https://shashankkroy.github.io/tags/ordinary-differential-equations/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/ordinary-differential-equations/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>probabilistic models in deep learning</title>
+      <link>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Stochastic differential equation</title>
+      <link>https://shashankkroy.github.io/tags/stochastic-differential-equation/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/stochastic-differential-equation/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
     <item>
       <title>Covariant Lyapunov vectors</title>
       <link>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</link>
@@ -69,7 +129,7 @@
     <item>
       <title>example</title>
       <link>https://shashankkroy.github.io/tags/example/</link>
-      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/example/</guid>
       <description></description>
@@ -79,7 +139,7 @@
     <item>
       <title>markdown</title>
       <link>https://shashankkroy.github.io/tags/markdown/</link>
-      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/markdown/</guid>
       <description></description>
@@ -89,7 +149,7 @@
     <item>
       <title>syntax</title>
       <link>https://shashankkroy.github.io/tags/syntax/</link>
-      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/syntax/</guid>
       <description></description>
