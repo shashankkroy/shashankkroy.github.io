@@ -1,5 +1,5 @@
 baseURL: "https://shashankkroy.github.io/"
-title: Shashank Roy
+title: Roy's Home
 paginate: 5
 theme: PaperModX
 
@@ -8,7 +8,7 @@ buildDrafts: true
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45
+googleAnalytics: G-M628446BVJ
 
 minify:
   disableXML: true
@@ -61,11 +61,11 @@ params:
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
-    title: Shashank Kumar Roy
-    subtitle: "Research and Development Engineer, IMT Atlantique, France"
+    title: Shashank Roy, PhD
+    subtitle: "Researcher, IMT Atlantique, \U0001F1EB\U0001F1F7" 
     imageUrl: "images/IMG_E1175.jpg"
-    imageWidth: 350
-    imageHeight: 350
+    imageWidth: 250
+    imageHeight: 250
     imageTitle: my image
     buttons:
       - name: About me
@@ -94,7 +94,7 @@ params:
 
   analytics:
     google:
-      SiteVerificationTag: "XYZabc"
+      SiteVerificationTag: "G-M628446BVJ"
     bing:
       SiteVerificationTag: "XYZabc"
     yandex:
