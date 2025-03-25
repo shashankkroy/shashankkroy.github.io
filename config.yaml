@@ -85,12 +85,12 @@ params:
       url: "https://twitter.com/_least_action"
     - name: github
       url: "https://github.com/mr-markovian"
-    - name: github 
-      url: "https://github.com/shashankkroy"
     - name: linkedin
       url: "https://www.linkedin.com/in/shashankroy/"
     - name: instagram
       url: "https://instagram.com/shashankkroy"
+    - name: threads
+      url: "https://threads.dev/u/dr_roy_sciphy.ai"
 
   analytics:
     google:
