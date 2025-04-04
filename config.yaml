@@ -1,5 +1,5 @@
 baseURL: "https://shashankkroy.github.io/"
-title: Roy's Home
+title: S.K.R
 paginate: 5
 theme: PaperModX
 
@@ -15,7 +15,7 @@ minify:
   minifyOutput: true
 
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  env: production # production to enable google analytics, opengraph, twitter-cards and schema.
   title: ExampleSite
   description: "ExampleSite description"
   keywords: [Blog, Portfolio, PaperMod]
@@ -61,7 +61,7 @@ params:
   # profile-mode
   profileMode:
     enabled: true # needs to be explicitly set
-    title: Shashank Roy, PhD
+    title: Dr. Shashank Kumar Roy
     subtitle: "Researcher, IMT Atlantique, \U0001F1EB\U0001F1F7" 
     imageUrl: "images/IMG_E1175.jpg"
     imageWidth: 250
@@ -88,9 +88,9 @@ params:
     - name: linkedin
       url: "https://www.linkedin.com/in/shashankroy/"
     - name: instagram
-      url: "https://instagram.com/shashankkroy"
+      url: "https://instagram.com/dr_roy_sciphy.ai"
     - name: threads
-      url: "https://threads.dev/u/dr_roy_sciphy.ai"
+      url: "https://threads.net/dr_roy_sciphy.ai"
 
   analytics:
     google:
