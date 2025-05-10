@@ -13,8 +13,10 @@
       
       <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
       <description>Understanding diffusion models: what makes them so good?</description>
-      <content:encoded><![CDATA[<p>What is diffusion? 
-Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
+      <content:encoded><![CDATA[<p>What did the physicists didn&rsquo;t tell you about the diffusion models?</p>
+<p>And this is the reason why diffusion models are so good at generating images.</p>
+<p>When was is the last time you heard about diffusion in physics class?</p>
+<p>Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
 to the state of disorder. But why?</p>
 <p>Here is a simple animation of what diffusion means in physics.</p>
 <p>Here is an example of how we can simulate a simple diffusion proces using particles.</p>

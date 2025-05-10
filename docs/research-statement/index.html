@@ -5,8 +5,8 @@
 <meta name=robots content="index, follow">
 <title>Research Statement | S.K.R</title>
 <meta name=keywords content>
-<meta name=description content="A brief pdf version is available here: click to open or directly download 
-A brief overview of my interests I am generally fond of problems which involve applications were mathematical notions can be converted to code and understanding them through simulations is one of the goals. Other endeavours which are orthogonal my research but piqued my curiosity from time to time is participation in hackathons organised by scientific communitie where I often stumble across new problems and fascinating progress in deeplearning methods and their applications.">
+<meta name=description content="A more formal version is available here: click to open or directly download 
+A brief overview of my interests My training is at the intersection of Physics and applied mathematics. This generally make me fond of problems that involve applications of mathematical ideas and codes, bringing me closer to the realm of mathematical modelling, simulations and data. I am particulary fascinated by problems that arise in earth sciences from a dynamical systems perspective.">
 <meta name=author content="Me">
 <link rel=canonical href=https://shashankkroy.github.io/research-statement/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.min.f3a5fcf1a2ed223c5f9f0e42ad1a03f290d7f781cfb741dbede89bcb6f8be329.css integrity="sha256-86X88aLtIjxfnw5CrRoD8pDX94HPt0Hb7eiby2+L4yk=" rel="preload stylesheet" as=style>
@@ -59,6 +59,10 @@ A brief overview of my interests I am generally fond of problems which involve a
 </a>
 </li>
 <li>
+<a href=https://shashankkroy.github.io/gallery/ title=Gallery>Gallery
+</a>
+</li>
+<li>
 <a href=https://shashankkroy.github.io/posts/ title=Posts>Posts
 </a>
 </li>
@@ -80,35 +84,26 @@ Research Statement</h1><div class=inline-links>
 <span><a href=https://shashankkroy.github.io/research-statement/index.xml target=_blank>RSS</a></span></div>
 </header>
 <div class=post-content><hr>
-<p>A brief pdf version is available here: <a href=Research_Statement.pdf>click to open</a>
+<p>A more formal version is available here: <a href=Research_Statement.pdf>click to open</a>
 or directly
 <a href=Research_Statement.pdf download>download </a></p>
 <h3 id=a-brief-overview-of-my-interests>A brief overview of my interests<a hidden class=anchor aria-hidden=true href=#a-brief-overview-of-my-interests>¶</a></h3>
-<p>I am generally fond of problems which involve applications were mathematical notions can be converted to code and understanding them through simulations is one of the goals. Other endeavours which are orthogonal my research but piqued my curiosity from time to time is participation in hackathons organised by scientific communitie where I often stumble across new problems and fascinating progress in deeplearning methods and their applications. Apart from the above, I have gained exposure in machine learning through courses. Also, understanding problems in climate system and their models interest me from the point of dynamical systems modeling, analysis and prediction purpose, a area whose importance is evergrowing apart from purely academic purposes.</p>
-<p>During my Phd coursework, I had the chance to work on interesting projects starting with</p>
+<p>My training is at the intersection of Physics and applied mathematics. This generally make me fond of problems that involve applications of mathematical ideas and codes, bringing me closer to the realm of mathematical modelling, simulations and data. I am particulary fascinated by problems that arise in earth sciences from a dynamical systems perspective. Data assimilation is a crucial part that makes numerical weather prediction possible. I work on both classical data assimilation and deeplearning based data assimilation techniques, most of the times looking for an ideal way to use the best of both worlds. Other endeavours which are orthogonal to my research but feeds my curiosity are hackathons, especially those organised by scientific communities. It&rsquo;s here that I expose myself to broader questions and their challenges. Also, understanding problems in climate system and their models interest me from the point of dynamical systems modeling, analysis and prediction purpose, an area whose importance is evergrowing apart from purely academic purposes.</p>
+<p>On a daily basis, my daily work revolves around handling code of a physical systems model (Partial differential equations) and some deeplearning model ( neural network models, mostly in PyTorch) to solve a data assimilation problem.</p>
+<p>During my Phd coursework, I am proud to have worked on some small projects that shaped my interests over time. Some of them are:</p>
 <ul>
-<li>analytical solution of Stokes&rsquo;s flow in spherical geometry using vector spherical harmonics.</li>
-<li>1-d visco-eslastic pde modeling pattern formation in viscoelastic gels.</li>
+<li>analytical solution of Stokes&rsquo;s flow in spherical geometry using <em>vector spherical harmonics</em>.</li>
+<li>1-d visco-elastic pde modeling pattern formation in viscoelastic gels.</li>
 <li>numerical solution to stochastic forced burgers equation.</li>
-<li>Kuramoto-sivashinsky PDE, which exhibits spatiotemporal chaos</li>
+<li>Kuramoto-sivashinsky PDE, which exhibits spatiotemporal chaos.</li>
 <li>ensemble kalman filtering for Lorenz-96 using partial and noisy observations.</li>
 </ul>
 <h3 id=overview-of-my-phd-research>Overview of my PhD research<a hidden class=anchor aria-hidden=true href=#overview-of-my-phd-research>¶</a></h3>
 <p>My thesis research work concentrates around Data assimilation for chaotic dynamical system using EnKF (Evensen(2003)), a general sequential state estimation algorithm which computes the best estimate of the state with associated uncertainty. Data assimilation is a way to force the numerical model using observations from the real system in order to keep it near the true state of the system. It enables both short and long-term prediction by combining the model estimates and the observations in a statistially optimal way. The partial observations provide information of the true state indirectly, where as the model serves to take in account various physical conservation laws and their constraint, making the estimation of the full state possible even with only partial and noisy observations.</p>
 <p>The underlying theme of my interests have been in studying filtering algorithms and their properties which can be used to diagnose and improve the same. In a joint work, I have worked on demonstrating <em>numerical filter stability</em>, a crucial property of a filter using Sinkhorn distance, a distances between probaility distribution. In another work, I am looking at instability properties of a dynamical system such as <em>lyapunov vectors</em> which are of potential utility in improving the existing techniques in prediction and estimation of a dynamical system in general. Now I talk about them in detail the following posts below.</p>
 <h3 id=long-term-focus>Long-term focus<a hidden class=anchor aria-hidden=true href=#long-term-focus>¶</a></h3>
-<p>Problems at the interface of climate and data science is something I am interested to work, the topic on which my
-interest from different workshops and discussions where I believe that the skills which I have acquired in the context
-of data assimilation are useful. I am interested in understanding ways to incorporate uncertainty and dynamical
-knowledge together to a general machine learning techniques for modelling and inference of large dynamical systems
-of practical importance where the limited data combined with physical constraints and conservation laws can balance
-for the sparsity and scarcity of available data. Such problems are of high interest in climate modeling and related
-data science problems. Another important topic which I find fascinating to explore further is ideas from optimal
-transport which I gained some exposure to while working on the filter stability problem and would like implement it
-for different data-driven problems. Understanding how new developments such as diffusion models in latent space
-for generative modelling can be used to design effective filtering and probabilistic machine learning algorithms are
-another of my interests. I also look forward to computational problems in different fields where my current skills
-can complement towards new directions of research.</p>
+<p>Problems at the interface of climate and data science is something I am interested to work, the topic on which my interest from different workshops and discussions where I believe that the skills which I have acquired in the context of data assimilation are useful. I am interested in understanding ways to incorporate uncertainty and dynamical knowledge together to a general machine learning techniques for modelling and inference of large dynamical systems
+of practical importance where the limited data combined with physical constraints and conservation laws can balance for the sparsity and scarcity of available data. Such problems are of high interest in climate modeling and related data science problems. Another important topic which I find fascinating to explore further is ideas from optimal transport which I gained some exposure to while working on the filter stability problem and would like implement it for different data-driven problems. Understanding how new developments such as diffusion models in latent space for generative modelling can be used to design effective filtering and probabilistic machine learning algorithms are another of my interests. I also look forward to computational problems in different fields where my current skills can complement towards new directions of research.</p>
 </div>
 <article class=post-entry>
 <header class=entry-header>

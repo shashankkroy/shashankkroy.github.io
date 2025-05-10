@@ -13,8 +13,10 @@
       
       <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
       <description>Understanding diffusion models: what makes them so good?</description>
-      <content:encoded><![CDATA[<p>What is diffusion? 
-Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
+      <content:encoded><![CDATA[<p>What did the physicists didn&rsquo;t tell you about the diffusion models?</p>
+<p>And this is the reason why diffusion models are so good at generating images.</p>
+<p>When was is the last time you heard about diffusion in physics class?</p>
+<p>Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
 to the state of disorder. But why?</p>
 <p>Here is a simple animation of what diffusion means in physics.</p>
 <p>Here is an example of how we can simulate a simple diffusion proces using particles.</p>
@@ -307,7 +309,7 @@ want to write down the profile instead of the particles themselves, the picture 
 <a href="https://vimeo.com/4.8912912e&#43;07" rel="noopener" target="_blank">
 
 
-<img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 2x" alt="Sing Jan Swing - Kinetic Type">
+<img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640?region=us" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640?region=us 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640?region=us 2x" alt="Sing Jan Swing - Kinetic Type">
 <div class="play"><svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61"><circle cx="30.5" cy="30.5" r="30.5" opacity=".8" fill="#000"></circle><path d="M25.3 19.2c-2.1-1.2-3.8-.2-3.8 2.2v18.1c0 2.4 1.7 3.4 3.8 2.2l16.6-9.1c2.1-1.2 2.1-3.2 0-4.4l-16.6-9z" fill="#fff"></path></svg></div></a></div>]]></content:encoded>
     </item>
     
