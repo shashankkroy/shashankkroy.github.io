@@ -74,6 +74,8 @@ params:
         url: /curriculum-vitae/
       - name: Research Statement
         url: /research-statement/
+      - name: Gallery
+        url: /gallery/
 
   # home-info mode
   homeInfoParams:
@@ -146,6 +148,11 @@ menu:
       name: CV
       url: /curriculum vitae/
       weight: 30
+    - identifier: gallery
+      name: Gallery
+      url: /gallery/
+      weight: 40
+
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
