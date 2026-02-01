@@ -52,8 +52,9 @@ sensitivity of BLVs and CLVs for a particular system tells us the limitations of
 <li>Studying structure of CLVs for discretized PDE systems such as Kuramoto-sivashinksy equation which has a finite dimensional attractor to shed light on CLV localization problem.</li>
 </ul>
 <h3 id="references">references</h3>
-<p>[1] Pazo, Diego and Szendro, Ivan G. and Lopez, Juan M. and Rodriguez, Miguel, <a href="https://link.aps.org/doi/10.1103/PhysRevE.78.016209">A.Structure of characteristic Lyapunov vectors in spatiotemporal chaos</a>, 2008.</p>
-<p>[1] Vannitsem and Lucarini,<a href="https://doi.org/10.1088/1751-8113/49/22/224001">Statistical and dynamical properties of covariant lyapunov vectors in a coupled atmosphere-ocean model-multiscale effects, geometric degeneracy, and error dynamics</a>,Journal of Physics A: Mathematical and Theoretical, 2016.</p>
+<p>[1] Roy, Shashank and Apte, Amit, <a href="https://editor.copernicus.org/NPG/ms-records/egusphere-2023-2168">A note on sensitivity of Lyapunov vectors to trajectory perturbations</a></p>
+<p>[2] Pazo, Diego and Szendro, Ivan G. and Lopez, Juan M. and Rodriguez, Miguel, <a href="https://link.aps.org/doi/10.1103/PhysRevE.78.016209">A.Structure of characteristic Lyapunov vectors in spatiotemporal chaos</a>, 2008.</p>
+<p>[3] Vannitsem and Lucarini,<a href="https://doi.org/10.1088/1751-8113/49/22/224001">Statistical and dynamical properties of covariant lyapunov vectors in a coupled atmosphere-ocean model-multiscale effects, geometric degeneracy, and error dynamics</a>,Journal of Physics A: Mathematical and Theoretical, 2016.</p>
 ]]></content:encoded>
     </item>
     

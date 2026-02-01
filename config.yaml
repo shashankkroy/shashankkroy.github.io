@@ -74,8 +74,6 @@ params:
         url: /curriculum-vitae/
       - name: Research Statement
         url: /research-statement/
-      - name: Gallery
-        url: /gallery/
 
   # home-info mode
   homeInfoParams:
@@ -89,10 +87,6 @@ params:
       url: "https://github.com/mr-markovian"
     - name: linkedin
       url: "https://www.linkedin.com/in/shashankroy/"
-    - name: instagram
-      url: "https://instagram.com/dr_roy_sciphy.ai"
-    - name: threads
-      url: "https://threads.net/dr_roy_sciphy.ai"
 
   analytics:
     google:
@@ -148,11 +142,7 @@ menu:
       name: CV
       url: /curriculum vitae/
       weight: 30
-    - identifier: gallery
-      name: Gallery
-      url: /gallery/
-      weight: 40
-
+    
 
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
