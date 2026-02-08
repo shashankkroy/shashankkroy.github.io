@@ -17,7 +17,7 @@
 <p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations. 
 <a href="https://link.springer.com/chapter/10.1007/978-3-030-96709-3_5">Variational data assimilation</a> aims to find a the best trajectory of the dynamical system which minimizes a certain cost function.</p>
 <h2 id="problem-statement-can-neural-network-models-replace-data-assimilation-for-a-cheaperfaster-alternative">Problem statement: Can neural network models replace data assimilation for a cheaper/faster alternative?</h2>
-<p></p>
+<p><img loading="lazy" src="/images/vort_sf_obs_128.png" type="" alt="da_setup"  /></p>
 <p>For an observation window $i$ where the sequence of observations $Y^i=\left(y^i_0,y^i_1,&hellip;y^i_n\right)$ on $\left(\Omega^i_n\right) \in \Omega$ is given, we want to find the optimal trajectory  $X^i=\left(x^i_0,x^i_1,&hellip;x^i_n\right)$ of the true system that minimizes the following cost function.</p>
 <p>$$\mathcal{U}(x^i_0,x^i_1,&hellip;x^i_n)=\sum_{k=1} \alpha_{dyn} | x_k - \mathcal{M}(x_{k-1}) |^2+ \alpha_{ob} |y_i-\mathcal{H}(x_i)|^2$$</p>
 <p>This is the weak-4dvar cost function which needs ot be minimized.
@@ -33,7 +33,7 @@ In the supervised setting, we something similar happens when we have access to a
 <p>$$\mathcal{U_{\Phi}}= \alpha_{dyn} | X^{i} - \Phi({X^i}) |^2+ \alpha_{ob} |Y^i-\mathcal{H}(X^i)|^2$$</p>
 <p>Where we compactify the notations for the time series and $i$ here is the index of assimilation window.
 Note, that this cost has two parts, the first part learns a representation of the data, while the second part ensures that the observations are matched to the state. There is no background term in this formulation, as the network is expected to learn the correlations from the data.</p>
-<p></p>
+<p><img loading="lazy" src="/images/4dvarnet-schematic.svg" type="" alt="4DVarNet Architecture"  /></p>
 <p>The solver of this cost function is another neural network that learns the mapping from the observations to the optimal state. This is parameterized by an LSTM whose input is a gradients. We can see this solver as doing meta-learning. The solver is trained to minimize the cost function using a gradient-based descent algorithm, which is similar to the optimization process used in 4dvar.</p>
 <p>The parameterized cost function and it&rsquo;s solver are trained together in an end-to-end manner, allowing the network to learn the optimal mapping from the observations to the optimal state. The loss function that trains the whole architecture is the mean squared error between the predicted state and the true state, given by,</p>
 <p>$$\mathcal{L}(X^i, \hat{X}^i) = \frac{1}{N} \sum_{i=1}^{N} | X^i - \Psi_{\Phi,\Gamma}(Y^i,{X}^0) |^2$$</p>
@@ -55,7 +55,7 @@ These observations are available on masks which have been obtained from Nadir Sa
 <p>We finally create a dataset of observations and the true states, which can be used to train the 4DVarNet architecture. The dataset is created by simulating the QG model and generating observations at different times. The observations are then used to train the 4DVarNet architecture to learn the mapping from the observations to the true states.</p>
 <h2 id="results-work-in-progress">Results (Work in progress)</h2>
 <p>The standard 4DVarNet architecture only uses the observations as the input, and intializes the states from it. We refer to this as 4Dvarnet-No-IC. The 4DVarNet architecture where we provide additional guess for the initial conditions is referred to as 4DVarNet-IC. Using a simple metric called $\mu=1-\frac{RMSE(X)}{RMS(X)}$. The RMSE is the root mean square error between the predicted state and the true state, and RMS is the std. of the true state. When $\mu=1$, the model is perfect, and when $\mu=0$, the errors are of the same order of the natural variability of the field X.</p>
-<p></p>
+<p><img loading="lazy" src="/images/4dvar-4dvarnet-plot.png" type="" alt="4DVarNet Results"  /></p>
 <p>The results of the 4DVarNet architecture are compared with the standard weak-4DVar algorithm, ( both solve the weak-4dvar problem). 
 The results show that the 4DVarNet-IC architecture performs better than the 4DVarNet-No-IC architecture, which is expected since the initial guess is closer to the true state. The results also show that the 4DVarNet architecture is able to learn the mapping from the observations to the true states, and can be used for data assimilation and uncertainty quantification.</p>
 <h3 id="references">References</h3>

@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement</title>
+      <title>4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.</title>
       <link>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</link>
       <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
       
@@ -32,6 +32,7 @@
 <p>Large-scale position uncertainty (phase errors)</p>
 <p>Small-scale residual variability (amplitude errors)</p>
 <h2 id="4dvarnet-lu-an-ensemble-neural-data-assimilation-model">4DVarNet-LU: An ensemble neural data assimilation model</h2>
+<p><img loading="lazy" src="/images/4dvarnet-lu.png" type="" alt="4DVarNet Architecture"  /></p>
 <p>Building on this uncertainty framework, we introduce 4DVarNet-LU, an ensemble extension of 4DVarNet designed to handle Lagrangian uncertainty (LU).</p>
 <p>In 4DVarNet-LU:</p>
 <ul>
@@ -41,7 +42,7 @@
 </ul>
 <p>4DVarNet-LU embeds uncertainty within the architecture itself during generation of initial state, allowing the neural solver to generate multiple reconstructions states.</p>
 <h2 id="so-what-does-the-4dvarnet-lu-model-predicts">So what does the 4DVarNet-LU model predicts?</h2>
-<p>The 4DVarNet-LU model predicts an ensemble of reconstructed state trajectories, not a single deterministic solution.
+<p>The 4DVarNet-LU model can predicts an ensemble of reconstructed state trajectories, not a single deterministic solution, given a sequence of observations over an assimilation window.
 This makes 4DVarNet-LU particularly well-suited for applications involving coherent advective structures, where positional uncertainty dominates the amplitude uncertainty.</p>
 <h2 id="references">References</h2>
 <ul>

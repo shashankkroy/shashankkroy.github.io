@@ -122,7 +122,8 @@ Filtering is followed by prediction, where the goal is to predict the the evolut
 <p>Mathematically, we can define it using a distance $D$ on the space of probaility distributions $P(\mathcal{R}^d)$.
 Given two different initial distributions {$\nu_1, \nu_2$} for $x_0$ with $\hat\pi_n(\nu_1)$ and $\hat\pi_n(\nu_2)$ being the posterior obtained after assimilating all observation $y_{1:n}$ upto time $n$, then for filter stability to hold, we have
 $$\lim_{n\to\infty}\mathbf E[D(\hat\pi_n(\nu_1), \hat\pi_n(\nu_2))] = 0$$</p>
-<p>where, $D$ is a distance on $P(\mathcal{R}^d)$, the space of probability measures on $\mathcal{R}^d$ and the expectation is over observation noise accounting for different noise realizations (mandal(2021)).
+<p>where, $D$ is a distance on $P(\mathcal{R}^d)$, the space of probability measures on $\mathcal{R}^d$ and the expectation is over observation noise accounting for different noise realizations (mandal(2021)).</p>
+<p><img loading=lazy src=/images/stability_schematic-min.png type alt>
 In our work, we have chosen Sinkhorn distance, a distance well motivated by the ideas of optimal transport, which has several merits over other distances such as total variation, apart from being computationally cheaper. This distace utilizes two samples from their respective distributions in order to compute the distance between them upto it&rsquo;s statistical errors.</p>
 <p>We have used <strong>Sinkhorn distance</strong> to compute these distance. I talk about this distance in another post.</p>
 <h3 id=references>References<a hidden class=anchor aria-hidden=true href=#references>¶</a></h3>

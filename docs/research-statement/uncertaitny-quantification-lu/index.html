@@ -3,7 +3,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement | S.K.R</title>
+<title>4DVarNet-LU: An neural ensemble DA model for uncertainty quantification. | S.K.R</title>
 <meta name=keywords content="machine learning,neural networks,uncertainty quantification,AI">
 <meta name=description content="Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?">
 <meta name=author content="Me">
@@ -14,17 +14,17 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M628446BVJ"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-M628446BVJ',{anonymize_ip:!1})}</script>
 <meta name=twitter:card content="summary_large_image">
-<meta name=twitter:title content="Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement | S.K.R">
+<meta name=twitter:title content="4DVarNet-LU: An neural ensemble DA model for uncertainty quantification. | S.K.R">
 <meta name=twitter:description content="Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?">
-<meta property="og:title" content="Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement | S.K.R">
+<meta property="og:title" content="4DVarNet-LU: An neural ensemble DA model for uncertainty quantification. | S.K.R">
 <meta property="og:description" content="Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/">
-<meta property="og:image" content="https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/images/4dvarnet-schematic.png"><meta property="article:section" content="research-statement">
+<meta property="og:image" content="https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/images/4dvarnet-lu.png"><meta property="article:section" content="research-statement">
 <meta property="article:published_time" content="2025-11-25T00:00:00+00:00">
 <meta property="article:modified_time" content="2025-11-25T00:00:00+00:00"><meta property="og:site_name" content="Webpage">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Research Statement","item":"https://shashankkroy.github.io/research-statement/"},{"@type":"ListItem","position":2,"name":"Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement","item":"https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement | S.K.R","name":"Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement","description":"Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?","keywords":["machine learning, neural networks, uncertainty quantification, AI"],"wordCount":"509","inLanguage":"en","image":"https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/images/4dvarnet-schematic.png","datePublished":"2025-11-25T00:00:00Z","dateModified":"2025-11-25T00:00:00Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/"},"publisher":{"@type":"Organization","name":"S.K.R","logo":{"@type":"ImageObject","url":"https://shashankkroy.github.io/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Research Statement","item":"https://shashankkroy.github.io/research-statement/"},{"@type":"ListItem","position":2,"name":"4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.","item":"https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"4DVarNet-LU: An neural ensemble DA model for uncertainty quantification. | S.K.R","name":"4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.","description":"Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?","keywords":["machine learning, neural networks, uncertainty quantification, AI"],"wordCount":"519","inLanguage":"en","image":"https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/images/4dvarnet-lu.png","datePublished":"2025-11-25T00:00:00Z","dateModified":"2025-11-25T00:00:00Z","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/"},"publisher":{"@type":"Organization","name":"S.K.R","logo":{"@type":"ImageObject","url":"https://shashankkroy.github.io/favicon.ico"}}}</script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css integrity=sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0 crossorigin=anonymous>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js integrity=sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4 crossorigin=anonymous></script>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js integrity=sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05 crossorigin=anonymous></script>
@@ -76,12 +76,12 @@
 <main class="main post">
 <article class=post-single>
 <header class=post-header>
-<div class=breadcrumbs><a href=https://shashankkroy.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://shashankkroy.github.io/research-statement/>Research Statement</a></div><h1 class=post-title>Uncertainty quantification in neural data assimilation using location uncertainty via spatiotemporal coherent random displacement</h1>
+<div class=breadcrumbs><a href=https://shashankkroy.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://shashankkroy.github.io/research-statement/>Research Statement</a></div><h1 class=post-title>4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.</h1>
 <div class=post-description>Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?</div>
 <div class=post-meta><span class=meta-item><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar" style="user-select:text"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" style="user-select:text"/><line x1="16" y1="2" x2="16" y2="6" style="user-select:text"/><line x1="8" y1="2" x2="8" y2="6" style="user-select:text"/><line x1="3" y1="10" x2="21" y2="10" style="user-select:text"/></svg>
 <span>November 25, 2025</span></span><span class=meta-item><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon" style="user-select:text"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" style="user-select:text"/><line x1="7" y1="7" x2="7" y2="7" style="user-select:text"/></svg>
 <span class=post-tags><a href=https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/>machine learning, neural networks, uncertainty quantification, AI</a></span></span><span class=meta-item><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text" style="user-select:text"><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z" style="user-select:text"/><polyline points="14 2 14 8 20 8" style="user-select:text"/><line x1="16" y1="13" x2="8" y2="13" style="user-select:text"/><line x1="16" y1="17" x2="8" y2="17" style="user-select:text"/><polyline points="10 9 9 9 8 9" style="user-select:text"/></svg>
-<span>509 words</span></span><span class=meta-item><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentcolor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span>519 words</span></span><span class=meta-item><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentcolor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
 <span>3 min</span></span>
 </div>
 </header> <div class="toc side right">
@@ -120,6 +120,7 @@
 <p>Large-scale position uncertainty (phase errors)</p>
 <p>Small-scale residual variability (amplitude errors)</p>
 <h2 id=4dvarnet-lu-an-ensemble-neural-data-assimilation-model>4DVarNet-LU: An ensemble neural data assimilation model<a hidden class=anchor aria-hidden=true href=#4dvarnet-lu-an-ensemble-neural-data-assimilation-model>¶</a></h2>
+<p><img loading=lazy src=/images/4dvarnet-lu.png type alt="4DVarNet Architecture"></p>
 <p>Building on this uncertainty framework, we introduce 4DVarNet-LU, an ensemble extension of 4DVarNet designed to handle Lagrangian uncertainty (LU).</p>
 <p>In 4DVarNet-LU:</p>
 <ul>
@@ -129,7 +130,7 @@
 </ul>
 <p>4DVarNet-LU embeds uncertainty within the architecture itself during generation of initial state, allowing the neural solver to generate multiple reconstructions states.</p>
 <h2 id=so-what-does-the-4dvarnet-lu-model-predicts>So what does the 4DVarNet-LU model predicts?<a hidden class=anchor aria-hidden=true href=#so-what-does-the-4dvarnet-lu-model-predicts>¶</a></h2>
-<p>The 4DVarNet-LU model predicts an ensemble of reconstructed state trajectories, not a single deterministic solution.
+<p>The 4DVarNet-LU model can predicts an ensemble of reconstructed state trajectories, not a single deterministic solution, given a sequence of observations over an assimilation window.
 This makes 4DVarNet-LU particularly well-suited for applications involving coherent advective structures, where positional uncertainty dominates the amplitude uncertainty.</p>
 <h2 id=references>References<a hidden class=anchor aria-hidden=true href=#references>¶</a></h2>
 <ul>
