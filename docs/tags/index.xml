@@ -5,11 +5,21 @@
     <link>https://shashankkroy.github.io/tags/</link>
     <description>Recent content in Tags on S.K.R</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 22 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>machine learning, neural networks, uncertainty quantification, AI</title>
+      <link>https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</link>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
     <item>
       <title>Deeplearning for weather predictions</title>
       <link>https://shashankkroy.github.io/tags/deeplearning-for-weather-predictions/</link>
-      <pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/deeplearning-for-weather-predictions/</guid>
       <description></description>
@@ -19,7 +29,7 @@
     <item>
       <title>Variational data assimilation, machine learning, neural networks, uncertainty quantification, AI</title>
       <link>https://shashankkroy.github.io/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</link>
-      <pubDate>Tue, 22 Jul 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</guid>
       <description></description>
@@ -89,7 +99,7 @@
     <item>
       <title>Covariant Lyapunov vectors</title>
       <link>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</link>
-      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</guid>
       <description></description>
@@ -99,7 +109,7 @@
     <item>
       <title>Lorenz-63</title>
       <link>https://shashankkroy.github.io/tags/lorenz-63/</link>
-      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/lorenz-63/</guid>
       <description></description>
@@ -109,7 +119,7 @@
     <item>
       <title>ensemble kalman filter</title>
       <link>https://shashankkroy.github.io/tags/ensemble-kalman-filter/</link>
-      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/ensemble-kalman-filter/</guid>
       <description></description>
@@ -119,7 +129,7 @@
     <item>
       <title>filter stabiltiy</title>
       <link>https://shashankkroy.github.io/tags/filter-stabiltiy/</link>
-      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/filter-stabiltiy/</guid>
       <description></description>
@@ -129,7 +139,7 @@
     <item>
       <title>optimal transport</title>
       <link>https://shashankkroy.github.io/tags/optimal-transport/</link>
-      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/optimal-transport/</guid>
       <description></description>
@@ -139,7 +149,7 @@
     <item>
       <title>sinkhorn divergnce</title>
       <link>https://shashankkroy.github.io/tags/sinkhorn-divergnce/</link>
-      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/sinkhorn-divergnce/</guid>
       <description></description>

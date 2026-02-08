@@ -5,8 +5,8 @@ theme: PaperModX
 
 enableRobotsTXT: true
 buildDrafts: true
-buildFuture: false
-buildExpired: false
+buildFuture: true
+buildExpired: true
 
 googleAnalytics: G-M628446BVJ
 
@@ -16,8 +16,8 @@ minify:
 
 params:
   env: production # production to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
+  title: Webpage
+  description: "Shashank's webpage"
   keywords: [Blog, Portfolio, PaperMod]
   author: Me
   # author: ["Me", "You"] # multiple authors
@@ -97,6 +97,7 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
+
     hidden: false # hide everywhere but not in structured data
     hiddenInList: false # hide on list pages and home
     hiddenInSingle: true # hide on single page
@@ -136,11 +137,11 @@ menu:
       weight: 40
     - identifier: research statement
       name: Research Statement
-      url: /research statement/
+      url: /research-statement/
       weight: 20
     - identifier: curriculum vitae
       name: CV
-      url: /curriculum vitae/
+      url: /curriculum-vitae/
       weight: 30
     
 

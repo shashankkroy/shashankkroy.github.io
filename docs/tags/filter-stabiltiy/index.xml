@@ -5,11 +5,11 @@
     <link>https://shashankkroy.github.io/tags/filter-stabiltiy/</link>
     <description>Recent content in filter stabiltiy on S.K.R</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 17 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/filter-stabiltiy/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/filter-stabiltiy/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Numerical filter stability: Do wrong priors at t=0 affect long term posterior?</title>
       <link>https://shashankkroy.github.io/research-statement/filter-stability/</link>
-      <pubDate>Mon, 17 Oct 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/research-statement/filter-stability/</guid>
       <description>understanding filter stability and it&amp;#39;s importance</description>
@@ -20,11 +20,11 @@
 <h2 id="bayesian-filtering-algorithms-for-data-assimilation">Bayesian filtering algorithms for data assimilation</h2>
 <p>Bayesian filtering is defined as the sequential estimation of the conditional distribution in phase space of the state of a physical system coming from an assumed model taking into account the likelihood of new information arriving from the observations (Cohen(1997)).
 Filtering is followed by prediction, where the goal is to predict the the evolution of the system and it&rsquo;s flow dependent uncertainty accounting for possible source of errors which result may grow at later time in future. Below is a schematic picture of a bayeisan filtering mechanism.</p>
-<p><img loading="lazy" src="/images/enkf_schematic.png" type="" alt="schematicpicture"  /></p>
+<p><img loading="lazy" src="/images/enkf_schematic.png" type="" alt="schemati-cpicture"  /></p>
 <p>At a given time $k$ , the probability density distribution of the true state conditioned on observations upto time $k$ is called the analysis probability density. This is then propagated in time by solving fokker-planck equation, or by using  monte-carlo methods to integate the ensembles representing the distribution to obtain prior distribution at time $k+1$, called forecast probability density distribution at time $k+1$, before using the information about the observation $y_{k+1}$. Assuming that given $x_{k+1}$, the observations $y_{K+1}$ is conditionally independent of all previous observations and states,  we get the likelihood for the observation $y_{k+1}$ is obtained using the observation model and the measurement noise distribtution is given by $\rho(y_{k+1}|x_{k+1})$. Using bayes' theorem, we have</p>
 <p>$$\rho\left(x_{k+1}|Y_{k+1}\right)=\frac{\rho\left(y_{k+1}|x_{k+1}\right)\rho\left(x_{k+1}|Y_{k}\right)}{ \rho\left(y_{k+1}|Y_{k}\right)}$$</p>
 <p>since the true state is unknown, all filtering algorithms makes an arbitraty choice for $\rho(x_0)$ at the time of filter initialization. It becomes crucial that these distributions become independent of the initial choice used in initializing the filter so that quantities estimates using the posterior are eventually independent of our arbitrary and often wrong choice of $\rho(x_0)$. As an example, the following picture demonstrates how stability looks like in one of the component out of the whole state vector,</p>
-<p><img loading="lazy" src="/images/stabilit_enkf_picture_x36_cropped.png" type="" alt="A schematic plot for enkf"  /></p>
+<p><img loading="lazy" src="/images/stabilit_enkf_picture_x36_cropped.png" type="" alt="A-schematic-plot-for-enkf"  /></p>
 <p>where we have two different initial distribution $\mu_1$ and $\mu_2$ both of which are far from $x_0$, the true initial condition. Over many assimilation, the two posterior ensembles starting with different initial distribution are seen to come closer to each other.</p>
 <h3 id="definition-of-filter-stability">Definition of filter stability</h3>
 <p>Filter stability is the property that the posterior distribution computed sequentially over long time is independent of the choice of the distribution at $k=0$ used to initialize the filtering algorithm. The rate at which the filter achieves this independece,  the better are the estimates of various quantities which utilize the posterior distribution.</p>
