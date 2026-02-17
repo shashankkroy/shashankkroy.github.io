@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Research Statement on S.K.R</title>
+    <title>Research Statement on Home</title>
     <link>https://shashankkroy.github.io/research-statement/</link>
-    <description>Recent content in Research Statement on S.K.R</description>
+    <description>Recent content in Research Statement on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/research-statement/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -69,12 +69,12 @@ This makes 4DVarNet-LU particularly well-suited for applications involving coher
     </item>
     
     <item>
-      <title>4DVarNet: A neural network model for data assimilation and uncertainty quantification</title>
+      <title>4DVarNet: A neural network based on variational data assimilation</title>
       <link>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</link>
-      <pubDate>Sun, 23 Nov 2025 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</guid>
-      <description>Can we perform data assimilation and uncertainty quantification using neural networks?</description>
+      <description>Can we train a DA algorithm like 4DVar using neural networks?</description>
       <content:encoded><![CDATA[<h2 id="overview-of-data-assimilation">Overview of Data Assimilation</h2>
 <p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations. 
 <a href="https://link.springer.com/chapter/10.1007/978-3-030-96709-3_5">Variational data assimilation</a> aims to find a the best trajectory of the dynamical system which minimizes a certain cost function.</p>
