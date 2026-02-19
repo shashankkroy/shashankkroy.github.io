@@ -7,361 +7,211 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Diffusion models and Stochastic differential equations</title>
-      <link>https://shashankkroy.github.io/posts/diffusion-models/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      <title>4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.</title>
+      <link>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</link>
+      <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
-      <description>Understanding diffusion models: what makes them so good?</description>
-      <content:encoded><![CDATA[<p>What did the physicists didn&rsquo;t tell you about the diffusion models?</p>
-<p>And this is the reason why diffusion models are so good at generating images.</p>
-<p>When was is the last time you heard about diffusion in physics class?</p>
-<p>Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
-to the state of disorder. But why?</p>
-<p>Here is a simple animation of what diffusion means in physics.</p>
-<p>Here is an example of how we can simulate a simple diffusion proces using particles.</p>
-<p>The two examples may look different, but the first process describes the evolution of the diffusion process. While if we 
-want to write down the profile instead of the particles themselves, the picture corresponds to the second one.</p>
-<h1 id="the-tale-of-how-the-age-old-diffusion-becomes-popular-again">The tale of how the age old diffusion becomes popular again</h1>
-<h1 id="the-past">The past</h1>
-<h1 id="the-present">The present</h1>
-<h1 id="the-future">The future</h1>
+      <guid>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</guid>
+      <description>Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?</description>
+      <content:encoded><![CDATA[<h2 id="the-story-so-far">The story so far</h2>
+<p>Modern geophysical systems are dominated by coherent structures: jets, eddies, fronts, filaments, and sharp interfaces. In such systems, forecast errors are rarely pointwise or purely additive. Instead, they are primarily structural and geometric, arising from uncertainties in the position, shape, and evolution of these coherent features.</p>
+<p>Classical variational data assimilation and recent neural approaches (including 4DVarNet) have demonstrated strong performance in deterministic state reconstruction. However, they typically produce a single optimal trajectory, providing limited insight into uncertainty, especially uncertainty driven by displacement and phase errors.</p>
+<p>At the same time, ensemble-based methods often rely on simplistic perturbation strategies (e.g. additive Gaussian noise) that fail to consider non-gaussian error structures such as alignment or positional errors. Such perturbations distort coherent structures, inject unphysical small-scale energy, and poorly represent the dominant error subspaces of advective systems.</p>
+<p>This project is motivated by a simple but fundamental observation:
+<em>In geophysical fluids, uncertainty propagates primarily through large-scale displacements of coherent structures, while small-scale features are advected and deformed by those displacements.</em></p>
+<h2 id="uncertanty-quantification-using-spatiotemporal-random-displacements">Uncertanty quantification using spatiotemporal random displacements</h2>
+<p>We introduce an uncertainty model based on spatiotemporally correlated random displacement fields, inspired by stochastic fluid dynamics and Lagrangian flow theory.</p>
+<p>Instead of perturbing state variables directly, we model uncertainty through a stochastic flow of diffeomorphisms that acts on the state via transport. These random flows:</p>
+<ul>
+<li>Are smooth and large-scale, targeting the dominant coherent structures</li>
+<li>Are temporally correlated, reflecting finite predictability horizons</li>
+<li>Preserve the geometric integrity of advected fields</li>
+<li>Induce realistic small-scale variability through shear and deformation</li>
+</ul>
+<p>Formally, uncertainty is represented by a stochastic displacement field whose statistics are controlled in both space (scale-selective spectra) and time (Ornstein–Uhlenbeck dynamics). This construction allows us to explicitly separate:</p>
+<p>Large-scale position uncertainty (phase errors)</p>
+<p>Small-scale residual variability (amplitude errors)</p>
+<h2 id="4dvarnet-lu-an-ensemble-neural-data-assimilation-model">4DVarNet-LU: An ensemble neural data assimilation model</h2>
+<p><img loading="lazy" src="/images/4dvarnet-lu.png" type="" alt="4DVarNet Architecture"  /></p>
+<p>Building on this uncertainty framework, we introduce 4DVarNet-LU, an ensemble extension of 4DVarNet designed to handle Lagrangian uncertainty (LU).</p>
+<p>In 4DVarNet-LU:</p>
+<ul>
+<li>Each ensemble member is generated by applying a stochastic displacement flow to the initial state</li>
+<li>All ensemble members are then assimilated using a shared neural variational architecture</li>
+<li>The ensemble is flow-dependent, structured, and physically meaningful by construction.</li>
+</ul>
+<p>4DVarNet-LU embeds uncertainty within the architecture itself during generation of initial state, allowing the neural solver to generate multiple reconstructions states.</p>
+<h2 id="so-what-does-the-4dvarnet-lu-model-predicts">So what does the 4DVarNet-LU model predicts?</h2>
+<p>The 4DVarNet-LU model can predicts an ensemble of reconstructed state trajectories, not a single deterministic solution, given a sequence of observations over an assimilation window.
+This makes 4DVarNet-LU particularly well-suited for applications involving coherent advective structures, where positional uncertainty dominates the amplitude uncertainty.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p>Fablet, R., Drumetz, L., Rousseau, F. (2021). Learning variational data assimilation models and solvers. Journal of Advances in Modeling Earth Systems.</p>
+</li>
+<li></li>
+<li>
+<p>Beauchamp, M., Fablet, R., et al. (2023). Neural variational data assimilation with learned dynamical priors.</p>
+</li>
+<li>
+<p>Beck, A., et al. (2009). Morphing ensemble Kalman filters. Tellus A.</p>
+</li>
+<li>
+<p>Lawson, W. G., Hansen, J. A. (2005). Implications of stochastic and deterministic filters. Monthly Weather Review.</p>
+</li>
+<li>
+<p>Holm, D. D. (2015). Variational principles for stochastic fluid dynamics. Proceedings of the Royal Society A.</p>
+</li>
+<li>
+<p>Vallis, G. K. (2017). Atmospheric and Oceanic Fluid Dynamics. Cambridge University Press.</p>
+</li>
+</ul>
 ]]></content:encoded>
     </item>
     
     <item>
-      <title>The simple equation which changed the world of weather prediction</title>
-      <link>https://shashankkroy.github.io/posts/play-with-chaos/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      <title>4DVarNet: A neural network based on variational data assimilation</title>
+      <link>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</link>
+      <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/play-with-chaos/</guid>
-      <description>Understanding chaos: and what makes them different from noise?</description>
-      <content:encoded><![CDATA[<p>Cascading behaviour.</p>
+      <guid>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</guid>
+      <description>Can we train a DA algorithm like 4DVar using neural networks?</description>
+      <content:encoded><![CDATA[<h2 id="overview-of-data-assimilation">Overview of Data Assimilation</h2>
+<p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations. 
+<a href="https://link.springer.com/chapter/10.1007/978-3-030-96709-3_5">Variational data assimilation</a> aims to find a the best trajectory of the dynamical system which minimizes a certain cost function.</p>
+<h2 id="problem-statement-can-neural-network-models-replace-data-assimilation-for-a-cheaperfaster-alternative">Problem statement: Can neural network models replace data assimilation for a cheaper/faster alternative?</h2>
+<p><img loading="lazy" src="/images/vort_sf_obs_128.png" type="" alt="da_setup"  /></p>
+<p>For an observation window $i$ where the sequence of observations $Y^i=\left(y^i_0,y^i_1,&hellip;y^i_n\right)$ on $\left(\Omega^i_n\right) \in \Omega$ is given, we want to find the optimal trajectory  $X^i=\left(x^i_0,x^i_1,&hellip;x^i_n\right)$ of the true system that minimizes the following cost function.</p>
+<p>$$\mathcal{U}(x^i_0,x^i_1,&hellip;x^i_n)=\sum_{k=1} \alpha_{dyn} | x_k - \mathcal{M}(x_{k-1}) |^2+ \alpha_{ob} |y_i-\mathcal{H}(x_i)|^2$$</p>
+<p>This is the weak-4dvar cost function which needs ot be minimized.
+The dynamical systems $ \mathcal{M} $, the dynamical propagator which takes the system state $x_k$ to $x_{k+1}$.
+The above weak formulation of the 4dvar problem accounts for additional model errors in the dynamical system as the dynamics is not perfect, hence there dynamical cost term.</p>
+<p>The first term minimizes the depatures from a pure model trajectory since the aim to find a trajectory close to the model trajectory while accounting for the model error- a part we refer to as &lsquo;the dynamical cost&rsquo;. The second term makes the trajectory fit to the obsrvations and is referred as &lsquo;observation cost&rsquo;.</p>
+<h2 id="introducing-neural-data-assimilation-using-4dvarnet">Introducing Neural Data Assimilation using 4DVarNet</h2>
+<p><em>What if we have a dataset of the optimal states and their corresponding observations, can we train a neural network to learn the mapping from the observations to the optimal state?</em>
+In the supervised setting, we something similar happens when we have access to a large dataset. But simple inversion from observation to full state is an ill-defined problem, so the model learn a representation of the data which acts as a regularization term.</p>
+<p>4DVarNet is trained to learn the mapping from the observations to the optimal state, while also learning representation term via a term called GIBBS neural network. This is an autoencoder based network whose input and outputs are the same.</p>
+<h2 id="an-schematic-of-the-4dvarnet-architecture">An schematic of the 4DvarNet Architecture</h2>
+<p>At the core of the 4VarNet architecture is a parameterized 4dvar cost function that we want to learn.</p>
+<p>$$\mathcal{U_{\Phi}}= \alpha_{dyn} | X^{i} - \Phi({X^i}) |^2+ \alpha_{ob} |Y^i-\mathcal{H}(X^i)|^2$$</p>
+<p>Where we compactify the notations for the time series and $i$ here is the index of assimilation window.
+Note, that this cost has two parts, the first part learns a representation of the data, while the second part ensures that the observations are matched to the state. There is no background term in this formulation, as the network is expected to learn the correlations from the data.</p>
+<p><img loading="lazy" src="/images/4dvarnet-schematic.svg" type="" alt="4DVarNet Architecture"  /></p>
+<p>The solver of this cost function is another neural network that learns the mapping from the observations to the optimal state. This is parameterized by an LSTM whose input is a gradients. We can see this solver as doing meta-learning. The solver is trained to minimize the cost function using a gradient-based descent algorithm, which is similar to the optimization process used in 4dvar.</p>
+<p>The parameterized cost function and it&rsquo;s solver are trained together in an end-to-end manner, allowing the network to learn the optimal mapping from the observations to the optimal state. The loss function that trains the whole architecture is the mean squared error between the predicted state and the true state, given by,</p>
+<p>$$\mathcal{L}(X^i, \hat{X}^i) = \frac{1}{N} \sum_{i=1}^{N} | X^i - \Psi_{\Phi,\Gamma}(Y^i,{X}^0) |^2$$</p>
+<p>where,<br>
+$ \Phi, \Gamma,$ are the parameters of the GIBBS neural network and the solver neural network respectively, $Y^i$ is the observations over an assimilation window indexed by $i$, ${X}^0$ is the initial guess of the state, and $\Psi_{\Gamma,\Phi}$ is the mapping learned by the 4DVarNet architecture.</p>
+<p>Interestingly, we just need observations and the true states, not the optimization solutions since the goal of the optimization itself is to revove the true field within the limits of the model/observation errors.</p>
+<h3 id="training-and-inference">Training and inference:</h3>
+<p>We have $(Y^i, X^i)$ define as above for the input and target pair for training. The input to the network is generally $Y^i$ in the standard architecture of 4DVarNet. In my case, the network starts with an initial guess of the state $X^i_0$ which is then used to compute the model trajectory $X^i$.</p>
+<p>Usually, the IC can be a zero field or a random field, but in my case, I generate a slightly perturbed version of the true state $X^i_0$ as the initial guess. This is done by displacing the true state field in a coherent manner such that the features are preserved and are physical.</p>
+<p>During inference, we can use the trained network to predict the optimal state given the observations and some initial conditions. Inprinciple, we can generate multiple predictions by sampling from the initial condition distribution, which can be a Gaussian distribution with mean as the initial guess and some variance. This gives us an ensemble of predictions which can be used for uncertainty quantification.</p>
+<h2 id="quasi-geostrophic-model-our-choice-of-the-underlying-system">Quasi-geostrophic model: our choice of the underlying system</h2>
+<p>To rigorously evaluate and benchmark state estimation algorithms, it is crucial to move beyond over-simplified dynamical systems like the Lorenz-63 or Lorenz-96 models, which are low-dimensional ODEs (3 and 40 dimensions, respectively). At the same time, we need models that are computationally tractable and can be used to test the performance of data assimilation algorithms.</p>
+<p>With recent trends of deep learning, traditional data assimilation problems that need adjoint computation may bypass this step by leveraging AD(automatic differentiation)- the work-horse of modern machine learning. The Quasi-Geostrophic (QG) model offers a more realistic and challenging alternative. As a PDE-based model, the QG system captures essential features of large-scale geophysical fluid dynamics while remaining computationally tractable. It serves as a model of intermediate complexity, bridging the gap between toy models and full-scale numerical weather prediction systems.</p>
+<p>In the QG model, the vorticity field is the fundamental dynamical variable, evolving under nonlinear advection and forcing, and governed by conservation laws. Observations, however, are typically taken in the streamfunction space, which is related to vorticity through an elliptic inversion (a form of diagnostic relationship). This setup introduces a realistic observation operator and offers a natural framework for exploring the performance of data assimilation techniques in the presence of model and observation noise. The QG model is thus particularly well-suited for testing advanced machine learning and deep learning methods for data assimilation I started out with the codes of <a href="https://github.com/hrkz/torchqg">Hugo Frezat</a> for QG, but I have made significant changes to the code to make it compatible with the weak-4dvar problem and to integrate it with neural ode package.</p>
+<p>The Domain is  2D periodic, $\left[0,2 \pi\right)^2$, $\omega $: Vorticity field, $\psi$: Stream-function field.</p>
+<p>$$\frac{\partial \omega}{\partial t}+ J(\psi, \omega)= \nu \nabla^2 \omega - \mu \omega - \beta \partial_x \psi ,, \quad \omega = \nabla^2 \psi , \quad $$</p>
+<p>The PDE has PBC and we use psueod-spectral methods to solve them( all in pytorch.)
+These observations are available on masks which have been obtained from Nadir Satelite altimetry tracks. The nature of these observations are realistic- they are really quite sparse!</p>
+<p>We finally create a dataset of observations and the true states, which can be used to train the 4DVarNet architecture. The dataset is created by simulating the QG model and generating observations at different times. The observations are then used to train the 4DVarNet architecture to learn the mapping from the observations to the true states.</p>
+<h2 id="results-work-in-progress">Results (Work in progress)</h2>
+<p>The standard 4DVarNet architecture only uses the observations as the input, and intializes the states from it. We refer to this as 4Dvarnet-No-IC. The 4DVarNet architecture where we provide additional guess for the initial conditions is referred to as 4DVarNet-IC. Using a simple metric called $\mu=1-\frac{RMSE(X)}{RMS(X)}$. The RMSE is the root mean square error between the predicted state and the true state, and RMS is the std. of the true state. When $\mu=1$, the model is perfect, and when $\mu=0$, the errors are of the same order of the natural variability of the field X.</p>
+<p><img loading="lazy" src="/images/4dvar-4dvarnet-plot.png" type="" alt="4DVarNet Results"  /></p>
+<p>The results of the 4DVarNet architecture are compared with the standard weak-4DVar algorithm, ( both solve the weak-4dvar problem). 
+The results show that the 4DVarNet-IC architecture performs better than the 4DVarNet-No-IC architecture, which is expected since the initial guess is closer to the true state. The results also show that the 4DVarNet architecture is able to learn the mapping from the observations to the true states, and can be used for data assimilation and uncertainty quantification.</p>
+<h3 id="references">References</h3>
 ]]></content:encoded>
     </item>
     
     <item>
-      <title>Markdown Syntax Guide</title>
-      <link>https://shashankkroy.github.io/posts/markdown-syntax/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <title>Covariant lyapunov vectors: Why are they interesting?</title>
+      <link>https://shashankkroy.github.io/research-statement/clv/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/markdown-syntax/</guid>
-      <description>Sample article showcasing basic Markdown syntax and formatting for HTML elements.</description>
-      <content:encoded><![CDATA[<p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.</p>
-<h2 id="headings">Headings</h2>
-<p>The following HTML <code>&lt;h1&gt;</code>—<code>&lt;h6&gt;</code> elements represent six levels of section headings. <code>&lt;h1&gt;</code> is the highest section level while <code>&lt;h6&gt;</code> is the lowest.</p>
-<h1 id="h1">H1</h1>
-<h2 id="h2">H2</h2>
-<h3 id="h3">H3</h3>
-<h4 id="h4">H4</h4>
-<h5 id="h5">H5</h5>
-<h6 id="h6">H6</h6>
-<h2 id="paragraph">Paragraph</h2>
-<p>Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.</p>
-<p>Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.</p>
-<h2 id="blockquotes">Blockquotes</h2>
-<p>The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a <code>footer</code> or <code>cite</code> element, and optionally with in-line changes such as annotations and abbreviations.</p>
-<h4 id="blockquote-without-attribution">Blockquote without attribution</h4>
-<blockquote>
-<p>Tiam, ad mint andaepu dandae nostion secatur sequo quae.
-<strong>Note</strong> that you can use <em>Markdown syntax</em> within a blockquote.</p>
-</blockquote>
-<h4 id="blockquote-with-attribution">Blockquote with attribution</h4>
-<blockquote>
-<p>Don&rsquo;t communicate by sharing memory, share memory by communicating.</p>
-<p>— <!-- raw HTML omitted -->Rob Pike<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup><!-- raw HTML omitted --></p>
-</blockquote>
-<h2 id="tables">Tables</h2>
-<p>Tables aren&rsquo;t part of the core Markdown spec, but Hugo supports them out-of-the-box.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Age</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bob</td>
-<td>27</td>
-</tr>
-<tr>
-<td>Alice</td>
-<td>23</td>
-</tr>
-</tbody>
-</table>
-<h4 id="inline-markdown-within-tables">Inline Markdown within tables</h4>
-<table>
-<thead>
-<tr>
-<th>Italics</th>
-<th>Bold</th>
-<th>Code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>italics</em></td>
-<td><strong>bold</strong></td>
-<td><code>code</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="code-blocks">Code Blocks</h2>
-<h4 id="inline-code">Inline Code</h4>
-<p><code>This is Inline Code</code></p>
-<h4 id="only-pre">Only <code>pre</code></h4>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h4 id="code-block-with-backticks">Code block with backticks</h4>
-<pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot; /&gt;
-        &lt;title&gt;Example HTML5 Document&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;p&gt;Test&lt;/p&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h4 id="code-block-with-backticks-and-language-specified">Code block with backticks and language specified</h4>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span> <span class="p">/&gt;</span>
-        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Example HTML5 Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;description&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;Sample article showcasing basic Markdown syntax and formatting for HTML elements.&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="code-block-indented-with-four-spaces">Code block indented with four spaces</h4>
-<pre><code>&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;title&gt;Example HTML5 Document&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;p&gt;Test&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h4 id="code-block-with-hugos-internal-highlight-shortcode">Code block with Hugo&rsquo;s internal highlight shortcode</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!doctype html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Example HTML5 Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Test<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span></code></pre></div>
-<h4 id="gist">Gist</h4>
-<script type="application/javascript" src="https://gist.github.com/spf13/7896402.js"></script>
-
-<h2 id="list-types">List Types</h2>
-<h4 id="ordered-list">Ordered List</h4>
-<ol>
-<li>First item</li>
-<li>Second item</li>
-<li>Third item</li>
-</ol>
-<h4 id="unordered-list">Unordered List</h4>
+      <guid>https://shashankkroy.github.io/research-statement/clv/</guid>
+      <description>A brief overview of CLV and a few results</description>
+      <content:encoded><![CDATA[<h1 id="instability-property-of-a-dynamical-system-and-data-assimilation">Instability property of a dynamical system and data assimilation</h1>
+<p>Instability properties of a chaotic nonlinear dynamical system are characterized globally by lyapunov exponent and locally by lyapunov vectors, which correspond to the directions associated with those rates.
+Unstable subspaces of a system has been shown to improve forecasts in ocean-atmosphere coupled models when the assimilation takes into account \cite{Vannitsem(2016)}.
+When a time evolving system is only accessible via noisy and sparse observations and with no information of the initial conditions, identifying a trajectory is extremely difficult using only the model and methods of nonlinear filtering provide best estimates of the true state and help us estimate the underlying trajectory the system evolves on with some uncertainty estimate. The best estimates over time does not constitute a dynamical trajectory and but is always near the true trajectory in some distance metric. We formulated this problem into using the filter estimate over time as a proxy of the true trajectory perturbed by the error statistics.</p>
+<h2 id="covariant-lyapunov-vectors">Covariant Lyapunov Vectors</h2>
+<p>Covariant lyapunov vectors are non-orthogonal basis to the tangent space of a dynamical system, where the $i^{th}$ clv orresponds to the direction along which an infinitesimal error grows or decays with the rate which is equal to the lyapunov $\lambda_i$ in the forward and the time reverse ddynamics respectively. They are covarinat, time-invariant and their computation is costlier than the commonly used backward lyapunov vectors which are orthogonal by construction. CLVs encode more information in terms of theri mutual angle, which is not present in other orthogonal vectors. Accessing this required their computation which is slightly more involved the backward lyapunov vectors, whic are usually the product of Benettin&rsquo;s algorithm extensively used to compute lyapunov exponents.</p>
+<p>Below we have CLVs of Lorenz-63, which is a 3-dimensional chaotic ODE system and has a butterfly shaped attractor for a specific set of values of the parameters $(\sigma,\rho,\beta)=(10,28,8/3)$. We plot the 1st CLV and 2nd CLV for their first two components. The ODE for this system is written below. 
+$$
+\frac{dx}{dt}=\sigma \left(y-x\right), 
+\frac{dy}{dt}=x\left(\rho-z\right)-y, 
+\frac{dz}{dt}=xy-\beta z $$</p>
+<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/images/enhanced_L63_attr_12.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<p>Plotting the first two components of the vectors is shown below. An interesting thing to note is that there is a gradual change in the directions of the vectors as we move along the trajectory. Moreover, two nearby points on the attractor have some degree of similarity in terms of the directions of the vectors themselves. Since there computation needs an underlying trajectory, some degree of their smoothness may be of some merit when applying some supervised machine learning methods to learn and predict them.</p>
+<p>Below is CLV 1, where we only ploy the X and Z component of the vectors.
+<img loading="lazy" src="/images/CLV1_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<p>Below is CLV 2, where we only ploy the X and Z component of the vectors.
+<img loading="lazy" src="/images/CLV2_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<h2 id="research-problem">Research Problem</h2>
+<p>The specific questions which we ask about lyapunov vectors and exponents in context of the filtering problem are as follows:</p>
 <ul>
-<li>List item</li>
-<li>Another item</li>
-<li>And another item</li>
+<li>How sensitive are the backward and covariant lyapunov vectors and the corresponding exponents to perturbations in the underlying trajectory?</li>
+<li>Under what conditions can one recover them from a filter estimated trajectory instead of the true trajectory of the dynamical system?</li>
+<li>How robust are unstable subspaces to the perturbation strength $\sigma$, and are they more robust than the individual vectors themselves?</li>
 </ul>
-<h4 id="nested-list">Nested list</h4>
+<p>The above questions are relevant to both nonlinear dynamics and weather forecasting techniques since the underlying true trajectory is not accessible but are required in order to compute the LVs. What one can do best is to use the best estimate of the true state given observations upto a certain time. This comes with a caveat that the filter estimates or the analysis mean over time is not a dynamical trajectory of the system, i.e. there is not intial condition on the
+model which can generate this trajectory starting from a certain initial condition. The true trajectory
+lies near the analysis mean which is quantifies by the error in the estimates themselves. The
+sensitivity of BLVs and CLVs for a particular system tells us the limitations of what can be reconstructed from the filter estimates themselves.</p>
+<p>In high-dimensions, I used Lorenz-96 in order to explore dimensional dependence added to the sensitivity problem. Another interesting  directions is using principle angles(to cite), which summarize the angle between two different subspaces, and seeing how they change with $\sigma$, which I found to be more robust than the individual vectors themselves. Such study is useful in context of problems where subspaces are more important than the individual vectors themselves. Once the above results are interpretable, we can then reconstruct lyapunov vectors from a filter generated trajectory using partial and noisy observations and a model.</p>
+<h2 id="possible-directions-for-future-work">Possible directions for future work</h2>
+<p>A set of directions for future work directly following the current work are:</p>
 <ul>
-<li>Fruit
-<ul>
-<li>Apple</li>
-<li>Orange</li>
-<li>Banana</li>
+<li>Combining the ideas of assimilation in unstable subspace and stability, are the two related to each other?</li>
+<li>Capturing the effect of model errors themselves on the computed lyapunov vectors.</li>
+<li>Using the subspaces computed from reanalysis data which can be used to restrict the uncertainty in forecasts and analysis in data assimilation cycles.</li>
+<li>The degree of similarity in the lyapunov vectors between two nearby points on the attractor in phase space which may be important machine learning methods trained on vectors computed once along a trajectory be used to predict vectors at neaby points in the phase space.</li>
+<li>Studying structure of CLVs for discretized PDE systems such as Kuramoto-sivashinksy equation which has a finite dimensional attractor to shed light on CLV localization problem.</li>
 </ul>
-</li>
-<li>Dairy
-<ul>
-<li>Milk</li>
-<li>Cheese</li>
-</ul>
-</li>
-</ul>
-<h2 id="other-elements--abbr-sub-sup-kbd-mark">Other Elements — abbr, sub, sup, kbd, mark</h2>
-<p><!-- raw HTML omitted -->GIF<!-- raw HTML omitted --> is a bitmap image format.</p>
-<p>H<!-- raw HTML omitted -->2<!-- raw HTML omitted -->O</p>
-<p>X<!-- raw HTML omitted -->n<!-- raw HTML omitted --> + Y<!-- raw HTML omitted -->n<!-- raw HTML omitted --> = Z<!-- raw HTML omitted -->n<!-- raw HTML omitted --></p>
-<p>Press <!-- raw HTML omitted --><!-- raw HTML omitted -->CTRL<!-- raw HTML omitted -->+<!-- raw HTML omitted -->ALT<!-- raw HTML omitted -->+<!-- raw HTML omitted -->Delete<!-- raw HTML omitted --><!-- raw HTML omitted --> to end the session.</p>
-<p>Most <!-- raw HTML omitted -->salamanders<!-- raw HTML omitted --> are nocturnal, and hunt for insects, worms, and other small creatures.</p>
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>The above quote is excerpted from Rob Pike&rsquo;s <a href="https://www.youtube.com/watch?v=PAAkCSZUG1c">talk</a> during Gopherfest, November 18, 2015.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>]]></content:encoded>
+<h3 id="references">references</h3>
+<p>[1] Roy, Shashank and Apte, Amit, <a href="https://editor.copernicus.org/NPG/ms-records/egusphere-2023-2168">A note on sensitivity of Lyapunov vectors to trajectory perturbations</a></p>
+<p>[2] Pazo, Diego and Szendro, Ivan G. and Lopez, Juan M. and Rodriguez, Miguel, <a href="https://link.aps.org/doi/10.1103/PhysRevE.78.016209">A.Structure of characteristic Lyapunov vectors in spatiotemporal chaos</a>, 2008.</p>
+<p>[3] Vannitsem and Lucarini,<a href="https://doi.org/10.1088/1751-8113/49/22/224001">Statistical and dynamical properties of covariant lyapunov vectors in a coupled atmosphere-ocean model-multiscale effects, geometric degeneracy, and error dynamics</a>,Journal of Physics A: Mathematical and Theoretical, 2016.</p>
+]]></content:encoded>
     </item>
     
     <item>
-      <title>Rich Content</title>
-      <link>https://shashankkroy.github.io/posts/rich-content/</link>
-      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <title>Numerical filter stability: Do wrong priors at t=0 affect long term posterior?</title>
+      <link>https://shashankkroy.github.io/research-statement/filter-stability/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/rich-content/</guid>
-      <description>A brief description of Hugo Shortcodes</description>
-      <content:encoded><![CDATA[<p>Hugo ships with several <a href="https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes">Built-in Shortcodes</a> for rich content, along with a <a href="https://gohugo.io/about/hugo-and-gdpr/">Privacy Config</a> and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.</p>
-<hr>
-<h2 id="image">Image</h2>
-<p>third party image:</p>
-<p>
-  <img loading="lazy" src="https://images.unsplash.com/photo-1662141978148-2eeb2afb3837?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=772&amp;q=80" alt=""  /></p>
-<p>internal image:</p>
-<p></p>
-<h2 id="youtube-privacy-enhanced-shortcode">YouTube Privacy Enhanced Shortcode</h2>
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/ZJthWmvUzzc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-<!-- raw HTML omitted -->
-<hr>
-<h2 id="twitter-simple-shortcode">Twitter Simple Shortcode</h2>
-
-    <style type="text/css">
-      .twitter-tweet {
-        font: 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-        border-left: 4px solid #2b7bb9;
-        padding-left: 1.5em;
-        color: #555;
-      }
-      .twitter-tweet a {
-        color: #2b7bb9;
-        text-decoration: none;
-      }
-      blockquote.twitter-tweet a:hover,
-      blockquote.twitter-tweet a:focus {
-        text-decoration: underline;
-      }
-    </style>
-  <blockquote class="twitter-tweet"><p lang="en" dir="ltr">“In addition to being more logical, asymmetry has the advantage that its complete appearance is far more optically effective than symmetry.”<br>— Jan Tschichold <a href="https://t.co/gcv7SrhvJb">pic.twitter.com/gcv7SrhvJb</a></p>&mdash; Design Reviewed | Graphic Design History (@DesignReviewed) <a href="https://twitter.com/DesignReviewed/status/1085870671291310081?ref_src=twsrc%5Etfw">January 17, 2019</a></blockquote>
-
-
-<!-- raw HTML omitted -->
-<hr>
-<h2 id="vimeo-simple-shortcode">Vimeo Simple Shortcode</h2>
-
-
-
-
-
-
-<style>
-.__h_video {
-   position: relative;
-   padding-bottom: 56.23%;
-   height: 0;
-   overflow: hidden;
-   width: 100%;
-   background: #000;
-}
-.__h_video img {
-   width: 100%;
-   height: auto;
-   color: #000;
-}
-.__h_video .play {
-   height: 72px;
-   width: 72px;
-   left: 50%;
-   top: 50%;
-   margin-left: -36px;
-   margin-top: -36px;
-   position: absolute;
-   cursor: pointer;
-}
-</style>
-
-
-<div class="s_video_simple __h_video">
-<a href="https://vimeo.com/4.8912912e&#43;07" rel="noopener" target="_blank">
-
-
-<img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640?region=us" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640?region=us 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640?region=us 2x" alt="Sing Jan Swing - Kinetic Type">
-<div class="play"><svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61"><circle cx="30.5" cy="30.5" r="30.5" opacity=".8" fill="#000"></circle><path d="M25.3 19.2c-2.1-1.2-3.8-.2-3.8 2.2v18.1c0 2.4 1.7 3.4 3.8 2.2l16.6-9.1c2.1-1.2 2.1-3.2 0-4.4l-16.6-9z" fill="#fff"></path></svg></div></a></div>]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Placeholder Text</title>
-      <link>https://shashankkroy.github.io/posts/placeholder-text/</link>
-      <pubDate>Sat, 09 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/posts/placeholder-text/</guid>
-      <description>Lorem Ipsum Dolor Si Amet</description>
-      <content:encoded><![CDATA[<p>Lorem est tota propiore conpellat pectoribus de pectora summo.</p>
-<p>Redit teque digerit hominumque toris verebor lumina non cervice subde tollit usus habet Arctonque, furores quas nec ferunt. Quoque montibus nunc caluere tempus inhospita parcite confusaque translucet patri vestro qui optatis lumine cognoscere flos nubis! Fronde ipsamque patulos Dryopen deorum.</p>
-<ol>
-<li>Exierant elisi ambit vivere dedere</li>
-<li>Duce pollice</li>
-<li>Eris modo</li>
-<li>Spargitque ferrea quos palude</li>
-</ol>
-<p>Rursus nulli murmur; hastile inridet ut ab gravi sententia! Nomine potitus silentia flumen, sustinet placuit petis in dilapsa erat sunt. Atria tractus malis.</p>
-<ol>
-<li>Comas hunc haec pietate fetum procerum dixit</li>
-<li>Post torum vates letum Tiresia</li>
-<li>Flumen querellas</li>
-<li>Arcanaque montibus omnes</li>
-<li>Quidem et</li>
-</ol>
-<h1 id="vagus-elidunt">Vagus elidunt</h1>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
-<p><a href="https://en.wikipedia.org/wiki/Canons_of_page_construction#Van_de_Graaf_canon">The Van de Graaf Canon</a></p>
-<h2 id="mane-refeci-capiebant-unda-mulcebat">Mane refeci capiebant unda mulcebat</h2>
-<p>Victa caducifer, malo vulnere contra dicere aurato, ludit regale, voca! Retorsit colit est profanae esse virescere furit nec; iaculi matertera et visa est, viribus. Divesque creatis, tecta novat collumque vulnus est, parvas. <strong>Faces illo pepulere</strong> tempus adest. Tendit flamma, ab opes virum sustinet, sidus sequendo urbis.</p>
-<p>Iubar proles corpore raptos vero auctor imperium; sed et huic: manus caeli Lelegas tu lux. Verbis obstitit intus oblectamina fixis linguisque ausus sperare Echionides cornuaque tenent clausit possit. Omnia putatur. Praeteritae refert ausus; ferebant e primus lora nutat, vici quae mea ipse. Et iter nil spectatae vulnus haerentia iuste et exercebat, sui et.</p>
-<p>Eurytus Hector, materna ipsumque ut Politen, nec, nate, ignari, vernum cohaesit sequitur. Vel <strong>mitis temploque</strong> vocatus, inque alis, <em>oculos nomen</em> non silvis corpore coniunx ne displicet illa. Crescunt non unus, vidit visa quantum inmiti flumina mortis facto sic: undique a alios vincula sunt iactata abdita! Suspenderat ego fuit tendit: luna, ante urbem Propoetides <strong>parte</strong>.</p>]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Hypothesis Testing 101</title>
-      <link>https://shashankkroy.github.io/posts/hypothesis_testing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/posts/hypothesis_testing/</guid>
-      <description>The fundamental concepts of hypothesis testing</description>
-      <content:encoded><![CDATA[<h3 id="data-is-the-evidence-but-is-it-in-your-favour">Data is the evidence. But is it in your favour?</h3>
-<p>Data, as is, cannot be useful unless we are asking questions which can be partly or fully be answered based on it. The kind of question one puts here can be very broad and narrow at the same time.</p>
-<h2 id="heading"></h2>
-<h3 id="what-is-a-hypothesis">What is a hypothesis?</h3>
-<p>A hypothesis is a statement about the population which one believes is true based on 1) hunch 2) scientific theory 3) empirical studies.</p>
-<h3 id="how-to-frame-a-hypothesis">How to frame a hypothesis?</h3>
-<p>jire</p>
-<h3 id="interpretation">Interpretation</h3>
-<p><img loading="lazy" src="/images/schematic.png" type="" alt="ju"  /></p>
-<h3 id="conclusion">Conclusion</h3>
+      <guid>https://shashankkroy.github.io/research-statement/filter-stability/</guid>
+      <description>understanding filter stability and it&amp;#39;s importance</description>
+      <content:encoded><![CDATA[<h2 id="general-overview-of-the-problem">General overview of the problem</h2>
+<p>Weather, ocean, atmosphere to name a few are physical systems in numerical weather prediction which have huge degrees of freedom and are modelled uisng coupled nonlinear PDEs. When a general nonlinear dynamical system is chaotic, two nearby states evolve and deaprt from each other and predictability skill of such systems is very much limited to time-scales which are fixed by the exponents called lyapunov exponents. In practice, purely model based prediction is impossible for such systems as unavoidable errors in initial conditons, model parameters and error in the model equations themselves get quickly amplifiled, making the error huge and essenstially of the size of the attractor (Palmer(2013)).</p>
+<h2 id="data-assimilation-for-dynamical-systems">Data assimilation for dynamical systems</h2>
+<p>For a dynamical system evolving in real time where the full state is not observed or is observed partially and indirectly, bayesian formalism combines the model outputs with the serially arriving observations allowing one to reasonably estimate the state at time t along with their related uncertainty. Since estimating the full density is impossible in high-dimensions, important statistics describing the pdf are estimated such as mean and covariance and how they evolve in time. Various data assimilation algorithms differ in their specific assumptions and approximations in order to optimally combine the model and the observations making the sequential estimation of such statistics computationally tractable in high-dimensions. Two popular class of such sequential filters are ensemble kalman filters and particle filters.</p>
+<h2 id="bayesian-filtering-algorithms-for-data-assimilation">Bayesian filtering algorithms for data assimilation</h2>
+<p>Bayesian filtering is defined as the sequential estimation of the conditional distribution in phase space of the state of a physical system coming from an assumed model taking into account the likelihood of new information arriving from the observations (Cohen(1997)).
+Filtering is followed by prediction, where the goal is to predict the the evolution of the system and it&rsquo;s flow dependent uncertainty accounting for possible source of errors which result may grow at later time in future. Below is a schematic picture of a bayeisan filtering mechanism.</p>
+<p><img loading="lazy" src="/images/enkf_schematic.png" type="" alt="schemati-cpicture"  /></p>
+<p>At a given time $k$ , the probability density distribution of the true state conditioned on observations upto time $k$ is called the analysis probability density. This is then propagated in time by solving fokker-planck equation, or by using  monte-carlo methods to integate the ensembles representing the distribution to obtain prior distribution at time $k+1$, called forecast probability density distribution at time $k+1$, before using the information about the observation $y_{k+1}$. Assuming that given $x_{k+1}$, the observations $y_{K+1}$ is conditionally independent of all previous observations and states,  we get the likelihood for the observation $y_{k+1}$ is obtained using the observation model and the measurement noise distribtution is given by $\rho(y_{k+1}|x_{k+1})$. Using bayes' theorem, we have</p>
+<p>$$\rho\left(x_{k+1}|Y_{k+1}\right)=\frac{\rho\left(y_{k+1}|x_{k+1}\right)\rho\left(x_{k+1}|Y_{k}\right)}{ \rho\left(y_{k+1}|Y_{k}\right)}$$</p>
+<p>since the true state is unknown, all filtering algorithms makes an arbitraty choice for $\rho(x_0)$ at the time of filter initialization. It becomes crucial that these distributions become independent of the initial choice used in initializing the filter so that quantities estimates using the posterior are eventually independent of our arbitrary and often wrong choice of $\rho(x_0)$. As an example, the following picture demonstrates how stability looks like in one of the component out of the whole state vector,</p>
+<p><img loading="lazy" src="/images/stabilit_enkf_picture_x36_cropped.png" type="" alt="A-schematic-plot-for-enkf"  /></p>
+<p>where we have two different initial distribution $\mu_1$ and $\mu_2$ both of which are far from $x_0$, the true initial condition. Over many assimilation, the two posterior ensembles starting with different initial distribution are seen to come closer to each other.</p>
+<h3 id="definition-of-filter-stability">Definition of filter stability</h3>
+<p>Filter stability is the property that the posterior distribution computed sequentially over long time is independent of the choice of the distribution at $k=0$ used to initialize the filtering algorithm. The rate at which the filter achieves this independece,  the better are the estimates of various quantities which utilize the posterior distribution.</p>
+<p>Mathematically, we can define it using a distance $D$ on the space of probaility distributions $P(\mathcal{R}^d)$.
+Given two different initial distributions {$\nu_1, \nu_2$} for $x_0$ with $\hat\pi_n(\nu_1)$ and $\hat\pi_n(\nu_2)$ being the posterior obtained after assimilating all observation $y_{1:n}$ upto time $n$, then for filter stability to hold, we have
+$$\lim_{n\to\infty}\mathbf E[D(\hat\pi_n(\nu_1), \hat\pi_n(\nu_2))] = 0$$</p>
+<p>where, $D$ is a distance on $P(\mathcal{R}^d)$, the space of probability measures on $\mathcal{R}^d$ and the expectation is over observation noise accounting for different noise realizations (mandal(2021)).</p>
+<p><img loading="lazy" src="/images/stability_schematic-min.png" type="" alt=""  />
+In our work, we have chosen Sinkhorn distance, a distance well motivated by the ideas of optimal transport, which has several merits over other distances such as total variation, apart from being computationally cheaper. This distace utilizes two samples from their respective distributions in order to compute the distance between them upto it&rsquo;s statistical errors.</p>
+<p>We have used <strong>Sinkhorn distance</strong>  to compute these distance. I talk about this distance in another post.</p>
+<h3 id="references">References</h3>
+<p>[1] Carrassi, A., Bocquet, M., Bertino, L., Evensen,<a href="https://doi.org/10.1002/wcc.535">Data assimilation in the geosciences: An overview of methods, issues, and perspectives</a></p>
+<p>[2] G. Evensen,<a href="https://doi.org/10.1007/s10236-003-0036-9">The Ensemble Kalman Filter: theoretical formulation and practical implementation</a>,Ocean Dynamics.</p>
+<p>[3] Kevin K W Cheung,<a href="https://doi.org/10.1017/S1350482701003073">A review of ensemble forecasting techniques with a focus on tropical cyclone forecasting</a>,Meteorological Applications, Royal Meteorological Society.</p>
+<p>[4] Mandal, Pinak and Roy, Shashank Kumar and Apte, Amit,<a href="https://ieeexplore.ieee.org/document/9703185">Stability of nonlinear filters-numerical explorations of particle and ensemble Kalman filters</a>, 2021 Seventh Indian Control Conference (ICC).</p>
+<p>[4] Aude Genevay, Thesis-Entropy-regularized optimal transport for machine learning,Paris Sciences et Letters, 2019.</p>
 ]]></content:encoded>
     </item>
     

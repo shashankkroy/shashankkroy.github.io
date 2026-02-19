@@ -47,16 +47,6 @@
     </item>
     
     <item>
-      <title>diffusion models</title>
-      <link>https://shashankkroy.github.io/tags/diffusion-models/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/diffusion-models/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
       <title>dynamical systems</title>
       <link>https://shashankkroy.github.io/tags/dynamical-systems/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
@@ -72,26 +62,6 @@
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/ordinary-differential-equations/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>probabilistic models in deep learning</title>
-      <link>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Stochastic differential equation</title>
-      <link>https://shashankkroy.github.io/tags/stochastic-differential-equation/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/stochastic-differential-equation/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -159,29 +129,9 @@
     <item>
       <title>example</title>
       <link>https://shashankkroy.github.io/tags/example/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/example/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>markdown</title>
-      <link>https://shashankkroy.github.io/tags/markdown/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/markdown/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>syntax</title>
-      <link>https://shashankkroy.github.io/tags/syntax/</link>
-      <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/syntax/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -202,36 +152,6 @@
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/shortcodes/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>hypothesis testing</title>
-      <link>https://shashankkroy.github.io/tags/hypothesis-testing/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/hypothesis-testing/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>p-value</title>
-      <link>https://shashankkroy.github.io/tags/p-value/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/p-value/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>statistics</title>
-      <link>https://shashankkroy.github.io/tags/statistics/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/statistics/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
