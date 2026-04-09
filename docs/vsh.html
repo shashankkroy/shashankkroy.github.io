@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Spherical Harmonics Visualizer</title>
+<script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
+<script src="https://unpkg.com/katex@0.16.9/dist/katex.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/katex@0.16.9/dist/katex.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;background:#080c18;color:#e2e8f0;font-family:system-ui,sans-serif;font-size:14px;overflow-x:hidden}
+/* NAV */
+.nav{background:#0d1220;border-bottom:1px solid #1e2d4a;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px;position:sticky;top:0;z-index:50}
+.logo{font-size:15px;font-weight:700;background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{color:#94a3b8;text-decoration:none;font-size:13px;cursor:pointer}
+.nav-links a:hover{color:#e2e8f0}
+/* HERO */
+.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 2rem 3rem;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(79,142,247,.08),transparent)}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);border-radius:999px;padding:.3rem 1rem;font-size:12px;color:#60a5fa;margin-bottom:1.25rem}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:.75rem;color:#f8fafc}
+.hero h1 span{background:linear-gradient(135deg,#60a5fa,#a78bfa 50%,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:#64748b;max-width:560px;line-height:1.75;font-size:15px;margin-bottom:2.5rem}
+.btn-row{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
+.btn{padding:.6rem 1.4rem;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-p{background:linear-gradient(135deg,#3b82f6,#7c3aed);color:#fff;box-shadow:0 0 20px rgba(96,165,250,.2)}
+.btn-p:hover{opacity:.9;transform:translateY(-1px)}
+.btn-g{background:transparent;color:#e2e8f0;border:1px solid #1e2d4a}
+.btn-g:hover{border-color:#60a5fa;color:#60a5fa}
+/* SECTIONS */
+.section{padding:4rem 2rem;max-width:1200px;margin:0 auto}
+.divider{border-top:1px solid #1e2d4a}
+.stag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#60a5fa;margin-bottom:.5rem}
+.stitle{font-size:clamp(1.4rem,3vw,2rem);font-weight:700;margin-bottom:.6rem;color:#f1f5f9}
+.ssub{color:#64748b;line-height:1.75;max-width:580px;font-size:13px;margin-bottom:0}
+/* VISUALIZER */
+.viz-layout{display:grid;grid-template-columns:1fr 310px;gap:1.5rem;margin-top:2rem}
+@media(max-width:860px){.viz-layout{grid-template-columns:1fr}}
+#cv-wrap{position:relative;background:#0a0f1e;border:1px solid #1e2d4a;border-radius:14px;overflow:hidden;height:520px}
+#glc{position:absolute;top:0;left:0;width:100%;height:100%;display:block}
+.cv-tl{position:absolute;top:12px;left:12px;display:flex;flex-direction:column;gap:6px;pointer-events:none;z-index:2}
+.badge{background:rgba(8,12,24,.9);border:1px solid #1e2d4a;border-radius:6px;padding:3px 10px;font-size:11px;font-weight:700;color:#60a5fa;backdrop-filter:blur(8px)}
+.badge-lm{color:#e2e8f0;font-family:monospace;font-size:12px}
+.cv-tr{position:absolute;top:12px;right:12px;display:flex;gap:6px;z-index:2}
+.icn-btn{background:rgba(8,12,24,.9);border:1px solid #1e2d4a;border-radius:6px;padding:5px 11px;cursor:pointer;color:#94a3b8;font-size:11px;font-weight:600;backdrop-filter:blur(8px);transition:all .2s;white-space:nowrap}
+.icn-btn:hover{color:#60a5fa;border-color:#60a5fa}
+.cbar{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:rgba(8,12,24,.9);border:1px solid #1e2d4a;border-radius:6px;padding:4px 14px;backdrop-filter:blur(8px)}
+.cbar-g{width:110px;height:8px;border-radius:999px;background:linear-gradient(90deg,#34d399,#1e293b,#f472b6)}
+.cbar span{font-size:11px;color:#64748b}
+/* CONTROL PANEL */
+.ctrl-panel{display:flex;flex-direction:column;gap:.85rem}
+.card{background:#0d1220;border:1px solid #1e2d4a;border-radius:12px;padding:1.1rem}
+.card-t{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#475569;margin-bottom:.85rem}
+.clabel{display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-bottom:4px;color:#94a3b8}
+.cval{background:rgba(96,165,250,.12);color:#60a5fa;padding:1px 8px;border-radius:4px;font-family:monospace;font-size:11px;font-weight:700}
+input[type=range]{width:100%;accent-color:#60a5fa;cursor:pointer;margin-bottom:.55rem;height:4px}
+.trow{display:flex;gap:5px;flex-wrap:wrap}
+.tbtn{flex:1;min-width:60px;padding:5px 4px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid #1e2d4a;background:transparent;color:#475569;transition:all .2s;white-space:nowrap}
+.tbtn.on{background:rgba(96,165,250,.12);border-color:#60a5fa;color:#60a5fa}
+select{background:#111827;border:1px solid #1e2d4a;color:#e2e8f0;border-radius:6px;padding:5px 8px;font-size:12px;width:100%;cursor:pointer;margin-top:.35rem}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pc{background:#111827;border:1px solid #1e2d4a;border-radius:7px;padding:7px 6px;cursor:pointer;text-align:center;transition:all .15s}
+.pc:hover,.pc.on{border-color:#60a5fa;background:rgba(96,165,250,.07)}
+.plm{font-size:12px;font-weight:700;color:#60a5fa;font-family:monospace}
+.pn{font-size:10px;color:#475569;margin-top:2px}
+.save-btn{width:100%;padding:.6rem;border-radius:8px;background:linear-gradient(135deg,#3b82f6,#7c3aed);color:#fff;font-weight:700;font-size:12px;cursor:pointer;border:none;transition:all .2s;margin-top:.1rem}
+.save-btn:hover{opacity:.9;transform:translateY(-1px)}
+/* MATH */
+.math-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;margin-top:2rem}
+.mc{background:#0d1220;border:1px solid #1e2d4a;border-radius:12px;padding:1.4rem}
+.mc h3{font-size:14px;font-weight:700;margin-bottom:.4rem;color:#f1f5f9}
+.mc p{font-size:12px;color:#64748b;line-height:1.65;margin-bottom:.85rem}
+.eq-wrap{background:#060a14;border:1px solid #1e2d4a;border-radius:7px;padding:.7rem 1rem;overflow-x:auto}
+/* CODE */
+.tabs{display:flex;gap:.4rem;margin-bottom:1.1rem;flex-wrap:wrap}
+.tab{padding:5px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #1e2d4a;background:transparent;color:#475569;transition:all .2s}
+.tab.on{background:rgba(96,165,250,.12);border-color:#60a5fa;color:#60a5fa}
+.cblock{background:#060a14;border:1px solid #1e2d4a;border-radius:12px;overflow:hidden}
+.chead{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.1rem;background:#0d1220;border-bottom:1px solid #1e2d4a}
+.dots{display:flex;gap:5px}
+.dots span{width:9px;height:9px;border-radius:50%}
+.cp-btn{font-size:11px;color:#475569;cursor:pointer;background:none;border:none;transition:color .2s}
+.cp-btn:hover{color:#60a5fa}
+pre{padding:1.4rem;overflow-x:auto;font-family:'Fira Code',monospace;font-size:12px;line-height:1.75;color:#cbd5e1}
+.kw{color:#c084fc}.fn{color:#60a5fa}.st{color:#34d399}.cm{color:#475569}.nm{color:#fb923c}.im{color:#f472b6}
+/* GALLERY */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:.85rem;margin-top:2rem}
+.gi{background:#0d1220;border:1px solid #1e2d4a;border-radius:12px;padding:1rem;text-align:center;cursor:pointer;transition:all .22s}
+.gi:hover{border-color:#60a5fa;transform:translateY(-3px);box-shadow:0 8px 24px rgba(79,142,247,.1)}
+.gi-dot{width:60px;height:60px;margin:0 auto .7rem;border-radius:50%}
+.gi h4{font-size:13px;font-weight:700;margin-bottom:2px;color:#f1f5f9}
+.gi p{font-size:11px;color:#475569;line-height:1.5}
+/* FOOTER */
+footer{border-top:1px solid #1e2d4a;padding:2rem;text-align:center;color:#475569;font-size:12px;line-height:2}
+footer a{color:#60a5fa;text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">ΨHarmonics</div>
+  <div class="nav-links">
+    <a onclick="sc('viz')">Visualizer</a>
+    <a onclick="sc('math')">Math</a>
+    <a onclick="sc('code')">Code</a>
+    <a onclick="sc('gallery')">Gallery</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Interactive 3D Explorer</div>
+  <h1>Spherical<br/><span>Harmonics</span> Visualizer</h1>
+  <p>Explore Y<sub>ℓ</sub><sup>m</sup>(θ,φ) and vector spherical harmonics in real-time 3D — the same mathematics behind <strong>torch-harmonics</strong>, quantum mechanics, and neural radiance fields.</p>
+  <div class="btn-row">
+    <button class="btn btn-p" onclick="sc('viz')">Open Visualizer →</button>
+    <button class="btn btn-g" onclick="sc('code')">View Code</button>
+  </div>
+</div>
+
+<!-- VISUALIZER -->
+<div class="section" id="viz">
+  <div class="stag">Interactive 3D</div>
+  <div class="stitle">Real-time Visualizer</div>
+  <p class="ssub">Drag to rotate · Scroll to zoom · Adjust ℓ and m to explore the full harmonic spectrum.</p>
+  <div class="viz-layout">
+    <!-- Canvas -->
+    <div id="cv-wrap">
+      <canvas id="glc"></canvas>
+      <div class="cv-tl">
+        <div class="badge" id="mbadge">SH Mode</div>
+        <div class="badge badge-lm" id="lmbadge">ℓ=2, m=0</div>
+      </div>
+      <div class="cv-tr">
+        <button class="icn-btn" id="rot-btn" onclick="toggleRot(this)">⟳ Rotate</button>
+        <button class="icn-btn" onclick="saveShot()">⬇ PNG</button>
+      </div>
+      <div class="cbar">
+        <span style="color:#34d399">−</span>
+        <div class="cbar-g"></div>
+        <span style="color:#f472b6">+</span>
+      </div>
+    </div>
+    <!-- Controls -->
+    <div class="ctrl-panel">
+      <div class="card">
+        <div class="card-t">Parameters</div>
+        <div class="clabel"><span>Degree ℓ</span><span class="cval" id="lv">2</span></div>
+        <input type="range" id="sl" min="0" max="6" value="2" oninput="setL(+this.value)">
+        <div class="clabel"><span>Order m</span><span class="cval" id="mv">0</span></div>
+        <input type="range" id="sm" min="-2" max="2" value="0" oninput="setM(+this.value)">
+        <div class="clabel"><span>Amplitude</span><span class="cval" id="av">1.0</span></div>
+        <input type="range" id="sa" min="0.1" max="3" step="0.05" value="1"
+          oninput="amp=+this.value;document.getElementById('av').textContent=(+this.value).toFixed(1);rebuild()">
+      </div>
+      <div class="card">
+        <div class="card-t">Mode</div>
+        <div class="trow" id="mrow">
+          <button class="tbtn on" onclick="setMode('sh',this)">SH</button>
+          <button class="tbtn" onclick="setMode('vsh_r',this)">VSH Radial</button>
+          <button class="tbtn" onclick="setMode('vsh_g',this)">VSH Grad</button>
+        </div>
+        <div style="margin-top:.7rem">
+          <label style="display:flex;align-items:center;gap:.5rem;font-size:12px;color:#94a3b8;cursor:pointer">
+            <input type="checkbox" id="quiver-chk" onchange="toggleQuiver(this.checked)" style="accent-color:#60a5fa;width:13px;height:13px">
+            Show quiver (VSH arrows)
+          </label>
+          <div id="quiver-opts" style="display:none;margin-top:.6rem">
+            <div class="clabel"><span>Arrow density</span><span class="cval" id="qdv">12</span></div>
+            <input type="range" id="sq" min="4" max="24" step="2" value="12" oninput="qDens=+this.value;document.getElementById('qdv').textContent=this.value;rebuildQuiver()">
+            <div class="clabel"><span>Arrow scale</span><span class="cval" id="qsv">1.0</span></div>
+            <input type="range" id="sqs" min="0.1" max="3" step="0.05" value="1" oninput="qScale=+this.value;document.getElementById('qsv').textContent=(+this.value).toFixed(1);rebuildQuiver()">
+            <div class="trow" style="margin-top:.4rem" id="qtype-row">
+              <button class="tbtn on" onclick="setQType('grad',this)">∇Y (poloidal)</button>
+              <button class="tbtn" onclick="setQType('curl',this)">r̂×∇Y (toroidal)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-t">Display</div>
+        <div class="trow" id="drow">
+          <button class="tbtn on" onclick="setDisp('deform',this)">Deform</button>
+          <button class="tbtn" onclick="setDisp('color',this)">Color only</button>
+        </div>
+        <div class="clabel" style="margin-top:.7rem"><span>Color map</span></div>
+        <select id="cms" onchange="cmap=this.value;rebuild()">
+          <option value="rg">Pink / Teal</option>
+          <option value="bw">Blue / White</option>
+          <option value="fire">Fire</option>
+          <option value="cool">Cool</option>
+        </select>
+      </div>
+      <div class="card">
+        <div class="card-t">Presets</div>
+        <div class="pgrid" id="pgrid"></div>
+      </div>
+      <div class="card">
+        <div class="card-t">Export</div>
+        <button class="save-btn" onclick="saveShot()">⬇ Save PNG (high-res)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MATH -->
+<div class="section divider" id="math">
+  <div class="stag">Mathematics</div>
+  <div class="stitle">Definitions &amp; Formulas</div>
+  <p class="ssub">Orthonormal basis functions on S², essential for solving the Laplace equation and decomposing angular fields.</p>
+  <div class="math-grid">
+    <div class="mc">
+      <h3>Spherical Harmonics</h3>
+      <p>Y<sub>ℓ</sub><sup>m</sup>(θ,φ) form an orthonormal basis on S². Here P<sub>ℓ</sub><sup>|m|</sup> are the associated Legendre polynomials.</p>
+      <div class="eq-wrap" id="eq1"></div>
+    </div>
+    <div class="mc">
+      <h3>Orthonormality</h3>
+      <p>Integration over the unit sphere yields a Kronecker delta — the functions are mutually orthogonal and unit-normalised.</p>
+      <div class="eq-wrap" id="eq2"></div>
+    </div>
+    <div class="mc">
+      <h3>Vector Spherical Harmonics</h3>
+      <p>Vector-valued generalisations constructed from scalar SH and gradient operators — the basis for electromagnetic and fluid applications.</p>
+      <div class="eq-wrap" id="eq3"></div>
+    </div>
+    <div class="mc">
+      <h3>Eigenvalue Equation</h3>
+      <p>Spherical harmonics are eigenfunctions of the angular Laplacian (Laplace–Beltrami operator) with eigenvalue −ℓ(ℓ+1).</p>
+      <div class="eq-wrap" id="eq4"></div>
+    </div>
+    <div class="mc">
+      <h3>Addition Theorem</h3>
+      <p>Connects SH of two directions to the Legendre polynomial of their relative angle — key for convolution on the sphere.</p>
+      <div class="eq-wrap" id="eq5"></div>
+    </div>
+    <div class="mc">
+      <h3>Hydrogen Wavefunction</h3>
+      <p>The angular part of the hydrogen electron wavefunction is exactly a spherical harmonic — the visualizer shows this directly.</p>
+      <div class="eq-wrap" id="eq6"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CODE -->
+<div class="section divider" id="code">
+  <div class="stag">torch-harmonics</div>
+  <div class="stitle">Code Examples</div>
+  <p class="ssub">Production-ready snippets using
+    <code style="color:#60a5fa;background:rgba(96,165,250,.1);padding:1px 6px;border-radius:4px">torch_harmonics</code>
+    for GPU-accelerated spherical transforms.</p>
+  <div class="tabs" id="ctabs" style="margin-top:1.5rem">
+    <button class="tab on"  onclick="showCode('sh',this)">Spherical Harmonics</button>
+    <button class="tab"     onclick="showCode('vsh',this)">Vector SH</button>
+    <button class="tab"     onclick="showCode('sht',this)">SHT Transform</button>
+    <button class="tab"     onclick="showCode('vis',this)">Visualisation</button>
+  </div>
+  <div id="cc"></div>
+</div>
+
+<!-- GALLERY -->
+<div class="section divider" id="gallery">
+  <div class="stag">Gallery</div>
+  <div class="stitle">Notable Harmonics</div>
+  <p class="ssub">Click any card to load that harmonic into the visualizer instantly.</p>
+  <div class="ggrid" id="ggrid"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>Built with <a href="https://threejs.org" target="_blank">Three.js</a> &nbsp;·&nbsp; <a href="https://github.com/NVIDIA/torch-harmonics" target="_blank">torch-harmonics by NVIDIA</a> &nbsp;·&nbsp; <a href="https://katex.org" target="_blank">KaTeX</a></div>
+  <div>Drag to rotate &nbsp;·&nbsp; Scroll to zoom &nbsp;·&nbsp; Save any view as PNG</div>
+</footer>
+
+<script>
+// ── UTILS ────────────────────────────────────────────────────────────────────
+function sc(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+// ── SH MATH ──────────────────────────────────────────────────────────────────
+function fac(n){let r=1;for(let i=2;i<=n;i++)r*=i;return r}
+
+function legendre(l,m,x){
+  let pm=1;
+  if(m>0){
+    const s=Math.sqrt(1-x*x);
+    let f=1;
+    for(let i=1;i<=m;i++){pm*=(-1)*f*s;f+=2}
+  }
+  if(l===m)return pm;
+  let pm1=x*(2*m+1)*pm;
+  if(l===m+1)return pm1;
+  let p=0;
+  for(let k=m+2;k<=l;k++){p=((2*k-1)*x*pm1-(k+m-1)*pm)/(k-m);pm=pm1;pm1=p}
+  return p;
+}
+
+function Ylm(l,m,th,ph){
+  const a=Math.abs(m);
+  const norm=Math.sqrt((2*l+1)/(4*Math.PI)*fac(l-a)/fac(l+a));
+  const P=legendre(l,a,Math.cos(th));
+  if(m===0)return norm*P;
+  if(m>0)return Math.SQRT2*norm*P*Math.cos(m*ph);
+  return Math.SQRT2*norm*P*Math.sin(-m*ph);
+}
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let renderer,scene,camera,mesh;
+let autoRot=true,rotX=0.25,rotY=0,drag=false,px=0,py=0;
+let curL=2,curM=0,amp=1,dispMode='deform',mode='sh',cmap='rg';
+
+// ── COLOR MAPS ───────────────────────────────────────────────────────────────
+function getCol(v,mn,mx){
+  const t=(v-mn)/(mx-mn||1);
+  const c=new THREE.Color();
+  if(cmap==='rg'){
+    const pos=new THREE.Color(0xf472b6),neg=new THREE.Color(0x34d399),mid=new THREE.Color(0x1e293b);
+    return t<.5?mid.clone().lerp(neg,1-t*2):mid.clone().lerp(pos,(t-.5)*2);
+  }
+  if(cmap==='bw'){c.setHSL(.6,.8,.1+t*.8);return c}
+  if(cmap==='fire'){c.setHSL(.07-t*.07,1,.1+t*.5);return c}
+  c.setHSL(.55+t*.15,.9,.2+t*.5);return c;
+}
+
+// ── MESH BUILDER ─────────────────────────────────────────────────────────────
+function rebuild(){
+  if(mesh){scene.remove(mesh);mesh.geometry.dispose();mesh.material.dispose();mesh=null}
+  const N=90;
+  const pos=[],col=[],idx=[],vals=[];
+  let mn=1e9,mx=-1e9;
+
+  for(let i=0;i<=N;i++){
+    for(let j=0;j<=N;j++){
+      const th=Math.PI*i/N, ph=2*Math.PI*j/N;
+      let v=Ylm(curL,curM,th,ph);
+      if(mode==='vsh_r'){const dv=Ylm(curL,curM,th+.01,ph);v=(dv-v)/.01*.5}
+      if(mode==='vsh_g'){const dv=Ylm(curL,curM,th,ph+.01);v=(dv-v)/.01*.3}
+      vals.push(v);
+      if(v<mn)mn=v; if(v>mx)mx=v;
+    }
+  }
+
+  for(let i=0;i<=N;i++){
+    for(let j=0;j<=N;j++){
+      const th=Math.PI*i/N, ph=2*Math.PI*j/N;
+      const v=vals[i*(N+1)+j];
+      const r=dispMode==='deform'?1+amp*v*.4:1;
+      pos.push(r*Math.sin(th)*Math.cos(ph), r*Math.cos(th), r*Math.sin(th)*Math.sin(ph));
+      const c=getCol(v,mn,mx);
+      col.push(c.r,c.g,c.b);
+    }
+  }
+
+  for(let i=0;i<N;i++)
+    for(let j=0;j<N;j++){
+      const a=i*(N+1)+j;
+      idx.push(a,a+1,a+N+1, a+1,a+N+2,a+N+1);
+    }
+
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.Float32BufferAttribute(col,3));
+  geo.setIndex(idx);
+  geo.computeVertexNormals();
+
+  mesh=new THREE.Mesh(geo,new THREE.MeshPhongMaterial({
+    vertexColors:true, shininess:60, specular:new THREE.Color(0x334155)
+  }));
+  scene.add(mesh);
+
+  document.getElementById('lmbadge').textContent=`ℓ=${curL}, m=${curM}`;
+  document.getElementById('lv').textContent=curL;
+  document.getElementById('mv').textContent=curM;
+  document.getElementById('mbadge').textContent=
+    mode==='sh'?'SH Mode':mode==='vsh_r'?'VSH Radial':'VSH Gradient';
+}
+
+// ── THREE.JS INIT ─────────────────────────────────────────────────────────────
+function initThree(){
+  const wrap=document.getElementById('cv-wrap');
+  const W=wrap.clientWidth||900, H=wrap.clientHeight||520;
+
+  renderer=new THREE.WebGLRenderer({
+    canvas:document.getElementById('glc'),
+    antialias:true,
+    preserveDrawingBuffer:true
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.setClearColor(0x080c18,1);
+  renderer.setSize(W,H,false);
+
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(45,W/H,0.1,100);
+  camera.position.z=3.5;
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff,.35));
+  const d1=new THREE.DirectionalLight(0x7ec8ff,.9); d1.position.set(5,5,5); scene.add(d1);
+  const d2=new THREE.DirectionalLight(0xc084fc,.45); d2.position.set(-5,-3,-5); scene.add(d2);
+
+  // Stars
+  const sv=[];
+  for(let i=0;i<1400;i++){
+    const t=Math.acos(2*Math.random()-1), p=2*Math.PI*Math.random(), r=18+Math.random()*8;
+    sv.push(r*Math.sin(t)*Math.cos(p), r*Math.cos(t), r*Math.sin(t)*Math.sin(p));
+  }
+  const sg=new THREE.BufferGeometry();
+  sg.setAttribute('position',new THREE.Float32BufferAttribute(sv,3));
+  scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x334155,size:.05})));
+
+  // Mouse / touch controls
+  const cv=renderer.domElement;
+  cv.addEventListener('mousedown',e=>{drag=true;px=e.clientX;py=e.clientY;autoRot=false});
+  window.addEventListener('mouseup',()=>drag=false);
+  window.addEventListener('mousemove',e=>{
+    if(!drag)return;
+    rotY+=(e.clientX-px)*.008; rotX+=(e.clientY-py)*.008;
+    px=e.clientX; py=e.clientY;
+  });
+  cv.addEventListener('wheel',e=>{
+    camera.position.z=Math.max(1.5,Math.min(8,camera.position.z+e.deltaY*.004));
+  },{passive:true});
+  cv.addEventListener('touchstart',e=>{px=e.touches[0].clientX;py=e.touches[0].clientY;autoRot=false},{passive:true});
+  cv.addEventListener('touchmove',e=>{
+    rotY+=(e.touches[0].clientX-px)*.008; rotX+=(e.touches[0].clientY-py)*.008;
+    px=e.touches[0].clientX; py=e.touches[0].clientY;
+  },{passive:true});
+
+  // Resize
+  window.addEventListener('resize',()=>{
+    const W2=wrap.clientWidth, H2=wrap.clientHeight;
+    renderer.setSize(W2,H2,false);
+    camera.aspect=W2/H2;
+    camera.updateProjectionMatrix();
+  });
+
+  rebuild();
+
+  // Render loop
+  (function animate(){
+    requestAnimationFrame(animate);
+    if(autoRot)rotY+=.004;
+    if(mesh){mesh.rotation.x=rotX; mesh.rotation.y=rotY}
+    renderer.render(scene,camera);
+  })();
+}
+
+// ── QUIVER ────────────────────────────────────────────────────────────────────
+let quiverGroup=null, showQuiver=false, qDens=12, qScale=1.0, qType='grad';
+
+function toggleQuiver(on){
+  showQuiver=on;
+  document.getElementById('quiver-opts').style.display=on?'block':'none';
+  if(on)rebuildQuiver(); else clearQuiver();
+}
+
+function clearQuiver(){
+  if(quiverGroup){scene.remove(quiverGroup);quiverGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material)o.material.dispose()});quiverGroup=null}
+}
+
+function makeArrow(origin, dir, length, color){
+  const g=new THREE.Group();
+  const normDir=dir.clone().normalize();
+  // shaft
+  const shaftLen=length*.78;
+  const sg=new THREE.CylinderGeometry(.003,.003,shaftLen,5);
+  const sm=new THREE.MeshBasicMaterial({color});
+  const shaft=new THREE.Mesh(sg,sm);
+  shaft.position.copy(normDir.clone().multiplyScalar(shaftLen/2));
+  shaft.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),normDir);
+  g.add(shaft);
+  // head
+  const hg=new THREE.ConeGeometry(.012,.022*length,6);
+  const hm=new THREE.MeshBasicMaterial({color});
+  const head=new THREE.Mesh(hg,hm);
+  head.position.copy(normDir.clone().multiplyScalar(shaftLen+.011*length));
+  head.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),normDir);
+  g.add(head);
+  g.position.copy(origin);
+  return g;
+}
+
+function gradYlm(l,m,th,ph){
+  const dth=(Ylm(l,m,th+.005,ph)-Ylm(l,m,th-.005,ph))/.01;
+  const dph=(Ylm(l,m,th,ph+.005)-Ylm(l,m,th,ph-.005))/.01;
+  // theta-hat and phi-hat in Cartesian
+  const thHat=new THREE.Vector3(Math.cos(th)*Math.cos(ph),(-Math.sin(th)),Math.cos(th)*Math.sin(ph));
+  const phHat=new THREE.Vector3(-Math.sin(ph),0,Math.cos(ph));
+  // surface gradient: (1/r)*d/dth * th_hat + (1/(r*sin(th)))*d/dph * ph_hat
+  const sinTh=Math.sin(th)||1e-6;
+  return thHat.multiplyScalar(dth).add(phHat.multiplyScalar(dph/sinTh));
+}
+
+function rebuildQuiver(){
+  clearQuiver();
+  if(!showQuiver)return;
+  quiverGroup=new THREE.Group();
+  const N=qDens;
+  const colPoloidal=new THREE.Color(0x60a5fa);
+  const colToroidal=new THREE.Color(0xf472b6);
+  const color=qType==='grad'?colPoloidal:colToroidal;
+
+  for(let i=1;i<N;i++){
+    for(let j=0;j<N;j++){
+      const th=Math.PI*i/N;
+      const ph=2*Math.PI*j/N;
+      const r=1+(dispMode==='deform'?amp*Ylm(curL,curM,th,ph)*.4:0);
+      const origin=new THREE.Vector3(r*Math.sin(th)*Math.cos(ph),r*Math.cos(th),r*Math.sin(th)*Math.sin(ph));
+      let dir=gradYlm(curL,curM,th,ph);
+      if(qType==='curl'){
+        // toroidal: r_hat x grad
+        const rHat=origin.clone().normalize();
+        dir=rHat.clone().cross(dir);
+      }
+      const mag=dir.length();
+      if(mag<1e-4)continue;
+      const len=Math.min(mag*qScale*.18,.18);
+      quiverGroup.add(makeArrow(origin,dir,len,color));
+    }
+  }
+  scene.add(quiverGroup);
+}
+
+// keep quiver in sync when mesh rebuilds
+const _origRebuild=rebuild;
+// ── CONTROLS ──────────────────────────────────────────────────────────────────
+function setL(v){
+  curL=v; curM=Math.max(-v,Math.min(v,curM));
+  const s=document.getElementById('sm');
+  s.min=-v; s.max=v; s.value=curM;
+  rebuild(); if(showQuiver)rebuildQuiver();
+}
+function setM(v){if(Math.abs(v)<=curL){curM=v;rebuild();if(showQuiver)rebuildQuiver()}}
+function setMode(m,el){
+  mode=m;
+  document.querySelectorAll('#mrow .tbtn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on'); rebuild(); if(showQuiver)rebuildQuiver();
+}
+function setDisp(d,el){
+  dispMode=d;
+  document.querySelectorAll('#drow .tbtn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on'); rebuild(); if(showQuiver)rebuildQuiver();
+}
+function setQType(t,el){
+  qType=t;
+  document.querySelectorAll('#qtype-row .tbtn').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on'); rebuildQuiver();
+}
+function toggleRot(el){
+  autoRot=!autoRot;
+  el.style.color=autoRot?'#60a5fa':'#94a3b8';
+}
+function saveShot(){
+  renderer.render(scene,camera);
+  const a=document.createElement('a');
+  a.href=document.getElementById('glc').toDataURL('image/png');
+  a.download=`SH_l${curL}_m${curM}_${mode}.png`;
+  a.click();
+}
+
+// ── PRESETS ───────────────────────────────────────────────────────────────────
+const PRESETS=[
+  {l:0,m:0,n:'Monopole'}, {l:1,m:0,n:'Dipole Z'}, {l:1,m:1,n:'Dipole X'},
+  {l:2,m:0,n:'Quadrupole'},{l:2,m:2,n:'d-orbital'},{l:3,m:0,n:'Octupole'},
+  {l:3,m:2,n:'f-orbital'}, {l:4,m:0,n:'ℓ=4 m=0'}
+];
+(function buildPresets(){
+  const pg=document.getElementById('pgrid');
+  PRESETS.forEach(p=>{
+    const d=document.createElement('div');
+    d.className='pc'+(p.l===2&&p.m===0?' on':'');
+    d.innerHTML=`<div class="plm">ℓ=${p.l}, m=${p.m}</div><div class="pn">${p.n}</div>`;
+    d.onclick=()=>{
+      document.querySelectorAll('.pc').forEach(x=>x.classList.remove('on'));
+      d.classList.add('on');
+      curL=p.l; curM=p.m;
+      document.getElementById('sl').value=p.l;
+      const s=document.getElementById('sm'); s.min=-p.l; s.max=p.l; s.value=p.m;
+      rebuild();
+    };
+    pg.appendChild(d);
+  });
+})();
+
+// ── GALLERY ───────────────────────────────────────────────────────────────────
+const GAL=[
+  {l:0,m:0,  n:'Monopole',  d:'Uniform over sphere', c:'#4f8ef7'},
+  {l:1,m:0,  n:'Dipole Z',  d:'cos θ variation',     c:'#7c3aed'},
+  {l:1,m:1,  n:'Dipole X',  d:'sin θ cos φ',         c:'#06b6d4'},
+  {l:2,m:0,  n:'Quadrupole',d:'3cos²θ − 1',          c:'#f472b6'},
+  {l:2,m:2,  n:'d-Orbital', d:'sin²θ cos 2φ',        c:'#34d399'},
+  {l:3,m:0,  n:'Octupole',  d:'ℓ=3 zonal',           c:'#fb923c'},
+  {l:3,m:3,  n:'ℓ=3 m=3',  d:'Sectoral',             c:'#a78bfa'},
+  {l:4,m:0,  n:'ℓ=4 m=0',  d:'Hexadecapole',         c:'#a78bfa'},
+  {l:4,m:2,  n:'ℓ=4 m=2',  d:'Tesseral',             c:'#38bdf8'},
+  {l:4,m:4,  n:'ℓ=4 m=4',  d:'Sectoral ring',        c:'#f59e0b'},
+  {l:5,m:0,  n:'ℓ=5 m=0',  d:'32-pole zonal',        c:'#ec4899'},
+  {l:6,m:0,  n:'ℓ=6 m=0',  d:'64-pole zonal',        c:'#10b981'},
+];
+(function buildGallery(){
+  const gg=document.getElementById('ggrid');
+  GAL.forEach(g=>{
+    const d=document.createElement('div'); d.className='gi';
+    d.innerHTML=`<div class="gi-dot" style="background:radial-gradient(circle at 35% 35%,${g.c}99,${g.c}22)"></div>
+      <h4>${g.n}</h4><p>ℓ=${g.l}, m=${g.m}</p><p>${g.d}</p>`;
+    d.onclick=()=>{
+      curL=g.l; curM=g.m;
+      document.getElementById('sl').value=g.l;
+      const s=document.getElementById('sm'); s.min=-g.l; s.max=g.l; s.value=g.m;
+      rebuild(); sc('viz');
+    };
+    gg.appendChild(d);
+  });
+})();
+
+// ── KATEX ─────────────────────────────────────────────────────────────────────
+function renderKatex(){
+  if(typeof katex==='undefined'){setTimeout(renderKatex,150);return}
+  const EQS=[
+    {id:'eq1',tex:'Y_\\ell^m(\\theta,\\phi)=N_\\ell^m\\,P_\\ell^{|m|}(\\cos\\theta)\\,e^{im\\phi}'},
+    {id:'eq2',tex:'\\int_0^{2\\pi}\\!\\int_0^{\\pi} Y_\\ell^m\\,\\overline{Y_{\\ell\'}^{m\'}}\\,\\sin\\theta\\,d\\theta\\,d\\phi=\\delta_{\\ell\\ell\'}\\,\\delta_{mm\'}'},
+    {id:'eq3',tex:'\\mathbf{Y}_{\\ell m}^{(1)}=\\nabla Y_\\ell^m,\\qquad \\mathbf{Y}_{\\ell m}^{(2)}=\\hat{r}\\times\\nabla Y_\\ell^m'},
+    {id:'eq4',tex:'\\Delta_{S^2}\\,Y_\\ell^m(\\theta,\\phi)=-\\ell(\\ell+1)\\,Y_\\ell^m(\\theta,\\phi)'},
+    {id:'eq5',tex:'P_\\ell(\\hat{r}\\cdot\\hat{r}\')=\\dfrac{4\\pi}{2\\ell+1}\\sum_{m=-\\ell}^{\\ell}Y_\\ell^m(\\hat{r})\\,\\overline{Y_\\ell^m(\\hat{r}\')}'},
+    {id:'eq6',tex:'\\psi_{n\\ell m}(r,\\theta,\\phi)=R_{n\\ell}(r)\\,Y_\\ell^m(\\theta,\\phi)'},
+  ];
+  EQS.forEach(e=>{
+    const el=document.getElementById(e.id);
+    if(el) katex.render(e.tex,el,{throwOnError:false,displayMode:true});
+  });
+}
+renderKatex();
+
+// ── CODE SNIPPETS ─────────────────────────────────────────────────────────────
+const CODES={
+sh:`<span class="cm"># Compute real spherical harmonics with torch-harmonics</span>
+<span class="kw">import</span> <span class="im">torch</span>
+<span class="kw">from</span> <span class="im">torch_harmonics</span> <span class="kw">import</span> RealSHT, InverseRealSHT
+
+nlat, nlon = <span class="nm">128</span>, <span class="nm">256</span>
+lmax, mmax = <span class="nm">64</span>, <span class="nm">64</span>
+
+<span class="cm"># Initialise forward and inverse transforms</span>
+sht  = <span class="fn">RealSHT</span>(nlat, nlon, lmax=lmax, mmax=mmax)
+isht = <span class="fn">InverseRealSHT</span>(nlat, nlon, lmax=lmax, mmax=mmax)
+
+<span class="cm"># Forward: grid signal → spectral coefficients</span>
+signal = torch.<span class="fn">randn</span>(<span class="nm">1</span>, <span class="nm">1</span>, nlat, nlon)
+coeffs = <span class="fn">sht</span>(signal)       <span class="cm"># shape: (1, 1, lmax, mmax)</span>
+
+<span class="cm"># Inverse: spectral coefficients → grid</span>
+recon  = <span class="fn">isht</span>(coeffs)      <span class="cm"># shape: (1, 1, nlat, nlon)</span>
+
+<span class="cm"># Access a single Y_ℓ^m coefficient  (ℓ=2, m=0)</span>
+Y_2_0 = coeffs[<span class="nm">0</span>, <span class="nm">0</span>, <span class="nm">2</span>, <span class="nm">0</span>]
+<span class="fn">print</span>(<span class="st">f"Y_2^0 coefficient: {Y_2_0:.6f}"</span>)`,
+
+vsh:`<span class="cm"># Vector Spherical Harmonics with torch-harmonics</span>
+<span class="kw">import</span> <span class="im">torch</span>
+<span class="kw">from</span> <span class="im">torch_harmonics</span> <span class="kw">import</span> RealVSHT, InverseRealVSHT
+
+nlat, nlon = <span class="nm">128</span>, <span class="nm">256</span>
+
+<span class="cm"># Initialise vector SHT (acts on 2-component vector fields)</span>
+vsht  = <span class="fn">RealVSHT</span>(nlat, nlon)
+ivsht = <span class="fn">InverseRealVSHT</span>(nlat, nlon)
+
+<span class="cm"># Input: vector field on sphere — shape (batch, 2, lat, lon)</span>
+<span class="cm"># component 0 = θ-component, component 1 = φ-component</span>
+vf = torch.<span class="fn">randn</span>(<span class="nm">1</span>, <span class="nm">2</span>, nlat, nlon)
+
+<span class="cm"># Forward → VSH coefficients (toroidal + poloidal)</span>
+vcoeffs = <span class="fn">vsht</span>(vf)
+
+<span class="cm"># Inverse → reconstructed vector field</span>
+v_recon = <span class="fn">ivsht</span>(vcoeffs)
+
+<span class="cm"># VSH decomposition types:</span>
+<span class="cm">#  Y^(1)_ℓm = ∇Y_ℓm          (gradient / poloidal)</span>
+<span class="cm">#  Y^(2)_ℓm = r̂ × ∇Y_ℓm     (toroidal / rotational)</span>
+<span class="fn">print</span>(<span class="st">f"Toroidal energy: {vcoeffs[0,0].norm():.4f}"</span>)
+<span class="fn">print</span>(<span class="st">f"Poloidal energy: {vcoeffs[0,1].norm():.4f}"</span>)`,
+
+sht:`<span class="cm"># Full SHT pipeline: GPU batch + power spectrum + filtering</span>
+<span class="kw">import</span> <span class="im">torch</span>
+<span class="kw">from</span> <span class="im">torch_harmonics</span> <span class="kw">import</span> RealSHT, InverseRealSHT
+
+device = torch.<span class="fn">device</span>(<span class="st">"cuda"</span> <span class="kw">if</span> torch.cuda.<span class="fn">is_available</span>() <span class="kw">else</span> <span class="st">"cpu"</span>)
+
+sht  = <span class="fn">RealSHT</span>(<span class="nm">256</span>, <span class="nm">512</span>, lmax=<span class="nm">128</span>, mmax=<span class="nm">128</span>).<span class="fn">to</span>(device)
+isht = <span class="fn">InverseRealSHT</span>(<span class="nm">256</span>, <span class="nm">512</span>, lmax=<span class="nm">128</span>, mmax=<span class="nm">128</span>).<span class="fn">to</span>(device)
+
+<span class="cm"># Process a batch of 16 RGB spherical images</span>
+batch = torch.<span class="fn">randn</span>(<span class="nm">16</span>, <span class="nm">3</span>, <span class="nm">256</span>, <span class="nm">512</span>).<span class="fn">to</span>(device)
+<span class="kw">with</span> torch.<span class="fn">no_grad</span>():
+    coeffs = <span class="fn">sht</span>(batch)   <span class="cm"># (16, 3, 128, 128)</span>
+
+<span class="cm"># Angular power spectrum: energy per degree ℓ</span>
+power = (coeffs.<span class="fn">abs</span>() ** <span class="nm">2</span>).<span class="fn">sum</span>(dim=(-<span class="nm">1</span>, <span class="nm">0</span>, <span class="nm">1</span>))
+<span class="fn">print</span>(<span class="st">"Power spectrum (first 8 degrees):"</span>, power[:<span class="nm">8</span>])
+
+<span class="cm"># Low-pass spectral filter: keep only ℓ &lt; 32</span>
+coeffs_lp = coeffs.<span class="fn">clone</span>()
+coeffs_lp[:, :, <span class="nm">32</span>:, :] = <span class="nm">0</span>
+smooth = <span class="fn">isht</span>(coeffs_lp)`,
+
+vis:`<span class="cm"># Visualise SH as a deformed sphere with matplotlib</span>
+<span class="kw">import</span> <span class="im">torch</span>
+<span class="kw">import</span> <span class="im">numpy</span> <span class="kw">as</span> np
+<span class="kw">import</span> <span class="im">matplotlib.pyplot</span> <span class="kw">as</span> plt
+<span class="kw">from</span> <span class="im">mpl_toolkits.mplot3d</span> <span class="kw">import</span> Axes3D
+<span class="kw">from</span> <span class="im">torch_harmonics</span> <span class="kw">import</span> InverseRealSHT
+
+nlat, nlon, lmax = <span class="nm">128</span>, <span class="nm">256</span>, <span class="nm">32</span>
+isht = <span class="fn">InverseRealSHT</span>(nlat, nlon, lmax=lmax, mmax=lmax)
+
+<span class="kw">def</span> <span class="fn">plot_harmonic</span>(l, m, save=<span class="kw">True</span>):
+    <span class="cm"># Build coefficient tensor with a single non-zero entry</span>
+    c = torch.<span class="fn">zeros</span>(<span class="nm">1</span>, <span class="nm">1</span>, lmax, lmax)
+    c[<span class="nm">0</span>, <span class="nm">0</span>, l, <span class="fn">abs</span>(m)] = <span class="nm">1.0</span>
+    grid = <span class="fn">isht</span>(c).<span class="fn">squeeze</span>().<span class="fn">numpy</span>()
+
+    <span class="cm"># Spherical coordinate grid</span>
+    theta = np.<span class="fn">linspace</span>(<span class="nm">0</span>, np.pi, nlat)
+    phi   = np.<span class="fn">linspace</span>(<span class="nm">0</span>, <span class="nm">2</span>*np.pi, nlon)
+    T, P  = np.<span class="fn">meshgrid</span>(theta, phi, indexing=<span class="st">'ij'</span>)
+
+    <span class="cm"># Deform unit sphere by harmonic amplitude</span>
+    r = <span class="nm">1</span> + <span class="nm">0.4</span> * grid
+    X = r * np.<span class="fn">sin</span>(T) * np.<span class="fn">cos</span>(P)
+    Y = r * np.<span class="fn">cos</span>(T)
+    Z = r * np.<span class="fn">sin</span>(T) * np.<span class="fn">sin</span>(P)
+
+    fig = plt.<span class="fn">figure</span>(figsize=(<span class="nm">8</span>, <span class="nm">8</span>), facecolor=<span class="st">'#080c18'</span>)
+    ax  = fig.<span class="fn">add_subplot</span>(<span class="nm">111</span>, projection=<span class="st">'3d'</span>)
+    ax.<span class="fn">plot_surface</span>(X, Y, Z,
+        facecolors=plt.cm.<span class="fn">RdBu</span>(grid / <span class="nm">2</span> + <span class="nm">.5</span>),
+        alpha=<span class="nm">.95</span>, linewidth=<span class="nm">0</span>)
+    ax.<span class="fn">set_title</span>(<span class="st">f"Y_{{l}}^{{m}}, ℓ={l}, m={m}"</span>, color=<span class="st">'white'</span>, fontsize=<span class="nm">14</span>)
+    ax.<span class="fn">set_facecolor</span>(<span class="st">'#080c18'</span>)
+    ax.xaxis.pane.fill = ax.yaxis.pane.fill = ax.zaxis.pane.fill = <span class="kw">False</span>
+    <span class="kw">if</span> save:
+        plt.<span class="fn">savefig</span>(<span class="st">f"sh_l{l}_m{m}.png"</span>, dpi=<span class="nm">150</span>, bbox_inches=<span class="st">'tight'</span>,
+                    facecolor=fig.get_facecolor())
+    plt.<span class="fn">show</span>()
+
+<span class="cm"># Example calls</span>
+<span class="fn">plot_harmonic</span>(<span class="nm">2</span>, <span class="nm">0</span>)   <span class="cm"># d_z²  quadrupole</span>
+<span class="fn">plot_harmonic</span>(<span class="nm">3</span>, <span class="nm">2</span>)   <span class="cm"># f-orbital tesseral</span>
+<span class="fn">plot_harmonic</span>(<span class="nm">4</span>, <span class="nm">4</span>)   <span class="cm"># sectoral ring</span>`
+};
+
+function showCode(k,el){
+  document.querySelectorAll('#ctabs .tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('cc').innerHTML=`
+    <div class="cblock">
+      <div class="chead">
+        <div class="dots">
+          <span style="background:#ff5f57"></span>
+          <span style="background:#febc2e"></span>
+          <span style="background:#28c840"></span>
+        </div>
+        <button class="cp-btn" onclick="cpCode(this)">Copy</button>
+      </div>
+      <pre>${CODES[k]}</pre>
+    </div>`;
+}
+showCode('sh', document.querySelector('#ctabs .tab'));
+
+function cpCode(btn){
+  const txt=btn.closest('.cblock').querySelector('pre').innerText;
+  navigator.clipboard.writeText(txt).then(()=>{
+    btn.textContent='Copied!';
+    setTimeout(()=>btn.textContent='Copy',2000);
+  });
+}
+
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+function tryInit(){
+  if(typeof THREE==='undefined'){setTimeout(tryInit,100);return}
+  requestAnimationFrame(()=>requestAnimationFrame(initThree));
+}
+window.addEventListener('DOMContentLoaded', tryInit);
+</script>
+</body>
+</html>

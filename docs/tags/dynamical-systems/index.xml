@@ -12,8 +12,27 @@
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/posts/play-with-chaos/</guid>
-      <description>Understanding chaos: and what makes them different from noise?</description>
-      <content:encoded><![CDATA[<p>Cascading behaviour.</p>
+      <description>Understanding chaos: the sensitivity to intitial conditions and the butterfly effect.</description>
+      <content:encoded><![CDATA[<p>Almost everyone has heard of the butterfly effect. Many would also come acorss different animations to understand the behaviour and beauty of chaotic systems. So why not play around with it yourself?
+You will like this too.</p>
+<h2 id="to-play-around">To Play around:</h2>
+<ol>
+<li>Pick one system 1. Lorenz or 2. Rössler.</li>
+<li>Add muitiple initial conditions and see how the trajectories diverge.</li>
+<li>Change the parameters and see how the system behaves.</li>
+</ol>
+<iframe 
+  src="/chaos.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+<h2 id="refelect-on-what-you-observed">Refelect on what you observed:</h2>
+<ul>
+<li>Does the behaviour of the system depend on the parameters?</li>
+<li>Is the system always chaotic? Or does it show periodic behaviour for some parameters?</li>
+<li>How do the trajectories diverge faster in some regions more compared to the others?</li>
+</ul>
 ]]></content:encoded>
     </item>
     
