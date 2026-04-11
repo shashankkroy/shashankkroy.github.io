@@ -13,19 +13,22 @@
       
       <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
       <description>Understanding diffusion models: what makes them so good?</description>
-      <content:encoded><![CDATA[<p>What did the physicists didn&rsquo;t tell you about the diffusion models?</p>
-<p>And this is the reason why diffusion models are so good at generating images.</p>
-<p>When was is the last time you heard about diffusion in physics class?</p>
-<p>Diffusion is a process of removing the sharp gradients. Over time, the process of diffusion creates entropy, it takes a system from the state of order 
-to the state of disorder. But why?</p>
-<p>Here is a simple animation of what diffusion means in physics.</p>
-<p>Here is an example of how we can simulate a simple diffusion proces using particles.</p>
-<p>The two examples may look different, but the first process describes the evolution of the diffusion process. While if we 
-want to write down the profile instead of the particles themselves, the picture corresponds to the second one.</p>
-<h1 id="the-tale-of-how-the-age-old-diffusion-becomes-popular-again">The tale of how the age old diffusion becomes popular again</h1>
-<h1 id="the-past">The past</h1>
-<h1 id="the-present">The present</h1>
-<h1 id="the-future">The future</h1>
+      <content:encoded><![CDATA[<h2 id="this-is-a-simple-sde-simulator-it-simulates-the-following-sde">This is a simple SDE simulator. It simulates the following SDE:</h2>
+<p>$$dX_t = M dt + \Sigma dW_t
+$$
+Where $M$ is the drift and $\Sigma$ is the diffusion coefficient. $W_t$ is a standard Brownian motion.</p>
+<h2 id="to-play-around">To Play around:</h2>
+<ol>
+<li>Fix drift $M$ and diffusion coefficient $\Sigma$.</li>
+<li>Add muitiple runs see how the trajectories evolve.</li>
+<li>In the large N limit( when you have a lot of runs) do you observe a distribution emerging?</li>
+</ol>
+<iframe 
+  src="/brownian_sde.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
 ]]></content:encoded>
     </item>
     

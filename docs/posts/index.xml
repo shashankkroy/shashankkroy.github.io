@@ -7,6 +7,32 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Diffusion models and Stochastic differential equations</title>
+      <link>https://shashankkroy.github.io/posts/diffusion-models/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
+      <description>Understanding diffusion models: what makes them so good?</description>
+      <content:encoded><![CDATA[<h2 id="this-is-a-simple-sde-simulator-it-simulates-the-following-sde">This is a simple SDE simulator. It simulates the following SDE:</h2>
+<p>$$dX_t = M dt + \Sigma dW_t
+$$
+Where $M$ is the drift and $\Sigma$ is the diffusion coefficient. $W_t$ is a standard Brownian motion.</p>
+<h2 id="to-play-around">To Play around:</h2>
+<ol>
+<li>Fix drift $M$ and diffusion coefficient $\Sigma$.</li>
+<li>Add muitiple runs see how the trajectories evolve.</li>
+<li>In the large N limit( when you have a lot of runs) do you observe a distribution emerging?</li>
+</ol>
+<iframe 
+  src="/brownian_sde.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>The simple equation which changed the world of weather prediction</title>
       <link>https://shashankkroy.github.io/posts/play-with-chaos/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>

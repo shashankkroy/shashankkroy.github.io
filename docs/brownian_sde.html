@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brownian Motion Simulator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px}
+h1{color:#4fa3e8;font-size:15px;font-weight:500;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;opacity:0.8}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:12px 16px;background:#05111f;border-radius:8px;border:1px solid #0e2a44;margin-bottom:12px;width:100%;max-width:900px}
+.ctrl{display:flex;align-items:center;gap:8px;font-size:13px;color:#4fa3e8}
+.ctrl label{min-width:70px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#2a6a9a}
+input[type=range]{-webkit-appearance:none;width:100px;height:4px;background:#0e2a44;border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:#2a7ad4;cursor:pointer}
+.val{min-width:40px;font-size:13px;font-weight:600;color:#7ab8f5}
+button{padding:7px 18px;border:none;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:1px;text-transform:uppercase}
+#addBtn{background:#1a5fa8;color:#cce4ff}
+#addBtn:hover{background:#2070c0}
+#clearBtn{background:#0a1a2a;color:#3a7aaa;border:1px solid #0e2a44}
+#clearBtn:hover{background:#0e2233}
+.canvas-wrap{width:100%;max-width:900px}
+canvas{display:block;width:100%;background:#000;border-radius:6px}
+#hist{margin-top:10px;background:#020d18;border-radius:6px}
+.axis-label{display:flex;justify-content:space-between;font-size:11px;color:#1a4a7a;padding:2px 6px}
+.axis-label.center{justify-content:center;margin-top:3px}
+#info{font-size:12px;color:#1e5a8a;text-align:right;margin-top:6px;max-width:900px;width:100%}
+</style>
+</head>
+<body>
+
+<h1>Brownian Motion — SDE Simulator</h1>
+
+<div class="controls">
+  <div class="ctrl">
+    <label>μ drift</label>
+    <input type="range" id="drift" min="-3" max="3" step="0.1" value="0">
+    <span class="val" id="driftVal">0.0</span>
+  </div>
+  <div class="ctrl">
+    <label>σ diffusion</label>
+    <input type="range" id="diff" min="0.1" max="2" step="0.05" value="0.5">
+    <span class="val" id="diffVal">0.50</span>
+  </div>
+  <div class="ctrl">
+    <label>steps</label>
+    <input type="range" id="nsteps" min="100" max="500" step="50" value="200">
+    <span class="val" id="stepsVal">200</span>
+  </div>
+  <div class="ctrl">
+    <label>batch</label>
+    <select id="batch" style="background:#0e2a44;color:#7ab8f5;border:1px solid #1a4a7a;border-radius:5px;padding:4px 8px;font-size:13px;font-weight:600;cursor:pointer">
+      <option value="1">1</option>
+      <option value="10">10</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+  <button id="addBtn">+ Add run</button>
+  <button id="clearBtn">Clear</button>
+</div>
+
+<div class="canvas-wrap">
+  <canvas id="sim"></canvas>
+  <div class="axis-label"><span>t = 0</span><span>t = 1</span></div>
+  <canvas id="hist"></canvas>
+  <div class="axis-label center">terminal distribution X(1)</div>
+</div>
+<div id="info">no runs yet</div>
+
+<script>
+(function(){
+  var sim = document.getElementById('sim');
+  var hist = document.getElementById('hist');
+  var sc = sim.getContext('2d');
+  var hc = hist.getContext('2d');
+
+  function setSize(){
+    var w = Math.round(sim.parentElement.getBoundingClientRect().width) || 860;
+    sim.width = w; sim.height = Math.round(w * 0.52);
+    hist.width = w; hist.height = Math.round(w * 0.22);
+  }
+  setSize();
+
+  var runs = [], queue = [], busy = false;
+  var PL=52, PR=18, PT=20, PB=36;
+
+  function randn(){
+    var u=0,v=0;
+    while(!u) u=Math.random();
+    while(!v) v=Math.random();
+    return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+  }
+
+  function makePath(mu,sig,n){
+    var dt=1/n, x=0, p=[0];
+    for(var i=0;i<n;i++){ x+=mu*dt+sig*Math.sqrt(dt)*randn(); p.push(x); }
+    return p;
+  }
+
+  function yRange(){
+    if(!runs.length) return [-2.5,2.5];
+    var mn=1e9,mx=-1e9;
+    runs.forEach(function(r){
+      r.paths.forEach(function(path){
+        path.forEach(function(v){ if(v<mn)mn=v; if(v>mx)mx=v; });
+      });
+    });
+    var pad=(mx-mn)*0.2||0.8;
+    return [mn-pad, mx+pad];
+  }
+
+  function sx(t){ return PL+t*(sim.width-PL-PR); }
+  function sy(v,mn,mx){ return PT+(1-(v-mn)/(mx-mn||1))*(sim.height-PT-PB); }
+
+  function drawGrid(mn,mx){
+    sc.clearRect(0,0,sim.width,sim.height);
+    sc.fillStyle='#000'; sc.fillRect(0,0,sim.width,sim.height);
+    var W=sim.width, H=sim.height;
+    sc.lineWidth=0.8;
+    for(var i=0;i<=10;i++){
+      var t=i/10, x=sx(t);
+      sc.strokeStyle=i%2===0?'#0a2035':'#060f1a';
+      sc.beginPath(); sc.moveTo(x,PT); sc.lineTo(x,H-PB); sc.stroke();
+      if(i%2===0){
+        sc.fillStyle='#1a4a7a'; sc.font='bold 11px sans-serif'; sc.textAlign='center';
+        sc.fillText(t.toFixed(1), x, H-PB+18);
+      }
+    }
+    for(var j=0;j<=6;j++){
+      var v=mn+(mx-mn)*j/6, y=sy(v,mn,mx);
+      sc.strokeStyle='#0a2035'; sc.lineWidth=0.8;
+      sc.beginPath(); sc.moveTo(PL,y); sc.lineTo(W-PR,y); sc.stroke();
+      sc.fillStyle='#1a4a7a'; sc.font='bold 11px sans-serif'; sc.textAlign='right';
+      sc.fillText(v.toFixed(1), PL-6, y+4);
+    }
+    sc.strokeStyle='#1e4a7a'; sc.lineWidth=1.5;
+    sc.beginPath(); sc.moveTo(PL,PT); sc.lineTo(PL,H-PB); sc.lineTo(W-PR,H-PB); sc.stroke();
+    var zero_y=sy(0,mn,mx);
+    if(zero_y>PT&&zero_y<H-PB){
+      sc.strokeStyle='#1a5a9a'; sc.lineWidth=1; sc.setLineDash([6,4]);
+      sc.beginPath(); sc.moveTo(PL,zero_y); sc.lineTo(W-PR,zero_y); sc.stroke();
+      sc.setLineDash([]);
+    }
+  }
+
+  function drawBatch(r, mn, mx, alpha, frac){
+    var isMany = r.paths.length > 1;
+    r.paths.forEach(function(path){
+      var len=path.length;
+      var n=Math.max(2, Math.floor(len*frac));
+      sc.lineWidth = isMany ? 1.2 : 2.5;
+      sc.strokeStyle='#5ab4ff';
+      sc.globalAlpha=alpha*(isMany?0.5:0.9);
+      sc.beginPath();
+      for(var i=0;i<n;i++){
+        var x=sx(i/(len-1)), y=sy(path[i],mn,mx);
+        i===0?sc.moveTo(x,y):sc.lineTo(x,y);
+      }
+      sc.stroke();
+      var lx=sx((n-1)/(len-1)), ly=sy(path[n-1],mn,mx);
+      sc.globalAlpha=alpha;
+      sc.beginPath(); sc.arc(lx,ly, isMany?5:9, 0,6.283);
+      sc.fillStyle='#5ab4ff'; sc.fill();
+      sc.beginPath(); sc.arc(lx,ly, isMany?2.5:5, 0,6.283);
+      sc.fillStyle='#d0eeff'; sc.fill();
+      sc.globalAlpha=1;
+    });
+  }
+
+  function allTerminals(){
+    var vals=[];
+    runs.forEach(function(r){
+      r.paths.forEach(function(p){ vals.push(p[p.length-1]); });
+    });
+    return vals;
+  }
+
+  function drawHistogram(){
+    var W=hist.width, H=hist.height;
+    hc.clearRect(0,0,W,H);
+    hc.fillStyle='#020d18'; hc.fillRect(0,0,W,H);
+    var vals=allTerminals();
+    if(!vals.length){
+      hc.fillStyle='#1a3a5c'; hc.font='13px sans-serif'; hc.textAlign='center';
+      hc.fillText('terminal distribution appears here', W/2, H/2+5);
+      return;
+    }
+    var mn=Math.min.apply(null,vals), mx=Math.max.apply(null,vals);
+    var range=mx-mn||1;
+    var nB=Math.max(10, Math.min(28, Math.ceil(Math.sqrt(vals.length)*2.5)));
+    var bins=new Array(nB).fill(0);
+    vals.forEach(function(v){ var b=Math.min(nB-1,Math.floor((v-mn)/range*nB)); bins[b]++; });
+    var maxB=Math.max.apply(null,bins)||1;
+    var hP=52, vP=16, gap=3;
+    var bw=(W-hP*2)/nB;
+    for(var i=0;i<nB;i++){
+      var bh=(bins[i]/maxB)*(H-vP*2-10);
+      var bx=hP+i*bw+gap/2, by=H-vP-bh;
+      var t=bins[i]/maxB;
+      hc.fillStyle='rgba('+Math.round(15+60*t)+','+Math.round(80+130*t)+','+Math.round(160+90*t)+',0.9)';
+      hc.fillRect(bx,by,bw-gap,bh);
+      hc.strokeStyle='rgba(90,180,255,0.3)'; hc.lineWidth=0.5;
+      hc.strokeRect(bx,by,bw-gap,bh);
+    }
+    var mu=vals.reduce(function(a,b){return a+b},0)/vals.length;
+    var vr=vals.reduce(function(a,b){return a+(b-mu)*(b-mu)},0)/vals.length;
+    var sd=Math.sqrt(vr)||0.001;
+    hc.strokeStyle='#5ab4ff'; hc.lineWidth=2; hc.setLineDash([5,3]);
+    hc.beginPath();
+    for(var px=hP;px<=W-hP;px++){
+      var v2=mn+(px-hP)/(W-hP*2)*range;
+      var density=Math.exp(-(v2-mu)*(v2-mu)/(2*sd*sd))/(sd*Math.sqrt(6.283));
+      var py=H-vP-density*(H-vP*2-10)*bw*nB/range;
+      px===hP?hc.moveTo(px,py):hc.lineTo(px,py);
+    }
+    hc.stroke(); hc.setLineDash([]);
+    hc.fillStyle='#4a9adf'; hc.font='bold 12px sans-serif'; hc.textAlign='left';
+    hc.fillText('n='+vals.length+'   μ̂='+mu.toFixed(3)+'   σ̂='+sd.toFixed(3), hP+2, 16);
+    hc.fillStyle='#1a4a7a'; hc.font='11px sans-serif'; hc.textAlign='center';
+    for(var k=0;k<=4;k++){
+      hc.fillText((mn+range*k/4).toFixed(2), hP+(W-hP*2)*k/4, H-3);
+    }
+  }
+
+  function redrawAll(animIdx, frac){
+    var r=yRange();
+    drawGrid(r[0],r[1]);
+    for(var i=0;i<runs.length;i++){
+      var isAnim=animIdx!==null&&i===animIdx;
+      drawBatch(runs[i],r[0],r[1],isAnim?1:0.65,isAnim?(frac||0):1);
+    }
+    drawHistogram();
+  }
+
+  function animRun(idx, done){
+    var dur=1600, t0=null;
+    function frame(ts){
+      if(!t0) t0=ts;
+      var p=Math.min(1,(ts-t0)/dur);
+      var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+      redrawAll(idx, ease);
+      p<1?requestAnimationFrame(frame):(redrawAll(null,1),done());
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function processQueue(){
+    if(busy||!queue.length) return;
+    busy=true;
+    var item=queue.shift();
+    runs.push(item);
+    animRun(runs.length-1, function(){ busy=false; processQueue(); });
+  }
+
+  document.getElementById('addBtn').addEventListener('click',function(){
+    var mu=parseFloat(document.getElementById('drift').value);
+    var sig=parseFloat(document.getElementById('diff').value);
+    var n=parseInt(document.getElementById('nsteps').value);
+    var batch=parseInt(document.getElementById('batch').value);
+    var paths=[];
+    for(var b=0;b<batch;b++) paths.push(makePath(mu,sig,n));
+    queue.push({paths:paths,mu:mu,sig:sig,n:n});
+    document.getElementById('info').textContent='queued '+batch+' particle(s): μ='+mu.toFixed(1)+', σ='+sig.toFixed(2)+', steps='+n;
+    processQueue();
+  });
+
+  document.getElementById('clearBtn').addEventListener('click',function(){
+    runs=[];queue=[];busy=false;
+    redrawAll(null,1);
+    document.getElementById('info').textContent='no runs yet';
+  });
+
+  function wire(id,outId,dec){
+    var el=document.getElementById(id),out=document.getElementById(outId);
+    out.textContent=parseFloat(el.value).toFixed(dec);
+    el.addEventListener('input',function(){ out.textContent=parseFloat(el.value).toFixed(dec); });
+  }
+  wire('drift','driftVal',1);
+  wire('diff','diffVal',2);
+  wire('nsteps','stepsVal',0);
+
+  window.addEventListener('resize',function(){ setSize(); redrawAll(null,1); });
+  redrawAll(null,1);
+})();
+</script>
+</body>
+</html>
