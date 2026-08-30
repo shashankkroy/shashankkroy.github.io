@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Data Assimilation on Home</title>
+    <link>https://shashankkroy.github.io/tags/data-assimilation/</link>
+    <description>Recent content in Data Assimilation on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/data-assimilation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Resources for Scientific Machine Learning and Data Assimilation</title>
+      <link>https://shashankkroy.github.io/projects/resources/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/resources/</guid>
+      <description>A collection of resources for scientific machine learning and data assimilation.</description>
+      <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
+<p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview with his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM.</p>
+<h2 id="resources-for-data-assimilation-and-uncertainty-quantification">Resources for Data Assimilation and Uncertainty Quantification</h2>
+<h2></h2>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

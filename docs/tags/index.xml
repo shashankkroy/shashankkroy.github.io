@@ -6,7 +6,37 @@
     <description>Recent content in Tags on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Data Assimilation</title>
+      <link>https://shashankkroy.github.io/tags/data-assimilation/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/data-assimilation/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Scientific Machine Learning</title>
+      <link>https://shashankkroy.github.io/tags/scientific-machine-learning/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/scientific-machine-learning/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Sciml</title>
+      <link>https://shashankkroy.github.io/tags/sciml/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/sciml/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
     <item>
       <title>Complex-Systems</title>
       <link>https://shashankkroy.github.io/tags/complex-systems/</link>
@@ -98,16 +128,6 @@
     </item>
     
     <item>
-      <title>Diffusion Models</title>
-      <link>https://shashankkroy.github.io/tags/diffusion-models/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/diffusion-models/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
       <title>Dynamical Systems</title>
       <link>https://shashankkroy.github.io/tags/dynamical-systems/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
@@ -128,21 +148,31 @@
     </item>
     
     <item>
-      <title>Probabilistic Models in Deep Learning</title>
-      <link>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</link>
-      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
       <title>Stochastic Differential Equation</title>
       <link>https://shashankkroy.github.io/tags/stochastic-differential-equation/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/stochastic-differential-equation/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Stochastic Processes</title>
+      <link>https://shashankkroy.github.io/tags/stochastic-processes/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/stochastic-processes/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Stock Market</title>
+      <link>https://shashankkroy.github.io/tags/stock-market/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/stock-market/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

@@ -230,6 +230,48 @@
     color: var(--content);
 }
 
+/* --- Polaroid milestone photos (timeline-item img/caption params) --- */
+.cv-tl-photo {
+    margin: 12px 0 4px 0;
+    padding: 10px 10px 14px 10px;
+    max-width: 340px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+    transform: rotate(-1.5deg);
+    transition: transform 0.25s ease;
+}
+
+.dark .cv-tl-photo {
+    background: var(--entry);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.cv-tl-item:nth-child(even) .cv-tl-photo {
+    transform: rotate(1.5deg);
+}
+
+.cv-tl-photo:hover {
+    transform: rotate(0deg);
+}
+
+.cv-tl-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+
+.cv-tl-photo figcaption {
+    margin-top: 8px;
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+    font-style: italic;
+    font-size: 13.5px;
+    color: var(--secondary);
+    text-align: center;
+}
+
 @media (max-width: 500px) {
     .cv-header {
         padding: 18px 16px;
@@ -237,5 +279,9 @@
 
     .cv-item .cv-item-date {
         white-space: normal;
+    }
+
+    .cv-tl-photo {
+        max-width: 100%;
     }
 }

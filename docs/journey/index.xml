@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Journey on Home</title>
+    <link>https://shashankkroy.github.io/journey/</link>
+    <description>Recent content in Journey on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/journey/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EnKF Workshop 2026</title>
+      <link>https://shashankkroy.github.io/journey/enkf-workshop-2026/</link>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/enkf-workshop-2026/</guid>
+      <description>&lt;p&gt;&lt;em&gt;June 2026 · Rosendal, Norway&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Presented &lt;strong&gt;&lt;a href=&#34;https://www.data-assimilation.no/workshops/EnKF-WS-2026&#34;&gt;Bridging Variational Data Assimilation and Flow Matching for Posterior Sampling&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;!-- Expand into a full write-up: the setting, key talks and conversations, what you learned, links to related posts and photos. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>June 2026 · Rosendal, Norway</em></p>
+<p>Presented <strong><a href="https://www.data-assimilation.no/workshops/EnKF-WS-2026">Bridging Variational Data Assimilation and Flow Matching for Posterior Sampling</a></strong>.</p>
+<!-- Expand into a full write-up: the setting, key talks and conversations, what you learned, links to related posts and photos. -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>ML for Bi-Level Optimization, DA and UQ</title>
+      <link>https://shashankkroy.github.io/journey/ml-bilevel-da-uq-brest-2026/</link>
+      <pubDate>Fri, 01 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/ml-bilevel-da-uq-brest-2026/</guid>
+      <description>&lt;p&gt;&lt;em&gt;May 2026 · Brest, France&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Presented &lt;strong&gt;Uncertainty Quantification in 4DVarNet via Spatiotemporal Coherent Displacements&lt;/strong&gt; — on home ground at IMT Atlantique.&lt;/p&gt;
+&lt;!-- Expand into a full write-up. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>May 2026 · Brest, France</em></p>
+<p>Presented <strong>Uncertainty Quantification in 4DVarNet via Spatiotemporal Coherent Displacements</strong> — on home ground at IMT Atlantique.</p>
+<!-- Expand into a full write-up. -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Climate Informatics 2026</title>
+      <link>https://shashankkroy.github.io/journey/climate-informatics-2026/</link>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/climate-informatics-2026/</guid>
+      <description>&lt;p&gt;&lt;em&gt;April 2026 · Lausanne, Switzerland&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Presented &lt;strong&gt;&lt;a href=&#34;https://wp.unil.ch/ci26/tentative-schedule/&#34;&gt;Spatiotemporal Coherent Displacements for Ensemble-Based Neural Data Assimilation&lt;/a&gt;&lt;/strong&gt; — the work now accepted in Environmental Data Science.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;!-- Expand into a full write-up. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>April 2026 · Lausanne, Switzerland</em></p>
+<p>Presented <strong><a href="https://wp.unil.ch/ci26/tentative-schedule/">Spatiotemporal Coherent Displacements for Ensemble-Based Neural Data Assimilation</a></strong> — the work now accepted in Environmental Data Science.</p>
+<p></p>
+<!-- Expand into a full write-up. -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>EGU General Assembly 2025</title>
+      <link>https://shashankkroy.github.io/journey/egu-2025/</link>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/egu-2025/</guid>
+      <description>&lt;p&gt;&lt;em&gt;May 2025 · Vienna, Austria&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Presented &lt;strong&gt;&lt;a href=&#34;https://meetingorganizer.copernicus.org/EGU25/EGU25-4300.html&#34;&gt;Performance Gains and Advantages of 4DVarNet in End-to-End Learning for Data Assimilation&lt;/a&gt;&lt;/strong&gt; at my first EGU.&lt;/p&gt;
+&lt;!-- Expand into a full write-up. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>May 2025 · Vienna, Austria</em></p>
+<p>Presented <strong><a href="https://meetingorganizer.copernicus.org/EGU25/EGU25-4300.html">Performance Gains and Advantages of 4DVarNet in End-to-End Learning for Data Assimilation</a></strong> at my first EGU.</p>
+<!-- Expand into a full write-up. -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Space Applications Centre, ISRO</title>
+      <link>https://shashankkroy.github.io/journey/isro-sac-2025/</link>
+      <pubDate>Sat, 01 Mar 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/isro-sac-2025/</guid>
+      <description>&lt;p&gt;&lt;em&gt;March 2025 · Ahmedabad, India&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Talk on &lt;strong&gt;Automatic Differentiation for 4DVar: Some Results in PyTorch with a QG Model&lt;/strong&gt;.&lt;/p&gt;
+&lt;!-- Expand into a full write-up. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>March 2025 · Ahmedabad, India</em></p>
+<p>Talk on <strong>Automatic Differentiation for 4DVar: Some Results in PyTorch with a QG Model</strong>.</p>
+<!-- Expand into a full write-up. -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>IISER Pune, Data Science</title>
+      <link>https://shashankkroy.github.io/journey/iiser-pune-2025/</link>
+      <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/iiser-pune-2025/</guid>
+      <description>&lt;p&gt;&lt;em&gt;February 2025 · Pune, India&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Talk on &lt;strong&gt;4DVarNet: A Neural Network Model for Data Assimilation&lt;/strong&gt; — back at the department where I once TA&amp;rsquo;d the time-series course.&lt;/p&gt;
+&lt;!-- Expand into a full write-up. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>February 2025 · Pune, India</em></p>
+<p>Talk on <strong>4DVarNet: A Neural Network Model for Data Assimilation</strong> — back at the department where I once TA&rsquo;d the time-series course.</p>
+<!-- Expand into a full write-up. -->
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>NARL, Department of Space</title>
+      <link>https://shashankkroy.github.io/journey/narl-gadanki-2025/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/journey/narl-gadanki-2025/</guid>
+      <description>&lt;p&gt;&lt;em&gt;January 2025 · Gadanki, India&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Ran a hands-on workshop: &lt;strong&gt;AI for Data Assimilation — 4DVar and 4DVarNet for Ocean Datasets&lt;/strong&gt; at the National Atmospheric Research Laboratory.&lt;/p&gt;
+&lt;!-- Expand into a full write-up. --&gt;</description>
+      <content:encoded><![CDATA[<p><em>January 2025 · Gadanki, India</em></p>
+<p>Ran a hands-on workshop: <strong>AI for Data Assimilation — 4DVar and 4DVarNet for Ocean Datasets</strong> at the National Atmospheric Research Laboratory.</p>
+<!-- Expand into a full write-up. -->
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

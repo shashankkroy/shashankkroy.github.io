@@ -9,4 +9,14 @@
   {{- with trim .Inner "\n\r\t " }}
   <p class="cv-tl-desc">{{ $.Page.RenderString . }}</p>
   {{- end }}
+  {{- with .Get "img" }}
+  {{- $src := . }}
+  {{- with $.Page.Resources.GetMatch . }}{{ $src = .RelPermalink }}{{ else }}{{ $src = relURL . }}{{ end }}
+  <figure class="cv-tl-photo">
+    <img src="{{ $src }}" alt="{{ or ($.Get "caption") ($.Get "title") }}" loading="lazy">
+    {{- with $.Get "caption" }}
+    <figcaption>{{ . }}</figcaption>
+    {{- end }}
+  </figure>
+  {{- end }}
 </div>

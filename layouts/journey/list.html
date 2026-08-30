@@ -1,0 +1,48 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- if .Content }}
+<div class="post-content">
+  {{ .Content }}
+</div>
+{{- end }}
+
+<div class="journey-grid">
+  {{- range .Pages }}
+  {{- $entry := . }}
+  {{- $img := "" }}
+  {{- with $entry.Params.cover.image }}
+    {{- with $entry.Resources.GetMatch . }}
+      {{- $img = .RelPermalink }}
+    {{- else }}
+      {{- $img = . | relURL }}
+    {{- end }}
+  {{- end }}
+  <a class="journey-card" href="{{ .RelPermalink }}">
+    {{- if $img }}
+    <div class="journey-card-img">
+      <img src="{{ $img }}" alt="{{ .Title }}" loading="lazy">
+    </div>
+    {{- else }}
+    <div class="journey-card-img journey-card-placeholder"><span>📍</span></div>
+    {{- end }}
+    <div class="journey-card-body">
+      <span class="journey-card-date">{{ with .Params.period }}{{ . }}{{ else }}{{ .Date.Format "January 2006" }}{{ end }}</span>
+      <h2>{{ .Title }}</h2>
+      {{- with .Params.location }}
+      <span class="journey-card-loc">{{ . }}</span>
+      {{- end }}
+    </div>
+  </a>
+  {{- end }}
+</div>
+
+{{- end }}{{/* end main */}}

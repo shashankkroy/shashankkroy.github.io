@@ -8,13 +8,17 @@
     <language>en</language>
     <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/stochastic-differential-equation/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Diffusion models and Stochastic differential equations</title>
-      <link>https://shashankkroy.github.io/posts/diffusion-models/</link>
+      <title>From stochastic differential equations to the stock market</title>
+      <link>https://shashankkroy.github.io/posts/sde/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
-      <description>Understanding diffusion models: what makes them so good?</description>
-      <content:encoded><![CDATA[<h2 id="this-is-a-simple-sde-simulator-it-simulates-the-following-sde">This is a simple SDE simulator. It simulates the following SDE:</h2>
+      <guid>https://shashankkroy.github.io/posts/sde/</guid>
+      <description>Understanding the intuition behind stochastic differential equations and their applications in modeling stock prices and financial markets.</description>
+      <content:encoded><![CDATA[<p>Who thought of the stock market as a stochastic process? The stock price is influenced by a multitude of factors, including economic indicators, political events, and investor sentiment. As a result, it exhibits random fluctuations and unpredictable behavior. Stochastic processes provide a mathematical framework for modeling such randomness and uncertainty in the stock market.</p>
+<p>But first, let&rsquo;s understand what a stochastic process is. A stochastic process is a collection of random variables that evolve over time according to certain probabilistic rules. Stochastic processes are widely used in various fields, including finance, physics, biology, and engineering, to describe phenomena that cannot be predicted with certainty.</p>
+<p>A random walk is a simple example of a stochastic process. In a random walk, an object moves in a series of steps, where each step is determined by a random event. For example, imagine a stock price that can either go up or down by a fixed amount at each time step, with equal probability. Over time, the stock price will exhibit a random walk behavior, with fluctuations that are difficult to predict.</p>
+<p>We will begin with a simple stochastic differential equation (SDE) simulator that allows us to visualize the behavior of a stochastic process. The simulator generates multiple trajectories of a stochastic process based on user-defined parameters, such as drift and diffusion coefficients. By observing the trajectories, we can gain insights into the dynamics of the process and how it evolves over time.</p>
+<h2 id="this-is-a-simple-sde-simulator-it-simulates-the-following-sde">This is a simple SDE simulator. It simulates the following SDE:</h2>
 <p>$$dX_t = M dt + \Sigma dW_t
 $$
 Where $M$ is the drift and $\Sigma$ is the diffusion coefficient. $W_t$ is a standard Brownian motion.</p>
@@ -30,6 +34,11 @@ Where $M$ is the drift and $\Sigma$ is the diffusion coefficient. $W_t$ is a sta
   height="700px" 
   style="border:none;">
 </iframe>
+<p>What you are looking at is Brownian motion, which is a continuous-time stochastic process that is widely used in physics, finance, and other fields to model random phenomena. The SDE above describes how the state of a system evolves over time under the influence of both deterministic and random forces. The drift term $M$ represents the deterministic part of the evolution, while the diffusion term $\Sigma dW_t$ captures the random fluctuations.</p>
+<p>Next, we look at Geometric Brownian motion, which is a specific type of stochastic process that is commonly used to model stock prices and other financial variables. It is defined by the following SDE:
+$$dX_t = \mu X_t dt + \sigma X_t dW_t</p>
+<p>$$
+Where $\mu$ is the drift and $\sigma$ is the diffusion coefficient. $W_t$ is a standard Brownian motion.</p>
 ]]></content:encoded>
     </item>
     
