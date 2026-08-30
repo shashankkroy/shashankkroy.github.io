@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on Home</title>
-    <link>http://localhost:1313/posts/</link>
+    <link>https://shashankkroy.github.io/posts/</link>
     <description>Recent content in Posts on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Do markets slow down before they crash?</title>
-      <link>http://localhost:1313/posts/dynamical_systems/</link>
+      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/dynamical_systems/</guid>
+      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
       <description>On the behaviour of financial markets when a tipping point is near.</description>
       <content:encoded><![CDATA[<blockquote>
 <p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
@@ -137,10 +137,10 @@ Different bifurcations leave different fingerprints. The cubic normal form cover
     
     <item>
       <title>Diffusion models and Stochastic differential equations</title>
-      <link>http://localhost:1313/posts/diffusion-models/</link>
+      <link>https://shashankkroy.github.io/posts/diffusion-models/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/diffusion-models/</guid>
+      <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
       <description>Understanding diffusion models: what makes them so good?</description>
       <content:encoded><![CDATA[<h2 id="this-is-a-simple-sde-simulator-it-simulates-the-following-sde">This is a simple SDE simulator. It simulates the following SDE:</h2>
 <p>$$dX_t = M dt + \Sigma dW_t
@@ -163,10 +163,10 @@ Where $M$ is the drift and $\Sigma$ is the diffusion coefficient. $W_t$ is a sta
     
     <item>
       <title>The simple equation which changed the world of weather prediction</title>
-      <link>http://localhost:1313/posts/play-with-chaos/</link>
+      <link>https://shashankkroy.github.io/posts/play-with-chaos/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/play-with-chaos/</guid>
+      <guid>https://shashankkroy.github.io/posts/play-with-chaos/</guid>
       <description>Understanding chaos: the sensitivity to intitial conditions and the butterfly effect.</description>
       <content:encoded><![CDATA[<p>Almost everyone has heard of the butterfly effect. Many would also come acorss different animations to understand the behaviour and beauty of chaotic systems. So why not play around with it yourself?
 You will like this too.</p>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Financial-Markets on Home</title>
-    <link>http://localhost:1313/tags/financial-markets/</link>
+    <link>https://shashankkroy.github.io/tags/financial-markets/</link>
     <description>Recent content in Financial-Markets on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/financial-markets/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/financial-markets/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Do markets slow down before they crash?</title>
-      <link>http://localhost:1313/posts/dynamical_systems/</link>
+      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/dynamical_systems/</guid>
+      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
       <description>On the behaviour of financial markets when a tipping point is near.</description>
       <content:encoded><![CDATA[<blockquote>
 <p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
