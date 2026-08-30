@@ -1,0 +1,4 @@
+# Generated site output (served by GitHub Pages) must be committed
+# byte-for-byte: line-ending conversion breaks the fingerprinted asset
+# hashes and their subresource-integrity checks.
+docs/** -text
