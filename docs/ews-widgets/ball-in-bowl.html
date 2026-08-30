@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ball-in-bowl: critical slowing down explorer</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #0d1117; color: #e6edf3;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    overflow: hidden;
+  }
+  .panel { padding: 1rem 1.25rem; box-sizing: border-box; }
+  canvas { width: 100%; display: block; background: #161b22; border: 1px solid #21262d; border-radius: 6px; }
+  .caption { font-size: 9.5px; color: #8b949e; letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 0.4rem; }
+  .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0.8rem 0 0.5rem; }
+  @media (max-width: 480px) { .controls { grid-template-columns: 1fr; } }
+  .ctrl { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: 8px 11px; }
+  .ctrl-label {
+    font-size: 9.5px; color: #8b949e; letter-spacing: 0.08em;
+    text-transform: uppercase; display: flex; justify-content: space-between; margin-bottom: 5px;
+  }
+  .ctrl-label .val { color: #58a6ff; font-weight: 500; }
+  input[type=range] { width: 100%; cursor: pointer; }
+  input#h { accent-color: #58a6ff; }
+  input#sigma { accent-color: #f78166; }
+  .btn-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 0.7rem; }
+  .btn {
+    font-family: inherit; font-size: 10.5px; padding: 6px 12px; border-radius: 4px;
+    border: 1px solid #21262d; background: #161b22; color: #8b949e;
+    cursor: pointer; letter-spacing: 0.05em; transition: all 0.15s;
+  }
+  .btn:hover { background: #21262d; color: #e6edf3; border-color: #30363d; }
+  .btn.primary { background: #1f3b5d; color: #58a6ff; border-color: #1f3b5d; }
+  .btn.primary:hover { background: #1a3251; }
+  .readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .readout { grid-template-columns: 1fr 1fr; } }
+  .cell {
+    background: #161b22; border: 1px solid #21262d; border-radius: 6px;
+    padding: 7px 9px; text-align: center;
+  }
+  .c-label { font-size: 9px; color: #8b949e; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+  .c-val { font-size: 17px; font-weight: 500; color: #e6edf3; font-variant-numeric: tabular-nums; }
+  .c-note { font-size: 9.5px; margin-top: 3px; color: #8b949e; }
+  .trend-warn { color: #d29922; }
+  .trend-ok { color: #3fb950; }
+  noscript p { color: #e6edf3; padding: 1rem; margin: 0; }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="caption">Potential V(u) &middot; ball position in green</div>
+    <canvas id="canvas"></canvas>
+
+    <div class="controls">
+      <div class="ctrl">
+        <div class="ctrl-label">Bifurcation parameter h <span class="val" id="h-val">0.50</span></div>
+        <input type="range" id="h" min="-1.95" max="1.95" step="0.01" value="0.50">
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-label">Noise &sigma; <span class="val" id="sigma-val">0.20</span></div>
+        <input type="range" id="sigma" min="0.02" max="0.60" step="0.01" value="0.20">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" id="b-reset">&#x21bb; reset ball</button>
+      <button class="btn" id="b-kick">&#x2731; perturb</button>
+      <button class="btn" id="b-approach">&#x2197; approach tipping (h &rarr; +2)</button>
+    </div>
+
+    <div class="readout">
+      <div class="cell"><div class="c-label">recovery rate &alpha;</div><div class="c-val" id="r-alpha">&mdash;</div><div class="c-note" id="r-alpha-n">&mdash;</div></div>
+      <div class="cell"><div class="c-label">expected variance</div><div class="c-val" id="r-var">&mdash;</div><div class="c-note">&sigma;&sup2;/(2&alpha;)</div></div>
+      <div class="cell"><div class="c-label">return time &tau; &asymp;</div><div class="c-val" id="r-tau">&mdash;</div><div class="c-note">1/&alpha; steps</div></div>
+    </div>
+  </div>
+  <noscript><p>JavaScript is required for this interactive widget.</p></noscript>
+  <script>
+  (function() {
+    const canvas = document.getElementById('canvas');
+    canvas.style.height = '380px';
+
+    function setupHiDPI() {
+      const dpr = window.devicePixelRatio || 1;
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      canvas.width  = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      const ctx = canvas.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, W: w, H: h };
+    }
+
+    const hSlider = document.getElementById('h');
+    const sSlider = document.getElementById('sigma');
+    const hVal    = document.getElementById('h-val');
+    const sVal    = document.getElementById('sigma-val');
+    const rAlpha  = document.getElementById('r-alpha');
+    const rAlphaN = document.getElementById('r-alpha-n');
+    const rVar    = document.getElementById('r-var');
+    const rTau    = document.getElementById('r-tau');
+
+    let h     = parseFloat(hSlider.value);
+    let sigma = parseFloat(sSlider.value);
+    let u     = -1.5;
+    let udot  = 0;
+    const dt  = 0.05;
+    let approachAnim = null;
+
+    // V(u) = -h u - 1.5 u^2 + 0.25 u^4   (r = 3 convention from Guttal artifact)
+    // f(u) = -V'(u) = h + 3 u - u^3.  Equilibria solve u^3 - 3u = h.
+    // Folds at h = +/-2, double root at u = -/+1.
+    function V(u_)    { return -h*u_ - 1.5*u_*u_ + 0.25*u_*u_*u_*u_; }
+    function dVdu(u_) { return -h - 3*u_ + u_*u_*u_; }
+
+    function gauss() {
+      let a = Math.random() || 1e-12, b = Math.random();
+      return Math.sqrt(-2*Math.log(a)) * Math.cos(2*Math.PI*b);
+    }
+
+    // Lower stable equilibrium (u < -1).  Newton from u = -2.
+    function lowerStable() {
+      let u_ = -2;
+      for (let k = 0; k < 80; k++) {
+        const f  = u_*u_*u_ - 3*u_ - h;
+        const fp = 3*u_*u_ - 3;
+        if (Math.abs(fp) < 1e-6) break;
+        u_ = u_ - f/fp;
+      }
+      return (3*u_*u_ - 3 > 0 && u_ < 0) ? u_ : -1.0;
+    }
+
+    function step() {
+      // Underdamped Langevin: gives the ball a satisfying bounce.
+      udot = udot * 0.85 - dVdu(u) * dt + sigma * Math.sqrt(dt) * gauss() * 2;
+      u    += udot * dt;
+      if (u >  3) { u =  3; udot = -Math.abs(udot)*0.5; }
+      if (u < -3) { u = -3; udot =  Math.abs(udot)*0.5; }
+    }
+
+    function updateReadout() {
+      const um    = lowerStable();
+      const alpha = 3*um*um - 3;
+      if (alpha > 0.001) {
+        rAlpha.textContent = alpha.toFixed(2);
+        rVar.textContent   = (sigma*sigma / (2*alpha)).toFixed(3);
+        rTau.textContent   = (1/alpha).toFixed(1);
+      } else {
+        rAlpha.textContent = '~0';
+        rVar.textContent   = '∞';
+        rTau.textContent   = '∞';
+      }
+      if      (alpha < 0.5) { rAlphaN.textContent = 'low · near tipping';   rAlphaN.className = 'c-note trend-warn'; }
+      else if (alpha < 3)   { rAlphaN.textContent = 'moderate';                  rAlphaN.className = 'c-note';            }
+      else                  { rAlphaN.textContent = 'high · deep well';     rAlphaN.className = 'c-note trend-ok';   }
+    }
+
+    function draw() {
+      const { ctx, W, H } = setupHiDPI();
+      ctx.fillStyle = '#161b22';
+      ctx.fillRect(0, 0, W, H);
+
+      const uMin = -2.6, uMax = 2.6;
+      const samples = 220;
+      let vMin = Infinity, vMax = -Infinity;
+      const pts = new Array(samples + 1);
+      for (let i = 0; i <= samples; i++) {
+        const ui = uMin + (uMax - uMin) * i / samples;
+        const vi = V(ui);
+        pts[i] = [ui, vi];
+        if (vi < vMin) vMin = vi;
+        if (vi > vMax) vMax = vi;
+      }
+      const span = (vMax - vMin) || 1;
+      vMin -= 0.15 * span;
+      vMax += 0.15 * span;
+
+      const PL = 38, PR = 14, PT = 22, PB = 28;
+      const xMap = x_ => PL + (x_ - uMin) / (uMax - uMin) * (W - PL - PR);
+      const yMap = v_ => PT + (1 - (v_ - vMin) / (vMax - vMin)) * (H - PT - PB);
+
+      ctx.strokeStyle = '#21262d';
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(PL, yMap(0));
+      ctx.lineTo(W - PR, yMap(0));
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '11px JetBrains Mono, monospace';
+      for (const ut of [-2, -1, 0, 1, 2]) {
+        const X = xMap(ut);
+        ctx.fillText(ut.toString(), X - 5, H - 8);
+        ctx.strokeStyle = '#30363d';
+        ctx.beginPath();
+        ctx.moveTo(X, H - PB);
+        ctx.lineTo(X, H - PB + 4);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i <= samples; i++) {
+        const X = xMap(pts[i][0]);
+        const Y = yMap(pts[i][1]);
+        if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+      }
+      ctx.stroke();
+
+      const eqs = [];
+      for (let u0 = -2.5; u0 <= 2.5; u0 += 0.5) {
+        let r = u0;
+        for (let k = 0; k < 60; k++) {
+          const fp = 3*r*r - 3;
+          if (Math.abs(fp) < 1e-6) break;
+          r = r - (r*r*r - 3*r - h) / fp;
+        }
+        if (!eqs.some(e => Math.abs(e - r) < 0.01) && r >= uMin && r <= uMax) eqs.push(r);
+      }
+      for (const eq of eqs) {
+        const stable = 3*eq*eq - 3 > 0;
+        ctx.fillStyle = stable ? '#3fb95044' : '#d2992244';
+        ctx.beginPath();
+        ctx.arc(xMap(eq), yMap(V(eq)), 4, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      const bx = xMap(u), by = yMap(V(u));
+      ctx.fillStyle = '#3fb950';
+      ctx.beginPath();
+      ctx.arc(bx, by, 7, 0, Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = '#1a4a33';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '11px JetBrains Mono, monospace';
+      ctx.fillText('V(u)', 8, 14);
+      ctx.fillText('u', W - 14, H - 6);
+
+      if (Math.abs(h) > 1.85) {
+        ctx.fillStyle = '#d29922';
+        ctx.fillText('⚠ near fold h = ±2', W - 175, 14);
+      }
+    }
+
+    function loop() {
+      for (let s = 0; s < 2; s++) step();
+      updateReadout();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
+    hSlider.addEventListener('input', () => {
+      h = parseFloat(hSlider.value);
+      hVal.textContent = h.toFixed(2);
+    });
+    sSlider.addEventListener('input', () => {
+      sigma = parseFloat(sSlider.value);
+      sVal.textContent = sigma.toFixed(2);
+    });
+    document.getElementById('b-reset').addEventListener('click', () => {
+      u = lowerStable();
+      udot = 0;
+    });
+    document.getElementById('b-kick').addEventListener('click', () => {
+      udot += (Math.random() > 0.5 ? 1 : -1) * 1.8;
+    });
+    document.getElementById('b-approach').addEventListener('click', () => {
+      if (approachAnim) clearInterval(approachAnim);
+      const start = h, target = 1.95, steps = 80;
+      let k = 0;
+      approachAnim = setInterval(() => {
+        k++;
+        h = start + (target - start) * k / steps;
+        hSlider.value = h;
+        hVal.textContent = h.toFixed(2);
+        if (k >= steps) {
+          clearInterval(approachAnim);
+          approachAnim = null;
+        }
+      }, 50);
+    });
+
+    window.addEventListener('resize', draw);
+    u = lowerStable();
+    loop();
+  })();
+  </script>
+</body>
+</html>

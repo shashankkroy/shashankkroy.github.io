@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDE simulation: the Ornstein–Uhlenbeck process</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #0d1117; color: #e6edf3;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    overflow: hidden;
+  }
+  .panel { padding: 1rem 1.25rem; box-sizing: border-box; }
+  canvas { width: 100%; display: block; background: #161b22; border: 1px solid #21262d; border-radius: 6px; }
+  .caption { font-size: 9.5px; color: #8b949e; letter-spacing: 0.06em; text-transform: uppercase; margin: 0.55rem 0 0.3rem; }
+  .caption.first { margin-top: 0; }
+  .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0.7rem 0 0.5rem; }
+  @media (max-width: 480px) { .controls { grid-template-columns: 1fr; } }
+  .ctrl { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: 8px 11px; }
+  .ctrl-label {
+    font-size: 9.5px; color: #8b949e; letter-spacing: 0.08em;
+    text-transform: uppercase; display: flex; justify-content: space-between; margin-bottom: 5px;
+  }
+  .ctrl-label .val { color: #58a6ff; font-weight: 500; }
+  input[type=range] { width: 100%; cursor: pointer; }
+  input#alpha { accent-color: #58a6ff; }
+  input#sigma { accent-color: #f78166; }
+  .btn-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 0.6rem; }
+  .btn {
+    font-family: inherit; font-size: 10.5px; padding: 6px 12px; border-radius: 4px;
+    border: 1px solid #21262d; background: #161b22; color: #8b949e;
+    cursor: pointer; letter-spacing: 0.05em; transition: all 0.15s;
+  }
+  .btn:hover { background: #21262d; color: #e6edf3; border-color: #30363d; }
+  .btn.primary { background: #1f3b5d; color: #58a6ff; border-color: #1f3b5d; }
+  .btn.primary:hover { background: #1a3251; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 0.4rem 0 0.6rem; font-size: 11px; color: #8b949e; }
+  .legend-item { display: inline-flex; align-items: center; gap: 7px; }
+  .legend-dot { width: 16px; height: 3px; border-radius: 2px; }
+  .readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .readout { grid-template-columns: 1fr 1fr; } }
+  .cell {
+    background: #161b22; border: 1px solid #21262d; border-radius: 6px;
+    padding: 7px 9px; text-align: center;
+  }
+  .c-label { font-size: 9px; color: #8b949e; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+  .c-val { font-size: 17px; font-weight: 500; color: #e6edf3; font-variant-numeric: tabular-nums; }
+  .c-note { font-size: 9.5px; margin-top: 3px; color: #8b949e; }
+  .trend-warn { color: #d29922; }
+  .trend-ok { color: #3fb950; }
+  noscript p { color: #e6edf3; padding: 1rem; margin: 0; }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="caption first">Path x(t) — discrete OU process: x[t+1] = ρ·x[t] + σ·ε,  ρ = e<sup>−α</sup></div>
+    <canvas id="canvas-path"></canvas>
+    <div class="caption">Rolling variance (window 80 points) &nbsp;·&nbsp; lag-1 autocorrelation rescaled</div>
+    <canvas id="canvas-ind"></canvas>
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#58a6ff"></span> rolling variance</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#f78166"></span> lag-1 autocorrelation</span>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl">
+        <div class="ctrl-label">Recovery rate α <span class="val" id="alpha-val">0.30</span></div>
+        <input type="range" id="alpha" min="0.02" max="0.80" step="0.01" value="0.30">
+      </div>
+      <div class="ctrl">
+        <div class="ctrl-label">Noise σ <span class="val" id="sigma-val">0.30</span></div>
+        <input type="range" id="sigma" min="0.05" max="0.80" step="0.01" value="0.30">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" id="b-run">▶ resimulate</button>
+      <button class="btn" id="b-near">near tipping (α = 0.03)</button>
+      <button class="btn" id="b-stable">deep well (α = 0.60)</button>
+    </div>
+
+    <div class="readout">
+      <div class="cell"><div class="c-label">measured variance</div><div class="c-val" id="m-var">—</div><div class="c-note" id="m-var-n">—</div></div>
+      <div class="cell"><div class="c-label">measured AC<sub>1</sub></div><div class="c-val" id="m-ac">—</div><div class="c-note" id="m-ac-n">—</div></div>
+      <div class="cell"><div class="c-label">theory variance</div><div class="c-val" id="m-th">—</div><div class="c-note">σ²/(1−ρ²)</div></div>
+    </div>
+  </div>
+  <noscript><p>JavaScript is required for this interactive widget.</p></noscript>
+  <script>
+  (function() {
+    const cvsPath = document.getElementById('canvas-path');
+    const cvsInd  = document.getElementById('canvas-ind');
+    cvsPath.style.height = '160px';
+    cvsInd.style.height  = '120px';
+
+    function setupHiDPI(cvs) {
+      const dpr = window.devicePixelRatio || 1;
+      const w = cvs.offsetWidth, h = cvs.offsetHeight;
+      cvs.width  = Math.round(w * dpr);
+      cvs.height = Math.round(h * dpr);
+      const ctx = cvs.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, W: w, H: h };
+    }
+
+    function gauss() {
+      let a = Math.random() || 1e-12, b = Math.random();
+      return Math.sqrt(-2*Math.log(a)) * Math.cos(2*Math.PI*b);
+    }
+    function mean(a) {
+      let s = 0, n = 0;
+      for (const x of a) if (!isNaN(x)) { s += x; n++; }
+      return n ? s/n : NaN;
+    }
+    function variance(a) {
+      const m = mean(a);
+      let s = 0, n = 0;
+      for (const x of a) if (!isNaN(x)) { s += (x-m)*(x-m); n++; }
+      return n > 1 ? s/(n-1) : NaN;
+    }
+    function ac1(a) {
+      const c = a.filter(x => !isNaN(x));
+      if (c.length < 3) return NaN;
+      const m = mean(c);
+      let num = 0, den = 0;
+      for (let i = 0; i < c.length-1; i++) num += (c[i]-m)*(c[i+1]-m);
+      for (let i = 0; i < c.length;   i++) den += (c[i]-m)*(c[i]-m);
+      return den > 0 ? num/den : NaN;
+    }
+    function rollingVar(x, w) {
+      const n = x.length, o = new Array(n).fill(NaN);
+      for (let i = w; i < n; i++) o[i] = variance(x.slice(i-w, i));
+      return o;
+    }
+    function rollingAC1(x, w) {
+      const n = x.length, o = new Array(n).fill(NaN);
+      for (let i = w; i < n; i++) o[i] = ac1(x.slice(i-w, i));
+      return o;
+    }
+    function simulateOU(T, alpha, sigma) {
+      const rho = Math.exp(-alpha);
+      const x = [0];
+      for (let i = 1; i < T; i++) x.push(rho*x[i-1] + sigma*gauss());
+      return x;
+    }
+
+    function drawLine(ctx, data, W, H, color, mn, mx, lw, alpha) {
+      if (!data.length) return;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = lw || 1.4;
+      ctx.globalAlpha = alpha == null ? 1 : alpha;
+      const pad = 0.08;
+      ctx.beginPath();
+      let started = false;
+      for (let i = 0; i < data.length; i++) {
+        if (isNaN(data[i])) continue;
+        const xc = i / (data.length - 1) * W;
+        const yc = H - (data[i] - mn) / (mx - mn) * H * (1 - 2*pad) - H*pad;
+        if (started) ctx.lineTo(xc, yc); else ctx.moveTo(xc, yc);
+        started = true;
+      }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+
+    let lastData = null;
+
+    function run() {
+      const alpha = parseFloat(document.getElementById('alpha').value);
+      const sigma = parseFloat(document.getElementById('sigma').value);
+      document.getElementById('alpha-val').textContent = alpha.toFixed(2);
+      document.getElementById('sigma-val').textContent = sigma.toFixed(2);
+
+      const T = 600, w = 80;
+      const x  = simulateOU(T, alpha, sigma);
+      const vr = rollingVar(x, w);
+      const ac = rollingAC1(x, w);
+      lastData = { x, vr, ac, alpha, sigma };
+      render();
+    }
+
+    function render() {
+      if (!lastData) return;
+      const { x, vr, ac, alpha, sigma } = lastData;
+
+      // path canvas
+      {
+        const { ctx, W, H } = setupHiDPI(cvsPath);
+        ctx.fillStyle = '#161b22'; ctx.fillRect(0, 0, W, H);
+        const mn = Math.min(...x), mx = Math.max(...x);
+        ctx.strokeStyle = '#21262d'; ctx.setLineDash([3, 3]);
+        const pad = 0.08;
+        const zy = H - (0 - mn) / (mx - mn) * H * (1 - 2*pad) - H*pad;
+        ctx.beginPath(); ctx.moveTo(0, zy); ctx.lineTo(W, zy); ctx.stroke();
+        ctx.setLineDash([]);
+        drawLine(ctx, x, W, H, '#58a6ff', mn, mx, 1.3, 1);
+      }
+
+      // indicator canvas
+      {
+        const { ctx, W, H } = setupHiDPI(cvsInd);
+        ctx.fillStyle = '#161b22'; ctx.fillRect(0, 0, W, H);
+        const vrC = vr.filter(v => !isNaN(v));
+        const vMax = (vrC.length ? Math.max(...vrC) : 1) * 1.1 || 1;
+        drawLine(ctx, vr, W, H, '#58a6ff', 0, vMax, 1.6, 1);
+        // rescale AC1 (in [-1,1]) into the same panel range
+        const acR = ac.map(v => isNaN(v) ? NaN : (v + 0.2) / 1.4 * vMax);
+        drawLine(ctx, acR, W, H, '#f78166', 0, vMax, 1.4, 0.85);
+      }
+
+      const vrC = vr.filter(v => !isNaN(v));
+      const acC = ac.filter(v => !isNaN(v));
+      const measVar = mean(vrC);
+      const measAC  = mean(acC);
+      const rho = Math.exp(-alpha);
+      const thVar = sigma*sigma / (1 - rho*rho);
+
+      document.getElementById('m-var').textContent = isNaN(measVar) ? '—' : measVar.toFixed(3);
+      document.getElementById('m-ac').textContent  = isNaN(measAC)  ? '—' : measAC.toFixed(3);
+      document.getElementById('m-th').textContent  = thVar.toFixed(3);
+
+      const vn = document.getElementById('m-var-n');
+      if (alpha < 0.1) { vn.textContent = '↑ large · near tipping'; vn.className = 'c-note trend-warn'; }
+      else if (alpha < 0.3) { vn.textContent = 'moderate'; vn.className = 'c-note'; }
+      else { vn.textContent = 'small · deep well'; vn.className = 'c-note trend-ok'; }
+
+      const an = document.getElementById('m-ac-n');
+      if (alpha < 0.1) { an.textContent = '↑ close to 1'; an.className = 'c-note trend-warn'; }
+      else if (alpha < 0.3) { an.textContent = 'moderate'; an.className = 'c-note'; }
+      else { an.textContent = 'modest'; an.className = 'c-note trend-ok'; }
+    }
+
+    document.getElementById('alpha').addEventListener('input', run);
+    document.getElementById('sigma').addEventListener('input', run);
+    document.getElementById('b-run').addEventListener('click', run);
+    document.getElementById('b-near').addEventListener('click', () => {
+      document.getElementById('alpha').value = 0.03; run();
+    });
+    document.getElementById('b-stable').addEventListener('click', () => {
+      document.getElementById('alpha').value = 0.60; run();
+    });
+    window.addEventListener('resize', render);
+
+    run();
+  })();
+  </script>
+</body>
+</html>

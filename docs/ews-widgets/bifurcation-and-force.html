@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bifurcation diagram &amp; restoring force</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    background: #0d1117; color: #e6edf3;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    overflow: hidden;
+  }
+  .panel { padding: 1rem 1.25rem; box-sizing: border-box; }
+  canvas { width: 100%; display: block; background: #161b22; border: 1px solid #21262d; border-radius: 6px; }
+  .caption { font-size: 9.5px; color: #8b949e; letter-spacing: 0.06em; text-transform: uppercase; margin: 0.6rem 0 0.3rem; }
+  .caption.first { margin-top: 0; }
+  .ctrl-row { margin: 0.8rem 0 0.5rem; }
+  .ctrl { background: #161b22; border: 1px solid #21262d; border-radius: 6px; padding: 8px 11px; }
+  .ctrl-label {
+    font-size: 9.5px; color: #8b949e; letter-spacing: 0.08em;
+    text-transform: uppercase; display: flex; justify-content: space-between; margin-bottom: 5px;
+  }
+  .ctrl-label .val { color: #58a6ff; font-weight: 500; }
+  input[type=range] { width: 100%; cursor: pointer; accent-color: #58a6ff; }
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 0.4rem 0 0.6rem; font-size: 11px; color: #8b949e; }
+  .legend-item { display: inline-flex; align-items: center; gap: 7px; }
+  .legend-dot { width: 16px; height: 3px; border-radius: 2px; }
+  .legend-dot.dashed { background: linear-gradient(to right, #d29922 0 4px, transparent 4px 7px, #d29922 7px 11px, transparent 11px 14px, #d29922 14px); height: 2px; }
+  .readout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (max-width: 480px) { .readout { grid-template-columns: 1fr 1fr; } }
+  .cell {
+    background: #161b22; border: 1px solid #21262d; border-radius: 6px;
+    padding: 7px 9px; text-align: center;
+  }
+  .c-label { font-size: 9px; color: #8b949e; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+  .c-val { font-size: 16px; font-weight: 500; color: #e6edf3; font-variant-numeric: tabular-nums; }
+  .c-note { font-size: 9.5px; margin-top: 3px; color: #8b949e; }
+  .trend-warn { color: #d29922; }
+  .trend-ok { color: #3fb950; }
+  noscript p { color: #e6edf3; padding: 1rem; margin: 0; }
+</style>
+</head>
+<body>
+  <div class="panel">
+    <div class="caption first">Bifurcation diagram: equilibria u*(h) of u³ − 3u = h</div>
+    <canvas id="canvas-bif"></canvas>
+
+    <div class="caption">Restoring force f(u) = h + 3u − u³ &nbsp;·&nbsp; phase line below</div>
+    <canvas id="canvas-force"></canvas>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-dot" style="background:#3fb950"></span> stable branch / equilibrium</span>
+      <span class="legend-item"><span class="legend-dot dashed"></span> unstable (saddle)</span>
+      <span class="legend-item"><span class="legend-dot" style="background:#58a6ff"></span> current h</span>
+    </div>
+
+    <div class="ctrl-row">
+      <div class="ctrl">
+        <div class="ctrl-label">Bifurcation parameter h <span class="val" id="h-val">0.00</span></div>
+        <input type="range" id="h" min="-3" max="3" step="0.01" value="0">
+      </div>
+    </div>
+
+    <div class="readout">
+      <div class="cell"><div class="c-label">equilibria</div><div class="c-val" id="r-num">—</div><div class="c-note" id="r-num-n">—</div></div>
+      <div class="cell"><div class="c-label">lower stable α</div><div class="c-val" id="r-aL">—</div><div class="c-note" id="r-aL-n">u* = —</div></div>
+      <div class="cell"><div class="c-label">upper stable α</div><div class="c-val" id="r-aU">—</div><div class="c-note" id="r-aU-n">u* = —</div></div>
+    </div>
+  </div>
+  <noscript><p>JavaScript is required for this interactive widget.</p></noscript>
+  <script>
+  (function() {
+    const cvsBif   = document.getElementById('canvas-bif');
+    const cvsForce = document.getElementById('canvas-force');
+    cvsBif.style.height   = '210px';
+    cvsForce.style.height = '230px';
+
+    function setupHiDPI(cvs) {
+      const dpr = window.devicePixelRatio || 1;
+      const w = cvs.offsetWidth, h = cvs.offsetHeight;
+      cvs.width  = Math.round(w * dpr);
+      cvs.height = Math.round(h * dpr);
+      const ctx = cvs.getContext('2d');
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      return { ctx, W: w, H: h };
+    }
+
+    const hSlider = document.getElementById('h');
+    const hVal    = document.getElementById('h-val');
+    let h = parseFloat(hSlider.value);
+
+    // f(u) = h + 3u - u³;   V'(u) = -f(u);   equilibria solve u³ - 3u = h.
+    // Stability: f'(u*) = 3 - 3u*² < 0  ⇔  |u*| > 1.
+    // Folds at h = ±2, double root at u = ∓1.
+
+    function findRoots(hh) {
+      // Cubic: u³ - 3u - hh = 0. For |hh| ≤ 2 there are three real roots
+      // (possibly with multiplicity); for |hh| > 2 there is one real root.
+      // Use the trigonometric formula on the closed interval to handle the
+      // fold boundary (hh = ±2) cleanly.
+      if (Math.abs(hh) <= 2) {
+        // roots = 2 cos((1/3) acos(hh/2) − 2πk/3),  k = 0, 1, 2.
+        const m = 2;
+        const inner = Math.max(-1, Math.min(1, hh / 2));
+        const theta = Math.acos(inner);
+        const r0 = m * Math.cos(theta / 3);
+        const r1 = m * Math.cos(theta / 3 - 2*Math.PI/3);
+        const r2 = m * Math.cos(theta / 3 - 4*Math.PI/3);
+        // Deduplicate near-equal roots that arise at the fold (|hh| = 2).
+        const all = [r0, r1, r2].sort((a, b) => a - b);
+        const out = [];
+        for (const r of all) {
+          if (!out.length || Math.abs(r - out[out.length - 1]) > 1e-6) out.push(r);
+        }
+        return out;
+      } else {
+        // One real root via Cardano:
+        // u = ∛(hh/2 + √(hh²/4 − 1)) + ∛(hh/2 − √(hh²/4 − 1)).
+        const s = Math.sqrt(hh*hh/4 - 1);
+        const cb = (x) => Math.sign(x) * Math.pow(Math.abs(x), 1/3);
+        return [cb(hh/2 + s) + cb(hh/2 - s)];
+      }
+    }
+
+    function alphaAt(u) { return 3*u*u - 3; }
+    function isStable(u) { return alphaAt(u) > 0; }
+
+    function drawBifurcation() {
+      const { ctx, W, H } = setupHiDPI(cvsBif);
+      ctx.fillStyle = '#161b22'; ctx.fillRect(0, 0, W, H);
+
+      const hMin = -3, hMax = 3;
+      const uMin = -2.5, uMax = 2.5;
+      const PL = 36, PR = 12, PT = 16, PB = 26;
+      const xMap = (h_) => PL + (h_ - hMin) / (hMax - hMin) * (W - PL - PR);
+      const yMap = (u_) => PT + (1 - (u_ - uMin) / (uMax - uMin)) * (H - PT - PB);
+
+      // grid
+      ctx.strokeStyle = '#21262d'; ctx.lineWidth = 1;
+      for (const ht of [-2, 0, 2]) {
+        const X = xMap(ht);
+        ctx.setLineDash(ht === 0 ? [] : [2, 4]);
+        ctx.beginPath(); ctx.moveTo(X, PT); ctx.lineTo(X, H - PB); ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      const Y0 = yMap(0);
+      ctx.beginPath(); ctx.moveTo(PL, Y0); ctx.lineTo(W - PR, Y0); ctx.stroke();
+
+      // axis labels and ticks
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '10.5px JetBrains Mono, monospace';
+      for (const ht of [-2, -1, 0, 1, 2]) ctx.fillText(ht.toString(), xMap(ht) - 5, H - 8);
+      for (const ut of [-2, 0, 2]) ctx.fillText(ut.toString(), 14, yMap(ut) + 4);
+      ctx.fillText('h', W - 14, H - 8);
+      ctx.fillText('u*', 8, 12);
+
+      // Bifurcation curve: parametrize by u, compute h = u³ - 3u.
+      // Draw stable segments (|u|>1) in green, unstable (|u|<1) dashed amber.
+      const samples = 480;
+      let prev = null;
+      for (let i = 0; i <= samples; i++) {
+        const ui = uMin + (uMax - uMin) * i / samples;
+        const hi = ui*ui*ui - 3*ui;
+        if (hi < hMin || hi > hMax) { prev = null; continue; }
+        const stable = isStable(ui);
+        const X = xMap(hi), Y = yMap(ui);
+        if (prev && prev.stable === stable) {
+          ctx.beginPath();
+          ctx.moveTo(prev.X, prev.Y);
+          ctx.lineTo(X, Y);
+          if (stable) {
+            ctx.strokeStyle = '#3fb950';
+            ctx.lineWidth = 2.2;
+            ctx.setLineDash([]);
+          } else {
+            ctx.strokeStyle = '#d29922';
+            ctx.lineWidth = 1.8;
+            ctx.setLineDash([4, 4]);
+          }
+          ctx.stroke();
+        }
+        prev = { X, Y, stable };
+      }
+      ctx.setLineDash([]);
+
+      // Vertical line at current h
+      const Xh = xMap(h);
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(Xh, PT); ctx.lineTo(Xh, H - PB);
+      ctx.stroke();
+
+      // Equilibrium dots at current h
+      const roots = findRoots(h);
+      for (const r of roots) {
+        if (r < uMin || r > uMax) continue;
+        const stable = isStable(r);
+        ctx.fillStyle = stable ? '#3fb950' : '#d29922';
+        ctx.beginPath();
+        ctx.arc(Xh, yMap(r), 5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = '#0d1117';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      // Fold annotations
+      ctx.fillStyle = '#d29922';
+      ctx.font = '10px JetBrains Mono, monospace';
+      ctx.fillText('fold', xMap(2) + 4, yMap(-1) + 14);
+      ctx.fillText('fold', xMap(-2) - 26, yMap(1) - 4);
+    }
+
+    function drawForce() {
+      const { ctx, W, H } = setupHiDPI(cvsForce);
+      ctx.fillStyle = '#161b22'; ctx.fillRect(0, 0, W, H);
+
+      const uMin = -2.5, uMax = 2.5;
+      const PL = 38, PR = 12, PT = 14, PB = 56; // extra bottom space for phase line
+      const PHASE_TOP = H - PB + 18;
+      const xMap = (u_) => PL + (u_ - uMin) / (uMax - uMin) * (W - PL - PR);
+
+      // Sample f(u)
+      const samples = 240;
+      const fs = new Array(samples + 1);
+      let fMin = Infinity, fMax = -Infinity;
+      for (let i = 0; i <= samples; i++) {
+        const ui = uMin + (uMax - uMin) * i / samples;
+        const fi = h + 3*ui - ui*ui*ui;
+        fs[i] = fi;
+        if (fi < fMin) fMin = fi;
+        if (fi > fMax) fMax = fi;
+      }
+      const span = (fMax - fMin) || 1;
+      fMin -= 0.12 * span; fMax += 0.12 * span;
+      const yMap = (f_) => PT + (1 - (f_ - fMin) / (fMax - fMin)) * (PHASE_TOP - 22 - PT);
+
+      // f = 0 baseline
+      const Y0 = yMap(0);
+      ctx.strokeStyle = '#30363d'; ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(PL, Y0); ctx.lineTo(W - PR, Y0); ctx.stroke();
+
+      // shaded direction regions
+      ctx.fillStyle = '#3fb95012';
+      ctx.beginPath();
+      ctx.moveTo(PL, Y0);
+      for (let i = 0; i <= samples; i++) {
+        const ui = uMin + (uMax - uMin) * i / samples;
+        const f  = fs[i];
+        if (f > 0) {
+          ctx.lineTo(xMap(ui), yMap(f));
+        } else {
+          ctx.lineTo(xMap(ui), Y0);
+        }
+      }
+      ctx.lineTo(W - PR, Y0);
+      ctx.fill();
+
+      ctx.fillStyle = '#d2992212';
+      ctx.beginPath();
+      ctx.moveTo(PL, Y0);
+      for (let i = 0; i <= samples; i++) {
+        const ui = uMin + (uMax - uMin) * i / samples;
+        const f  = fs[i];
+        if (f < 0) {
+          ctx.lineTo(xMap(ui), yMap(f));
+        } else {
+          ctx.lineTo(xMap(ui), Y0);
+        }
+      }
+      ctx.lineTo(W - PR, Y0);
+      ctx.fill();
+
+      // f(u) curve
+      ctx.strokeStyle = '#58a6ff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let i = 0; i <= samples; i++) {
+        const ui = uMin + (uMax - uMin) * i / samples;
+        const X  = xMap(ui), Y = yMap(fs[i]);
+        if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+      }
+      ctx.stroke();
+
+      // axis labels
+      ctx.fillStyle = '#8b949e';
+      ctx.font = '10.5px JetBrains Mono, monospace';
+      ctx.fillText('f(u)', 8, 14);
+      for (const ut of [-2, -1, 0, 1, 2]) {
+        ctx.fillText(ut.toString(), xMap(ut) - 5, H - 32);
+      }
+
+      // ─── Phase line ───
+      // Draw the u-axis at PHASE_TOP, mark equilibria, arrows showing flow direction.
+      ctx.strokeStyle = '#30363d'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PL, PHASE_TOP); ctx.lineTo(W - PR, PHASE_TOP); ctx.stroke();
+      ctx.fillStyle = '#8b949e'; ctx.font = '9px JetBrains Mono, monospace';
+      ctx.fillText('phase line', 8, PHASE_TOP - 4);
+
+      const roots = findRoots(h).filter(r => r >= uMin && r <= uMax).sort((a, b) => a - b);
+
+      // arrows: at sample points along the u axis, sign of f gives flow direction
+      const arrowYs = PHASE_TOP;
+      const arrowSamples = 24;
+      for (let i = 0; i < arrowSamples; i++) {
+        const ui = uMin + (uMax - uMin) * (i + 0.5) / arrowSamples;
+        // skip if too close to an equilibrium
+        if (roots.some(r => Math.abs(r - ui) < 0.08)) continue;
+        const f = h + 3*ui - ui*ui*ui;
+        const X = xMap(ui);
+        ctx.fillStyle = f > 0 ? '#3fb950' : '#d29922';
+        ctx.beginPath();
+        if (f > 0) {
+          ctx.moveTo(X - 3, arrowYs - 4);
+          ctx.lineTo(X + 3, arrowYs);
+          ctx.lineTo(X - 3, arrowYs + 4);
+        } else {
+          ctx.moveTo(X + 3, arrowYs - 4);
+          ctx.lineTo(X - 3, arrowYs);
+          ctx.lineTo(X + 3, arrowYs + 4);
+        }
+        ctx.closePath();
+        ctx.globalAlpha = 0.7;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+
+      // equilibrium dots on the curve and on the phase line
+      for (const r of roots) {
+        const stable = isStable(r);
+        const color  = stable ? '#3fb950' : '#d29922';
+
+        // on f(u) curve (at f=0)
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(xMap(r), Y0, 5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = '#0d1117';
+        ctx.lineWidth = 1.5; ctx.stroke();
+
+        // on phase line
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(xMap(r), PHASE_TOP, 5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.strokeStyle = '#0d1117'; ctx.lineWidth = 1.5; ctx.stroke();
+
+        // label u* value
+        ctx.fillStyle = '#e6edf3';
+        ctx.font = '9.5px JetBrains Mono, monospace';
+        ctx.fillText('u*=' + r.toFixed(2), xMap(r) - 18, PHASE_TOP + 18);
+      }
+    }
+
+    function updateReadout() {
+      const roots = findRoots(h).sort((a, b) => a - b);
+      const num = roots.length;
+      document.getElementById('r-num').textContent = num.toString();
+      const numN = document.getElementById('r-num-n');
+      if (num === 1) {
+        numN.textContent = 'monostable · |h|>2';
+        numN.className = 'c-note trend-warn';
+      } else {
+        numN.textContent = 'bistable · |h|<2';
+        numN.className = 'c-note trend-ok';
+      }
+
+      const stables = roots.filter(r => isStable(r));
+      const lower = stables[0];
+      const upper = stables[stables.length - 1];
+
+      const aL = document.getElementById('r-aL');
+      const aLn = document.getElementById('r-aL-n');
+      const aU = document.getElementById('r-aU');
+      const aUn = document.getElementById('r-aU-n');
+
+      if (stables.length === 0) {
+        aL.textContent = '—'; aLn.textContent = 'no stable eq.'; aLn.className = 'c-note';
+        aU.textContent = '—'; aUn.textContent = '—'; aUn.className = 'c-note';
+      } else if (stables.length === 1) {
+        const a = alphaAt(lower);
+        aL.textContent = a.toFixed(2);
+        aLn.textContent = 'u* = ' + lower.toFixed(2);
+        aLn.className = 'c-note';
+        aU.textContent = '—';
+        aUn.textContent = 'merged at fold';
+        aUn.className = 'c-note trend-warn';
+      } else {
+        const aLv = alphaAt(lower);
+        aL.textContent = aLv.toFixed(2);
+        aLn.textContent = 'u* = ' + lower.toFixed(2);
+        aLn.className = 'c-note ' + (aLv < 0.5 ? 'trend-warn' : aLv > 3 ? 'trend-ok' : '');
+        const aUv = alphaAt(upper);
+        aU.textContent = aUv.toFixed(2);
+        aUn.textContent = 'u* = ' + upper.toFixed(2);
+        aUn.className = 'c-note ' + (aUv < 0.5 ? 'trend-warn' : aUv > 3 ? 'trend-ok' : '');
+      }
+    }
+
+    function redraw() {
+      drawBifurcation();
+      drawForce();
+      updateReadout();
+    }
+
+    hSlider.addEventListener('input', () => {
+      h = parseFloat(hSlider.value);
+      hVal.textContent = h.toFixed(2);
+      redraw();
+    });
+    window.addEventListener('resize', redraw);
+
+    redraw();
+  })();
+  </script>
+</body>
+</html>

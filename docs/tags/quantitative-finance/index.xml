@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Quantitative-Finance on Home</title>
+    <link>https://shashankkroy.github.io/tags/quantitative-finance/</link>
+    <description>Recent content in Quantitative-Finance on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/quantitative-finance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Do markets slow down before they crash?</title>
+      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
+      <description>On the behaviour of financial markets when a tipping point is near. Part 1 of a two-part series on early warning signals.</description>
+      <content:encoded><![CDATA[<blockquote>
+<p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
+<p>Financial markets are complex systems, and they have tipping points - thresholds beyond which the stability of the system can shift abruptly. The financial crisis are generally preceded by a period of increasing volatility. Researchers suggest that the increase in volatility could be an early warning signal of the impending crisis. Understanding if empirical observation of volatility prior to financial crisis- signature that appears in the data <strong>before</strong> the crash, a kind of &ldquo;early warning signal&rdquo; (EWS) that could alert investors and policymakers to rising systemic risk if of great importance.</p>
+<p>In this article, we dive into the ideas and mathematics behind the origin of these fingerprints. This article explores the fascinating idea: the theory of <strong>critical transitions</strong> that originates from ecology and climate science and asks whether financial markets behave the same way before a crash. The short answer is: <strong>not quite</strong> — but the detour through the math reveals something just as interesting.</p>
+<h2 id="two-competing-views-of-crashes">Two Competing Views of Crashes</h2>
+<p>System risk in financial systems is followed by increasing cross correlations or information dissipation across financial sectors.However, the evidence for this is mixed, and it is still an open question whether volatility can be used as a reliable early warning signal for financial crises.</p>
+<p><strong>View 1 — Efficient Markets:</strong>
+Economists have long disagreed about whether markets tip at all. The efficient-markets view holds that since markets are efficient and prices incorporate all available information, there is nothing to predict. Crashes are the result of unexpected external shocks — a surprise bankruptcy, a geopolitical event, a natural disaster. If the shock is truly unpredictable, then no early warning signals are possible.</p>
+<p><strong>View 2 — Complex Systems / Tipping Point:</strong>
+The complex-systems view — Markets are complex dynamical systems evoling under a potential well dictated by the economy&rsquo;s dynamical attractor. The noisy fluctuations are the aggregate of all the micro-scale disturbances — trades, tweets, earnings surprises — that a coarse-grained picture cannot see.
+with multiple attractors and internal feedbacks, the system may be pushed towards a <em>tipping point</em>, and generic precursors appear in the statistical structure of the time series — <strong>before</strong> the crash. This is the view that we take in this article.</p>
+<h2 id="early-warning-signals-do-markets-give-a-hint-before-they-break">Early Warning Signals: Do markets give a hint before they break?</h2>
+<p>This brings us to focus on critical transitions and tipping points under which is the theory of abrupt transitions for the underlying system from one state to another.</p>
+<p>Critical slowing down leaves three measurable fingerprints in any time series: rising lag-1 autocorrelation, rising variance, and a reddening power spectrum. These generic early warning signals can be read without knowing the underlying equations of motion — making them a powerful tool for anticipating abrupt transitions in complex systems.</p>
+<h2 id="can-a-stock-index-be-a-ball-in-a-bowl">Can a stock index be a ball in a bowl?</h2>
+<p>A stable system recovers form small perturbations, and the potential landscape informs us about the stablility properties and how the system evolves in this landspace. But when the system approaches a tipping point, it becomes more sensitive to disturbances. Under small disturbanaces, a system recovers more slowly from small perturbations. It&rsquo;s rate of recovery is directly related to the curvature of the potential near the equilibrium. As the tipping point approaches, recovery slows down. That sluggishness leaves three measurable fingerprints in the data — long before the shift itself. This post derives where the fingerprints come from, and where the derivation can be trusted.</p>
+<p>Picture a ball rolling inside a shallow bowl. Push it sideways and it rolls back. Now imagine the bowl flattening: the same nudge sends the ball further from the bottom, and it takes longer to settle. In the limit where the bowl becomes flat, a tiny perturbation is enough to push the ball over the lip into a different basin entirely.</p>
+<iframe 
+  src="/ews-widgets/ball-in-bowl.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+<p>Real systems live in landscapes with several such bowls. A clear, plant-rich shallow lake sits in one basin; the same lake, after eutrophication, sits in another (turbid, algae-dominated)<sup><a href="#ref1">[1]</a></sup>. Climate models show similar bistability for the Atlantic Meridional Overturning Circulation. In each case, the <em>depth of the bowl</em> — how strongly the system pulls back to its current state — is the quantity that flattens before a transition.</p>
+<h2 id="from-picture-to-equations-a-mathematical-model">From picture to equations: A Mathematical Model</h2>
+<p>The mathematical fact we will prove is that a flattening bowl produces three statistical signatures, all readable from a noisy time series of the system: rising lag-1 autocorrelation, rising variance, and a power spectrum that <em>reddens</em> (gains weight at low frequencies). What makes them <em>generic</em> early warning signals is that they are universal consequences of a weakening restoring force, regardless of the details of the system.</p>
+<p>Treat the log of a stock index as the state
+u
+u of a one-dimensional dynamical system. The &ldquo;potential&rdquo; is whatever smooth bull- and bear-market attractors the economy happens to sit in. The noise
+σ
+σ is the aggregate of all the micro-scale disturbances — trades, tweets, earnings surprises — that a coarse-grained picture cannot see.</p>
+<p>Consider a one-dimensional state \( u(t) \) — water clarity, ice extent, an index level — evolving under deterministic drift \( f(u; \theta) \) and white-noise forcing of amplitude \( \sigma \):</p>
+<blockquote>
+<p>\[
+du = f(u; \theta), dt + \sigma, dW_t
+\]</p></blockquote>
+<p>where \( \theta \) is a slowly varying control parameter (nutrient load, atmospheric CO\(_2\), credit conditions), and \( W_t \) is a standard Wiener process. Throughout this post we treat \( \sigma \) as constant — a strong assumption we will revisit, with consequences, in Part 2. We assume \( f \) has at least two stable equilibria over some range of \( \theta \) — a <em>bistable</em> regime — separated by an unstable equilibrium.</p>
+<p>The canonical normal form for a fold (saddle-node) bifurcation is the cubic<sup><a href="#ref2">[2]</a></sup>:</p>
+<blockquote>
+<p>\[
+f(u) = h + r u - u^3
+\]</p></blockquote>
+<p>with bifurcation parameter \( h \) controlling the shape of the potential</p>
+<blockquote>
+<p>\[
+V(u) = -h u - \tfrac{r}{2} u^2 + \tfrac{1}{4} u^4, \qquad f(u) = -V&rsquo;(u).
+\]</p></blockquote>
+<p>For an intermediate range of \( h \), \( V \) has two minima (stable equilibria) separated by a maximum (unstable). At a critical value \( h = h_c \), one of the minima merges with the maximum and disappears: the system is forced into the surviving basin. That is the <em>tipping point</em>.</p>
+<p>Let \( u^* \) denote the currently occupied stable equilibrium and \( x = u - u^* \) a small deviation. Linearising \( f \) about \( u^* \):</p>
+<blockquote>
+<p>\[
+dx = -\alpha, x, dt + \sigma, dW_t, \qquad \alpha \equiv -\left.\frac{\partial f}{\partial u}\right|_{u^*}.
+\]</p></blockquote>
+<p>This is the <em>Ornstein–Uhlenbeck</em> process — a continuous-time mean-reverting random walk. The quantity \( \alpha &gt; 0 \) is the <em>return rate</em>: the inverse timescale on which perturbations decay. Geometrically, \( \alpha \) is the curvature of the potential well at the bottom; as \( h \to h_c \), the curvature collapses, so \( \alpha \to 0 \).</p>
+<h2 id="the-core-idea">The Core Idea</h2>
+<p>The Ornstein–Uhlenbeck process has closed-form stationary statistics<sup><a href="#ref3">[3]</a></sup>, which is what makes the early warning signals analytically tractable. In stationarity:</p>
+<p><strong>Autocovariance</strong> at lag \( \tau \):
+\[
+C(\tau) = \mathbb{E}[x(t), x(t+\tau)] = \frac{\sigma^2}{2\alpha}, e^{-\alpha |\tau|}.
+\]</p>
+<p><strong>Variance</strong> (the \( \tau = 0 \) case):
+\[
+\mathrm{Var}(x) = \frac{\sigma^2}{2\alpha}.
+\]</p>
+<p><strong>Power spectral density</strong> (the Fourier transform of \( C(\tau) \)):
+\[
+S(\omega) = \frac{\sigma^2}{\alpha^2 + \omega^2}.
+\]</p>
+<p>Now read each formula as a function of \( \alpha \), with \( \sigma \) held fixed:</p>
+<ul>
+<li><em>Autocorrelation</em> at any fixed lag is proportional to \( e^{-\alpha\tau} \). As \( \alpha \to 0 \), the exponent vanishes and the autocorrelation tends to one. Slow decay means high autocorrelation. <strong>Lag-1 autocorrelation rises.</strong></li>
+<li><em>Variance</em> is \( \sigma^2 / 2\alpha \). As \( \alpha \to 0 \), the variance diverges. A flatter bowl houses a wider random walk. <strong>Variance rises.</strong></li>
+<li><em>Power spectrum</em> is a Lorentzian centred at zero with corner frequency \( \alpha \). Shrinking \( \alpha \) shifts power toward low frequencies. <strong>The spectrum reddens.</strong></li>
+</ul>
+<p>This is <em>critical slowing down</em> (CSD): three fingerprints, all consequences of one fact — the local linear restoring force is weakening. The signatures are <em>generic</em> in the sense of Scheffer et al.<sup><a href="#ref4">[4]</a></sup>: they require neither knowledge of \( f \) beyond its bifurcation type, nor any model fitting. They are properties of the residuals around the equilibrium, period.</p>
+<p>A consequential subtlety: the formulas above describe the residuals \( x = u - u^* \), not the raw state \( u \). If the equilibrium itself is drifting (a slow change in \( u^* \), separate from the noise around it), that drift bleeds into estimates of variance and autocorrelation and hides the CSD signal. The standard remedy is to detrend the time series — typically with a Gaussian kernel smoother — before measuring indicators. We return to detrending, and to the wreckage it can cause if mis-tuned, in Part 2.</p>
+<h2 id="interactive-explorer">Interactive Explorer</h2>
+<p>Drag \( h \) toward the critical value \( h_c \approx +0.385 \) and watch the left-hand basin (where the ball begins, near \( u = -1 \)) shallow. The orange ball undergoes the SDE numerically; the lower trace shows its trajectory; the readouts to the right are the lag-1 autocorrelation and variance estimated over the last 400 steps.</p>
+<p>s</p>
+<iframe 
+  src="/ews-widgets/bifurcation-and-force.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+<p><em>Figure 1: A stochastic particle in the cubic potential \( V(u) = -hu - \tfrac{r}{2}u^2 + \tfrac{1}{4}u^4 \) with \( r = 1 \). For \( |h| &lt; h_c = \tfrac{2}{3\sqrt{3}} \approx 0.385 \) the system is bistable. As \( h \to +h_c \) from below, the left-hand well — the one containing the ball — shallows, and at \( h = h_c \) it merges with the unstable equilibrium and disappears. The particle&rsquo;s residuals develop higher autocorrelation and variance on approach: the signature of critical slowing down.</em></p>
+<p>What you should observe (numerical values from offline simulation): with \( h = 0 \) and \( \sigma = 0.15 \), the AC\(_1\) reading hovers near 0.91 and variance near 0.006. The return rate at \( u^* = -1 \) is \( \alpha = r - 3u^{*2} \cdot (-1) = 2 \), so over a step of size \( dt = 0.04 \) the predicted lag-1 autocorrelation is \( e^{-\alpha, dt} \approx 0.92 \) and the stationary variance is \( \sigma^2 / 2\alpha \approx 0.0056 \). Pleasingly, the simulator hits both. Push \( h \) to +0.20 and the variance roughly doubles while AC\(_1\) climbs past 0.95. Push it past +0.385 and the left-hand well disappears; the ball escapes to \( u \approx +1.15 \) and the statistics are now of an entirely different basin. The transition itself is the moment the readouts become meaningless — which is precisely the operational frustration the early-warning literature is trying to overcome.</p>
+<iframe 
+  src="/ews-widgets/sde-simulation.html" 
+  width="100%" 
+  height="600px" 
+  style="border:none;">
+</iframe>
+<h2 id="but-how-close-is-reality-to-the-theory">But how close is reality to the theory?</h2>
+<p>Critical slowing down theory makes a sharp prediction: if a system is approaching a fold bifurcation, all three fingerprints rise together. The contrapositive is the more useful direction in practice — if even one of them is missing, the dynamics are probably not what the theory assumes.</p>
+<p>The model breaks in several ways worth flagging up front:</p>
+<p>The linearisation assumes small deviations. When the noise is large enough that the ball routinely explores both basins, the OU approximation fails and the variance is dominated by basin-hopping rather than within-basin diffusion. The widget illustrates this for \( \sigma \gtrsim 0.35 \): the AC\(_1\) readout becomes unreliable because the particle is sampling two equilibria.</p>
+<p>Constant noise is a strong assumption. If \( \sigma \) varies in time, the OU formulas predict that variance and the spectrum scale with \( \sigma^2 \) at every value of \( \alpha \) — so variance can rise without \( \alpha \) shrinking. Autocorrelation, by contrast, depends only on \( \alpha \). This algebraic asymmetry is the entire subject of Part 2; it is also the loophole that makes financial early warning signals harder than ecological ones.</p>
+<p>Estimation is delicate. Both autocorrelation and variance are sensitive to the detrending bandwidth and the rolling-window length. Two analysts working on the same dataset can reach different qualitative conclusions if they choose different smoothing parameters<sup><a href="#ref5">[5]</a></sup>. Sensitivity analyses across a grid of bandwidths are now considered standard.</p>
+<p>Different bifurcations leave different fingerprints. The cubic normal form covers fold bifurcations only. Transcritical, Hopf, and pitchfork bifurcations have their own statistical signatures, and not all three CSD indicators apply uniformly across them. The generic claim is that <em>something</em> in the spectrum or covariance rises — not always the same something.</p>
+<p>Finally, the literature contains genuine successes — the Carpenter et al. whole-lake experiment<sup><a href="#ref6">[6]</a></sup> in particular — and genuine failures, of which financial crashes are the most pedagogically useful. That is where Part 2 picks up.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li>Scheffer (2009), <em>Critical Transitions in Nature and Society</em><sup><a href="#ref7">[7]</a></sup> — a book-length treatment that builds the bistability picture across ecology, climate, and society. Read first if the math is new; intuition before formalism.</li>
+<li>Scheffer et al. (2009), <em>Early-warning signals for critical transitions</em><sup><a href="#ref4">[4]</a></sup> — the foundational <em>Nature</em> review that synthesised CSD as a generic detection tool. Read second for the canonical pointers into the older literature.</li>
+<li>Kuehn (2011), <em>A mathematical framework for critical transitions</em><sup><a href="#ref8">[8]</a></sup> — the rigorous treatment: explicit bifurcation classification, stochastic dynamics, fast–slow systems. Read this when you want the proofs.</li>
+<li>Boettiger &amp; Hastings (2012), <em>Quantifying limits to detection of early warning signals</em><sup><a href="#ref5">[5]</a></sup> — the honest counterweight: how often CSD detection fails or produces false positives in finite data. Required reading before you build a detector.</li>
+<li>Dakos et al. (2012), <em>Methods for detecting early warnings of critical transitions</em><sup><a href="#ref9">[9]</a></sup> — the practical companion: how to actually compute these indicators on real time series, with a published R toolkit.</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li id="ref1">Scheffer, M., Carpenter, S., Foley, J. A., Folke, C., &amp; Walker, B. (2001). <em>Catastrophic shifts in ecosystems</em>. Nature, 413(6856), 591–596. <a href="https://doi.org/10.1038/35098000">DOI</a></li>
+<li id="ref2">Strogatz, S. H. (2015). <em>Nonlinear Dynamics and Chaos</em> (2nd ed.). Westview Press.</li>
+<li id="ref3">Gardiner, C. W. (2009). <em>Stochastic Methods: A Handbook for the Natural and Social Sciences</em> (4th ed.). Springer.</li>
+<li id="ref4">Scheffer, M., Bascompte, J., Brock, W. A., et al. (2009). <em>Early-warning signals for critical transitions</em>. Nature, 461(7260), 53–59. <a href="https://doi.org/10.1038/nature08227">DOI</a></li>
+<li id="ref5">Boettiger, C., &amp; Hastings, A. (2012). <em>Quantifying limits to detection of early warning signals for critical transitions</em>. Journal of the Royal Society Interface, 9(75), 2527–2539. <a href="https://doi.org/10.1098/rsif.2012.0125">DOI</a></li>
+<li id="ref6">Carpenter, S. R., Cole, J. J., Pace, M. L., et al. (2011). <em>Early warnings of regime shifts: A whole-ecosystem experiment</em>. Science, 332(6033), 1079–1082. <a href="https://doi.org/10.1126/science.1203672">DOI</a></li>
+<li id="ref7">Scheffer, M. (2009). <em>Critical Transitions in Nature and Society</em>. Princeton University Press. <a href="https://doi.org/10.1515/9781400833276">DOI</a></li>
+<li id="ref8">Kuehn, C. (2011). <em>A mathematical framework for critical transitions: Bifurcations, fast–slow systems and stochastic dynamics</em>. Physica D, 240(12), 1020–1035. <a href="https://doi.org/10.1016/j.physd.2011.02.012">DOI</a></li>
+<li id="ref9">Dakos, V., Carpenter, S. R., Brock, W. A., et al. (2012). <em>Methods for detecting early warnings of critical transitions in time series illustrated using simulated ecological data</em>. PLoS ONE, 7(7), e41010. <a href="https://doi.org/10.1371/journal.pone.0041010">DOI</a></li>
+</ol>
+<hr>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

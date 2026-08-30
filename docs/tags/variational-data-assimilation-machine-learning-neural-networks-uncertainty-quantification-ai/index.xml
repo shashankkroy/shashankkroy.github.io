@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Variational data assimilation, machine learning, neural networks, uncertainty quantification, AI on Home</title>
+    <title>Variational Data Assimilation, Machine Learning, Neural Networks, Uncertainty Quantification, AI on Home</title>
     <link>https://shashankkroy.github.io/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</link>
-    <description>Recent content in Variational data assimilation, machine learning, neural networks, uncertainty quantification, AI on Home</description>
+    <description>Recent content in Variational Data Assimilation, Machine Learning, Neural Networks, Uncertainty Quantification, AI on Home</description>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Sat, 23 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>4DVarNet: A neural network based on variational data assimilation</title>
@@ -14,7 +15,7 @@
       <guid>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</guid>
       <description>Can we train a DA algorithm like 4DVar using neural networks?</description>
       <content:encoded><![CDATA[<h2 id="overview-of-data-assimilation">Overview of Data Assimilation</h2>
-<p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations. 
+<p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations.
 <a href="https://link.springer.com/chapter/10.1007/978-3-030-96709-3_5">Variational data assimilation</a> aims to find a the best trajectory of the dynamical system which minimizes a certain cost function.</p>
 <h2 id="problem-statement-can-neural-network-models-replace-data-assimilation-for-a-cheaperfaster-alternative">Problem statement: Can neural network models replace data assimilation for a cheaper/faster alternative?</h2>
 <p><img loading="lazy" src="/images/vort_sf_obs_128.png" type="" alt="da_setup"  /></p>
@@ -23,7 +24,7 @@
 <p>This is the weak-4dvar cost function which needs ot be minimized.
 The dynamical systems $ \mathcal{M} $, the dynamical propagator which takes the system state $x_k$ to $x_{k+1}$.
 The above weak formulation of the 4dvar problem accounts for additional model errors in the dynamical system as the dynamics is not perfect, hence there dynamical cost term.</p>
-<p>The first term minimizes the depatures from a pure model trajectory since the aim to find a trajectory close to the model trajectory while accounting for the model error- a part we refer to as &lsquo;the dynamical cost&rsquo;. The second term makes the trajectory fit to the obsrvations and is referred as &lsquo;observation cost&rsquo;.</p>
+<p>The first term minimizes the depatures from a pure model trajectory since the aim to find a trajectory close to the model trajectory while accounting for the model error- a part we refer to as &rsquo;the dynamical cost&rsquo;. The second term makes the trajectory fit to the obsrvations and is referred as &lsquo;observation cost&rsquo;.</p>
 <h2 id="introducing-neural-data-assimilation-using-4dvarnet">Introducing Neural Data Assimilation using 4DVarNet</h2>
 <p><em>What if we have a dataset of the optimal states and their corresponding observations, can we train a neural network to learn the mapping from the observations to the optimal state?</em>
 In the supervised setting, we something similar happens when we have access to a large dataset. But simple inversion from observation to full state is an ill-defined problem, so the model learn a representation of the data which acts as a regularization term.</p>
@@ -56,7 +57,7 @@ These observations are available on masks which have been obtained from Nadir Sa
 <h2 id="results-work-in-progress">Results (Work in progress)</h2>
 <p>The standard 4DVarNet architecture only uses the observations as the input, and intializes the states from it. We refer to this as 4Dvarnet-No-IC. The 4DVarNet architecture where we provide additional guess for the initial conditions is referred to as 4DVarNet-IC. Using a simple metric called $\mu=1-\frac{RMSE(X)}{RMS(X)}$. The RMSE is the root mean square error between the predicted state and the true state, and RMS is the std. of the true state. When $\mu=1$, the model is perfect, and when $\mu=0$, the errors are of the same order of the natural variability of the field X.</p>
 <p><img loading="lazy" src="/images/4dvar-4dvarnet-plot.png" type="" alt="4DVarNet Results"  /></p>
-<p>The results of the 4DVarNet architecture are compared with the standard weak-4DVar algorithm, ( both solve the weak-4dvar problem). 
+<p>The results of the 4DVarNet architecture are compared with the standard weak-4DVar algorithm, ( both solve the weak-4dvar problem).
 The results show that the 4DVarNet-IC architecture performs better than the 4DVarNet-No-IC architecture, which is expected since the initial guess is closer to the true state. The results also show that the 4DVarNet architecture is able to learn the mapping from the observations to the true states, and can be used for data assimilation and uncertainty quantification.</p>
 <h3 id="references">References</h3>
 ]]></content:encoded>

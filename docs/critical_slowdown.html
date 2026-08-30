@@ -1,0 +1,170 @@
+
+<div style="background: #0d1117; border: 1px solid #21262d; border-radius: 8px; padding: 1.25rem; margin: 2rem 0; font-family: 'JetBrains Mono', monospace;">
+  <canvas id="canvas-ews-csd" width="640" height="380" style="width:100%; display:block;"></canvas>
+  <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; align-items: center;">
+    <label style="color: #8b949e; font-size: 12px; display: flex; align-items: center; gap: 0.5rem;">
+      Bifurcation parameter h:
+      <input type="range" id="h-ews-csd" min="-0.50" max="0.50" step="0.01" value="0.00"
+             style="width: 160px; accent-color: #58a6ff;">
+      <span id="h-val-ews-csd" style="color: #e6edf3; min-width: 40px;">0.00</span>
+    </label>
+    <label style="color: #8b949e; font-size: 12px; display: flex; align-items: center; gap: 0.5rem;">
+      Noise &sigma;:
+      <input type="range" id="sigma-ews-csd" min="0.02" max="0.50" step="0.01" value="0.15"
+             style="width: 140px; accent-color: #f78166;">
+      <span id="sigma-val-ews-csd" style="color: #e6edf3; min-width: 40px;">0.15</span>
+    </label>
+    <span style="color: #8b949e; font-size: 12px; margin-left: auto;">
+      AC<sub>1</sub>: <span id="ac1-ews-csd" style="color: #3fb950;">0.000</span>
+      &nbsp;&nbsp;
+      Var: <span id="var-ews-csd" style="color: #d29922;">0.000</span>
+    </span>
+  </div>
+</div>
+<script>
+(function() {
+  const canvas = document.getElementById('canvas-ews-csd');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const TOP_H = Math.round(H * 0.58);
+
+  const hSlider = document.getElementById('h-ews-csd');
+  const sSlider = document.getElementById('sigma-ews-csd');
+  const hVal = document.getElementById('h-val-ews-csd');
+  const sVal = document.getElementById('sigma-val-ews-csd');
+  const acDisp = document.getElementById('ac1-ews-csd');
+  const vDisp = document.getElementById('var-ews-csd');
+
+  let h = parseFloat(hSlider.value);
+  let sigma = parseFloat(sSlider.value);
+  const r = 1.0;
+  const dt = 0.04;
+  let u = -1.0;
+  const HISTLEN = 400;
+  const history = [];
+
+  function V(x) { return -h*x - 0.5*r*x*x + 0.25*x*x*x*x; }
+  function dV(x) { return -h - r*x + x*x*x; }
+
+  function gauss() {
+    const a = Math.random(), b = Math.random();
+    return Math.sqrt(-2*Math.log(a + 1e-12)) * Math.cos(2*Math.PI*b);
+  }
+
+  function step() {
+    u += -dV(u)*dt + sigma*Math.sqrt(dt)*gauss();
+    if (u > 3) u = 3; if (u < -3) u = -3;
+    history.push(u);
+    if (history.length > HISTLEN) history.shift();
+  }
+
+  function stats() {
+    const N = history.length;
+    if (N < 50) return [0, 0];
+    let mean = 0;
+    for (const x of history) mean += x;
+    mean /= N;
+    let varSum = 0, cov = 0;
+    for (let i = 0; i < N; i++) varSum += (history[i]-mean)*(history[i]-mean);
+    for (let i = 1; i < N; i++) cov += (history[i]-mean)*(history[i-1]-mean);
+    const variance = varSum / N;
+    const ac1 = variance > 1e-9 ? (cov / (N-1)) / variance : 0;
+    return [variance, ac1];
+  }
+
+  hSlider.addEventListener('input', () => {
+    h = parseFloat(hSlider.value);
+    hVal.textContent = h.toFixed(2);
+  });
+  sSlider.addEventListener('input', () => {
+    sigma = parseFloat(sSlider.value);
+    sVal.textContent = sigma.toFixed(2);
+  });
+
+  function draw() {
+    ctx.fillStyle = '#0d1117';
+    ctx.fillRect(0, 0, W, H);
+
+    const uMin = -2.2, uMax = 2.2;
+    const samples = 240;
+    let vMin = Infinity, vMax = -Infinity;
+    const vs = new Array(samples + 1);
+    for (let i = 0; i <= samples; i++) {
+      const ui = uMin + (uMax - uMin) * i / samples;
+      vs[i] = V(ui);
+      if (vs[i] < vMin) vMin = vs[i];
+      if (vs[i] > vMax) vMax = vs[i];
+    }
+    const span = (vMax - vMin) || 1;
+    vMin -= 0.2 * span; vMax += 0.2 * span;
+
+    const PL = 50, PR = 12, PT = 18, PB = 12;
+    const xMap = (x_) => PL + (x_ - uMin) / (uMax - uMin) * (W - PL - PR);
+    const yMap = (v_) => PT + (1 - (v_ - vMin) / (vMax - vMin)) * (TOP_H - PT - PB);
+
+    ctx.strokeStyle = '#30363d';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(PL, PT, W - PL - PR, TOP_H - PT - PB);
+
+    ctx.strokeStyle = '#58a6ff';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let i = 0; i <= samples; i++) {
+      const ui = uMin + (uMax - uMin) * i / samples;
+      const X = xMap(ui), Y = yMap(vs[i]);
+      if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+    }
+    ctx.stroke();
+
+    ctx.fillStyle = '#f78166';
+    ctx.beginPath();
+    ctx.arc(xMap(u), yMap(V(u)), 6, 0, 2 * Math.PI);
+    ctx.fill();
+
+    ctx.fillStyle = '#8b949e';
+    ctx.font = "11px 'JetBrains Mono', monospace";
+    ctx.fillText('V(u)', 8, 14);
+    ctx.fillText('u', W - 14, TOP_H - 4);
+
+    const tsTop = TOP_H + 10;
+    const tsBot = H - 6;
+    ctx.strokeStyle = '#30363d';
+    ctx.strokeRect(PL, tsTop, W - PL - PR, tsBot - tsTop);
+
+    if (history.length > 1) {
+      const tsX = (i) => PL + (i / (HISTLEN - 1)) * (W - PL - PR);
+      const tsY = (u_) => tsTop + (1 - (u_ - uMin) / (uMax - uMin)) * (tsBot - tsTop);
+      ctx.strokeStyle = '#3fb950';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      const offset = HISTLEN - history.length;
+      for (let i = 0; i < history.length; i++) {
+        const X = tsX(i + offset), Y = tsY(history[i]);
+        if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+      }
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#8b949e';
+    ctx.fillText('u(t)', 8, tsTop + 12);
+
+    const hcRight = 2 / (3 * Math.sqrt(3));
+    if (Math.abs(h) > hcRight - 0.04) {
+      ctx.fillStyle = '#d29922';
+      ctx.font = "11px 'JetBrains Mono', monospace";
+      ctx.fillText('near tipping point', W - 160, PT + 12);
+    }
+  }
+
+  function loop() {
+    for (let s = 0; s < 4; s++) step();
+    const [v, a] = stats();
+    vDisp.textContent = v.toFixed(3);
+    acDisp.textContent = a.toFixed(3);
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+})();
+</script>

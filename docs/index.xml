@@ -5,214 +5,204 @@
     <link>https://shashankkroy.github.io/</link>
     <description>Recent content on Home</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.</title>
-      <link>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</link>
-      <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
+      <title>Do markets slow down before they crash?</title>
+      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</guid>
-      <description>Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?</description>
-      <content:encoded><![CDATA[<h2 id="the-story-so-far">The story so far</h2>
-<p>Modern geophysical systems are dominated by coherent structures: jets, eddies, fronts, filaments, and sharp interfaces. In such systems, forecast errors are rarely pointwise or purely additive. Instead, they are primarily structural and geometric, arising from uncertainties in the position, shape, and evolution of these coherent features.</p>
-<p>Classical variational data assimilation and recent neural approaches (including 4DVarNet) have demonstrated strong performance in deterministic state reconstruction. However, they typically produce a single optimal trajectory, providing limited insight into uncertainty, especially uncertainty driven by displacement and phase errors.</p>
-<p>At the same time, ensemble-based methods often rely on simplistic perturbation strategies (e.g. additive Gaussian noise) that fail to consider non-gaussian error structures such as alignment or positional errors. Such perturbations distort coherent structures, inject unphysical small-scale energy, and poorly represent the dominant error subspaces of advective systems.</p>
-<p>This project is motivated by a simple but fundamental observation:
-<em>In geophysical fluids, uncertainty propagates primarily through large-scale displacements of coherent structures, while small-scale features are advected and deformed by those displacements.</em></p>
-<h2 id="uncertanty-quantification-using-spatiotemporal-random-displacements">Uncertanty quantification using spatiotemporal random displacements</h2>
-<p>We introduce an uncertainty model based on spatiotemporally correlated random displacement fields, inspired by stochastic fluid dynamics and Lagrangian flow theory.</p>
-<p>Instead of perturbing state variables directly, we model uncertainty through a stochastic flow of diffeomorphisms that acts on the state via transport. These random flows:</p>
+      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
+      <description>On the behaviour of financial markets when a tipping point is near. Part 1 of a two-part series on early warning signals.</description>
+      <content:encoded><![CDATA[<blockquote>
+<p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
+<p>Financial markets are complex systems, and they have tipping points - thresholds beyond which the stability of the system can shift abruptly. The financial crisis are generally preceded by a period of increasing volatility. Researchers suggest that the increase in volatility could be an early warning signal of the impending crisis. Understanding if empirical observation of volatility prior to financial crisis- signature that appears in the data <strong>before</strong> the crash, a kind of &ldquo;early warning signal&rdquo; (EWS) that could alert investors and policymakers to rising systemic risk if of great importance.</p>
+<p>In this article, we dive into the ideas and mathematics behind the origin of these fingerprints. This article explores the fascinating idea: the theory of <strong>critical transitions</strong> that originates from ecology and climate science and asks whether financial markets behave the same way before a crash. The short answer is: <strong>not quite</strong> — but the detour through the math reveals something just as interesting.</p>
+<h2 id="two-competing-views-of-crashes">Two Competing Views of Crashes</h2>
+<p>System risk in financial systems is followed by increasing cross correlations or information dissipation across financial sectors.However, the evidence for this is mixed, and it is still an open question whether volatility can be used as a reliable early warning signal for financial crises.</p>
+<p><strong>View 1 — Efficient Markets:</strong>
+Economists have long disagreed about whether markets tip at all. The efficient-markets view holds that since markets are efficient and prices incorporate all available information, there is nothing to predict. Crashes are the result of unexpected external shocks — a surprise bankruptcy, a geopolitical event, a natural disaster. If the shock is truly unpredictable, then no early warning signals are possible.</p>
+<p><strong>View 2 — Complex Systems / Tipping Point:</strong>
+The complex-systems view — Markets are complex dynamical systems evoling under a potential well dictated by the economy&rsquo;s dynamical attractor. The noisy fluctuations are the aggregate of all the micro-scale disturbances — trades, tweets, earnings surprises — that a coarse-grained picture cannot see.
+with multiple attractors and internal feedbacks, the system may be pushed towards a <em>tipping point</em>, and generic precursors appear in the statistical structure of the time series — <strong>before</strong> the crash. This is the view that we take in this article.</p>
+<h2 id="early-warning-signals-do-markets-give-a-hint-before-they-break">Early Warning Signals: Do markets give a hint before they break?</h2>
+<p>This brings us to focus on critical transitions and tipping points under which is the theory of abrupt transitions for the underlying system from one state to another.</p>
+<p>Critical slowing down leaves three measurable fingerprints in any time series: rising lag-1 autocorrelation, rising variance, and a reddening power spectrum. These generic early warning signals can be read without knowing the underlying equations of motion — making them a powerful tool for anticipating abrupt transitions in complex systems.</p>
+<h2 id="can-a-stock-index-be-a-ball-in-a-bowl">Can a stock index be a ball in a bowl?</h2>
+<p>A stable system recovers form small perturbations, and the potential landscape informs us about the stablility properties and how the system evolves in this landspace. But when the system approaches a tipping point, it becomes more sensitive to disturbances. Under small disturbanaces, a system recovers more slowly from small perturbations. It&rsquo;s rate of recovery is directly related to the curvature of the potential near the equilibrium. As the tipping point approaches, recovery slows down. That sluggishness leaves three measurable fingerprints in the data — long before the shift itself. This post derives where the fingerprints come from, and where the derivation can be trusted.</p>
+<p>Picture a ball rolling inside a shallow bowl. Push it sideways and it rolls back. Now imagine the bowl flattening: the same nudge sends the ball further from the bottom, and it takes longer to settle. In the limit where the bowl becomes flat, a tiny perturbation is enough to push the ball over the lip into a different basin entirely.</p>
+<iframe 
+  src="/ews-widgets/ball-in-bowl.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+<p>Real systems live in landscapes with several such bowls. A clear, plant-rich shallow lake sits in one basin; the same lake, after eutrophication, sits in another (turbid, algae-dominated)<sup><a href="#ref1">[1]</a></sup>. Climate models show similar bistability for the Atlantic Meridional Overturning Circulation. In each case, the <em>depth of the bowl</em> — how strongly the system pulls back to its current state — is the quantity that flattens before a transition.</p>
+<h2 id="from-picture-to-equations-a-mathematical-model">From picture to equations: A Mathematical Model</h2>
+<p>The mathematical fact we will prove is that a flattening bowl produces three statistical signatures, all readable from a noisy time series of the system: rising lag-1 autocorrelation, rising variance, and a power spectrum that <em>reddens</em> (gains weight at low frequencies). What makes them <em>generic</em> early warning signals is that they are universal consequences of a weakening restoring force, regardless of the details of the system.</p>
+<p>Treat the log of a stock index as the state
+u
+u of a one-dimensional dynamical system. The &ldquo;potential&rdquo; is whatever smooth bull- and bear-market attractors the economy happens to sit in. The noise
+σ
+σ is the aggregate of all the micro-scale disturbances — trades, tweets, earnings surprises — that a coarse-grained picture cannot see.</p>
+<p>Consider a one-dimensional state \( u(t) \) — water clarity, ice extent, an index level — evolving under deterministic drift \( f(u; \theta) \) and white-noise forcing of amplitude \( \sigma \):</p>
+<blockquote>
+<p>\[
+du = f(u; \theta), dt + \sigma, dW_t
+\]</p></blockquote>
+<p>where \( \theta \) is a slowly varying control parameter (nutrient load, atmospheric CO\(_2\), credit conditions), and \( W_t \) is a standard Wiener process. Throughout this post we treat \( \sigma \) as constant — a strong assumption we will revisit, with consequences, in Part 2. We assume \( f \) has at least two stable equilibria over some range of \( \theta \) — a <em>bistable</em> regime — separated by an unstable equilibrium.</p>
+<p>The canonical normal form for a fold (saddle-node) bifurcation is the cubic<sup><a href="#ref2">[2]</a></sup>:</p>
+<blockquote>
+<p>\[
+f(u) = h + r u - u^3
+\]</p></blockquote>
+<p>with bifurcation parameter \( h \) controlling the shape of the potential</p>
+<blockquote>
+<p>\[
+V(u) = -h u - \tfrac{r}{2} u^2 + \tfrac{1}{4} u^4, \qquad f(u) = -V&rsquo;(u).
+\]</p></blockquote>
+<p>For an intermediate range of \( h \), \( V \) has two minima (stable equilibria) separated by a maximum (unstable). At a critical value \( h = h_c \), one of the minima merges with the maximum and disappears: the system is forced into the surviving basin. That is the <em>tipping point</em>.</p>
+<p>Let \( u^* \) denote the currently occupied stable equilibrium and \( x = u - u^* \) a small deviation. Linearising \( f \) about \( u^* \):</p>
+<blockquote>
+<p>\[
+dx = -\alpha, x, dt + \sigma, dW_t, \qquad \alpha \equiv -\left.\frac{\partial f}{\partial u}\right|_{u^*}.
+\]</p></blockquote>
+<p>This is the <em>Ornstein–Uhlenbeck</em> process — a continuous-time mean-reverting random walk. The quantity \( \alpha &gt; 0 \) is the <em>return rate</em>: the inverse timescale on which perturbations decay. Geometrically, \( \alpha \) is the curvature of the potential well at the bottom; as \( h \to h_c \), the curvature collapses, so \( \alpha \to 0 \).</p>
+<h2 id="the-core-idea">The Core Idea</h2>
+<p>The Ornstein–Uhlenbeck process has closed-form stationary statistics<sup><a href="#ref3">[3]</a></sup>, which is what makes the early warning signals analytically tractable. In stationarity:</p>
+<p><strong>Autocovariance</strong> at lag \( \tau \):
+\[
+C(\tau) = \mathbb{E}[x(t), x(t+\tau)] = \frac{\sigma^2}{2\alpha}, e^{-\alpha |\tau|}.
+\]</p>
+<p><strong>Variance</strong> (the \( \tau = 0 \) case):
+\[
+\mathrm{Var}(x) = \frac{\sigma^2}{2\alpha}.
+\]</p>
+<p><strong>Power spectral density</strong> (the Fourier transform of \( C(\tau) \)):
+\[
+S(\omega) = \frac{\sigma^2}{\alpha^2 + \omega^2}.
+\]</p>
+<p>Now read each formula as a function of \( \alpha \), with \( \sigma \) held fixed:</p>
 <ul>
-<li>Are smooth and large-scale, targeting the dominant coherent structures</li>
-<li>Are temporally correlated, reflecting finite predictability horizons</li>
-<li>Preserve the geometric integrity of advected fields</li>
-<li>Induce realistic small-scale variability through shear and deformation</li>
+<li><em>Autocorrelation</em> at any fixed lag is proportional to \( e^{-\alpha\tau} \). As \( \alpha \to 0 \), the exponent vanishes and the autocorrelation tends to one. Slow decay means high autocorrelation. <strong>Lag-1 autocorrelation rises.</strong></li>
+<li><em>Variance</em> is \( \sigma^2 / 2\alpha \). As \( \alpha \to 0 \), the variance diverges. A flatter bowl houses a wider random walk. <strong>Variance rises.</strong></li>
+<li><em>Power spectrum</em> is a Lorentzian centred at zero with corner frequency \( \alpha \). Shrinking \( \alpha \) shifts power toward low frequencies. <strong>The spectrum reddens.</strong></li>
 </ul>
-<p>Formally, uncertainty is represented by a stochastic displacement field whose statistics are controlled in both space (scale-selective spectra) and time (Ornstein–Uhlenbeck dynamics). This construction allows us to explicitly separate:</p>
-<p>Large-scale position uncertainty (phase errors)</p>
-<p>Small-scale residual variability (amplitude errors)</p>
-<h2 id="4dvarnet-lu-an-ensemble-neural-data-assimilation-model">4DVarNet-LU: An ensemble neural data assimilation model</h2>
-<p><img loading="lazy" src="/images/4dvarnet-lu.png" type="" alt="4DVarNet Architecture"  /></p>
-<p>Building on this uncertainty framework, we introduce 4DVarNet-LU, an ensemble extension of 4DVarNet designed to handle Lagrangian uncertainty (LU).</p>
-<p>In 4DVarNet-LU:</p>
+<p>This is <em>critical slowing down</em> (CSD): three fingerprints, all consequences of one fact — the local linear restoring force is weakening. The signatures are <em>generic</em> in the sense of Scheffer et al.<sup><a href="#ref4">[4]</a></sup>: they require neither knowledge of \( f \) beyond its bifurcation type, nor any model fitting. They are properties of the residuals around the equilibrium, period.</p>
+<p>A consequential subtlety: the formulas above describe the residuals \( x = u - u^* \), not the raw state \( u \). If the equilibrium itself is drifting (a slow change in \( u^* \), separate from the noise around it), that drift bleeds into estimates of variance and autocorrelation and hides the CSD signal. The standard remedy is to detrend the time series — typically with a Gaussian kernel smoother — before measuring indicators. We return to detrending, and to the wreckage it can cause if mis-tuned, in Part 2.</p>
+<h2 id="interactive-explorer">Interactive Explorer</h2>
+<p>Drag \( h \) toward the critical value \( h_c \approx +0.385 \) and watch the left-hand basin (where the ball begins, near \( u = -1 \)) shallow. The orange ball undergoes the SDE numerically; the lower trace shows its trajectory; the readouts to the right are the lag-1 autocorrelation and variance estimated over the last 400 steps.</p>
+<p>s</p>
+<iframe 
+  src="/ews-widgets/bifurcation-and-force.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+<p><em>Figure 1: A stochastic particle in the cubic potential \( V(u) = -hu - \tfrac{r}{2}u^2 + \tfrac{1}{4}u^4 \) with \( r = 1 \). For \( |h| &lt; h_c = \tfrac{2}{3\sqrt{3}} \approx 0.385 \) the system is bistable. As \( h \to +h_c \) from below, the left-hand well — the one containing the ball — shallows, and at \( h = h_c \) it merges with the unstable equilibrium and disappears. The particle&rsquo;s residuals develop higher autocorrelation and variance on approach: the signature of critical slowing down.</em></p>
+<p>What you should observe (numerical values from offline simulation): with \( h = 0 \) and \( \sigma = 0.15 \), the AC\(_1\) reading hovers near 0.91 and variance near 0.006. The return rate at \( u^* = -1 \) is \( \alpha = r - 3u^{*2} \cdot (-1) = 2 \), so over a step of size \( dt = 0.04 \) the predicted lag-1 autocorrelation is \( e^{-\alpha, dt} \approx 0.92 \) and the stationary variance is \( \sigma^2 / 2\alpha \approx 0.0056 \). Pleasingly, the simulator hits both. Push \( h \) to +0.20 and the variance roughly doubles while AC\(_1\) climbs past 0.95. Push it past +0.385 and the left-hand well disappears; the ball escapes to \( u \approx +1.15 \) and the statistics are now of an entirely different basin. The transition itself is the moment the readouts become meaningless — which is precisely the operational frustration the early-warning literature is trying to overcome.</p>
+<iframe 
+  src="/ews-widgets/sde-simulation.html" 
+  width="100%" 
+  height="600px" 
+  style="border:none;">
+</iframe>
+<h2 id="but-how-close-is-reality-to-the-theory">But how close is reality to the theory?</h2>
+<p>Critical slowing down theory makes a sharp prediction: if a system is approaching a fold bifurcation, all three fingerprints rise together. The contrapositive is the more useful direction in practice — if even one of them is missing, the dynamics are probably not what the theory assumes.</p>
+<p>The model breaks in several ways worth flagging up front:</p>
+<p>The linearisation assumes small deviations. When the noise is large enough that the ball routinely explores both basins, the OU approximation fails and the variance is dominated by basin-hopping rather than within-basin diffusion. The widget illustrates this for \( \sigma \gtrsim 0.35 \): the AC\(_1\) readout becomes unreliable because the particle is sampling two equilibria.</p>
+<p>Constant noise is a strong assumption. If \( \sigma \) varies in time, the OU formulas predict that variance and the spectrum scale with \( \sigma^2 \) at every value of \( \alpha \) — so variance can rise without \( \alpha \) shrinking. Autocorrelation, by contrast, depends only on \( \alpha \). This algebraic asymmetry is the entire subject of Part 2; it is also the loophole that makes financial early warning signals harder than ecological ones.</p>
+<p>Estimation is delicate. Both autocorrelation and variance are sensitive to the detrending bandwidth and the rolling-window length. Two analysts working on the same dataset can reach different qualitative conclusions if they choose different smoothing parameters<sup><a href="#ref5">[5]</a></sup>. Sensitivity analyses across a grid of bandwidths are now considered standard.</p>
+<p>Different bifurcations leave different fingerprints. The cubic normal form covers fold bifurcations only. Transcritical, Hopf, and pitchfork bifurcations have their own statistical signatures, and not all three CSD indicators apply uniformly across them. The generic claim is that <em>something</em> in the spectrum or covariance rises — not always the same something.</p>
+<p>Finally, the literature contains genuine successes — the Carpenter et al. whole-lake experiment<sup><a href="#ref6">[6]</a></sup> in particular — and genuine failures, of which financial crashes are the most pedagogically useful. That is where Part 2 picks up.</p>
+<h2 id="further-reading">Further Reading</h2>
 <ul>
-<li>Each ensemble member is generated by applying a stochastic displacement flow to the initial state</li>
-<li>All ensemble members are then assimilated using a shared neural variational architecture</li>
-<li>The ensemble is flow-dependent, structured, and physically meaningful by construction.</li>
+<li>Scheffer (2009), <em>Critical Transitions in Nature and Society</em><sup><a href="#ref7">[7]</a></sup> — a book-length treatment that builds the bistability picture across ecology, climate, and society. Read first if the math is new; intuition before formalism.</li>
+<li>Scheffer et al. (2009), <em>Early-warning signals for critical transitions</em><sup><a href="#ref4">[4]</a></sup> — the foundational <em>Nature</em> review that synthesised CSD as a generic detection tool. Read second for the canonical pointers into the older literature.</li>
+<li>Kuehn (2011), <em>A mathematical framework for critical transitions</em><sup><a href="#ref8">[8]</a></sup> — the rigorous treatment: explicit bifurcation classification, stochastic dynamics, fast–slow systems. Read this when you want the proofs.</li>
+<li>Boettiger &amp; Hastings (2012), <em>Quantifying limits to detection of early warning signals</em><sup><a href="#ref5">[5]</a></sup> — the honest counterweight: how often CSD detection fails or produces false positives in finite data. Required reading before you build a detector.</li>
+<li>Dakos et al. (2012), <em>Methods for detecting early warnings of critical transitions</em><sup><a href="#ref9">[9]</a></sup> — the practical companion: how to actually compute these indicators on real time series, with a published R toolkit.</li>
 </ul>
-<p>4DVarNet-LU embeds uncertainty within the architecture itself during generation of initial state, allowing the neural solver to generate multiple reconstructions states.</p>
-<h2 id="so-what-does-the-4dvarnet-lu-model-predicts">So what does the 4DVarNet-LU model predicts?</h2>
-<p>The 4DVarNet-LU model can predicts an ensemble of reconstructed state trajectories, not a single deterministic solution, given a sequence of observations over an assimilation window.
-This makes 4DVarNet-LU particularly well-suited for applications involving coherent advective structures, where positional uncertainty dominates the amplitude uncertainty.</p>
 <h2 id="references">References</h2>
-<ul>
-<li>
-<p>Fablet, R., Drumetz, L., Rousseau, F. (2021). Learning variational data assimilation models and solvers. Journal of Advances in Modeling Earth Systems.</p>
-</li>
-<li></li>
-<li>
-<p>Beauchamp, M., Fablet, R., et al. (2023). Neural variational data assimilation with learned dynamical priors.</p>
-</li>
-<li>
-<p>Beck, A., et al. (2009). Morphing ensemble Kalman filters. Tellus A.</p>
-</li>
-<li>
-<p>Lawson, W. G., Hansen, J. A. (2005). Implications of stochastic and deterministic filters. Monthly Weather Review.</p>
-</li>
-<li>
-<p>Holm, D. D. (2015). Variational principles for stochastic fluid dynamics. Proceedings of the Royal Society A.</p>
-</li>
-<li>
-<p>Vallis, G. K. (2017). Atmospheric and Oceanic Fluid Dynamics. Cambridge University Press.</p>
-</li>
-</ul>
+<ol>
+<li id="ref1">Scheffer, M., Carpenter, S., Foley, J. A., Folke, C., &amp; Walker, B. (2001). <em>Catastrophic shifts in ecosystems</em>. Nature, 413(6856), 591–596. <a href="https://doi.org/10.1038/35098000">DOI</a></li>
+<li id="ref2">Strogatz, S. H. (2015). <em>Nonlinear Dynamics and Chaos</em> (2nd ed.). Westview Press.</li>
+<li id="ref3">Gardiner, C. W. (2009). <em>Stochastic Methods: A Handbook for the Natural and Social Sciences</em> (4th ed.). Springer.</li>
+<li id="ref4">Scheffer, M., Bascompte, J., Brock, W. A., et al. (2009). <em>Early-warning signals for critical transitions</em>. Nature, 461(7260), 53–59. <a href="https://doi.org/10.1038/nature08227">DOI</a></li>
+<li id="ref5">Boettiger, C., &amp; Hastings, A. (2012). <em>Quantifying limits to detection of early warning signals for critical transitions</em>. Journal of the Royal Society Interface, 9(75), 2527–2539. <a href="https://doi.org/10.1098/rsif.2012.0125">DOI</a></li>
+<li id="ref6">Carpenter, S. R., Cole, J. J., Pace, M. L., et al. (2011). <em>Early warnings of regime shifts: A whole-ecosystem experiment</em>. Science, 332(6033), 1079–1082. <a href="https://doi.org/10.1126/science.1203672">DOI</a></li>
+<li id="ref7">Scheffer, M. (2009). <em>Critical Transitions in Nature and Society</em>. Princeton University Press. <a href="https://doi.org/10.1515/9781400833276">DOI</a></li>
+<li id="ref8">Kuehn, C. (2011). <em>A mathematical framework for critical transitions: Bifurcations, fast–slow systems and stochastic dynamics</em>. Physica D, 240(12), 1020–1035. <a href="https://doi.org/10.1016/j.physd.2011.02.012">DOI</a></li>
+<li id="ref9">Dakos, V., Carpenter, S. R., Brock, W. A., et al. (2012). <em>Methods for detecting early warnings of critical transitions in time series illustrated using simulated ecological data</em>. PLoS ONE, 7(7), e41010. <a href="https://doi.org/10.1371/journal.pone.0041010">DOI</a></li>
+</ol>
+<hr>
 ]]></content:encoded>
     </item>
     
     <item>
-      <title>4DVarNet: A neural network based on variational data assimilation</title>
-      <link>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</link>
-      <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
+      <title>Diffusion models and Stochastic differential equations</title>
+      <link>https://shashankkroy.github.io/posts/diffusion-models/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/research-statement/neural-data-assimilation/</guid>
-      <description>Can we train a DA algorithm like 4DVar using neural networks?</description>
-      <content:encoded><![CDATA[<h2 id="overview-of-data-assimilation">Overview of Data Assimilation</h2>
-<p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations. 
-<a href="https://link.springer.com/chapter/10.1007/978-3-030-96709-3_5">Variational data assimilation</a> aims to find a the best trajectory of the dynamical system which minimizes a certain cost function.</p>
-<h2 id="problem-statement-can-neural-network-models-replace-data-assimilation-for-a-cheaperfaster-alternative">Problem statement: Can neural network models replace data assimilation for a cheaper/faster alternative?</h2>
-<p><img loading="lazy" src="/images/vort_sf_obs_128.png" type="" alt="da_setup"  /></p>
-<p>For an observation window $i$ where the sequence of observations $Y^i=\left(y^i_0,y^i_1,&hellip;y^i_n\right)$ on $\left(\Omega^i_n\right) \in \Omega$ is given, we want to find the optimal trajectory  $X^i=\left(x^i_0,x^i_1,&hellip;x^i_n\right)$ of the true system that minimizes the following cost function.</p>
-<p>$$\mathcal{U}(x^i_0,x^i_1,&hellip;x^i_n)=\sum_{k=1} \alpha_{dyn} | x_k - \mathcal{M}(x_{k-1}) |^2+ \alpha_{ob} |y_i-\mathcal{H}(x_i)|^2$$</p>
-<p>This is the weak-4dvar cost function which needs ot be minimized.
-The dynamical systems $ \mathcal{M} $, the dynamical propagator which takes the system state $x_k$ to $x_{k+1}$.
-The above weak formulation of the 4dvar problem accounts for additional model errors in the dynamical system as the dynamics is not perfect, hence there dynamical cost term.</p>
-<p>The first term minimizes the depatures from a pure model trajectory since the aim to find a trajectory close to the model trajectory while accounting for the model error- a part we refer to as &lsquo;the dynamical cost&rsquo;. The second term makes the trajectory fit to the obsrvations and is referred as &lsquo;observation cost&rsquo;.</p>
-<h2 id="introducing-neural-data-assimilation-using-4dvarnet">Introducing Neural Data Assimilation using 4DVarNet</h2>
-<p><em>What if we have a dataset of the optimal states and their corresponding observations, can we train a neural network to learn the mapping from the observations to the optimal state?</em>
-In the supervised setting, we something similar happens when we have access to a large dataset. But simple inversion from observation to full state is an ill-defined problem, so the model learn a representation of the data which acts as a regularization term.</p>
-<p>4DVarNet is trained to learn the mapping from the observations to the optimal state, while also learning representation term via a term called GIBBS neural network. This is an autoencoder based network whose input and outputs are the same.</p>
-<h2 id="an-schematic-of-the-4dvarnet-architecture">An schematic of the 4DvarNet Architecture</h2>
-<p>At the core of the 4VarNet architecture is a parameterized 4dvar cost function that we want to learn.</p>
-<p>$$\mathcal{U_{\Phi}}= \alpha_{dyn} | X^{i} - \Phi({X^i}) |^2+ \alpha_{ob} |Y^i-\mathcal{H}(X^i)|^2$$</p>
-<p>Where we compactify the notations for the time series and $i$ here is the index of assimilation window.
-Note, that this cost has two parts, the first part learns a representation of the data, while the second part ensures that the observations are matched to the state. There is no background term in this formulation, as the network is expected to learn the correlations from the data.</p>
-<p><img loading="lazy" src="/images/4dvarnet-schematic.svg" type="" alt="4DVarNet Architecture"  /></p>
-<p>The solver of this cost function is another neural network that learns the mapping from the observations to the optimal state. This is parameterized by an LSTM whose input is a gradients. We can see this solver as doing meta-learning. The solver is trained to minimize the cost function using a gradient-based descent algorithm, which is similar to the optimization process used in 4dvar.</p>
-<p>The parameterized cost function and it&rsquo;s solver are trained together in an end-to-end manner, allowing the network to learn the optimal mapping from the observations to the optimal state. The loss function that trains the whole architecture is the mean squared error between the predicted state and the true state, given by,</p>
-<p>$$\mathcal{L}(X^i, \hat{X}^i) = \frac{1}{N} \sum_{i=1}^{N} | X^i - \Psi_{\Phi,\Gamma}(Y^i,{X}^0) |^2$$</p>
-<p>where,<br>
-$ \Phi, \Gamma,$ are the parameters of the GIBBS neural network and the solver neural network respectively, $Y^i$ is the observations over an assimilation window indexed by $i$, ${X}^0$ is the initial guess of the state, and $\Psi_{\Gamma,\Phi}$ is the mapping learned by the 4DVarNet architecture.</p>
-<p>Interestingly, we just need observations and the true states, not the optimization solutions since the goal of the optimization itself is to revove the true field within the limits of the model/observation errors.</p>
-<h3 id="training-and-inference">Training and inference:</h3>
-<p>We have $(Y^i, X^i)$ define as above for the input and target pair for training. The input to the network is generally $Y^i$ in the standard architecture of 4DVarNet. In my case, the network starts with an initial guess of the state $X^i_0$ which is then used to compute the model trajectory $X^i$.</p>
-<p>Usually, the IC can be a zero field or a random field, but in my case, I generate a slightly perturbed version of the true state $X^i_0$ as the initial guess. This is done by displacing the true state field in a coherent manner such that the features are preserved and are physical.</p>
-<p>During inference, we can use the trained network to predict the optimal state given the observations and some initial conditions. Inprinciple, we can generate multiple predictions by sampling from the initial condition distribution, which can be a Gaussian distribution with mean as the initial guess and some variance. This gives us an ensemble of predictions which can be used for uncertainty quantification.</p>
-<h2 id="quasi-geostrophic-model-our-choice-of-the-underlying-system">Quasi-geostrophic model: our choice of the underlying system</h2>
-<p>To rigorously evaluate and benchmark state estimation algorithms, it is crucial to move beyond over-simplified dynamical systems like the Lorenz-63 or Lorenz-96 models, which are low-dimensional ODEs (3 and 40 dimensions, respectively). At the same time, we need models that are computationally tractable and can be used to test the performance of data assimilation algorithms.</p>
-<p>With recent trends of deep learning, traditional data assimilation problems that need adjoint computation may bypass this step by leveraging AD(automatic differentiation)- the work-horse of modern machine learning. The Quasi-Geostrophic (QG) model offers a more realistic and challenging alternative. As a PDE-based model, the QG system captures essential features of large-scale geophysical fluid dynamics while remaining computationally tractable. It serves as a model of intermediate complexity, bridging the gap between toy models and full-scale numerical weather prediction systems.</p>
-<p>In the QG model, the vorticity field is the fundamental dynamical variable, evolving under nonlinear advection and forcing, and governed by conservation laws. Observations, however, are typically taken in the streamfunction space, which is related to vorticity through an elliptic inversion (a form of diagnostic relationship). This setup introduces a realistic observation operator and offers a natural framework for exploring the performance of data assimilation techniques in the presence of model and observation noise. The QG model is thus particularly well-suited for testing advanced machine learning and deep learning methods for data assimilation I started out with the codes of <a href="https://github.com/hrkz/torchqg">Hugo Frezat</a> for QG, but I have made significant changes to the code to make it compatible with the weak-4dvar problem and to integrate it with neural ode package.</p>
-<p>The Domain is  2D periodic, $\left[0,2 \pi\right)^2$, $\omega $: Vorticity field, $\psi$: Stream-function field.</p>
-<p>$$\frac{\partial \omega}{\partial t}+ J(\psi, \omega)= \nu \nabla^2 \omega - \mu \omega - \beta \partial_x \psi ,, \quad \omega = \nabla^2 \psi , \quad $$</p>
-<p>The PDE has PBC and we use psueod-spectral methods to solve them( all in pytorch.)
-These observations are available on masks which have been obtained from Nadir Satelite altimetry tracks. The nature of these observations are realistic- they are really quite sparse!</p>
-<p>We finally create a dataset of observations and the true states, which can be used to train the 4DVarNet architecture. The dataset is created by simulating the QG model and generating observations at different times. The observations are then used to train the 4DVarNet architecture to learn the mapping from the observations to the true states.</p>
-<h2 id="results-work-in-progress">Results (Work in progress)</h2>
-<p>The standard 4DVarNet architecture only uses the observations as the input, and intializes the states from it. We refer to this as 4Dvarnet-No-IC. The 4DVarNet architecture where we provide additional guess for the initial conditions is referred to as 4DVarNet-IC. Using a simple metric called $\mu=1-\frac{RMSE(X)}{RMS(X)}$. The RMSE is the root mean square error between the predicted state and the true state, and RMS is the std. of the true state. When $\mu=1$, the model is perfect, and when $\mu=0$, the errors are of the same order of the natural variability of the field X.</p>
-<p><img loading="lazy" src="/images/4dvar-4dvarnet-plot.png" type="" alt="4DVarNet Results"  /></p>
-<p>The results of the 4DVarNet architecture are compared with the standard weak-4DVar algorithm, ( both solve the weak-4dvar problem). 
-The results show that the 4DVarNet-IC architecture performs better than the 4DVarNet-No-IC architecture, which is expected since the initial guess is closer to the true state. The results also show that the 4DVarNet architecture is able to learn the mapping from the observations to the true states, and can be used for data assimilation and uncertainty quantification.</p>
-<h3 id="references">References</h3>
-]]></content:encoded>
-    </item>
-    
-    <item>
-      <title>Covariant lyapunov vectors: Why are they interesting?</title>
-      <link>https://shashankkroy.github.io/research-statement/clv/</link>
-      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/research-statement/clv/</guid>
-      <description>A brief overview of CLV and a few results</description>
-      <content:encoded><![CDATA[<h1 id="instability-property-of-a-dynamical-system-and-data-assimilation">Instability property of a dynamical system and data assimilation</h1>
-<p>Instability properties of a chaotic nonlinear dynamical system are characterized globally by lyapunov exponent and locally by lyapunov vectors, which correspond to the directions associated with those rates.
-Unstable subspaces of a system has been shown to improve forecasts in ocean-atmosphere coupled models when the assimilation takes into account \cite{Vannitsem(2016)}.
-When a time evolving system is only accessible via noisy and sparse observations and with no information of the initial conditions, identifying a trajectory is extremely difficult using only the model and methods of nonlinear filtering provide best estimates of the true state and help us estimate the underlying trajectory the system evolves on with some uncertainty estimate. The best estimates over time does not constitute a dynamical trajectory and but is always near the true trajectory in some distance metric. We formulated this problem into using the filter estimate over time as a proxy of the true trajectory perturbed by the error statistics.</p>
-<h2 id="covariant-lyapunov-vectors">Covariant Lyapunov Vectors</h2>
-<p>Covariant lyapunov vectors are non-orthogonal basis to the tangent space of a dynamical system, where the $i^{th}$ clv orresponds to the direction along which an infinitesimal error grows or decays with the rate which is equal to the lyapunov $\lambda_i$ in the forward and the time reverse ddynamics respectively. They are covarinat, time-invariant and their computation is costlier than the commonly used backward lyapunov vectors which are orthogonal by construction. CLVs encode more information in terms of theri mutual angle, which is not present in other orthogonal vectors. Accessing this required their computation which is slightly more involved the backward lyapunov vectors, whic are usually the product of Benettin&rsquo;s algorithm extensively used to compute lyapunov exponents.</p>
-<p>Below we have CLVs of Lorenz-63, which is a 3-dimensional chaotic ODE system and has a butterfly shaped attractor for a specific set of values of the parameters $(\sigma,\rho,\beta)=(10,28,8/3)$. We plot the 1st CLV and 2nd CLV for their first two components. The ODE for this system is written below. 
+      <guid>https://shashankkroy.github.io/posts/diffusion-models/</guid>
+      <description>Understanding diffusion models: what makes them so good?</description>
+      <content:encoded><![CDATA[<h2 id="this-is-a-simple-sde-simulator-it-simulates-the-following-sde">This is a simple SDE simulator. It simulates the following SDE:</h2>
+<p>$$dX_t = M dt + \Sigma dW_t
 $$
-\frac{dx}{dt}=\sigma \left(y-x\right), 
-\frac{dy}{dt}=x\left(\rho-z\right)-y, 
-\frac{dz}{dt}=xy-\beta z $$</p>
-<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/images/enhanced_L63_attr_12.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
-<p>Plotting the first two components of the vectors is shown below. An interesting thing to note is that there is a gradual change in the directions of the vectors as we move along the trajectory. Moreover, two nearby points on the attractor have some degree of similarity in terms of the directions of the vectors themselves. Since there computation needs an underlying trajectory, some degree of their smoothness may be of some merit when applying some supervised machine learning methods to learn and predict them.</p>
-<p>Below is CLV 1, where we only ploy the X and Z component of the vectors.
-<img loading="lazy" src="/images/CLV1_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
-<p>Below is CLV 2, where we only ploy the X and Z component of the vectors.
-<img loading="lazy" src="/images/CLV2_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
-<h2 id="research-problem">Research Problem</h2>
-<p>The specific questions which we ask about lyapunov vectors and exponents in context of the filtering problem are as follows:</p>
-<ul>
-<li>How sensitive are the backward and covariant lyapunov vectors and the corresponding exponents to perturbations in the underlying trajectory?</li>
-<li>Under what conditions can one recover them from a filter estimated trajectory instead of the true trajectory of the dynamical system?</li>
-<li>How robust are unstable subspaces to the perturbation strength $\sigma$, and are they more robust than the individual vectors themselves?</li>
-</ul>
-<p>The above questions are relevant to both nonlinear dynamics and weather forecasting techniques since the underlying true trajectory is not accessible but are required in order to compute the LVs. What one can do best is to use the best estimate of the true state given observations upto a certain time. This comes with a caveat that the filter estimates or the analysis mean over time is not a dynamical trajectory of the system, i.e. there is not intial condition on the
-model which can generate this trajectory starting from a certain initial condition. The true trajectory
-lies near the analysis mean which is quantifies by the error in the estimates themselves. The
-sensitivity of BLVs and CLVs for a particular system tells us the limitations of what can be reconstructed from the filter estimates themselves.</p>
-<p>In high-dimensions, I used Lorenz-96 in order to explore dimensional dependence added to the sensitivity problem. Another interesting  directions is using principle angles(to cite), which summarize the angle between two different subspaces, and seeing how they change with $\sigma$, which I found to be more robust than the individual vectors themselves. Such study is useful in context of problems where subspaces are more important than the individual vectors themselves. Once the above results are interpretable, we can then reconstruct lyapunov vectors from a filter generated trajectory using partial and noisy observations and a model.</p>
-<h2 id="possible-directions-for-future-work">Possible directions for future work</h2>
-<p>A set of directions for future work directly following the current work are:</p>
-<ul>
-<li>Combining the ideas of assimilation in unstable subspace and stability, are the two related to each other?</li>
-<li>Capturing the effect of model errors themselves on the computed lyapunov vectors.</li>
-<li>Using the subspaces computed from reanalysis data which can be used to restrict the uncertainty in forecasts and analysis in data assimilation cycles.</li>
-<li>The degree of similarity in the lyapunov vectors between two nearby points on the attractor in phase space which may be important machine learning methods trained on vectors computed once along a trajectory be used to predict vectors at neaby points in the phase space.</li>
-<li>Studying structure of CLVs for discretized PDE systems such as Kuramoto-sivashinksy equation which has a finite dimensional attractor to shed light on CLV localization problem.</li>
-</ul>
-<h3 id="references">references</h3>
-<p>[1] Roy, Shashank and Apte, Amit, <a href="https://editor.copernicus.org/NPG/ms-records/egusphere-2023-2168">A note on sensitivity of Lyapunov vectors to trajectory perturbations</a></p>
-<p>[2] Pazo, Diego and Szendro, Ivan G. and Lopez, Juan M. and Rodriguez, Miguel, <a href="https://link.aps.org/doi/10.1103/PhysRevE.78.016209">A.Structure of characteristic Lyapunov vectors in spatiotemporal chaos</a>, 2008.</p>
-<p>[3] Vannitsem and Lucarini,<a href="https://doi.org/10.1088/1751-8113/49/22/224001">Statistical and dynamical properties of covariant lyapunov vectors in a coupled atmosphere-ocean model-multiscale effects, geometric degeneracy, and error dynamics</a>,Journal of Physics A: Mathematical and Theoretical, 2016.</p>
+Where $M$ is the drift and $\Sigma$ is the diffusion coefficient. $W_t$ is a standard Brownian motion.</p>
+<h2 id="to-play-around">To Play around:</h2>
+<ol>
+<li>Fix drift $M$ and diffusion coefficient $\Sigma$.</li>
+<li>Add muitiple runs see how the trajectories evolve.</li>
+<li>In the large N limit( when you have a lot of runs) do you observe a distribution emerging?</li>
+</ol>
+<iframe 
+  src="/brownian_sde.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
 ]]></content:encoded>
     </item>
     
     <item>
-      <title>Numerical filter stability: Do wrong priors at t=0 affect long term posterior?</title>
-      <link>https://shashankkroy.github.io/research-statement/filter-stability/</link>
-      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      <title>The simple equation which changed the world of weather prediction</title>
+      <link>https://shashankkroy.github.io/posts/play-with-chaos/</link>
+      <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/research-statement/filter-stability/</guid>
-      <description>understanding filter stability and it&amp;#39;s importance</description>
-      <content:encoded><![CDATA[<h2 id="general-overview-of-the-problem">General overview of the problem</h2>
-<p>Weather, ocean, atmosphere to name a few are physical systems in numerical weather prediction which have huge degrees of freedom and are modelled uisng coupled nonlinear PDEs. When a general nonlinear dynamical system is chaotic, two nearby states evolve and deaprt from each other and predictability skill of such systems is very much limited to time-scales which are fixed by the exponents called lyapunov exponents. In practice, purely model based prediction is impossible for such systems as unavoidable errors in initial conditons, model parameters and error in the model equations themselves get quickly amplifiled, making the error huge and essenstially of the size of the attractor (Palmer(2013)).</p>
-<h2 id="data-assimilation-for-dynamical-systems">Data assimilation for dynamical systems</h2>
-<p>For a dynamical system evolving in real time where the full state is not observed or is observed partially and indirectly, bayesian formalism combines the model outputs with the serially arriving observations allowing one to reasonably estimate the state at time t along with their related uncertainty. Since estimating the full density is impossible in high-dimensions, important statistics describing the pdf are estimated such as mean and covariance and how they evolve in time. Various data assimilation algorithms differ in their specific assumptions and approximations in order to optimally combine the model and the observations making the sequential estimation of such statistics computationally tractable in high-dimensions. Two popular class of such sequential filters are ensemble kalman filters and particle filters.</p>
-<h2 id="bayesian-filtering-algorithms-for-data-assimilation">Bayesian filtering algorithms for data assimilation</h2>
-<p>Bayesian filtering is defined as the sequential estimation of the conditional distribution in phase space of the state of a physical system coming from an assumed model taking into account the likelihood of new information arriving from the observations (Cohen(1997)).
-Filtering is followed by prediction, where the goal is to predict the the evolution of the system and it&rsquo;s flow dependent uncertainty accounting for possible source of errors which result may grow at later time in future. Below is a schematic picture of a bayeisan filtering mechanism.</p>
-<p><img loading="lazy" src="/images/enkf_schematic.png" type="" alt="schemati-cpicture"  /></p>
-<p>At a given time $k$ , the probability density distribution of the true state conditioned on observations upto time $k$ is called the analysis probability density. This is then propagated in time by solving fokker-planck equation, or by using  monte-carlo methods to integate the ensembles representing the distribution to obtain prior distribution at time $k+1$, called forecast probability density distribution at time $k+1$, before using the information about the observation $y_{k+1}$. Assuming that given $x_{k+1}$, the observations $y_{K+1}$ is conditionally independent of all previous observations and states,  we get the likelihood for the observation $y_{k+1}$ is obtained using the observation model and the measurement noise distribtution is given by $\rho(y_{k+1}|x_{k+1})$. Using bayes' theorem, we have</p>
-<p>$$\rho\left(x_{k+1}|Y_{k+1}\right)=\frac{\rho\left(y_{k+1}|x_{k+1}\right)\rho\left(x_{k+1}|Y_{k}\right)}{ \rho\left(y_{k+1}|Y_{k}\right)}$$</p>
-<p>since the true state is unknown, all filtering algorithms makes an arbitraty choice for $\rho(x_0)$ at the time of filter initialization. It becomes crucial that these distributions become independent of the initial choice used in initializing the filter so that quantities estimates using the posterior are eventually independent of our arbitrary and often wrong choice of $\rho(x_0)$. As an example, the following picture demonstrates how stability looks like in one of the component out of the whole state vector,</p>
-<p><img loading="lazy" src="/images/stabilit_enkf_picture_x36_cropped.png" type="" alt="A-schematic-plot-for-enkf"  /></p>
-<p>where we have two different initial distribution $\mu_1$ and $\mu_2$ both of which are far from $x_0$, the true initial condition. Over many assimilation, the two posterior ensembles starting with different initial distribution are seen to come closer to each other.</p>
-<h3 id="definition-of-filter-stability">Definition of filter stability</h3>
-<p>Filter stability is the property that the posterior distribution computed sequentially over long time is independent of the choice of the distribution at $k=0$ used to initialize the filtering algorithm. The rate at which the filter achieves this independece,  the better are the estimates of various quantities which utilize the posterior distribution.</p>
-<p>Mathematically, we can define it using a distance $D$ on the space of probaility distributions $P(\mathcal{R}^d)$.
-Given two different initial distributions {$\nu_1, \nu_2$} for $x_0$ with $\hat\pi_n(\nu_1)$ and $\hat\pi_n(\nu_2)$ being the posterior obtained after assimilating all observation $y_{1:n}$ upto time $n$, then for filter stability to hold, we have
-$$\lim_{n\to\infty}\mathbf E[D(\hat\pi_n(\nu_1), \hat\pi_n(\nu_2))] = 0$$</p>
-<p>where, $D$ is a distance on $P(\mathcal{R}^d)$, the space of probability measures on $\mathcal{R}^d$ and the expectation is over observation noise accounting for different noise realizations (mandal(2021)).</p>
-<p><img loading="lazy" src="/images/stability_schematic-min.png" type="" alt=""  />
-In our work, we have chosen Sinkhorn distance, a distance well motivated by the ideas of optimal transport, which has several merits over other distances such as total variation, apart from being computationally cheaper. This distace utilizes two samples from their respective distributions in order to compute the distance between them upto it&rsquo;s statistical errors.</p>
-<p>We have used <strong>Sinkhorn distance</strong>  to compute these distance. I talk about this distance in another post.</p>
-<h3 id="references">References</h3>
-<p>[1] Carrassi, A., Bocquet, M., Bertino, L., Evensen,<a href="https://doi.org/10.1002/wcc.535">Data assimilation in the geosciences: An overview of methods, issues, and perspectives</a></p>
-<p>[2] G. Evensen,<a href="https://doi.org/10.1007/s10236-003-0036-9">The Ensemble Kalman Filter: theoretical formulation and practical implementation</a>,Ocean Dynamics.</p>
-<p>[3] Kevin K W Cheung,<a href="https://doi.org/10.1017/S1350482701003073">A review of ensemble forecasting techniques with a focus on tropical cyclone forecasting</a>,Meteorological Applications, Royal Meteorological Society.</p>
-<p>[4] Mandal, Pinak and Roy, Shashank Kumar and Apte, Amit,<a href="https://ieeexplore.ieee.org/document/9703185">Stability of nonlinear filters-numerical explorations of particle and ensemble Kalman filters</a>, 2021 Seventh Indian Control Conference (ICC).</p>
-<p>[4] Aude Genevay, Thesis-Entropy-regularized optimal transport for machine learning,Paris Sciences et Letters, 2019.</p>
+      <guid>https://shashankkroy.github.io/posts/play-with-chaos/</guid>
+      <description>Understanding chaos: the sensitivity to intitial conditions and the butterfly effect.</description>
+      <content:encoded><![CDATA[<p>Almost everyone has heard of the butterfly effect. Many would also come acorss different animations to understand the behaviour and beauty of chaotic systems. So why not play around with it yourself?
+You will like this too.</p>
+<h2 id="to-play-around">To Play around:</h2>
+<ol>
+<li>Pick one system 1. Lorenz or 2. Rössler.</li>
+<li>Add muitiple initial conditions and see how the trajectories diverge.</li>
+<li>Change the parameters and see how the system behaves.</li>
+</ol>
+<iframe 
+  src="/chaos.html" 
+  width="100%" 
+  height="700px" 
+  style="border:none;">
+</iframe>
+<h2 id="refelect-on-what-you-observed">Refelect on what you observed:</h2>
+<ul>
+<li>Does the behaviour of the system depend on the parameters?</li>
+<li>Is the system always chaotic? Or does it show periodic behaviour for some parameters?</li>
+<li>How do the trajectories diverge faster in some regions more compared to the others?</li>
+</ul>
 ]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>文章列表</title>
+      <link>https://shashankkroy.github.io/posts/_index.zh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/_index.zh/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
   </channel>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow Matching: A Visual Journey</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f8f4ff;
+  --bg3: #f0e8ff;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --text2: #4a4a6a;
+  --primary: #b44fd4;
+  --secondary: #7c3aed;
+  --accent: #ec4899;
+  --accent2: #f472b6;
+  --border: #e9d5ff;
+  --shadow: rgba(180,79,212,0.12);
+  --code-bg: #fdf4ff;
+}
+.dark {
+  --bg: #0d0d1a;
+  --bg2: #13102b;
+  --bg3: #1a1535;
+  --card: #1e1840;
+  --text: #f0e8ff;
+  --text2: #c4b5fd;
+  --primary: #d879f0;
+  --secondary: #a78bfa;
+  --accent: #f472b6;
+  --accent2: #fb7ab5;
+  --border: #3b2d6e;
+  --shadow: rgba(216,121,240,0.18);
+  --code-bg: #1a1535;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--bg); color:var(--text); transition:all .3s; min-height:100vh; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:var(--card); border-bottom:1.5px solid var(--border);
+  box-shadow:0 2px 16px var(--shadow);
+  display:flex; align-items:center; padding:0 24px; height:56px; gap:8px;
+}
+.nav-title { font-weight:700; font-size:1rem; color:var(--primary); margin-right:12px; white-space:nowrap; }
+.nav-pages { display:flex; gap:4px; flex:1; flex-wrap:wrap; }
+.nav-btn {
+  padding:4px 10px; border-radius:20px; border:1.5px solid var(--border);
+  background:transparent; color:var(--text2); cursor:pointer; font-size:.78rem;
+  font-weight:600; transition:all .2s;
+}
+.nav-btn:hover, .nav-btn.active {
+  background:var(--primary); color:#fff; border-color:var(--primary);
+}
+.dark-toggle {
+  margin-left:auto; padding:6px 14px; border-radius:20px;
+  border:1.5px solid var(--border); background:transparent;
+  color:var(--text); cursor:pointer; font-size:.85rem; font-weight:600;
+  transition:all .2s; white-space:nowrap;
+}
+.dark-toggle:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
+
+/* PAGES */
+.page { display:none; padding:80px 24px 48px; max-width:860px; margin:0 auto; }
+.page.active { display:block; }
+
+/* HERO */
+.hero {
+  text-align:center; padding:36px 0 24px;
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border-radius:20px; margin-bottom:32px;
+  border:1.5px solid var(--border);
+}
+.hero h1 { font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:8px; }
+.hero .sub { color:var(--text2); font-size:1.05rem; }
+.page-tag {
+  display:inline-block; background:linear-gradient(90deg,var(--primary),var(--accent));
+  color:#fff; border-radius:20px; padding:4px 16px; font-size:.8rem;
+  font-weight:700; margin-bottom:12px; letter-spacing:.05em;
+}
+
+/* CARDS */
+.card {
+  background:var(--card); border:1.5px solid var(--border);
+  border-radius:16px; padding:24px; margin-bottom:20px;
+  box-shadow:0 2px 16px var(--shadow);
+}
+.card h2 { color:var(--secondary); font-size:1.15rem; margin-bottom:10px; }
+.card p { color:var(--text2); line-height:1.7; margin-bottom:10px; }
+.card p:last-child { margin-bottom:0; }
+
+.eq-box {
+  background:var(--code-bg); border-left:4px solid var(--primary);
+  border-radius:8px; padding:14px 18px; margin:14px 0;
+  font-size:1.05rem; color:var(--text); overflow-x:auto;
+}
+
+canvas { display:block; border-radius:12px; }
+.canvas-wrap {
+  background:var(--bg2); border:1.5px solid var(--border);
+  border-radius:14px; padding:16px; margin:16px 0; text-align:center;
+}
+.canvas-label { font-size:.82rem; color:var(--text2); margin-top:8px; font-style:italic; }
+
+.ctrl { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:12px 0; }
+.ctrl label { font-size:.85rem; color:var(--text2); }
+.ctrl input[type=range] { accent-color:var(--primary); }
+.btn {
+  padding:7px 18px; border-radius:20px; border:none;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+  color:#fff; font-weight:700; cursor:pointer; font-size:.85rem;
+  transition:opacity .2s;
+}
+.btn:hover { opacity:.85; }
+
+.pill {
+  display:inline-block; background:var(--bg3); border:1px solid var(--border);
+  border-radius:12px; padding:2px 10px; font-size:.8rem; color:var(--primary);
+  font-weight:600; margin:2px;
+}
+
+/* progress bar */
+.progress-wrap { display:flex; gap:6px; margin-bottom:18px; }
+.progress-step {
+  flex:1; height:5px; border-radius:3px;
+  background:var(--border); transition:background .3s;
+}
+.progress-step.done { background:linear-gradient(90deg,var(--primary),var(--accent)); }
+
+/* FINAL PAGE */
+.summary-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0; }
+.summary-card {
+  background:var(--bg3); border:1.5px solid var(--border); border-radius:12px;
+  padding:14px; text-align:center;
+}
+.summary-card .icon { font-size:1.8rem; margin-bottom:6px; }
+.summary-card h3 { color:var(--primary); font-size:.9rem; margin-bottom:4px; }
+.summary-card p { color:var(--text2); font-size:.78rem; line-height:1.5; }
+
+@media(max-width:600px){
+  .summary-grid { grid-template-columns:1fr; }
+  .hero h1 { font-size:1.4rem; }
+  .nav-pages { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-title">🌊 Flow Matching</span>
+  <div class="nav-pages">
+    <button class="nav-btn active" onclick="goTo(0)">1·ODE</button>
+    <button class="nav-btn" onclick="goTo(1)">2·SDE</button>
+    <button class="nav-btn" onclick="goTo(2)">3·Langevin</button>
+    <button class="nav-btn" onclick="goTo(3)">4·Cond. Dist.</button>
+    <button class="nav-btn" onclick="goTo(4)">5·Vector Field</button>
+    <button class="nav-btn" onclick="goTo(5)">6·Sampler</button>
+  </div>
+  <button class="dark-toggle" onclick="toggleDark()">🌙 Dark</button>
+</nav>
+
+<!-- PAGE 1: ODE -->
+<div class="page active" id="p0">
+  <div class="progress-wrap">
+    <div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="hero">
+    <div class="page-tag">Page 1 of 6</div>
+    <h1>Ordinary Differential Equations</h1>
+    <p class="sub">The language of continuous motion and flow</p>
+  </div>
+  <div class="card">
+    <h2>What is an ODE?</h2>
+    <p>An ODE describes how a state <strong>x</strong> evolves over time through a <em>velocity field</em> u. Given an initial condition, the trajectory is entirely deterministic — no randomness involved.</p>
+    <div class="eq-box">\[\frac{d\mathbf{x}}{dt} = u_t(\mathbf{x}), \quad \mathbf{x}(0) = \mathbf{x}_0\]</div>
+    <p>The function \(u_t: \mathbb{R}^d \to \mathbb{R}^d\) is the <strong>vector field</strong> — it assigns a velocity arrow to every point in space at every time \(t \in [0,1]\). Integrating this ODE gives a <strong>flow map</strong> \(\phi_t\) such that \(\mathbf{x}(t) = \phi_t(\mathbf{x}_0)\).</p>
+  </div>
+  <div class="card">
+    <h2>Why ODEs for generative models?</h2>
+    <p>A flow-based generative model learns a vector field \(u_t\) that <em>transports</em> a simple source distribution \(p_0\) (e.g. Gaussian) to a complex target \(p_1\) (e.g. images). The probability density evolves according to the <strong>continuity equation</strong>:</p>
+    <div class="eq-box">\[\frac{\partial p_t}{\partial t} + \nabla \cdot (p_t \, u_t) = 0\]</div>
+    <p>This guarantees that probability mass is conserved — no particles are created or destroyed, just transported.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="c1" width="580" height="280"></canvas>
+    <div class="canvas-label">Deterministic ODE trajectories — particles follow smooth paths defined by the vector field. Click to reset.</div>
+  </div>
+  <div class="ctrl">
+    <label>Speed: <input type="range" id="s1" min="1" max="5" value="2" oninput="setSpeed1(this.value)"></label>
+    <button class="btn" onclick="resetODE()">↺ Reset</button>
+    <button class="btn" onclick="goTo(1)">Next →</button>
+  </div>
+</div>
+
+<!-- PAGE 2: SDE -->
+<div class="page" id="p1">
+  <div class="progress-wrap">
+    <div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="hero">
+    <h1>From ODEs to SDEs</h1>
+    <p class="sub">Adding noise — stochastic differential equations</p>
+  </div>
+  <div class="card">
+    <h2>The stochastic extension</h2>
+    <p>An SDE adds a <strong>diffusion term</strong> driven by Brownian motion \(W_t\). This injects randomness into the trajectory, allowing exploration of probability distributions rather than following a single deterministic path.</p>
+    <div class="eq-box">\[d\mathbf{x} = u_t(\mathbf{x})\,dt + \sigma_t\,dW_t\]</div>
+    <p>Here \(\sigma_t \geq 0\) is the <strong>diffusion coefficient</strong>. When \(\sigma_t = 0\) we recover the ODE. When \(\sigma_t > 0\), each particle follows a distinct noisy path, yet the <em>ensemble</em> still transports \(p_0 \to p_1\).</p>
+  </div>
+  <div class="card">
+    <h2>Itô vs Stratonovich</h2>
+    <p>The stochastic integral \(\int \sigma_t\,dW_t\) has two common interpretations. For generative modeling, the <strong>Itô convention</strong> is standard — it's non-anticipatory and satisfies useful martingale properties. The Fokker-Planck equation governs density evolution:</p>
+    <div class="eq-box">\[\frac{\partial p_t}{\partial t} = -\nabla\cdot(p_t u_t) + \frac{\sigma_t^2}{2}\Delta p_t\]</div>
+    <p>The Laplacian term \(\frac{\sigma^2}{2}\Delta p_t\) acts as a <strong>diffusion operator</strong>, smoothing the density over time.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="c2" width="580" height="280"></canvas>
+    <div class="canvas-label">Left: deterministic ODE (σ=0). Right: stochastic SDE (σ>0). Same drift, different realizations.</div>
+  </div>
+  <div class="ctrl">
+    <label>Noise σ: <input type="range" id="noise2" min="0" max="30" value="10" oninput="setNoise2(this.value)"> <span id="noiseVal">0.10</span></label>
+    <button class="btn" onclick="resetSDE()">↺ Reset</button>
+    <button class="btn" onclick="goTo(0)">← Back</button>
+    <button class="btn" onclick="goTo(2)">Next →</button>
+  </div>
+</div>
+
+<!-- PAGE 3: LANGEVIN -->
+<div class="page" id="p2">
+  <div class="progress-wrap">
+    <div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="hero">
+    <h1>The Langevin Equation</h1>
+    <p class="sub">Sampling from distributions via gradient-guided diffusion</p>
+  </div>
+  <div class="card">
+    <h2>Langevin dynamics</h2>
+    <p>The <strong>Langevin SDE</strong> is a special case where the drift is the <em>score function</em> — the gradient of the log-density of the target. It drives particles toward high-probability regions while noise prevents collapse.</p>
+    <div class="eq-box">\[d\mathbf{x} = \nabla \log p(\mathbf{x})\,dt + \sqrt{2}\,dW_t\]</div>
+    <p>Remarkably, under mild conditions, the stationary distribution of this SDE is exactly \(p(\mathbf{x})\). This is the foundation of <strong>score-based generative models</strong> (NCSN, DDPM).</p>
+  </div>
+  <div class="card">
+    <h2>Connection to flow matching</h2>
+    <p>Flow matching generalizes this idea: instead of fixing the drift to the score, we <em>learn</em> a time-dependent vector field \(u_t\) that continuously morphs \(p_0\) into \(p_1\). The Langevin SDE corresponds to a specific choice of drift and diffusion that achieves this using the score at each time step.</p>
+    <div class="eq-box">\[u_t^{\text{Langevin}}(\mathbf{x}) = \nabla \log p_t(\mathbf{x}) \quad (\text{score at time }t)\]</div>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="c3" width="580" height="300"></canvas>
+    <div class="canvas-label">Langevin dynamics on a bimodal potential. Particles (pink) are pulled toward energy minima (purple) while noise keeps them spread. Click to add particles.</div>
+  </div>
+  <div class="ctrl">
+    <label>Step size: <input type="range" id="step3" min="1" max="8" value="3" oninput="setStep3(this.value)"></label>
+    <label>Noise: <input type="range" id="sig3" min="1" max="10" value="4" oninput="setSig3(this.value)"></label>
+    <button class="btn" onclick="resetLangevin()">↺ Reset</button>
+    <button class="btn" onclick="goTo(1)">← Back</button>
+    <button class="btn" onclick="goTo(3)">Next →</button>
+  </div>
+</div>
+
+<!-- PAGE 4: CONDITIONAL DISTRIBUTIONS -->
+<div class="page" id="p3">
+  <div class="progress-wrap">
+    <div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step"></div><div class="progress-step"></div>
+  </div>
+  <div class="hero">
+    <h1>Conditional Distributions</h1>
+    <p class="sub">Building blocks of the flow matching objective</p>
+  </div>
+  <div class="card">
+    <h2>The marginal path</h2>
+    <p>Flow matching works by constructing a <strong>probability path</strong> \(\{p_t\}_{t\in[0,1]}\) interpolating between noise \(p_0 = \mathcal{N}(0,I)\) and data \(p_1 = q(\mathbf{x})\). Rather than designing the marginal path directly, we use <em>conditional</em> paths.</p>
+    <p>Given a data sample \(\mathbf{x}_1 \sim q\), define a <strong>conditional path</strong>:</p>
+    <div class="eq-box">\[p_t(\mathbf{x}\,|\,\mathbf{x}_1) = \mathcal{N}\!\left(\mathbf{x}\,;\,\mu_t(\mathbf{x}_1),\,\sigma_t^2 I\right)\]</div>
+    <p>The marginal path is recovered by marginalizing: \(p_t(\mathbf{x}) = \int p_t(\mathbf{x}|\mathbf{x}_1)\,q(\mathbf{x}_1)\,d\mathbf{x}_1\).</p>
+  </div>
+  <div class="card">
+    <h2>Gaussian conditional paths</h2>
+    <p>The most common choice is a <strong>linear interpolation</strong>:</p>
+    <div class="eq-box">\[\mu_t(\mathbf{x}_1) = t\,\mathbf{x}_1, \qquad \sigma_t = 1 - (1-\sigma_{\min})t\]</div>
+    <p>At \(t=0\): pure Gaussian noise. At \(t=1\): concentrated near the data point \(\mathbf{x}_1\). The interpolation is smooth and tractable.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="c4" width="580" height="280"></canvas>
+    <div class="canvas-label">Conditional Gaussian p_t(x|x₁) evolving from t=0 (noise) to t=1 (data). Drag the slider to travel through time.</div>
+  </div>
+  <div class="ctrl">
+    <label>Time t: <input type="range" id="t4" min="0" max="100" value="0" oninput="updateCond(this.value)"> <span id="tVal4">0.00</span></label>
+    <button class="btn" onclick="animateCond()">▶ Animate</button>
+    <button class="btn" onclick="goTo(2)">← Back</button>
+    <button class="btn" onclick="goTo(4)">Next →</button>
+  </div>
+</div>
+
+<!-- PAGE 5: CONDITIONAL VECTOR FIELD -->
+<div class="page" id="p4">
+  <div class="progress-wrap">
+    <div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step"></div>
+  </div>
+  <div class="hero">
+    <h1>Conditional Vector Field</h1>
+    <p class="sub">The tractable target for flow matching training</p>
+  </div>
+  <div class="card">
+    <h2>The key insight</h2>
+    <p>Directly computing the marginal vector field \(u_t(\mathbf{x})\) is intractable. But we can compute the <strong>conditional vector field</strong> \(u_t(\mathbf{x}|\mathbf{x}_1)\) in closed form — it simply points from the current noisy sample toward the data point.</p>
+    <div class="eq-box">\[u_t(\mathbf{x}\,|\,\mathbf{x}_1) = \frac{\mathbf{x}_1 - (1-\sigma_{\min})\mathbf{x}}{\sigma_t}\]</div>
+    <p>The <strong>Flow Matching loss</strong> regresses a neural network \(v_\theta\) onto this conditional target:</p>
+    <div class="eq-box">\[\mathcal{L}_{\text{CFM}}(\theta) = \mathbb{E}_{t,\,\mathbf{x}_1\sim q,\,\mathbf{x}\sim p_t(\cdot|\mathbf{x}_1)}\left[\|v_\theta(\mathbf{x},t) - u_t(\mathbf{x}|\mathbf{x}_1)\|^2\right]\]</div>
+  </div>
+  <div class="card">
+    <h2>Why this works</h2>
+    <p>The conditional FM loss has the <em>same gradient</em> as the marginal FM loss. This means we can train with cheap single-sample estimates, avoiding costly density evaluations. The neural network learns to point toward the data — a simple, stable regression objective.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="c5" width="580" height="300"></canvas>
+    <div class="canvas-label">Conditional vector field u_t(x|x₁) for several data points (stars ★). Each arrow points from noise toward its conditioning point. Hover to highlight.</div>
+  </div>
+  <div class="ctrl">
+    <label>Time t: <input type="range" id="t5" min="1" max="99" value="50" oninput="updateVF(this.value)"> <span id="tVal5">0.50</span></label>
+    <button class="btn" onclick="goTo(3)">← Back</button>
+    <button class="btn" onclick="goTo(5)">Next →</button>
+  </div>
+</div>
+
+<!-- PAGE 6: SAMPLER -->
+<div class="page" id="p5">
+  <div class="progress-wrap">
+    <div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step done"></div>
+    <div class="progress-step done"></div><div class="progress-step done"></div><div class="progress-step done"></div>
+  </div>
+  <div class="hero">
+    <h1>The Flow Matching Sampler</h1>
+    <p class="sub">Putting it all together — generation by ODE integration</p>
+  </div>
+  <div class="card">
+    <h2>Training summary</h2>
+    <p>We train a neural network \(v_\theta(\mathbf{x}, t)\) to match the conditional vector field. Once trained, we <strong>sample</strong> by integrating the learned ODE forward from \(t=0\) to \(t=1\):</p>
+    <div class="eq-box">\[\frac{d\mathbf{x}}{dt} = v_\theta(\mathbf{x}, t), \qquad \mathbf{x}(0) \sim \mathcal{N}(0, I)\]</div>
+    <p>Any numerical ODE solver works — Euler, RK4, or adaptive solvers. The result is a sample from the learned distribution \(\hat{p}_1 \approx p_1\).</p>
+  </div>
+  <div class="card">
+    <h2>Complete algorithm</h2>
+    <p><span class="pill">Training</span> Sample \(t \sim U[0,1]\), \(\mathbf{x}_1 \sim q\), \(\mathbf{x}_0 \sim \mathcal{N}(0,I)\). Compute \(\mathbf{x}_t = (1-(1-\sigma_{\min})t)\mathbf{x}_0 + t\mathbf{x}_1\). Regress \(v_\theta(\mathbf{x}_t, t)\) onto \(u_t = \mathbf{x}_1 - (1-\sigma_{\min})\mathbf{x}_0\).</p>
+    <p><span class="pill">Inference</span> Sample \(\mathbf{x}_0 \sim \mathcal{N}(0,I)\). Integrate \(d\mathbf{x} = v_\theta(\mathbf{x},t)dt\) from \(t=0\) to \(t=1\) using Euler with \(N\) steps.</p>
+  </div>
+  <div class="canvas-wrap">
+    <canvas id="c6" width="580" height="300"></canvas>
+    <div class="canvas-label">Live simulation: particles start as Gaussian noise and flow toward the target distribution (two moons). Watch the flow unfold step by step.</div>
+  </div>
+  <div class="ctrl">
+    <label>Steps N: <input type="range" id="steps6" min="5" max="80" value="30" oninput="setSteps6(this.value)"> <span id="stepsVal">30</span></label>
+    <button class="btn" onclick="runSampler()">▶ Run Sampler</button>
+    <button class="btn" onclick="resetSampler()">↺ Reset</button>
+    <button class="btn" onclick="goTo(4)">← Back</button>
+  </div>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="icon">📐</div><h3>ODE Backbone</h3><p>Deterministic transport via continuous normalizing flows</p></div>
+    <div class="summary-card"><div class="icon">🌊</div><h3>Stochastic Extension</h3><p>SDE & Langevin for probabilistic sampling</p></div>
+    <div class="summary-card"><div class="icon">🎯</div><h3>Conditional Target</h3><p>Tractable training via conditional vector fields</p></div>
+    <div class="summary-card"><div class="icon">🚀</div><h3>Scalable Training</h3><p>Simple regression loss, no likelihood required</p></div>
+  </div>
+</div>
+
+<script>
+// ── Utilities ──────────────────────────────────────────────────────────────
+const PI2 = Math.PI * 2;
+function lerp(a,b,t){ return a + (b-a)*t; }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+function randn(){ let u=0,v=0; while(!u)u=Math.random(); while(!v)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(PI2*v); }
+
+// ── Dark mode ──────────────────────────────────────────────────────────────
+let dark = false;
+function toggleDark(){
+  dark = !dark;
+  document.body.classList.toggle('dark', dark);
+  document.querySelector('.dark-toggle').textContent = dark ? '☀️ Light' : '🌙 Dark';
+  drawAll();
+}
+
+// ── Navigation ─────────────────────────────────────────────────────────────
+let curPage = 0;
+const pages = document.querySelectorAll('.page');
+const navBtns = document.querySelectorAll('.nav-btn');
+function goTo(i){
+  pages[curPage].classList.remove('active');
+  navBtns[curPage].classList.remove('active');
+  curPage = i;
+  pages[i].classList.add('active');
+  navBtns[i].classList.add('active');
+  drawAll();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function drawAll(){ drawODE(); drawSDE(); drawLangevin(); drawCond(); drawVF(); drawSampler(); }
+
+// ── Helpers to get CSS vars ────────────────────────────────────────────────
+function cv(name){ return getComputedStyle(document.body).getPropertyValue(name).trim(); }
+
+// ══════════════════════════════════════════════════════════════════════════
+// PAGE 1 — ODE
+// ══════════════════════════════════════════════════════════════════════════
+const c1 = document.getElementById('c1');
+const ctx1 = c1.getContext('2d');
+let particles1 = [], ode_speed = 2, ode_af;
+function initODE(){
+  particles1 = [];
+  for(let i=0;i<60;i++){
+    const a = Math.random()*PI2, r = Math.random()*80 + 20;
+    particles1.push({ x: c1.width/2 + Math.cos(a)*r, y: c1.height/2 + Math.sin(a)*r,
+      trail:[], hue: Math.random()*60 + 280 });
+  }
+}
+function vfODE(x,y){
+  const cx=c1.width/2, cy=c1.height/2;
+  const dx=x-cx, dy=y-cy, r2=dx*dx+dy*dy+1;
+  return { vx: -dy/Math.sqrt(r2)*1.5, vy: dx/Math.sqrt(r2)*1.5 - dy*0.01 };
+}
+function drawODE(){
+  const W=c1.width, H=c1.height;
+  ctx1.clearRect(0,0,W,H);
+  ctx1.fillStyle = cv('--bg2');
+  ctx1.fillRect(0,0,W,H);
+  // grid arrows
+  const gstep=40;
+  for(let gx=gstep;gx<W;gx+=gstep) for(let gy=gstep;gy<H;gy+=gstep){
+    const {vx,vy} = vfODE(gx,gy);
+    const len=Math.sqrt(vx*vx+vy*vy)||1, s=12/len;
+    ctx1.strokeStyle = cv('--secondary')+'44';
+    ctx1.lineWidth=1;
+    ctx1.beginPath(); ctx1.moveTo(gx,gy); ctx1.lineTo(gx+vx*s,gy+vy*s); ctx1.stroke();
+  }
+  // particles
+  particles1.forEach(p=>{
+    const {vx,vy}=vfODE(p.x,p.y);
+    p.x+=vx*ode_speed*0.5; p.y+=vy*ode_speed*0.5;
+    p.trail.push({x:p.x,y:p.y}); if(p.trail.length>22)p.trail.shift();
+    if(p.x<0||p.x>W||p.y<0||p.y>H){
+      const a=Math.random()*PI2, r=30+Math.random()*60;
+      p.x=W/2+Math.cos(a)*r; p.y=H/2+Math.sin(a)*r; p.trail=[];
+    }
+    if(p.trail.length>1){
+      ctx1.beginPath(); ctx1.moveTo(p.trail[0].x,p.trail[0].y);
+      p.trail.forEach(pt=>ctx1.lineTo(pt.x,pt.y));
+      ctx1.strokeStyle=`hsl(${p.hue},80%,65%)`; ctx1.lineWidth=1.5; ctx1.stroke();
+    }
+    ctx1.beginPath(); ctx1.arc(p.x,p.y,3,0,PI2);
+    ctx1.fillStyle=`hsl(${p.hue},80%,65%)`; ctx1.fill();
+  });
+}
+function animODE(){ drawODE(); ode_af=requestAnimationFrame(animODE); }
+function setSpeed1(v){ ode_speed=+v; }
+function resetODE(){ initODE(); }
+c1.onclick=resetODE;
+initODE(); animODE();
+
+// ══════════════════════════════════════════════════════════════════════════
+// PAGE 2 — SDE
+// ══════════════════════════════════════════════════════════════════════════
+const c2=document.getElementById('c2'); const ctx2=c2.getContext('2d');
+let pODE=[], pSDE=[], noise2_val=10;
+function initSDE(){
+  pODE=[]; pSDE=[];
+  for(let i=0;i<35;i++){
+    const y=40+Math.random()*(c2.height-80);
+    pODE.push({x:10,y,trail:[]}); pSDE.push({x:c2.width/2+10,y,trail:[]});
+  }
+}
+function driftSDE(x,y,side){
+  const W2=c2.width/2;
+  const bx = side===0 ? 0 : W2;
+  const cx=bx+W2/2, cy=c2.height/2;
+  return { vx:1.2, vy:(cy-y)*0.015 };
+}
+function drawSDE(){
+  const W=c2.width,H=c2.height;
+  ctx2.clearRect(0,0,W,H); ctx2.fillStyle=cv('--bg2'); ctx2.fillRect(0,0,W,H);
+  // divider
+  ctx2.strokeStyle=cv('--border'); ctx2.lineWidth=1.5; ctx2.setLineDash([6,4]);
+  ctx2.beginPath(); ctx2.moveTo(W/2,0); ctx2.lineTo(W/2,H); ctx2.stroke(); ctx2.setLineDash([]);
+  ctx2.fillStyle=cv('--text2'); ctx2.font='12px sans-serif'; ctx2.textAlign='center';
+  ctx2.fillText('ODE (σ=0)',W/4,18); ctx2.fillText('SDE (σ>0)',3*W/4,18);
+
+  const sig = noise2_val/100;
+  pODE.forEach(p=>{
+    const {vx,vy}=driftSDE(p.x,p.y,0);
+    p.x+=vx*0.7; p.y+=vy*0.7;
+    p.trail.push({x:p.x,y:p.y}); if(p.trail.length>20)p.trail.shift();
+    if(p.x>W/2-4){ p.x=10; p.y=40+Math.random()*(H-80); p.trail=[]; }
+    if(p.trail.length>1){
+      ctx2.beginPath(); ctx2.moveTo(p.trail[0].x,p.trail[0].y);
+      p.trail.forEach(pt=>ctx2.lineTo(pt.x,pt.y));
+      ctx2.strokeStyle=cv('--secondary')+'cc'; ctx2.lineWidth=1.5; ctx2.stroke();
+    }
+    ctx2.beginPath(); ctx2.arc(p.x,p.y,3,0,PI2); ctx2.fillStyle=cv('--secondary'); ctx2.fill();
+  });
+  pSDE.forEach(p=>{
+    const {vx,vy}=driftSDE(p.x,p.y,1);
+    p.x+=vx*0.7+randn()*sig*2; p.y+=vy*0.7+randn()*sig*2;
+    p.trail.push({x:p.x,y:p.y}); if(p.trail.length>20)p.trail.shift();
+    if(p.x>W-4||p.x<W/2||p.y<0||p.y>H){ p.x=W/2+10; p.y=40+Math.random()*(H-80); p.trail=[]; }
+    if(p.trail.length>1){
+      ctx2.beginPath(); ctx2.moveTo(p.trail[0].x,p.trail[0].y);
+      p.trail.forEach(pt=>ctx2.lineTo(pt.x,pt.y));
+      ctx2.strokeStyle=cv('--accent')+'cc'; ctx2.lineWidth=1.5; ctx2.stroke();
+    }
+    ctx2.beginPath(); ctx2.arc(p.x,p.y,3,0,PI2); ctx2.fillStyle=cv('--accent'); ctx2.fill();
+  });
+}
+function setNoise2(v){ noise2_val=+v; document.getElementById('noiseVal').textContent=(v/100).toFixed(2); }
+function resetSDE(){ initSDE(); }
+initSDE(); setInterval(drawSDE, 16);
+
+// ══════════════════════════════════════════════════════════════════════════
+// PAGE 3 — LANGEVIN
+// ══════════════════════════════════════════════════════════════════════════
+const c3=document.getElementById('c3'); const ctx3=c3.getContext('2d');
+let pLan=[], step3=3, sig3=4;
+function potential(x,y){
+  const W=c3.width,H=c3.height;
+  const x1=(x-W*0.3)/60, y1=(y-H/2)/60;
+  const x2=(x-W*0.7)/60, y2=(y-H/2)/60;
+  return Math.exp(-(x1*x1+y1*y1)*2) + Math.exp(-(x2*x2+y2*y2)*2);
+}
+function scoreGrad(x,y){
+  const eps=2;
+  const gx=(potential(x+eps,y)-potential(x-eps,y))/(2*eps);
+  const gy=(potential(x,y+eps)-potential(x,y-eps))/(2*eps);
+  return {gx,gy};
+}
+function initLangevin(){
+  pLan=[];
+  for(let i=0;i<50;i++){
+    pLan.push({x:c3.width/2+randn()*80,y:c3.height/2+randn()*60,trail:[]});
+  }
+}
+function drawLangevin(){
+  const W=c3.width,H=c3.height;
+  ctx3.clearRect(0,0,W,H);
+  // energy landscape
+  const idata=ctx3.createImageData(W,H);
+  const isDark=document.body.classList.contains('dark');
+  for(let px=0;px<W;px+=3) for(let py=0;py<H;py+=3){
+    const v=potential(px,py);
+    const r=isDark?Math.round(v*80+20):Math.round(255-v*120);
+    const g=isDark?Math.round(v*20):Math.round(255-v*60);
+    const b=isDark?Math.round(v*100+40):Math.round(255-v*20);
+    for(let dx=0;dx<3;dx++) for(let dy=0;dy<3;dy++){
+      const idx=((py+dy)*W+(px+dx))*4;
+      idata.data[idx]=r; idata.data[idx+1]=g; idata.data[idx+2]=b; idata.data[idx+3]=255;
+    }
+  }
+  ctx3.putImageData(idata,0,0);
+  pLan.forEach(p=>{
+    const {gx,gy}=scoreGrad(p.x,p.y);
+    const ss=step3*0.3, ns=sig3*0.25;
+    p.x+=gx*ss+randn()*ns; p.y+=gy*ss+randn()*ns;
+    p.x=clamp(p.x,4,W-4); p.y=clamp(p.y,4,H-4);
+    p.trail.push({x:p.x,y:p.y}); if(p.trail.length>12)p.trail.shift();
+    if(p.trail.length>1){
+      ctx3.beginPath(); ctx3.moveTo(p.trail[0].x,p.trail[0].y);
+      p.trail.forEach(pt=>ctx3.lineTo(pt.x,pt.y));
+      ctx3.strokeStyle=cv('--accent')+'99'; ctx3.lineWidth=1; ctx3.stroke();
+    }
+    ctx3.beginPath(); ctx3.arc(p.x,p.y,3,0,PI2);
+    ctx3.fillStyle=cv('--accent2'); ctx3.fill();
+  });
+  // mode markers
+  [[W*0.3,H/2],[W*0.7,H/2]].forEach(([mx,my])=>{
+    ctx3.beginPath(); ctx3.arc(mx,my,8,0,PI2);
+    ctx3.strokeStyle=cv('--primary'); ctx3.lineWidth=2.5; ctx3.stroke();
+    ctx3.fillStyle=cv('--primary')+'33'; ctx3.fill();
+  });
+}
+function setStep3(v){ step3=+v; }
+function setSig3(v){ sig3=+v; }
+function resetLangevin(){ initLangevin(); }
+c3.onclick=e=>{ const r=c3.getBoundingClientRect(); for(let i=0;i<8;i++) pLan.push({x:e.clientX-r.left+randn()*15,y:e.clientY-r.top+randn()*15,trail:[]}); };
+initLangevin(); setInterval(drawLangevin,16);
+
+// ══════════════════════════════════════════════════════════════════════════
+// PAGE 4 — CONDITIONAL DISTRIBUTIONS
+// ══════════════════════════════════════════════════════════════════════════
+const c4=document.getElementById('c4'); const ctx4=c4.getContext('2d');
+const dataPoints4=[];
+for(let i=0;i<8;i++) dataPoints4.push({x:80+Math.random()*420,y:60+Math.random()*180});
+let t4_val=0, cond_anim=null;
+function drawCond(){
+  const W=c4.width,H=c4.height, t=t4_val/100;
+  ctx4.clearRect(0,0,W,H); ctx4.fillStyle=cv('--bg2'); ctx4.fillRect(0,0,W,H);
+  const sigMin=0.01;
+  dataPoints4.forEach((dp,i)=>{
+    const hue=270+i*15;
+    const mu_x=lerp(W/2,dp.x,t);
+    const mu_y=lerp(H/2,dp.y,t);
+    const sig=(1-(1-sigMin)*t)*45;
+    // gaussian blob
+    const grd=ctx4.createRadialGradient(mu_x,mu_y,0,mu_x,mu_y,sig*2.5);
+    grd.addColorStop(0,`hsla(${hue},80%,65%,0.45)`);
+    grd.addColorStop(1,`hsla(${hue},80%,65%,0)`);
+    ctx4.beginPath(); ctx4.arc(mu_x,mu_y,sig*2.5,0,PI2);
+    ctx4.fillStyle=grd; ctx4.fill();
+    // center
+    ctx4.beginPath(); ctx4.arc(mu_x,mu_y,4,0,PI2);
+    ctx4.fillStyle=`hsl(${hue},80%,65%)`; ctx4.fill();
+  });
+  // data stars
+  if(t>0.5) dataPoints4.forEach((dp,i)=>{
+    const a=(t-0.5)*2;
+    ctx4.globalAlpha=a;
+    ctx4.fillStyle=cv('--accent'); ctx4.font='bold 14px sans-serif'; ctx4.textAlign='center';
+    ctx4.fillText('★',dp.x,dp.y+5);
+    ctx4.globalAlpha=1;
+  });
+  // noise cloud at t=0
+  if(t<0.3){
+    ctx4.globalAlpha=(1-t/0.3)*0.2;
+    ctx4.beginPath(); ctx4.arc(W/2,H/2,60,0,PI2);
+    ctx4.fillStyle=cv('--secondary'); ctx4.fill(); ctx4.globalAlpha=1;
+  }
+  // time label
+  ctx4.fillStyle=cv('--text2'); ctx4.font='13px sans-serif'; ctx4.textAlign='left';
+  ctx4.fillText(`t = ${t.toFixed(2)}`,12,22);
+}
+function updateCond(v){ t4_val=+v; document.getElementById('tVal4').textContent=(v/100).toFixed(2); drawCond(); }
+function animateCond(){
+  if(cond_anim){ clearInterval(cond_anim); cond_anim=null; return; }
+  t4_val=0;
+  cond_anim=setInterval(()=>{
+    t4_val=Math.min(100,t4_val+0.5);
+    document.getElementById('t4').value=t4_val;
+    document.getElementById('tVal4').textContent=(t4_val/100).toFixed(2);
+    drawCond();
+    if(t4_val>=100){ clearInterval(cond_anim); cond_anim=null; }
+  },16);
+}
+drawCond();
+
+// ══════════════════════════════════════════════════════════════════════════
+// PAGE 5 — CONDITIONAL VECTOR FIELD
+// ══════════════════════════════════════════════════════════════════════════
+const c5=document.getElementById('c5'); const ctx5=c5.getContext('2d');
+const dp5=[{x:200,y:100},{x:430,y:80},{x:360,y:200},{x:150,y:210},{x:300,y:160}];
+let t5_val=50;
+function drawVF(){
+  const W=c5.width,H=c5.height, t=t5_val/100;
+  ctx5.clearRect(0,0,W,H); ctx5.fillStyle=cv('--bg2'); ctx5.fillRect(0,0,W,H);
+  const sigMin=0.01, sig=1-(1-sigMin)*t;
+  const step=38;
+  for(let gx=step/2;gx<W;gx+=step) for(let gy=step/2;gy<H;gy+=step){
+    // sample x from p_t(x|x1) averaged over conditioning points
+    let avgVx=0, avgVy=0;
+    dp5.forEach(dp=>{
+      const mu_x=lerp(W/2,dp.x,t), mu_y=lerp(H/2,dp.y,t);
+      const ex=gx-mu_x, ey=gy-mu_y, s=sig*40;
+      const w=Math.exp(-(ex*ex+ey*ey)/(2*s*s));
+      const vx=(dp.x-(1-sigMin)*gx)/sig;
+      const vy=(dp.y-(1-sigMin)*gy)/sig;
+      avgVx+=vx*w; avgVy+=vy*w;
+    });
+    const len=Math.sqrt(avgVx*avgVx+avgVy*avgVy)||1;
+    const s=Math.min(14,len*0.3);
+    const norm=len>0?len:1;
+    ctx5.strokeStyle=cv('--primary')+'88'; ctx5.lineWidth=1.5;
+    ctx5.beginPath(); ctx5.moveTo(gx,gy); ctx5.lineTo(gx+avgVx/norm*s,gy+avgVy/norm*s); ctx5.stroke();
+    // arrowhead
+    const ax=gx+avgVx/norm*s, ay=gy+avgVy/norm*s;
+    const angle=Math.atan2(avgVy,avgVx);
+    ctx5.beginPath();
+    ctx5.moveTo(ax,ay);
+    ctx5.lineTo(ax-5*Math.cos(angle-0.4),ay-5*Math.sin(angle-0.4));
+    ctx5.lineTo(ax-5*Math.cos(angle+0.4),ay-5*Math.sin(angle+0.4));
+    ctx5.closePath(); ctx5.fillStyle=cv('--primary')+'88'; ctx5.fill();
+  }
+  // data points
+  dp5.forEach((dp,i)=>{
+    const hue=270+i*20;
+    const mu_x=lerp(W/2,dp.x,t), mu_y=lerp(H/2,dp.y,t);
+    // current pos blob
+    ctx5.beginPath(); ctx5.arc(mu_x,mu_y,6,0,PI2);
+    ctx5.fillStyle=`hsl(${hue},80%,65%)`; ctx5.fill();
+    // target star
+    ctx5.fillStyle=cv('--accent'); ctx5.font='bold 16px sans-serif'; ctx5.textAlign='center';
+    ctx5.fillText('★',dp.x,dp.y+6);
+    // connector
+    ctx5.strokeStyle=`hsl(${hue},60%,65%)44`; ctx5.setLineDash([4,4]); ctx5.lineWidth=1;
+    ctx5.beginPath(); ctx5.moveTo(mu_x,mu_y); ctx5.lineTo(dp.x,dp.y); ctx5.stroke();
+    ctx5.setLineDash([]);
+  });
+  ctx5.fillStyle=cv('--text2'); ctx5.font='13px sans-serif'; ctx5.textAlign='left';
+  ctx5.fillText(`t = ${t.toFixed(2)}`,12,22);
+}
+function updateVF(v){ t5_val=+v; document.getElementById('tVal5').textContent=(v/100).toFixed(2); drawVF(); }
+drawVF();
+
+// ══════════════════════════════════════════════════════════════════════════
+// PAGE 6 — SAMPLER
+// ══════════════════════════════════════════════════════════════════════════
+const c6=document.getElementById('c6'); const ctx6=c6.getContext('2d');
+let sampler_particles=[], sampler_step=0, sampler_N=30, sampler_anim=null;
+// "two moons" target
+function targetMoon(){ const side=Math.random()<.5; const a=Math.random()*Math.PI; const r=70+randn()*10; return side?{x:c6.width/2-60+Math.cos(a)*r,y:c6.height/2-20+Math.sin(a)*r}:{x:c6.width/2+60-Math.cos(a)*r,y:c6.height/2+20-Math.sin(a)*r}; }
+const targets6=[];
+for(let i=0;i<80;i++) targets6.push(targetMoon());
+
+function learnedVF(x,y,t){
+  // Closed-form CFM vector field: u_t(x) = E[x1 - (1-σ_min)*x0 | x_t = x]
+  // We approximate by finding the nearest targets and computing the weighted mean
+  const sigMin=0.01;
+  // x_t = (1-(1-sigMin)*t)*x0 + t*x1  =>  x1 = (x - (1-(1-sigMin)*t)*x0) / t  (not used directly)
+  // Instead use the direct CFM field: u_t(x|x1) = x1 - (1-sigMin)*x0
+  // where x0 = (x - t*x1) / (1-(1-sigMin)*t)
+  // Simplified: u_t(x) ≈ Σ w(x,x1) * (x1 - x) / (1-t+eps) pointing toward targets
+  const eps = 1e-3;
+  let vx=0, vy=0, wsum=0;
+  targets6.forEach(tp=>{
+    // distance from x to where this target's trajectory passes near at time t
+    const mu_x = lerp(c6.width/2, tp.x, t);
+    const mu_y = lerp(c6.height/2, tp.y, t);
+    const bandwidth = 30 + 60*(1-t); // wide early, narrow late
+    const d2 = (x-mu_x)**2 + (y-mu_y)**2;
+    const w = Math.exp(-d2/(2*bandwidth*bandwidth));
+    // conditional vector field pointing from x toward x1
+    vx += (tp.x - x) * w;
+    vy += (tp.y - y) * w;
+    wsum += w;
+  });
+  if(wsum < 1e-9){
+    // fallback: drift toward center of mass of targets
+    const cx=targets6.reduce((s,p)=>s+p.x,0)/targets6.length;
+    const cy=targets6.reduce((s,p)=>s+p.y,0)/targets6.length;
+    return {vx:(cx-x)*0.1, vy:(cy-y)*0.1};
+  }
+  return {vx: vx/wsum, vy: vy/wsum};
+}
+function initSampler(){
+  sampler_particles=[];
+  for(let i=0;i<120;i++){
+    sampler_particles.push({x:c6.width/2+randn()*55,y:c6.height/2+randn()*55,trail:[],done:false});
+  }
+  sampler_step=0;
+}
+function drawSampler(){
+  const W=c6.width,H=c6.height;
+  ctx6.clearRect(0,0,W,H); ctx6.fillStyle=cv('--bg2'); ctx6.fillRect(0,0,W,H);
+  const t=sampler_step/sampler_N;
+  // ghost target
+  if(t>0.4){
+    const a=(t-0.4)/0.6;
+    targets6.forEach(tp=>{
+      ctx6.beginPath(); ctx6.arc(tp.x,tp.y,4,0,PI2);
+      ctx6.fillStyle=`rgba(180,79,212,${a*0.3})`; ctx6.fill();
+    });
+  }
+  sampler_particles.forEach(p=>{
+    if(p.trail.length>1){
+      ctx6.beginPath(); ctx6.moveTo(p.trail[0].x,p.trail[0].y);
+      p.trail.forEach(pt=>ctx6.lineTo(pt.x,pt.y));
+      const col=t<0.5?cv('--secondary'):cv('--accent');
+      ctx6.strokeStyle=col+'66'; ctx6.lineWidth=1; ctx6.stroke();
+    }
+    ctx6.beginPath(); ctx6.arc(p.x,p.y,3,0,PI2);
+    const g=ctx6.createRadialGradient(p.x,p.y,0,p.x,p.y,5);
+    g.addColorStop(0,cv('--accent')); g.addColorStop(1,cv('--primary'));
+    ctx6.fillStyle=g; ctx6.fill();
+  });
+  ctx6.fillStyle=cv('--text2'); ctx6.font='13px sans-serif'; ctx6.textAlign='left';
+  ctx6.fillText(`Step ${sampler_step}/${sampler_N}  t = ${t.toFixed(2)}`,12,22);
+}
+function runSampler(){
+  if(sampler_anim){ clearInterval(sampler_anim); sampler_anim=null; }
+  initSampler();
+  const dt=1/sampler_N;
+  sampler_anim=setInterval(()=>{
+    if(sampler_step>=sampler_N){ clearInterval(sampler_anim); sampler_anim=null; return; }
+    const t=sampler_step/sampler_N;
+    sampler_particles.forEach(p=>{
+      const {vx,vy}=learnedVF(p.x,p.y,t);
+      p.x+=vx*dt; p.y+=vy*dt;
+      p.trail.push({x:p.x,y:p.y}); if(p.trail.length>18)p.trail.shift();
+    });
+    sampler_step++;
+    drawSampler();
+  },40);
+}
+function resetSampler(){ if(sampler_anim){clearInterval(sampler_anim);sampler_anim=null;} initSampler(); drawSampler(); }
+function setSteps6(v){ sampler_N=+v; document.getElementById('stepsVal').textContent=v; }
+initSampler(); drawSampler();
+
+// Init MathJax render
+window.addEventListener('load',()=>{ if(window.MathJax) MathJax.typesetPromise(); });
+</script>
+</body>
+</html>

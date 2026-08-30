@@ -1,0 +1,12 @@
+<div class="cv-tl-item{{ if .Get "now" }} cv-tl-now{{ end }}">
+  <span class="cv-tl-date">{{ .Get "date" }}</span>
+  {{- with .Get "title" }}
+  <p class="cv-tl-title">{{ $.Page.RenderString . }}</p>
+  {{- end }}
+  {{- with .Get "sub" }}
+  <p class="cv-tl-sub">{{ $.Page.RenderString . }}</p>
+  {{- end }}
+  {{- with trim .Inner "\n\r\t " }}
+  <p class="cv-tl-desc">{{ $.Page.RenderString . }}</p>
+  {{- end }}
+</div>

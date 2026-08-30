@@ -1,0 +1,16 @@
+<div class="cv-item">
+  <div class="cv-item-head">
+    {{- with .Get "title" }}
+    <span class="cv-item-title">{{ $.Page.RenderString . }}</span>
+    {{- end }}
+    {{- with .Get "date" }}
+    <span class="cv-item-date">{{ . }}</span>
+    {{- end }}
+  </div>
+  {{- with .Get "org" }}
+  <div class="cv-item-org">{{ $.Page.RenderString . }}</div>
+  {{- end }}
+  {{- with trim .Inner "\n\r\t " }}
+  <p>{{ $.Page.RenderString . }}</p>
+  {{- end }}
+</div>

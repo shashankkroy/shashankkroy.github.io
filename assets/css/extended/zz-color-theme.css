@@ -1,0 +1,99 @@
+/* =====================================================================
+   Site color scheme (black / light blue / white) + typography tuning.
+   Loaded after the theme's core CSS, so these override theme-vars.css.
+   ===================================================================== */
+
+/* ---------- Light mode: white, near-black text, light blue accents ---------- */
+:root {
+    --theme: #ffffff;
+    --entry: #f4f9fd;
+    --primary: #0d1b26;
+    --primary-dim: #24374a;
+    --secondary: #52667a;
+    --tertiary: #7e93a8;
+    --tertiary-bg: #c6ddf0;
+    --content: #16232e;
+    --code-bg: #eaf3fa;
+    --border: #cfe1f0;
+    --link-background-color: #cde5f7;
+    --link-color: #085d9c;
+    --link-hover-color: #0b76c4;
+    --link-hover-underline-color: #1a8fd1;
+    --line-yellow: url("data:image/svg+xml;charset=utf-8,%3Csvg preserveAspectRatio='none' width='120' height='6' viewBox='0 0 120 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M119 0.8C60 4 50-0.5 1 1.5' stroke='%231a8fd1' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* ---------- Dark mode: black with light blue accents ---------- */
+.dark {
+    --theme: #0a0e13;
+    --entry: #131a22;
+    --primary: #e8f1f8;
+    --primary-dim: #c9d9e6;
+    --secondary: #8ba1b5;
+    --tertiary: #64798c;
+    --tertiary-bg: #1f2c3a;
+    --content: #d3e1ec;
+    --code-bg: #151e28;
+    --border: #223140;
+    --link-background-color: rgba(26, 143, 209, 0.2);
+    --link-color: #4da3dd;
+    --link-hover-color: #6cb8ea;
+    --link-hover-underline-color: #6cb8ea;
+}
+
+/* list pages use --code-bg / --theme as ground; keep them consistent */
+.list-page {
+    background: var(--theme);
+}
+
+/* ---------- Typography: slightly smaller, serif headings ---------- */
+body {
+    font-size: 16.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.post-title,
+.entry-header h2,
+.first-entry .entry-header h1,
+.profile .profile_inner h1,
+.page-header h1 {
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+    letter-spacing: 0.005em;
+}
+
+.post-title {
+    font-size: 32px;
+}
+
+.post-content h1 {
+    font-size: 30px;
+}
+
+.post-content h2 {
+    font-size: 25px;
+}
+
+.post-content h3 {
+    font-size: 20px;
+}
+
+.post-content h4 {
+    font-size: 18px;
+}
+
+.post-content {
+    font-size: 16.5px;
+}
+
+.first-entry .entry-header h1,
+.page-header h1 {
+    font-size: 30px;
+}
+
+.profile .profile_inner h1 {
+    font-size: 30px;
+}

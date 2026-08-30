@@ -1,0 +1,16 @@
+<div class="cv-header">
+  <h2>{{ .Get "name" }}</h2>
+  {{- with .Get "incoming" }}
+  <p class="cv-role"><span class="cv-badge cv-badge-solid">Incoming</span> {{ $.Page.RenderString . }}</p>
+  {{- end }}
+  {{- with .Get "role" }}
+  <p class="cv-role">{{ $.Page.RenderString . }}</p>
+  {{- end }}
+  {{- with .Get "affil" }}
+  <p class="cv-affil">{{ $.Page.RenderString . }}</p>
+  {{- end }}
+  {{ .Inner }}
+  {{- with .Get "pdf" }}
+  <a class="cv-btn" href="{{ . }}">📄 Download PDF version</a>
+  {{- end }}
+</div>
