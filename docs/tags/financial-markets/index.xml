@@ -2,34 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Financial-Markets on Home</title>
-    <link>https://shashankkroy.github.io/tags/financial-markets/</link>
+    <link>http://localhost:1313/tags/financial-markets/</link>
     <description>Recent content in Financial-Markets on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/financial-markets/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/financial-markets/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Do markets slow down before they crash?</title>
-      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
+      <link>http://localhost:1313/posts/dynamical_systems/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
-      <description>On the behaviour of financial markets when a tipping point is near. Part 1 of a two-part series on early warning signals.</description>
+      <guid>http://localhost:1313/posts/dynamical_systems/</guid>
+      <description>On the behaviour of financial markets when a tipping point is near.</description>
       <content:encoded><![CDATA[<blockquote>
 <p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
-<p>Financial markets are complex systems, and they have tipping points - thresholds beyond which the stability of the system can shift abruptly. The financial crisis are generally preceded by a period of increasing volatility. Researchers suggest that the increase in volatility could be an early warning signal of the impending crisis. Understanding if empirical observation of volatility prior to financial crisis- signature that appears in the data <strong>before</strong> the crash, a kind of &ldquo;early warning signal&rdquo; (EWS) that could alert investors and policymakers to rising systemic risk if of great importance.</p>
-<p>In this article, we dive into the ideas and mathematics behind the origin of these fingerprints. This article explores the fascinating idea: the theory of <strong>critical transitions</strong> that originates from ecology and climate science and asks whether financial markets behave the same way before a crash. The short answer is: <strong>not quite</strong> — but the detour through the math reveals something just as interesting.</p>
+<p>In this article, we discuss briefly the ideas and mathematics behind the above hypothesis. The theory of <strong>critical transitions</strong> that originates from ecology and climate science asks whether financial markets behave the same way before a crash. The short answer is: <strong>not quite</strong> — but the detour through the math reveals something just as interesting.</p>
+<p>Complex systems have tipping points beyond which the stability of the system can shift abruptly. The financial crisis are generally preceded by a period of increasing volatility that could be an early warning signal of the impending crisis. Understanding if empirical observation of volatility signatures that appears in the data <strong>before</strong> the crash, a kind of &ldquo;early warning signal&rdquo; (EWS) that could alert investors and policymakers.
+System risk in financial systems is followed by increasing cross correlations or information dissipation across financial sectors. However, it is still an open question whether volatility can be used as a reliable early warning signal for financial crises.</p>
 <h2 id="two-competing-views-of-crashes">Two Competing Views of Crashes</h2>
-<p>System risk in financial systems is followed by increasing cross correlations or information dissipation across financial sectors.However, the evidence for this is mixed, and it is still an open question whether volatility can be used as a reliable early warning signal for financial crises.</p>
 <p><strong>View 1 — Efficient Markets:</strong>
 Economists have long disagreed about whether markets tip at all. The efficient-markets view holds that since markets are efficient and prices incorporate all available information, there is nothing to predict. Crashes are the result of unexpected external shocks — a surprise bankruptcy, a geopolitical event, a natural disaster. If the shock is truly unpredictable, then no early warning signals are possible.</p>
 <p><strong>View 2 — Complex Systems / Tipping Point:</strong>
 The complex-systems view — Markets are complex dynamical systems evoling under a potential well dictated by the economy&rsquo;s dynamical attractor. The noisy fluctuations are the aggregate of all the micro-scale disturbances — trades, tweets, earnings surprises — that a coarse-grained picture cannot see.
 with multiple attractors and internal feedbacks, the system may be pushed towards a <em>tipping point</em>, and generic precursors appear in the statistical structure of the time series — <strong>before</strong> the crash. This is the view that we take in this article.</p>
-<h2 id="early-warning-signals-do-markets-give-a-hint-before-they-break">Early Warning Signals: Do markets give a hint before they break?</h2>
-<p>This brings us to focus on critical transitions and tipping points under which is the theory of abrupt transitions for the underlying system from one state to another.</p>
-<p>Critical slowing down leaves three measurable fingerprints in any time series: rising lag-1 autocorrelation, rising variance, and a reddening power spectrum. These generic early warning signals can be read without knowing the underlying equations of motion — making them a powerful tool for anticipating abrupt transitions in complex systems.</p>
-<h2 id="can-a-stock-index-be-a-ball-in-a-bowl">Can a stock index be a ball in a bowl?</h2>
-<p>A stable system recovers form small perturbations, and the potential landscape informs us about the stablility properties and how the system evolves in this landspace. But when the system approaches a tipping point, it becomes more sensitive to disturbances. Under small disturbanaces, a system recovers more slowly from small perturbations. It&rsquo;s rate of recovery is directly related to the curvature of the potential near the equilibrium. As the tipping point approaches, recovery slows down. That sluggishness leaves three measurable fingerprints in the data — long before the shift itself. This post derives where the fingerprints come from, and where the derivation can be trusted.</p>
+<p>This brings us to focus on critical transitions and tipping points under which is the theory of abrupt transitions for the underlying system from one state to another. Critical slowing down leaves three measurable fingerprints in any time series: rising lag-1 autocorrelation, rising variance, and a reddening power spectrum. These generic early warning signals can be read without knowing the underlying equations of motion — making them a powerful tool for anticipating abrupt transitions in complex systems.</p>
+<h2 id="visualization-of-a-stock-index-as-a-ball-in-an-economic-bowl-landscape">Visualization of a stock index as a ball in an economic bowl landscape</h2>
 <p>Picture a ball rolling inside a shallow bowl. Push it sideways and it rolls back. Now imagine the bowl flattening: the same nudge sends the ball further from the bottom, and it takes longer to settle. In the limit where the bowl becomes flat, a tiny perturbation is enough to push the ball over the lip into a different basin entirely.</p>
 <iframe 
   src="/ews-widgets/ball-in-bowl.html" 
@@ -37,9 +34,9 @@ with multiple attractors and internal feedbacks, the system may be pushed toward
   height="700px" 
   style="border:none;">
 </iframe>
-<p>Real systems live in landscapes with several such bowls. A clear, plant-rich shallow lake sits in one basin; the same lake, after eutrophication, sits in another (turbid, algae-dominated)<sup><a href="#ref1">[1]</a></sup>. Climate models show similar bistability for the Atlantic Meridional Overturning Circulation. In each case, the <em>depth of the bowl</em> — how strongly the system pulls back to its current state — is the quantity that flattens before a transition.</p>
+A stable system recovers form small perturbations, and the potential landscape informs us about the stablility properties and how the system evolves in this landspace. But when the system approaches a tipping point, it becomes more sensitive to disturbances. Under small disturbanaces, a system recovers more slowly from small perturbations. It's rate of recovery is directly related to the curvature of the potential near the equilibrium. As the tipping point approaches, recovery slows down. That sluggishness leaves three measurable fingerprints in the data — long before the shift itself. This post derives where the fingerprints come from, and where the derivation can be trusted.
 <h2 id="from-picture-to-equations-a-mathematical-model">From picture to equations: A Mathematical Model</h2>
-<p>The mathematical fact we will prove is that a flattening bowl produces three statistical signatures, all readable from a noisy time series of the system: rising lag-1 autocorrelation, rising variance, and a power spectrum that <em>reddens</em> (gains weight at low frequencies). What makes them <em>generic</em> early warning signals is that they are universal consequences of a weakening restoring force, regardless of the details of the system.</p>
+<p>A flattening bowl produces three statistical signatures, all readable from a noisy time series of the system: rising lag-1 autocorrelation, rising variance, and a power spectrum that <em>reddens</em> (gains weight at low frequencies). What makes them <em>generic</em> early warning signals is that they are universal consequences of a weakening restoring force, regardless of the details of the system.</p>
 <p>Treat the log of a stock index as the state
 u
 u of a one-dimensional dynamical system. The &ldquo;potential&rdquo; is whatever smooth bull- and bear-market attractors the economy happens to sit in. The noise
@@ -112,9 +109,8 @@ S(\omega) = \frac{\sigma^2}{\alpha^2 + \omega^2}.
 <p>The model breaks in several ways worth flagging up front:</p>
 <p>The linearisation assumes small deviations. When the noise is large enough that the ball routinely explores both basins, the OU approximation fails and the variance is dominated by basin-hopping rather than within-basin diffusion. The widget illustrates this for \( \sigma \gtrsim 0.35 \): the AC\(_1\) readout becomes unreliable because the particle is sampling two equilibria.</p>
 <p>Constant noise is a strong assumption. If \( \sigma \) varies in time, the OU formulas predict that variance and the spectrum scale with \( \sigma^2 \) at every value of \( \alpha \) — so variance can rise without \( \alpha \) shrinking. Autocorrelation, by contrast, depends only on \( \alpha \). This algebraic asymmetry is the entire subject of Part 2; it is also the loophole that makes financial early warning signals harder than ecological ones.</p>
-<p>Estimation is delicate. Both autocorrelation and variance are sensitive to the detrending bandwidth and the rolling-window length. Two analysts working on the same dataset can reach different qualitative conclusions if they choose different smoothing parameters<sup><a href="#ref5">[5]</a></sup>. Sensitivity analyses across a grid of bandwidths are now considered standard.</p>
-<p>Different bifurcations leave different fingerprints. The cubic normal form covers fold bifurcations only. Transcritical, Hopf, and pitchfork bifurcations have their own statistical signatures, and not all three CSD indicators apply uniformly across them. The generic claim is that <em>something</em> in the spectrum or covariance rises — not always the same something.</p>
-<p>Finally, the literature contains genuine successes — the Carpenter et al. whole-lake experiment<sup><a href="#ref6">[6]</a></sup> in particular — and genuine failures, of which financial crashes are the most pedagogically useful. That is where Part 2 picks up.</p>
+<p>Both autocorrelation and variance are sensitive to the detrending bandwidth and the rolling-window length. Two analysts working on the same dataset can reach different qualitative conclusions if they choose different smoothing parameters<sup><a href="#ref5">[5]</a></sup>.
+Different bifurcations leave different fingerprints. The cubic normal form covers fold bifurcations only. Transcritical, Hopf, and pitchfork bifurcations have their own statistical signatures, and not all three CSD indicators apply uniformly across them.</p>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
 <li>Scheffer (2009), <em>Critical Transitions in Nature and Society</em><sup><a href="#ref7">[7]</a></sup> — a book-length treatment that builds the bistability picture across ecology, climate, and society. Read first if the math is new; intuition before formalism.</li>

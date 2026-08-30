@@ -2,207 +2,207 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Home</title>
-    <link>https://shashankkroy.github.io/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Complex-Systems</title>
-      <link>https://shashankkroy.github.io/tags/complex-systems/</link>
+      <link>http://localhost:1313/tags/complex-systems/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/complex-systems/</guid>
+      <guid>http://localhost:1313/tags/complex-systems/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Critical-Transitions</title>
-      <link>https://shashankkroy.github.io/tags/critical-transitions/</link>
+      <link>http://localhost:1313/tags/critical-transitions/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/critical-transitions/</guid>
+      <guid>http://localhost:1313/tags/critical-transitions/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Early-Warning-Signals</title>
-      <link>https://shashankkroy.github.io/tags/early-warning-signals/</link>
+      <link>http://localhost:1313/tags/early-warning-signals/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/early-warning-signals/</guid>
+      <guid>http://localhost:1313/tags/early-warning-signals/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Financial-Markets</title>
-      <link>https://shashankkroy.github.io/tags/financial-markets/</link>
+      <link>http://localhost:1313/tags/financial-markets/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/financial-markets/</guid>
+      <guid>http://localhost:1313/tags/financial-markets/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Quantitative-Finance</title>
-      <link>https://shashankkroy.github.io/tags/quantitative-finance/</link>
+      <link>http://localhost:1313/tags/quantitative-finance/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/quantitative-finance/</guid>
+      <guid>http://localhost:1313/tags/quantitative-finance/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Machine Learning, Neural Networks, Uncertainty Quantification, AI</title>
-      <link>https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</link>
+      <link>http://localhost:1313/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</link>
       <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</guid>
+      <guid>http://localhost:1313/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Deeplearning for Weather Predictions</title>
-      <link>https://shashankkroy.github.io/tags/deeplearning-for-weather-predictions/</link>
+      <link>http://localhost:1313/tags/deeplearning-for-weather-predictions/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/deeplearning-for-weather-predictions/</guid>
+      <guid>http://localhost:1313/tags/deeplearning-for-weather-predictions/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Variational Data Assimilation, Machine Learning, Neural Networks, Uncertainty Quantification, AI</title>
-      <link>https://shashankkroy.github.io/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</link>
+      <link>http://localhost:1313/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</link>
       <pubDate>Sat, 23 Nov 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</guid>
+      <guid>http://localhost:1313/tags/variational-data-assimilation-machine-learning-neural-networks-uncertainty-quantification-ai/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Chaos Theory</title>
-      <link>https://shashankkroy.github.io/tags/chaos-theory/</link>
+      <link>http://localhost:1313/tags/chaos-theory/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/chaos-theory/</guid>
+      <guid>http://localhost:1313/tags/chaos-theory/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Diffusion Models</title>
-      <link>https://shashankkroy.github.io/tags/diffusion-models/</link>
+      <link>http://localhost:1313/tags/diffusion-models/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/diffusion-models/</guid>
+      <guid>http://localhost:1313/tags/diffusion-models/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Dynamical Systems</title>
-      <link>https://shashankkroy.github.io/tags/dynamical-systems/</link>
+      <link>http://localhost:1313/tags/dynamical-systems/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/dynamical-systems/</guid>
+      <guid>http://localhost:1313/tags/dynamical-systems/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Ordinary Differential Equations</title>
-      <link>https://shashankkroy.github.io/tags/ordinary-differential-equations/</link>
+      <link>http://localhost:1313/tags/ordinary-differential-equations/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/ordinary-differential-equations/</guid>
+      <guid>http://localhost:1313/tags/ordinary-differential-equations/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Probabilistic Models in Deep Learning</title>
-      <link>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</link>
+      <link>http://localhost:1313/tags/probabilistic-models-in-deep-learning/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/probabilistic-models-in-deep-learning/</guid>
+      <guid>http://localhost:1313/tags/probabilistic-models-in-deep-learning/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Stochastic Differential Equation</title>
-      <link>https://shashankkroy.github.io/tags/stochastic-differential-equation/</link>
+      <link>http://localhost:1313/tags/stochastic-differential-equation/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/stochastic-differential-equation/</guid>
+      <guid>http://localhost:1313/tags/stochastic-differential-equation/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Covariant Lyapunov Vectors</title>
-      <link>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</link>
+      <link>http://localhost:1313/tags/covariant-lyapunov-vectors/</link>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/covariant-lyapunov-vectors/</guid>
+      <guid>http://localhost:1313/tags/covariant-lyapunov-vectors/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Lorenz-63</title>
-      <link>https://shashankkroy.github.io/tags/lorenz-63/</link>
+      <link>http://localhost:1313/tags/lorenz-63/</link>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/lorenz-63/</guid>
+      <guid>http://localhost:1313/tags/lorenz-63/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Ensemble Kalman Filter</title>
-      <link>https://shashankkroy.github.io/tags/ensemble-kalman-filter/</link>
+      <link>http://localhost:1313/tags/ensemble-kalman-filter/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/ensemble-kalman-filter/</guid>
+      <guid>http://localhost:1313/tags/ensemble-kalman-filter/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Filter Stabiltiy</title>
-      <link>https://shashankkroy.github.io/tags/filter-stabiltiy/</link>
+      <link>http://localhost:1313/tags/filter-stabiltiy/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/filter-stabiltiy/</guid>
+      <guid>http://localhost:1313/tags/filter-stabiltiy/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Optimal Transport</title>
-      <link>https://shashankkroy.github.io/tags/optimal-transport/</link>
+      <link>http://localhost:1313/tags/optimal-transport/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/optimal-transport/</guid>
+      <guid>http://localhost:1313/tags/optimal-transport/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
       <title>Sinkhorn Divergnce</title>
-      <link>https://shashankkroy.github.io/tags/sinkhorn-divergnce/</link>
+      <link>http://localhost:1313/tags/sinkhorn-divergnce/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/sinkhorn-divergnce/</guid>
+      <guid>http://localhost:1313/tags/sinkhorn-divergnce/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

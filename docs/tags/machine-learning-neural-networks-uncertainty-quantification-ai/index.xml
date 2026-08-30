@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Machine Learning, Neural Networks, Uncertainty Quantification, AI on Home</title>
-    <link>https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</link>
+    <link>http://localhost:1313/tags/machine-learning-neural-networks-uncertainty-quantification-ai/</link>
     <description>Recent content in Machine Learning, Neural Networks, Uncertainty Quantification, AI on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/machine-learning-neural-networks-uncertainty-quantification-ai/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/machine-learning-neural-networks-uncertainty-quantification-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>4DVarNet-LU: An neural ensemble DA model for uncertainty quantification.</title>
-      <link>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</link>
+      <link>http://localhost:1313/research-statement/uncertaitny-quantification-lu/</link>
       <pubDate>Tue, 25 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/research-statement/uncertaitny-quantification-lu/</guid>
+      <guid>http://localhost:1313/research-statement/uncertaitny-quantification-lu/</guid>
       <description>Can an ensemble based on location-uncertainty generate a reliable ensemble in neural DA?</description>
       <content:encoded><![CDATA[<h2 id="the-story-so-far">The story so far</h2>
 <p>Modern geophysical systems are dominated by coherent structures: jets, eddies, fronts, filaments, and sharp interfaces. In such systems, forecast errors are rarely pointwise or purely additive. Instead, they are primarily structural and geometric, arising from uncertainties in the position, shape, and evolution of these coherent features.</p>
