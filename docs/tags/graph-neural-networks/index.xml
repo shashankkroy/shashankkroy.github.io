@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Graph Neural Networks on Home</title>
+    <link>http://localhost:1313/tags/graph-neural-networks/</link>
+    <description>Recent content in Graph Neural Networks on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/graph-neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Graph Neural Networks for Scientific Machine Learning</title>
+      <link>http://localhost:1313/projects/graph/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/graph/</guid>
+      <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

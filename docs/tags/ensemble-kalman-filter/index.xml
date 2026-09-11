@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Ensemble Kalman Filter on Home</title>
-    <link>https://shashankkroy.github.io/tags/ensemble-kalman-filter/</link>
+    <link>http://localhost:1313/tags/ensemble-kalman-filter/</link>
     <description>Recent content in Ensemble Kalman Filter on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/ensemble-kalman-filter/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ensemble-kalman-filter/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Numerical filter stability: Do wrong priors at t=0 affect long term posterior?</title>
-      <link>https://shashankkroy.github.io/research-statement/filter-stability/</link>
+      <link>http://localhost:1313/research-statement/filter-stability/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/research-statement/filter-stability/</guid>
+      <guid>http://localhost:1313/research-statement/filter-stability/</guid>
       <description>understanding filter stability and it&amp;#39;s importance</description>
       <content:encoded><![CDATA[<h2 id="general-overview-of-the-problem">General overview of the problem</h2>
 <p>Weather, ocean, atmosphere to name a few are physical systems in numerical weather prediction which have huge degrees of freedom and are modelled uisng coupled nonlinear PDEs. When a general nonlinear dynamical system is chaotic, two nearby states evolve and deaprt from each other and predictability skill of such systems is very much limited to time-scales which are fixed by the exponents called lyapunov exponents. In practice, purely model based prediction is impossible for such systems as unavoidable errors in initial conditons, model parameters and error in the model equations themselves get quickly amplifiled, making the error huge and essenstially of the size of the attractor (Palmer(2013)).</p>

@@ -2,17 +2,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on Home</title>
-    <link>https://shashankkroy.github.io/projects/</link>
+    <link>http://localhost:1313/projects/</link>
     <description>Recent content in Projects on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Resources for Scientific Machine Learning and Data Assimilation</title>
-      <link>https://shashankkroy.github.io/projects/resources/</link>
+      <title>Graph Neural Networks for Scientific Machine Learning</title>
+      <link>http://localhost:1313/projects/graph/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/graph/</guid>
+      <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Atmospheric Rivers and their Impact on Precipitation</title>
+      <link>http://localhost:1313/projects/atmospheric_rivers/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/resources/</guid>
+      <guid>http://localhost:1313/projects/atmospheric_rivers/</guid>
+      <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
+      <content:encoded><![CDATA[<p>Atmospheric Rivers are long, narrow bands of concentrated water vapor in the atmosphere that transport large amounts of moisture and are responsible for a significant portion of the precipitation in many regions, particularly along the west coasts of continents. Understanding atmospheric rivers is crucial for improving weather and climate models, as they can lead to extreme precipitation events and flooding.</p>
+<h2 id="ardts">ARDTs</h2>
+<p>Atmospheric River Detection Tools (ARDTs) are algorithms and methods used to identify and track atmospheric rivers in observational data and model outputs. These tools are essential for studying the characteristics, frequency, and impacts of atmospheric rivers on precipitation patterns.</p>
+<p>They are responsible for 90% of global moisture transport. They are also responsible for producing extreme precipitation events and flooding in many regions. Understanding atmospheric rivers is crucial for improving weather and climate models, as they can lead to extreme precipitation events and flooding.
+ARs produce over 150mm/day along their central axis and mountain landfall locations can produce over 500mm/day. The Himalaya are naturally prone to water-induced hazards due to their steep terrain and intense weather patterns, assumes an important role in intensifying hazards by extracting large moisture content through orographic processes\cite{reference1}.</p>
+<p>A topology based approach to compute the topological skeleton of atmospheric rivers is proposed in \cite{reference2}. The topological skeleton of an atmospheric river is a simplified representation of its structure, capturing the essential features and connectivity of the moisture transport pathways. This approach allows for a more efficient analysis of atmospheric rivers, enabling researchers to better understand their dynamics and impacts on precipitation patterns. It is based on gradient based topological descriptor called the Morse Complex.</p>
+<p>Morse Complex is a mathematical framework used to analyze the topological structure of scalar fields, such as atmospheric moisture distributions. It provides a way to identify critical points, such as maxima, minima, and saddle points, and to understand the connectivity of these points in the context of the underlying field. By applying Morse Complex analysis to atmospheric rivers, researchers can gain insights into the organization and behavior of moisture transport pathways, which can inform predictions of precipitation events and improve weather and climate models.</p>
+<p>Ensemble of AR boundaries</p>
+<h1 id="hypothesis">Hypothesis:</h1>
+<p>When the error has a structural component, the pixel level analysis is not sufficient to capture the uncertainty in the system. We want to explore the use of topological descriptors, such as Morse Complex.</p>
+<p>We want to explore the</p>
+<p>Pangu-Weather and FourCastNet are two state-of-the-art deep learning models for weather forecasting. Pangu-Weather is a deep learning model that transformers.</p>
+<h2 id="refernces">Refernces</h2>
+<ol>
+<li>Thermodynamics of extreme precipitation related to atmospheric rivers in two major Himalayan basins</li>
+<li></li>
+</ol>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Resources for Scientific Machine Learning and Data Assimilation</title>
+      <link>http://localhost:1313/projects/resources/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/resources/</guid>
       <description>A collection of resources for scientific machine learning and data assimilation.</description>
       <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
 <p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview with his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM.</p>
@@ -22,33 +59,40 @@
     </item>
     
     <item>
-      <title></title>
-      <link>https://shashankkroy.github.io/projects/atmospheric_rivers/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>Turning LoRA into a General-purpose generative model for Scientific Machine Learning</title>
+      <link>http://localhost:1313/projects/lora/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/atmospheric_rivers/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
+      <guid>http://localhost:1313/projects/lora/</guid>
+      <description>Research project on transforming LoRA into a general-purpose generative model for scientific machine learning.</description>
+      <content:encoded><![CDATA[<h2 id="hypothesis">Hypothesis:</h2>
+<p>The purpose is to use transfer learning to adapt a pre-trained generative model (e.g., Stable Diffusion) to scientific machine learning tasks, specifically for data assimilation and uncertainty quantification. By leveraging the low-rank adaptation capabilities of LoRA, we can fine-tune the model to generate samples that are consistent with the underlying physics of the system being studied. The transfer learning approach allows us to efficiently adapt the model to new scientific domains without requiring extensive retraining, making it a powerful tool for scientific machine learning applications. We know that LoRA has been used for fine-tuning text-to-image generation, but we want to explore its potential for scientific machine learning tasks, where the goal is to generate samples that are consistent with the underlying physics of the system being studied.</p>
+<p>Given a pre-trained generative model (e.g., Stable Diffusion), we can use LoRA to learn a low-rank adaptation that captures the dynamics of a scientific system, enabling the model to generate samples that are consistent with the underlying physics.</p>
+<h2 id="literature-review">Literature Review:</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a> by Edward J. Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, and Weizhu Chen. This paper introduces the concept of low-rank adaptation (LoRA) for fine-tuning large language models, which can be applied to generative models for scientific machine learning tasks.</li>
+<li></li>
+</ul>
+]]></content:encoded>
     </item>
     
     <item>
       <title></title>
-      <link>https://shashankkroy.github.io/projects/lora/</link>
+      <link>http://localhost:1313/projects/unresolved_scales_in_da/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/lora/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://shashankkroy.github.io/projects/unresolved_scales_in_da/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/projects/unresolved_scales_in_da/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
+      <guid>http://localhost:1313/projects/unresolved_scales_in_da/</guid>
+      <description>&lt;p&gt;probabilistic score for closure in chaotic systems.
+&lt;a href=&#34;https://arxiv.org/pdf/2603.28671&#34;&gt;https://arxiv.org/pdf/2603.28671&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;people-to-follow&#34;&gt;People to follow:&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.gps.caltech.edu/people/tapio-schneider#publications-d2ddced7-tab&#34;&gt;https://www.gps.caltech.edu/people/tapio-schneider#publications-d2ddced7-tab&lt;/a&gt;
+Tapio Schneider is a professor at Caltech who works on climate modeling and data assimilation. His research focuses on developing machine learning methods for scientific applications, including generative models for data assimilation and uncertainty quantification.&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p>probabilistic score for closure in chaotic systems.
+<a href="https://arxiv.org/pdf/2603.28671">https://arxiv.org/pdf/2603.28671</a></p>
+<h2 id="people-to-follow">People to follow:</h2>
+<p><a href="https://www.gps.caltech.edu/people/tapio-schneider#publications-d2ddced7-tab">https://www.gps.caltech.edu/people/tapio-schneider#publications-d2ddced7-tab</a>
+Tapio Schneider is a professor at Caltech who works on climate modeling and data assimilation. His research focuses on developing machine learning methods for scientific applications, including generative models for data assimilation and uncertainty quantification.</p>
+]]></content:encoded>
     </item>
     
   </channel>
