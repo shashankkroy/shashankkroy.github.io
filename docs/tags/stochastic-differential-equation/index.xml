@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Stochastic Differential Equation on Home</title>
-    <link>http://localhost:1313/tags/stochastic-differential-equation/</link>
+    <link>https://shashankkroy.github.io/tags/stochastic-differential-equation/</link>
     <description>Recent content in Stochastic Differential Equation on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/stochastic-differential-equation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 12 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/stochastic-differential-equation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>From stochastic differential equations to the stock market</title>
-      <link>http://localhost:1313/posts/sde/</link>
+      <link>https://shashankkroy.github.io/posts/sde/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/sde/</guid>
+      <guid>https://shashankkroy.github.io/posts/sde/</guid>
       <description>Understanding the intuition behind stochastic differential equations and their applications in modeling stock prices and financial markets.</description>
       <content:encoded><![CDATA[<p>Who thought of the stock market as a stochastic process? The stock price is influenced by a multitude of factors, including economic indicators, political events, and investor sentiment. As a result, it exhibits random fluctuations and unpredictable behavior. Stochastic processes provide a mathematical framework for modeling such randomness and uncertainty in the stock market.</p>
 <p>But first, let&rsquo;s understand what a stochastic process is. A stochastic process is a collection of random variables that evolve over time according to certain probabilistic rules. Stochastic processes are widely used in various fields, including finance, physics, biology, and engineering, to describe phenomena that cannot be predicted with certainty.</p>

@@ -2,68 +2,183 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Projects on Home</title>
-    <link>http://localhost:1313/projects/</link>
+    <link>https://shashankkroy.github.io/projects/</link>
     <description>Recent content in Projects on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI based tropical cyclone track prediction in India</title>
+      <link>https://shashankkroy.github.io/projects/tc/</link>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/tc/</guid>
+      <description>We want to understand this and their impact on precipitation</description>
+      <content:encoded><![CDATA[<h1 id="background">Background:</h1>
+<p>India is a country that is highly vulnerable to tropical cyclones, which can cause significant damage to infrastructure, agriculture, economy and human life. Accurate prediction of tropical cyclone is crucial for disaster management and mitigation strategies.</p>
+<p>Cyclones
+The challenges of the physics based models in the coastal regions of India are due to the complex interactions between the ocean, atmosphere, and land surface. The Bay of Bengal is a semi-enclosed sea with complex bathymetry and coastline, which can lead to the formation of localized weather systems that are difficult to predict. Additionally, the region is prone to rapid intensification of tropical cyclones, which can make it challenging for physics based models to accurately forecast their intensity and track.</p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Topological study of evolving precipitation in India</title>
+      <link>https://shashankkroy.github.io/projects/raindeer/</link>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/raindeer/</guid>
+      <description>We want to understand this and their impact on precipitation</description>
+      <content:encoded><![CDATA[<h1 id="background">Background:</h1>
+<h1 id="hypothesis">Hypothesis:</h1>
+<p>Topology in the rainfall field may have information about the topograph pattern that collectively influence the rainfall pattern. We want to explore the use of topological descriptors, such as Morse Complex that have recently found interesting applications to determine the connectivity of the graph nodes applied to Atmospheric River.</p>
+<h2 id="refined-hypothesis">Refined hypothesis:</h2>
+<p>Notably, the AINWP is possible only because ERA5 data- a reanalysis product that assimilates observations into a numerical weather prediction model- is available. However, ERA5 is a global dataset and is not perfect because of the approximate nature of the reanalysis. Recently, Christensen et al. (2026) identify a recurrent, spatially coherent error in 2m temperature in ERA5 when comparing short-lead-time (6 h) forecasts from the MLWP model GraphCast against ERA5. We find that the same error feature is present in other MLWP models trained on ERA5, which arise from OI, when surface reports that are temporally displaced compared with the background forecast are assimilated.
+The spread from the ensemble of data assimilation partially flags these cases but is underdispersive. We assess the impact on a MLWP system trained on ERA5. While the MLWP model can largely ignore these unphysical error events, a small systematic degradation in forecast skill over the region is observed. We discuss the implications for using reanalysis as truth in machine-learning training and verification, and recommend simple changes to reduce such artefacts in future analyses.</p>
+<h2 id="era5-data-a-quick-overview-from-christensen-et-al-2026">ERA5 data: A quick overview (from Christensen et al. 2026)</h2>
+<p>ERA5 is based on the data assimilation system of the ECMWF Integrated Forecasting System (IFS) Cy41r2, which became operational on March 8, 2016. The reanalysis is produced using a four-dimensional variational (4D-Var) data assimilation process, which blends observations taken over a period of 12 hours with short-range (background) forecasts from the previous analysis update. In 1979, these observations numbered approximately 0.75 million per day, increasing to around 24 million a day by 2019 (Hersbach et al., 2020). ERA5 is produced at a horizontal resolution of 31 km, with 12-hour cycling from 9 pm to 9 am and vice versa, with hourly output saved. In addition to the main reanalysis, uncertainty information is generated by producing a lower resolution 10-member ensemble of 4D-Var reanalyses. This ensemble provides background-error covariance estimates for the high-resolution 4D-Var computation.</p>
+<p>demonstrated the utility of topological descriptors in identifying errors in atmospheric reanalysis. We want to explore the use of topological descriptors, such as Morse Complex to identify the errors in the rainfall field both in space and time. We want to explore the use of topological descriptors, such as Morse Complex that have recently found interesting applications to determine the connectivity of the graph nodes applied to Atmospheric River.</p>
+<p>Refer to paper: Error in ERA5 2m temperature identified using GraphCast</p>
+<p>New paper accepted in QJ: Error in ERA5 2m temperature identified using GraphCast</p>
+<p>What? Approx 7% of 6am UTC samples have a substantial error in near surface temperature over Ethiopia.</p>
+<p>Why? Temporal error in the reanalysis due to sparse observations taken later than the standard synoptic time of 6am, combined with thresholding behaviour due to quality control checks in DA procedure.</p>
+<p>What about ML weather prediction models trained on ERA5? Well, GraphCast largely learns to ignore the error (which is how we identified it in the first place) - but it does show systematic biases consistent with hedging against it.</p>
+<p>What next for ML weather prediction models? We propose that during training they should use the uncertainty estimates provided with ERA5, as these indicate the quality of the reanalysis on a case-by-case basis.</p>
+<p>A substantial error in near surface temperature -
+Why? Temporal error in the reanalysis due to sparse observations taken later than the standard synoptic time of 6am, combined with thresholding behaviour due to quality control checks in DA procedure.</p>
+<p>What about ML weather prediction models trained on ERA5? Well, GraphCast largely learns to ignore the error (which is how we identified it in the first place) - but it does show systematic biases consistent with hedging against it.</p>
+<p>What next for ML weather prediction models? We propose that during training they should use the uncertainty estimates provided with ERA5, as these indicate the quality of the reanalysis on a case-by-case basis.</p>
+<p>Why topological descriptors? When the error has a structural component, the pixel level analysis is not sufficient to capture the uncertainty in the system. We want to explore the use of topological descriptors, such as Morse Complex.</p>
+<h1 id="india">India</h1>
+<p></p>
+<h1 id="preprocesssing-steps">Preprocesssing Steps:</h1>
+<p>Can we seperate the signatures - distinguish between multiple datasets of the same region?
+Can we seperate the signatures - distinguish between multiple datasets of the same region? Can we use topological descriptors to identify the differences in the rainfall patterns across different datasets?
+Can we use topological descriptors to identify the changes in the rainfall patterns over time?</p>
+<h1 id="datasets">Datasets:</h1>
+<ul>
+<li>
+<p>CHIRPS</p>
+</li>
+<li>
+<p>IMERG</p>
+</li>
+<li>
+<p>ERA5</p>
+</li>
+<li></li>
+</ul>
+<h1 id="references">References:</h1>
+<p>Christensen, H.M., Barker, J., Antonio, B., Bonavita, M., Dahoui, M. &amp; de Rosnay, P. (2026) Error in ERA5 2-m temperature identified using GraphCast. Quarterly Journal of the Royal Meteorological Society, e70309. Available from: <a href="https://doi.org/10.1002/qj.70309">https://doi.org/10.1002/qj.70309</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>Graph Neural Networks for Scientific Machine Learning</title>
-      <link>http://localhost:1313/projects/graph/</link>
+      <link>https://shashankkroy.github.io/projects/graph/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/graph/</guid>
+      <guid>https://shashankkroy.github.io/projects/graph/</guid>
       <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
-      <content:encoded><![CDATA[]]></content:encoded>
+      <content:encoded><![CDATA[<p>From grids to Graph nodes: The motivation</p>
+<p>Observations that are obtained from satellites, radars, and other sources are often in the form of irregularly spaced data points. When the data sources are irregularly spaced, it is often more appropriate to represent the data as a graph, where the nodes represent the data points and the edges represent the relationships between them. The gridded products are obtained from these irregularly spaced data points through interpolation and other techniques. By representing the data as a graph, we can directly work with the observation network based data to capture the underlying relationships and dependencies between the data points.</p>
+<p>GNN: they allow us to encode relationships via connectivity, beyond purely spatial proximity. This is particularly useful in scientific applications where the relationships between data points may be complex and not solely based on their spatial locations. GraphCast was a recent work that used Graph Neural Networks for weather forecasting by Google.</p>
+<p>Reduced Gaussian Grid:</p>
+<ul>
+<li>lats are determined by the roots of the Legendre polynomial of degree N, where N is the number of latitudes. The lons are determined by dividing the circumference of the Earth into equal segments based on the number of longitudes. Thus the number of longitudes decreases as we move towards the pole. The reduced Gaussian grid is a type of grid that is used in numerical weather prediction and climate modeling. It is designed to reduce the number of grid points in regions where the data is less important, while maintaining a high resolution in regions where the data is more important. This allows for more efficient computations and better representation of important features in the data.</li>
+</ul>
+<p>A priori choice of the node connectivity is a challenge. We want to explore the use of topological descriptors, such as Morse Complex, to determine the connectivity of the graph nodes.</p>
+<ol>
+<li>Bipartite Structure - Partition the graph into two sets of nodes, where one set represents the input features and the other set represents the output features.</li>
+</ol>
+<h1 id="what-was-new-to-me">What was new to me:</h1>
+<p>Attentional Convolutional Networks (ACNs) are a type of neural network architecture that combines the strengths of convolutional neural networks (CNNs) and attention mechanisms.</p>
+<p>In transformer based models,</p>
+<p>** Project Ideas: **
+Downscaling the rainfall data in Indian region from the coarse resolution of the ERA5 reanalysis to a finer resolution using Graph Neural Networks. The goal is to improve the spatial resolution of the rainfall data while preserving important features and patterns in the data. This can be useful for applications such as hydrological modeling, flood forecasting, and climate impact assessments.</p>
+<p>** Project Ideas: extended analysis with morse complex built from the rainfall data **
+Related: Predicting the rainfall in the Indian region using Graph Neural Networks. The goal is to develop a model that can accurately predict rainfall patterns based on historical data and other relevant features. This can be useful for applications such as agriculture, water resource management, and disaster preparedness.</p>
+<p>** Project Ideas: Can you apply consistency model framework to the rainfall data where you leverage a pre-trained model on the ERA5 reanalysis data and fine-tune it on the rainfall data to improve the accuracy of the predictions.**</p>
+<p>2026-07-07_Vertrag_vorbehaltlich_AA-Erlaubnis. 2026-07-06_Erklärung-Beschäftigungsverhältnis_final_incl-Unterlagen_sign.pdf</p>
+<p>What You will Learn:</p>
+<ul>
+<li>How to represent irregularly spaced data as a graph and work with graph-based representations.</li>
+<li>VIT : Visiion Transformer</li>
+<li>Graph Neural Networks (GNNs)</li>
+<li>Sparse Attention( quadratic scaling limits the number of tokens one can process, so we want to explore sparse attention mechanisms that can reduce the computational complexity while maintaining performance. This can be useful for processing large graphs with many nodes and edges, where the number of tokens can be very large.)</li>
+<li>Shared KV, Quantization, and other techniques to reduce the memory footprint of the model.</li>
+</ul>
+<p>Cons of Transformers: They require more data for the same task because of no inductive bias. They also have high memory footprints.</p>
+<p>References:</p>
+<ul>
+<li>GraphCast: <a href="https://arxiv.org/pdf/2603.08692">https://arxiv.org/pdf/2603.08692</a></li>
+<li>ECMWF Anemoi: <a href="https://anemoi.readthedocs.io/en/latest/">https://anemoi.readthedocs.io/en/latest/</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Neural Fields: NNs to encode fields for unstructured data</title>
+      <link>https://shashankkroy.github.io/projects/neuralfields/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/neuralfields/</guid>
+      <description>Can we use parameterized neural networks to encode fields for unstructured data, and use them for scientific machine learning tasks?</description>
+      <content:encoded><![CDATA[<p>Operator learning is a promising paradigm for surrogate modeling by learning mappings between function spaces rather than discretized data points. Unlike CNNs and GNNs, Neural Operators learn and treat physical variables as continuous fields, enabling evaluation at any arbitrary point, removing any constraints on discretization. The Fourier Neural Operator (FNO) [29] does this by approximating the Greens Function: the integral of kernel of the unknown operator in a learned latent space using spectral methods. They are limited to uniform grids for efficient Fast Fourier Transform operations, limiting their applicability to unstructured meshes. FNOs are extended by Graph based counterparts - GINOs to handle non-uniform discretizations and geometric variability.</p>
+<p>Neural Fields, also known as Implicit Neural Representations (INRs), offer an alternative approach.
+The core idea of the representation lies in directly mapping spatial coordinates to function values - continuous representations of physical fields through neural network parameterizations.</p>
+<h2 id="methodology">Methodology</h2>
+<p>First, both geometric variations (represented by signed distance function fields) and output physical fields are encoded into compact latent representations. Second, a mapping between the input and output latent encodings is approximated by a separate neural network: the processor model. Despite proving good performance, such approaches face overfitting challenges on small datasets. The separate latent processing stage introduces an optimization that is decoupled from the final output field reconstruction: small regression errors in the latent space can induce larger errors in the decoded reconstructions.</p>
+<h2 id="refefences">Refefences:</h2>
+<p><a href="https://arxiv.org/html/2505.14704v1">https://arxiv.org/html/2505.14704v1</a></p>
+]]></content:encoded>
     </item>
     
     <item>
       <title>Atmospheric Rivers and their Impact on Precipitation</title>
-      <link>http://localhost:1313/projects/atmospheric_rivers/</link>
+      <link>https://shashankkroy.github.io/projects/atmospheric_rivers/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/atmospheric_rivers/</guid>
+      <guid>https://shashankkroy.github.io/projects/atmospheric_rivers/</guid>
       <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
-      <content:encoded><![CDATA[<p>Atmospheric Rivers are long, narrow bands of concentrated water vapor in the atmosphere that transport large amounts of moisture and are responsible for a significant portion of the precipitation in many regions, particularly along the west coasts of continents. Understanding atmospheric rivers is crucial for improving weather and climate models, as they can lead to extreme precipitation events and flooding.</p>
+      <content:encoded><![CDATA[<p><span class="cv-badge cv-badge-solid">Open</span>
+ <span class="cv-badge">Looking for students</span>
+</p>
+<p>Atmospheric Rivers are long, narrow bands of concentrated water vapor in the atmosphere that transport large amounts of moisture and are responsible for a significant portion of the precipitation in many regions, particularly along the west coasts of continents. Understanding atmospheric rivers is crucial for improving weather and climate models, as they can lead to extreme precipitation events and flooding.</p>
 <h2 id="ardts">ARDTs</h2>
 <p>Atmospheric River Detection Tools (ARDTs) are algorithms and methods used to identify and track atmospheric rivers in observational data and model outputs. These tools are essential for studying the characteristics, frequency, and impacts of atmospheric rivers on precipitation patterns.</p>
 <p>They are responsible for 90% of global moisture transport. They are also responsible for producing extreme precipitation events and flooding in many regions. Understanding atmospheric rivers is crucial for improving weather and climate models, as they can lead to extreme precipitation events and flooding.
 ARs produce over 150mm/day along their central axis and mountain landfall locations can produce over 500mm/day. The Himalaya are naturally prone to water-induced hazards due to their steep terrain and intense weather patterns, assumes an important role in intensifying hazards by extracting large moisture content through orographic processes\cite{reference1}.</p>
 <p>A topology based approach to compute the topological skeleton of atmospheric rivers is proposed in \cite{reference2}. The topological skeleton of an atmospheric river is a simplified representation of its structure, capturing the essential features and connectivity of the moisture transport pathways. This approach allows for a more efficient analysis of atmospheric rivers, enabling researchers to better understand their dynamics and impacts on precipitation patterns. It is based on gradient based topological descriptor called the Morse Complex.</p>
 <p>Morse Complex is a mathematical framework used to analyze the topological structure of scalar fields, such as atmospheric moisture distributions. It provides a way to identify critical points, such as maxima, minima, and saddle points, and to understand the connectivity of these points in the context of the underlying field. By applying Morse Complex analysis to atmospheric rivers, researchers can gain insights into the organization and behavior of moisture transport pathways, which can inform predictions of precipitation events and improve weather and climate models.</p>
-<p>Ensemble of AR boundaries</p>
 <h1 id="hypothesis">Hypothesis:</h1>
 <p>When the error has a structural component, the pixel level analysis is not sufficient to capture the uncertainty in the system. We want to explore the use of topological descriptors, such as Morse Complex.</p>
-<p>We want to explore the</p>
-<p>Pangu-Weather and FourCastNet are two state-of-the-art deep learning models for weather forecasting. Pangu-Weather is a deep learning model that transformers.</p>
-<h2 id="refernces">Refernces</h2>
-<ol>
-<li>Thermodynamics of extreme precipitation related to atmospheric rivers in two major Himalayan basins</li>
-<li></li>
-</ol>
 ]]></content:encoded>
     </item>
     
     <item>
       <title>Resources for Scientific Machine Learning and Data Assimilation</title>
-      <link>http://localhost:1313/projects/resources/</link>
+      <link>https://shashankkroy.github.io/projects/resources/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/resources/</guid>
+      <guid>https://shashankkroy.github.io/projects/resources/</guid>
       <description>A collection of resources for scientific machine learning and data assimilation.</description>
       <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
-<p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview with his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM.</p>
+<p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview of this area and his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM. Their work on emulators also comes with a pytorch package for training neural emulators for PDEs.</p>
+<p>Courses in Scientific Machine Learning:
+<a href="https://neu4mes.github.io/teaching/">https://neu4mes.github.io/teaching/</a>
+<a href="https://physicsbaseddeeplearning.org/intro.html">https://physicsbaseddeeplearning.org/intro.html</a></p>
 <h2 id="resources-for-data-assimilation-and-uncertainty-quantification">Resources for Data Assimilation and Uncertainty Quantification</h2>
-<h2></h2>
+<h2 id="handbook-of-bayesian-deep-learning">Handbook of Bayesian Deep Learning</h2>
+<p><a href="https://zenodo.org/records/22114549">https://zenodo.org/records/22114549</a></p>
 ]]></content:encoded>
     </item>
     
     <item>
       <title>Turning LoRA into a General-purpose generative model for Scientific Machine Learning</title>
-      <link>http://localhost:1313/projects/lora/</link>
+      <link>https://shashankkroy.github.io/projects/lora/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/lora/</guid>
+      <guid>https://shashankkroy.github.io/projects/lora/</guid>
       <description>Research project on transforming LoRA into a general-purpose generative model for scientific machine learning.</description>
       <content:encoded><![CDATA[<h2 id="hypothesis">Hypothesis:</h2>
 <p>The purpose is to use transfer learning to adapt a pre-trained generative model (e.g., Stable Diffusion) to scientific machine learning tasks, specifically for data assimilation and uncertainty quantification. By leveraging the low-rank adaptation capabilities of LoRA, we can fine-tune the model to generate samples that are consistent with the underlying physics of the system being studied. The transfer learning approach allows us to efficiently adapt the model to new scientific domains without requiring extensive retraining, making it a powerful tool for scientific machine learning applications. We know that LoRA has been used for fine-tuning text-to-image generation, but we want to explore its potential for scientific machine learning tasks, where the goal is to generate samples that are consistent with the underlying physics of the system being studied.</p>
@@ -78,10 +193,10 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
     
     <item>
       <title></title>
-      <link>http://localhost:1313/projects/unresolved_scales_in_da/</link>
+      <link>https://shashankkroy.github.io/projects/unresolved_scales_in_da/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/unresolved_scales_in_da/</guid>
+      <guid>https://shashankkroy.github.io/projects/unresolved_scales_in_da/</guid>
       <description>&lt;p&gt;probabilistic score for closure in chaotic systems.
 &lt;a href=&#34;https://arxiv.org/pdf/2603.28671&#34;&gt;https://arxiv.org/pdf/2603.28671&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;people-to-follow&#34;&gt;People to follow:&lt;/h2&gt;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Neural Implicit Representations on Home</title>
+    <link>https://shashankkroy.github.io/tags/neural-implicit-representations/</link>
+    <description>Recent content in Neural Implicit Representations on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/neural-implicit-representations/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Neural Fields: NNs to encode fields for unstructured data</title>
+      <link>https://shashankkroy.github.io/projects/neuralfields/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/neuralfields/</guid>
+      <description>Can we use parameterized neural networks to encode fields for unstructured data, and use them for scientific machine learning tasks?</description>
+      <content:encoded><![CDATA[<p>Operator learning is a promising paradigm for surrogate modeling by learning mappings between function spaces rather than discretized data points. Unlike CNNs and GNNs, Neural Operators learn and treat physical variables as continuous fields, enabling evaluation at any arbitrary point, removing any constraints on discretization. The Fourier Neural Operator (FNO) [29] does this by approximating the Greens Function: the integral of kernel of the unknown operator in a learned latent space using spectral methods. They are limited to uniform grids for efficient Fast Fourier Transform operations, limiting their applicability to unstructured meshes. FNOs are extended by Graph based counterparts - GINOs to handle non-uniform discretizations and geometric variability.</p>
+<p>Neural Fields, also known as Implicit Neural Representations (INRs), offer an alternative approach.
+The core idea of the representation lies in directly mapping spatial coordinates to function values - continuous representations of physical fields through neural network parameterizations.</p>
+<h2 id="methodology">Methodology</h2>
+<p>First, both geometric variations (represented by signed distance function fields) and output physical fields are encoded into compact latent representations. Second, a mapping between the input and output latent encodings is approximated by a separate neural network: the processor model. Despite proving good performance, such approaches face overfitting challenges on small datasets. The separate latent processing stage introduces an optimization that is decoupled from the final output field reconstruction: small regression errors in the latent space can induce larger errors in the decoded reconstructions.</p>
+<h2 id="refefences">Refefences:</h2>
+<p><a href="https://arxiv.org/html/2505.14704v1">https://arxiv.org/html/2505.14704v1</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
