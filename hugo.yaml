@@ -64,7 +64,7 @@ params:
   profileMode:
     enabled: true # needs to be explicitly set
     title: Shashank Roy, Ph.D.
-    subtitle: "Incoming Postdoc, MIDS, KU Eichstätt-Ingolstadt \U0001F1E9\U0001F1EA · Postdoctoral Researcher, IMT Atlantique \U0001F1EB\U0001F1F7"
+    subtitle: "Incoming Postdoc, MIDS, KU Eichstätt-Ingolstadt \U0001F1E9\U0001F1EA"
     imageUrl: "images/new_dp_webpage.png"
     imageWidth: 240
     imageHeight: 240

@@ -6,7 +6,29 @@
     <description>Recent content in Graphs on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 12 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/graphs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/graphs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Topological study of evolving precipitation in India</title>
+      <link>https://shashankkroy.github.io/projects/alignment/</link>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/alignment/</guid>
+      <description>We want to understand this and their impact on precipitation</description>
+      <content:encoded><![CDATA[<h1 id="interpretability">Interpretability</h1>
+<p>Frontier labs and researcher have been exploring the use of interpretability methods to understand the decision-making process of neural networks in scientific applications. These methods can help us visualize and interpret the learned representations in neural networks, and investigate the role of feature interactions in scientific datasets and how they affect model predictions.</p>
+<h1 id="interpretability-x-ai4science">Interpretability x AI4Science</h1>
+<p>Possible directions to explore:</p>
+<ul>
+<li>Understanding the decision-making process of neural networks in scientific applications.</li>
+<li>Developing methods to visualize and interpret the learned representations in neural networks.</li>
+<li>Investigating the role of feature interactions in scientific datasets and how they affect model predictions.</li>
+<li>Can we interpretabiity be used to identify biases or errors in scientific datasets, such as those found in reanalysis products like ERA5?</li>
+</ul>
+<h1 id="references">References</h1>
+<p><a href="https://www.auai.org/uai2026/tutorials">https://www.auai.org/uai2026/tutorials</a></p>
+]]></content:encoded>
+    </item>
+    
     <item>
       <title>AI based tropical cyclone track prediction in India</title>
       <link>https://shashankkroy.github.io/projects/tc/</link>
