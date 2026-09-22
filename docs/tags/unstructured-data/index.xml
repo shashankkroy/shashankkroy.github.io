@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Unstructured Data on Home</title>
+    <link>https://shashankkroy.github.io/tags/unstructured-data/</link>
+    <description>Recent content in Unstructured Data on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/unstructured-data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
+      <link>https://shashankkroy.github.io/projects/mose_complex/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/mose_complex/</guid>
+      <description>Dive into the theory behind Morse Complex.</description>
+      <content:encoded><![CDATA[<h1 id="extract-a-graph-from-a-scalar-field-the-morse-complex">Extract a graph from a scalar field: The Morse Complex</h1>
+<p>Think of a way to characterize a scalar field contains topological information. Now in such a case, critical points of the functions can be used to define nodes or vertices. To connect one crticial point topologically to another, we need the information of the gradient along a path- the maximal path whose tangent vectors align with the gradient information along the path itself. This way, the Morse Complex gives us a structure that represents
+the gradient flow behavior and completely encapsulates the topology
+of level sets of a scalar function.  In short, what you will get is called a Morse Complex</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<h2 id="speaking-mathematically">Speaking Mathematically</h2>
+<p>Let $f :
+M → R$ be a smooth function defined on a 2D manifold, where
+$\nabla f$ denotes its gradient. A point $x \in M$ is called a critical point
+if $\nabla f(x) = 0$; otherwise, it is a regular point. A critical point is
+non-degenerate if its associated Hessian matrix is non-singular. A
+function $f$ is a Morse function if all of its critical points are nondegenerate and the critical points have distinct function values.</p>
+<p>At any regular point x, an integral line is a maximal
+path whose tangent vectors align with $\nabla f$. f increases along
+the integral line and each integral line originates and terminates at
+critical points, namely local minima, local maxima, or saddles.</p>
+<p>The stable manifold associated with a local maximum $p$ consists of the point itself and all regular points whose integral lines
+terminate at $p$. The unstable manifold associated with a local minimum $p$ is the point itself together with all regular points
+whose integral lines originate at $p$. A Morse function f is a
+Morse-Smale function if the stable and unstable manifolds intersect
+transversally. Ascending and descending manifolds are obtained as clusters of integral lines having common origin and destination respectively.</p>
+<p>In Morse-Smale functions, the integral lines
+only connect critical points of different indices. The index of a critical point $p$ is defined by the number of negative eigen values of the hessian matrix at that point.</p>
+<p>Each critical point of index $n$ is the origin of a set of integral lines
+that forms an ascending $d −n$-manifold. Symmetrically, it is the destination of a set of integral lines that forms a descending n-manifold.
+All ascending and descending manifolds of a Morse-Smale function
+intersect transversally. Therefore, given two critical points $a$ and $b$,
+where the index of $a$ is one less than the index of $b$, the intersection of
+the ascending manifold of $a$ and the descending manifold of $b$ is either
+empty or a $1$-manifold. The critical points and these $1$ manifolds are
+called nodes and arcs. The one-skeleton formed by the nodes and arcs
+forms the combinatorial structure of the MS complex.</p>
+<p>The combinatorial structure contains much of the semantic information of $f$ , and
+is useful for simplification and feature identification. The neighborhood of a node a of an MS complex $\Gamma $ is the set of nodes Na that are
+connected to a by an arc in $\Gamma$. Assuming transversality, the stable manifolds induce a decomposition of the domain into 2-cells, where local minima and saddles correspond to 0-cells, and the integral lines connecting them define 1-cells. The Morse complex segments the
+domain into regions where gradient flow behaves coherently.</p>
+<h2 id="computing-morse-complex">Computing Morse Complex</h2>
+<p>A combinatorially correct MS complex is very challenging. These algorithms are memory-intensive and computationally expensive,
+restricting their use to smaller datasets.</p>
+<h2 id="discrete-morse-theory">Discrete Morse Theory</h2>
+<p>Now that we are comfortable with the ideas of morse complex for smooth fields, remeber that many scientific data are only available on unstructured meshes.</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

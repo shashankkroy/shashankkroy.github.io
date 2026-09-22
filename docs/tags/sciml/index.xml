@@ -38,9 +38,13 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
       <description>A collection of resources for scientific machine learning and data assimilation.</description>
       <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
 <p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview of this area and his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM. Their work on emulators also comes with a pytorch package for training neural emulators for PDEs.</p>
+<p>For stochastic benchmarks, recently the group also developed a Stochbench
+<a href="https://tum-pbs.github.io/stocbench/">https://tum-pbs.github.io/stocbench/</a> for comparing different methods for next time prediction.</p>
 <p>Courses in Scientific Machine Learning:
 <a href="https://neu4mes.github.io/teaching/">https://neu4mes.github.io/teaching/</a>
 <a href="https://physicsbaseddeeplearning.org/intro.html">https://physicsbaseddeeplearning.org/intro.html</a></p>
+<p>Geometric deep learning and graph neural networks:
+<a href="https://geometricdeeplearning.com/lectures/">https://geometricdeeplearning.com/lectures/</a></p>
 <h2 id="resources-for-data-assimilation-and-uncertainty-quantification">Resources for Data Assimilation and Uncertainty Quantification</h2>
 <h2 id="ai4ocean">AI4OCEAN</h2>
 <p><a href="https://ai-for-ocean.github.io/workshop2026/">https://ai-for-ocean.github.io/workshop2026/</a></p>

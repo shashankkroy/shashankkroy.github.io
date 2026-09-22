@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Do markets slow down before they crash?</title>
       <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
@@ -198,6 +198,16 @@ You will like this too.</p>
 <li>How do the trajectories diverge faster in some regions more compared to the others?</li>
 </ul>
 ]]></content:encoded>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://shashankkroy.github.io/posts/navier_stokes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/navier_stokes/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
   </channel>

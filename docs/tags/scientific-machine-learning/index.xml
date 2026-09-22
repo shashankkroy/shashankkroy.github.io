@@ -8,13 +8,20 @@
     <language>en</language>
     <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/scientific-machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Topological study of evolving precipitation in India</title>
+      <title>Mis-Alignment in AI4Science</title>
       <link>https://shashankkroy.github.io/projects/alignment/</link>
       <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/projects/alignment/</guid>
       <description>We want to understand this and their impact on precipitation</description>
-      <content:encoded><![CDATA[<h1 id="interpretability">Interpretability</h1>
+      <content:encoded><![CDATA[<h2 id="chain-of-thought-monitorability-in-ai-models">Chain-of-thought monitorability in AI models</h2>
+<p>COT became a popular technique to improve the performance of large language models (LLMs) on complex reasoning tasks. It involves prompting the model to generate intermediate reasoning steps before producing a final answer. This allows the model to break down complex problems into smaller, more manageable parts, and can lead to more accurate and reliable answers.
+AI developers and researchers have been exploring the use of chain-of-thought monitorability to understand the decision-making process of AI models, as the intermediate steps can be inspected and evaluated for correctness. However, recent research has shown that some models, such as Astra, have a significant decrease in chain-of-thought monitorability compared to previous models. This means that the model is better at performing tasks without verbalizing its thought process, which can make it more difficult to monitor and control its behavior.</p>
+<h2 id="eval-awareness-in-ai-models">Eval-Awareness in AI models</h2>
+<p>Here is an example of eval-awareness in AI models. When AI models were being assessed for different metrics to measure their performance and mis-alignment, the models do poor when they are aware of being evaluted. So they act worse in these situations. Deception is the adjective.</p>
+<h1 id="mis-alignment-in-ai4science">Mis-Alignment in AI4Science</h1>
+<p>The field of AI4Science has seen significant advancements in recent years, with the development of powerful machine learning models and techniques that have been applied to a wide range of scientific problems. However, there is a growing concern about the misalignment between the goals of AI researchers and the needs of the scientific community. This misalignment can lead to the development of models that are not well-suited to the specific challenges of scientific research, and can result in wasted resources and missed opportunities for scientific discovery.</p>
+<h1 id="interpretability">Interpretability</h1>
 <p>Frontier labs and researcher have been exploring the use of interpretability methods to understand the decision-making process of neural networks in scientific applications. These methods can help us visualize and interpret the learned representations in neural networks, and investigate the role of feature interactions in scientific datasets and how they affect model predictions.</p>
 <h1 id="interpretability-x-ai4science">Interpretability x AI4Science</h1>
 <p>Possible directions to explore:</p>
@@ -24,8 +31,22 @@
 <li>Investigating the role of feature interactions in scientific datasets and how they affect model predictions.</li>
 <li>Can we interpretabiity be used to identify biases or errors in scientific datasets, such as those found in reanalysis products like ERA5?</li>
 </ul>
+<p>There are interesting ideas being developed about how we are going to assess AI models that are more capable than us, how are we going to predict if they are aligned to our goals.</p>
+<h1 id="going-beyong-training-and-history">Going Beyong Training and History</h1>
+<p>Bad behaviours from AI due to alignment issues are of catastrophic consequences. Although they may not be a wedspread situation and assessed during training and testing, once deployed, it may be more frequest.</p>
+<p>Using Model&rsquo;s activation space to estimate the probability  of particular output of behaviour is crucial.</p>
+<p>A lot of interesting research areas are laid down here for reference:
+<a href="https://coefficientgiving.org/tais-rfp-research-areas/#17-white-box-estimation-of-rare-misbehavior">https://coefficientgiving.org/tais-rfp-research-areas/#17-white-box-estimation-of-rare-misbehavior</a></p>
+<p>They ask for a proposal with certain criteria to evaluate the work and benchmark.</p>
+<h1 id="career-transition-points">Career Transition points</h1>
+<p><a href="https://coefficientgiving.org/funds/global-catastrophic-risks-opportunities/career-development-and-transition-funding/">https://coefficientgiving.org/funds/global-catastrophic-risks-opportunities/career-development-and-transition-funding/</a>
+<a href="https://bluedot.org/">https://bluedot.org/</a></p>
+<h1 id="labs-working-in-similar-areas">Labs working in similar areas</h1>
+<p><a href="https://ri-lab.org/">https://ri-lab.org/</a></p>
 <h1 id="references">References</h1>
-<p><a href="https://www.auai.org/uai2026/tutorials">https://www.auai.org/uai2026/tutorials</a></p>
+<p><a href="https://www.auai.org/uai2026/tutorials">https://www.auai.org/uai2026/tutorials</a>
+<a href="https://www.matsprogram.org/faq/getting-into-mats">https://www.matsprogram.org/faq/getting-into-mats</a>
+<a href="https://coefficientgiving.org/funds/navigating-transformative-ai/request-for-proposals-technical-ai-safety-research/">https://coefficientgiving.org/funds/navigating-transformative-ai/request-for-proposals-technical-ai-safety-research/</a></p>
 ]]></content:encoded>
     </item>
     
@@ -110,9 +131,50 @@ Can we use topological descriptors to identify the changes in the rainfall patte
 </ul>
 <p>A priori choice of the node connectivity is a challenge. We want to explore the use of topological descriptors, such as Morse Complex, to determine the connectivity of the graph nodes.</p>
 <ol>
-<li>Bipartite Structure - Partition the graph into two sets of nodes, where one set represents the input features and the other set represents the output features.</li>
+<li>
+<p>Bipartite Structure - Partition the graph into two sets of nodes, where one set represents the input features and the other set represents the output features. We create edgaes that pass information from the coarse grid to the fine grid.</p>
+</li>
+<li></li>
 </ol>
+<h1 id="positional-encoding-for-graphs">Positional encoding for Graphs:</h1>
+<p>In laguage tasks, we have positional encoding which captures the positional importance of different words and their order becomes important.
+For graphs, the design of unique node positions is challenging as there are symmetries which prevent canonical node positional information (Murphy et al. 2019). In fact, most of the GNNs which are trained on graph datasets learn structural node information that are invariant to the node position. Such an approach( such as GAT) where the attention is a function of local neighborhood connectivity are not comptetive.</p>
+<p>To learn both structural and positional features, the Laplacian eigenvectors of the graph structure can provide node positional
+information. Since Laplacian PEs encode distance-aware information (i.e., nearby nodes have similar positional features and farther nodes have dissimilar positional features), our choice is using the Laplacian eigenvectors as PE in Graph Transformer.
+We pre-compute the Laplacian eigenvectors of
+all graphs in the dataset. These eigenvectors are defined via the
+factorization of the graph Laplacian matrix.</p>
+<p>$$ \Delta = I - D^{-1/2} A D^{-1/2} $$
+where A is the adjecency matrix.</p>
 <h1 id="what-was-new-to-me">What was new to me:</h1>
+<p>The Laplacian matrix is defined as follows: Given a graph $G:=(V,E)$
+where $V:={v_1,v_2,…,v_n}$
+is the set of nodes/vertices and $E:={e_1,e_2,…,e_m}$
+is the set of edges, with an adjacency matrix $A∈{0,1}^{n×n}$
+, where</p>
+<p>$A_{i,j}:=1$,if there is an edge between $v_i$ and
+$v_j$<br>
+$ 0,$ otherwise</p>
+<p>Degree matrix $$D∈Z^{n×n}$$ where</p>
+<p>$D_{i,j}:=${degree(v_i), $0$,if i=jotherwise
+the Laplacian matrix is defined as</p>
+<p>$$L:=D−A$$
+This definition is super simple, but it describes something quite deep: it’s the discrete analogue to the Laplacian operator on multivariate continuous functions. How does such a simple definition capture such a complex idea? We will demonstrate this in the remainder of this post.</p>
+<h1 id="graph-transformer-architecture">Graph Transformer Architecture</h1>
+<p>GNNs are useful for modeling problems where there is unstructured data or data in form of a graph instead of regular gridded data. With transformer architecture has shown great skill in capturing complex relationship in language, expoliting it to extend it to graphs is natural. Original transformer does not
+not leverage the graph connectivity inductive bias. It can
+perform poorly when the graph topology is important and
+has not been encoded into the node features.</p>
+<p>Graph transformer extended the traditional transformer with four new properties:</p>
+<ul>
+<li>the attention mechanism is a function
+of the neighborhood connectivity for each node in the graph.</li>
+<li>the positional encoding is represented by the Laplacian eigenvectors, a generalization of the sinusoidal
+positional encodings in NLP.</li>
+<li>the layer normalization is replaced by a batch normalization layer for faster training and better generalization performance.</li>
+<li>extended to edge feature representation, which can be critical to tasks s.a. chemistry
+(bond type) or link prediction (entity relationship in knowledge graphs).</li>
+</ul>
 <p>Attentional Convolutional Networks (ACNs) are a type of neural network architecture that combines the strengths of convolutional neural networks (CNNs) and attention mechanisms.</p>
 <p>In transformer based models,</p>
 <p>** Project Ideas: **
@@ -120,7 +182,6 @@ Downscaling the rainfall data in Indian region from the coarse resolution of the
 <p>** Project Ideas: extended analysis with morse complex built from the rainfall data **
 Related: Predicting the rainfall in the Indian region using Graph Neural Networks. The goal is to develop a model that can accurately predict rainfall patterns based on historical data and other relevant features. This can be useful for applications such as agriculture, water resource management, and disaster preparedness.</p>
 <p>** Project Ideas: Can you apply consistency model framework to the rainfall data where you leverage a pre-trained model on the ERA5 reanalysis data and fine-tune it on the rainfall data to improve the accuracy of the predictions.**</p>
-<p>2026-07-07_Vertrag_vorbehaltlich_AA-Erlaubnis. 2026-07-06_Erklärung-Beschäftigungsverhältnis_final_incl-Unterlagen_sign.pdf</p>
 <p>What You will Learn:</p>
 <ul>
 <li>How to represent irregularly spaced data as a graph and work with graph-based representations.</li>
@@ -135,6 +196,64 @@ Related: Predicting the rainfall in the Indian region using Graph Neural Network
 <li>GraphCast: <a href="https://arxiv.org/pdf/2603.08692">https://arxiv.org/pdf/2603.08692</a></li>
 <li>ECMWF Anemoi: <a href="https://anemoi.readthedocs.io/en/latest/">https://anemoi.readthedocs.io/en/latest/</a></li>
 </ul>
+<h1 id="tools">Tools</h1>
+<p><a href="https://pytorch-geometric.readthedocs.io/en/2.8.0/tutorial/graph_transformer.html">https://pytorch-geometric.readthedocs.io/en/2.8.0/tutorial/graph_transformer.html</a></p>
+<p>On Graphs based Transformer Models
+<a href="https://arxiv.org/pdf/2012.09699">https://arxiv.org/pdf/2012.09699</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
+      <link>https://shashankkroy.github.io/projects/mose_complex/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/mose_complex/</guid>
+      <description>Dive into the theory behind Morse Complex.</description>
+      <content:encoded><![CDATA[<h1 id="extract-a-graph-from-a-scalar-field-the-morse-complex">Extract a graph from a scalar field: The Morse Complex</h1>
+<p>Think of a way to characterize a scalar field contains topological information. Now in such a case, critical points of the functions can be used to define nodes or vertices. To connect one crticial point topologically to another, we need the information of the gradient along a path- the maximal path whose tangent vectors align with the gradient information along the path itself. This way, the Morse Complex gives us a structure that represents
+the gradient flow behavior and completely encapsulates the topology
+of level sets of a scalar function.  In short, what you will get is called a Morse Complex</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<h2 id="speaking-mathematically">Speaking Mathematically</h2>
+<p>Let $f :
+M → R$ be a smooth function defined on a 2D manifold, where
+$\nabla f$ denotes its gradient. A point $x \in M$ is called a critical point
+if $\nabla f(x) = 0$; otherwise, it is a regular point. A critical point is
+non-degenerate if its associated Hessian matrix is non-singular. A
+function $f$ is a Morse function if all of its critical points are nondegenerate and the critical points have distinct function values.</p>
+<p>At any regular point x, an integral line is a maximal
+path whose tangent vectors align with $\nabla f$. f increases along
+the integral line and each integral line originates and terminates at
+critical points, namely local minima, local maxima, or saddles.</p>
+<p>The stable manifold associated with a local maximum $p$ consists of the point itself and all regular points whose integral lines
+terminate at $p$. The unstable manifold associated with a local minimum $p$ is the point itself together with all regular points
+whose integral lines originate at $p$. A Morse function f is a
+Morse-Smale function if the stable and unstable manifolds intersect
+transversally. Ascending and descending manifolds are obtained as clusters of integral lines having common origin and destination respectively.</p>
+<p>In Morse-Smale functions, the integral lines
+only connect critical points of different indices. The index of a critical point $p$ is defined by the number of negative eigen values of the hessian matrix at that point.</p>
+<p>Each critical point of index $n$ is the origin of a set of integral lines
+that forms an ascending $d −n$-manifold. Symmetrically, it is the destination of a set of integral lines that forms a descending n-manifold.
+All ascending and descending manifolds of a Morse-Smale function
+intersect transversally. Therefore, given two critical points $a$ and $b$,
+where the index of $a$ is one less than the index of $b$, the intersection of
+the ascending manifold of $a$ and the descending manifold of $b$ is either
+empty or a $1$-manifold. The critical points and these $1$ manifolds are
+called nodes and arcs. The one-skeleton formed by the nodes and arcs
+forms the combinatorial structure of the MS complex.</p>
+<p>The combinatorial structure contains much of the semantic information of $f$ , and
+is useful for simplification and feature identification. The neighborhood of a node a of an MS complex $\Gamma $ is the set of nodes Na that are
+connected to a by an arc in $\Gamma$. Assuming transversality, the stable manifolds induce a decomposition of the domain into 2-cells, where local minima and saddles correspond to 0-cells, and the integral lines connecting them define 1-cells. The Morse complex segments the
+domain into regions where gradient flow behaves coherently.</p>
+<h2 id="computing-morse-complex">Computing Morse Complex</h2>
+<p>A combinatorially correct MS complex is very challenging. These algorithms are memory-intensive and computationally expensive,
+restricting their use to smaller datasets.</p>
+<h2 id="discrete-morse-theory">Discrete Morse Theory</h2>
+<p>Now that we are comfortable with the ideas of morse complex for smooth fields, remeber that many scientific data are only available on unstructured meshes.</p>
 ]]></content:encoded>
     </item>
     
@@ -186,9 +305,13 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
       <description>A collection of resources for scientific machine learning and data assimilation.</description>
       <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
 <p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview of this area and his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM. Their work on emulators also comes with a pytorch package for training neural emulators for PDEs.</p>
+<p>For stochastic benchmarks, recently the group also developed a Stochbench
+<a href="https://tum-pbs.github.io/stocbench/">https://tum-pbs.github.io/stocbench/</a> for comparing different methods for next time prediction.</p>
 <p>Courses in Scientific Machine Learning:
 <a href="https://neu4mes.github.io/teaching/">https://neu4mes.github.io/teaching/</a>
 <a href="https://physicsbaseddeeplearning.org/intro.html">https://physicsbaseddeeplearning.org/intro.html</a></p>
+<p>Geometric deep learning and graph neural networks:
+<a href="https://geometricdeeplearning.com/lectures/">https://geometricdeeplearning.com/lectures/</a></p>
 <h2 id="resources-for-data-assimilation-and-uncertainty-quantification">Resources for Data Assimilation and Uncertainty Quantification</h2>
 <h2 id="ai4ocean">AI4OCEAN</h2>
 <p><a href="https://ai-for-ocean.github.io/workshop2026/">https://ai-for-ocean.github.io/workshop2026/</a></p>
