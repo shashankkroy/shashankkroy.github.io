@@ -21,6 +21,8 @@ The core idea of the representation lies in directly mapping spatial coordinates
 <p>First, both geometric variations (represented by signed distance function fields) and output physical fields are encoded into compact latent representations. Second, a mapping between the input and output latent encodings is approximated by a separate neural network: the processor model. Despite proving good performance, such approaches face overfitting challenges on small datasets. The separate latent processing stage introduces an optimization that is decoupled from the final output field reconstruction: small regression errors in the latent space can induce larger errors in the decoded reconstructions.</p>
 <h2 id="refefences">Refefences:</h2>
 <p><a href="https://arxiv.org/html/2505.14704v1">https://arxiv.org/html/2505.14704v1</a></p>
+<h2 id="notebooks-and-collabs">Notebooks and collabs</h2>
+<p><a href="https://github.com/EceOzen/earth_systems_playground/blob/main/exploration_04_siren_climatebenchpress/earth_systems_playground_part4_merged_final.ipynb">https://github.com/EceOzen/earth_systems_playground/blob/main/exploration_04_siren_climatebenchpress/earth_systems_playground_part4_merged_final.ipynb</a></p>
 ]]></content:encoded>
     </item>
     

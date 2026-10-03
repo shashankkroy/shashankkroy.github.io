@@ -13,12 +13,16 @@
       <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/projects/alignment/</guid>
-      <description>We want to understand this and their impact on precipitation</description>
-      <content:encoded><![CDATA[<h2 id="chain-of-thought-monitorability-in-ai-models">Chain-of-thought monitorability in AI models</h2>
-<p>COT became a popular technique to improve the performance of large language models (LLMs) on complex reasoning tasks. It involves prompting the model to generate intermediate reasoning steps before producing a final answer. This allows the model to break down complex problems into smaller, more manageable parts, and can lead to more accurate and reliable answers.
-AI developers and researchers have been exploring the use of chain-of-thought monitorability to understand the decision-making process of AI models, as the intermediate steps can be inspected and evaluated for correctness. However, recent research has shown that some models, such as Astra, have a significant decrease in chain-of-thought monitorability compared to previous models. This means that the model is better at performing tasks without verbalizing its thought process, which can make it more difficult to monitor and control its behavior.</p>
-<h2 id="eval-awareness-in-ai-models">Eval-Awareness in AI models</h2>
-<p>Here is an example of eval-awareness in AI models. When AI models were being assessed for different metrics to measure their performance and mis-alignment, the models do poor when they are aware of being evaluted. So they act worse in these situations. Deception is the adjective.</p>
+      <description>We want to understand this for reliability in neural weather prediction model</description>
+      <content:encoded><![CDATA[<p>Numerical solutions to partial differential equations (PDEs) are the bedrock of scientific computing. They model a wide range of physical phenomena, from fluid dynamics to electromagnetism, from quantum mechanics to biology, from climate modeling to astrophysics. However, these methods tend to be computationally expensive when we solve such equations at scale, and still being only an approximation determined by the nature of chosen discretization, specific solver, and convergence rates dictaed by the stiffness of such equations.</p>
+<p>Neural emulators, trained on rich and quality simulation data have emerged as a faster way to approximate the solutions, although they often lack guarantees to be accurate or reliability beyond what the training data provides- specific regime, parameter space, and initial conditions. The imperative question is to ask if the neural emulators ensure that it will generalize well to unseen scenarios beyond training when deployed.
+The question is how do we know if the neural emulator is aligned with the true solution of the PDE, and how do we ensure that it will generalize well to unseen scenarios?</p>
+<p>This is taken further by a scientific foundation model, which is a large neural network trained on a wide range of scientific data and tasks. The goal of a scientific foundation model is to learn a general representation of the underlying physics that generalizes to a wide range of scientific problems. This is similar to how large language models (LLMs) are trained on a wide range of text data and can be used for a wide range of natural language processing tasks. A model that can be used for a large class of problems that share similar mathematics, conservation laws, are bounded and time evolving.</p>
+<p>Fun
+What makes a Scientific foundation model different from the LLM foundation models is that they are not be studied for emotions and consciousness :). So such discussions are not relevant to the scientific foundation model.</p>
+<h2 id="chain-of-thought-monitorability-in-ai-models">Chain-of-thought monitorability in AI models</h2>
+<p>COT became a popular technique to improve the performance of large language models (LLMs) on complex reasoning tasks. The model is asked to generate intermediate reasoning steps before producing a final answer which allows the model to break down complex problems into smaller, more manageable parts, and can lead to more accurate and reliable answers.
+AI developers and researchers have used of chain-of-thought for monitorability to understand the decision-making process of AI models. (rRecent research has shown that some models, such as Astra, have a significant decrease in chain-of-thought monitorability compared to previous models. This means that the model is better at performing tasks without verbalizing its thought process, which can make it more difficult to monitor and control its behavior.)</p>
 <h1 id="mis-alignment-in-ai4science">Mis-Alignment in AI4Science</h1>
 <p>The field of AI4Science has seen significant advancements in recent years, with the development of powerful machine learning models and techniques that have been applied to a wide range of scientific problems. However, there is a growing concern about the misalignment between the goals of AI researchers and the needs of the scientific community. This misalignment can lead to the development of models that are not well-suited to the specific challenges of scientific research, and can result in wasted resources and missed opportunities for scientific discovery.</p>
 <h1 id="interpretability">Interpretability</h1>
@@ -28,12 +32,16 @@ AI developers and researchers have been exploring the use of chain-of-thought mo
 <ul>
 <li>Understanding the decision-making process of neural networks in scientific applications.</li>
 <li>Developing methods to visualize and interpret the learned representations in neural networks.</li>
-<li>Investigating the role of feature interactions in scientific datasets and how they affect model predictions.</li>
 <li>Can we interpretabiity be used to identify biases or errors in scientific datasets, such as those found in reanalysis products like ERA5?</li>
 </ul>
-<p>There are interesting ideas being developed about how we are going to assess AI models that are more capable than us, how are we going to predict if they are aligned to our goals.</p>
+<p><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387">https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387</a>
+<a href="https://arxiv.org/pdf/2603.29658">https://arxiv.org/pdf/2603.29658</a></p>
+<h1 id="physical-interpretability">Physical interpretability</h1>
+<p><a href="https://arxiv.org/pdf/2604.22580v1">https://arxiv.org/pdf/2604.22580v1</a>
+<a href="https://arxiv.org/pdf/2512.24440">https://arxiv.org/pdf/2512.24440</a></p>
 <h1 id="going-beyong-training-and-history">Going Beyong Training and History</h1>
-<p>Bad behaviours from AI due to alignment issues are of catastrophic consequences. Although they may not be a wedspread situation and assessed during training and testing, once deployed, it may be more frequest.</p>
+<p>AI models, largely trained on many physics based simulated data and observations ( or some combination of both) seem more capable and accurate, efficient than the physics based model. But the real question is how are we going to predict if they are aligned to our long term objectives of the true phenomenon rather than just the training distribution.</p>
+<p>Bad predictions from AI based models in future are of catastrophic consequences. Although they may not be a wedspread situation and assessed during training and testing, real world is more complex, doesn&rsquo;t guarentee that the future has signals which are statistically similar to the past, the distributions represented by the historical data will also hold in the future. Although there are several methods to address such challenges, they are yet far to establish guarentess and understanding that physics based models produce.</p>
 <p>Using Model&rsquo;s activation space to estimate the probability  of particular output of behaviour is crucial.</p>
 <p>A lot of interesting research areas are laid down here for reference:
 <a href="https://coefficientgiving.org/tais-rfp-research-areas/#17-white-box-estimation-of-rare-misbehavior">https://coefficientgiving.org/tais-rfp-research-areas/#17-white-box-estimation-of-rare-misbehavior</a></p>
@@ -72,6 +80,13 @@ The challenges of the physics based models in the coastal regions of India are d
       <guid>https://shashankkroy.github.io/projects/raindeer/</guid>
       <description>We want to understand this and their impact on precipitation</description>
       <content:encoded><![CDATA[<h1 id="background">Background:</h1>
+<p>Ideas:
+For precipitation modeling, the oldest object based method is the continous rain areas (CRA) method
+(Ebert and McBride, 2000). It decomposes the mean squared error (MSE) into
+a displacement, a volume and a pattern error while the pattern error is the residual
+of the other two. The method is based on the total MSE over the verification domain, that is the area average of the MSE values at each grid point. The questions is if CRA could be adapted for probabilistic forecasts by replacing the MSE with a probabilistic score,
+for example the CRPS or the Brier score. (A drawback of CRA in the downscaling
+context is the requirement of matching individual precipitation objects)</p>
 <h1 id="hypothesis">Hypothesis:</h1>
 <p>Topology in the rainfall field may have information about the topograph pattern that collectively influence the rainfall pattern. We want to explore the use of topological descriptors, such as Morse Complex that have recently found interesting applications to determine the connectivity of the graph nodes applied to Atmospheric River.</p>
 <h2 id="refined-hypothesis">Refined hypothesis:</h2>
@@ -117,10 +132,10 @@ Can we use topological descriptors to identify the changes in the rainfall patte
     
     <item>
       <title>Graph Neural Networks for Scientific Machine Learning</title>
-      <link>https://shashankkroy.github.io/projects/graph/</link>
+      <link>https://shashankkroy.github.io/posts/graph/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/graph/</guid>
+      <guid>https://shashankkroy.github.io/posts/graph/</guid>
       <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
       <content:encoded><![CDATA[<p>From grids to Graph nodes: The motivation</p>
 <p>Observations that are obtained from satellites, radars, and other sources are often in the form of irregularly spaced data points. When the data sources are irregularly spaced, it is often more appropriate to represent the data as a graph, where the nodes represent the data points and the edges represent the relationships between them. The gridded products are obtained from these irregularly spaced data points through interpolation and other techniques. By representing the data as a graph, we can directly work with the observation network based data to capture the underlying relationships and dependencies between the data points.</p>
@@ -191,6 +206,8 @@ Related: Predicting the rainfall in the Indian region using Graph Neural Network
 <li>Shared KV, Quantization, and other techniques to reduce the memory footprint of the model.</li>
 </ul>
 <p>Cons of Transformers: They require more data for the same task because of no inductive bias. They also have high memory footprints.</p>
+<h1 id="courses-running-in-2026">Courses (running in 2026)</h1>
+<p><a href="https://cis6270.github.io/">https://cis6270.github.io/</a></p>
 <p>References:</p>
 <ul>
 <li>GraphCast: <a href="https://arxiv.org/pdf/2603.08692">https://arxiv.org/pdf/2603.08692</a></li>
@@ -200,25 +217,27 @@ Related: Predicting the rainfall in the Indian region using Graph Neural Network
 <p><a href="https://pytorch-geometric.readthedocs.io/en/2.8.0/tutorial/graph_transformer.html">https://pytorch-geometric.readthedocs.io/en/2.8.0/tutorial/graph_transformer.html</a></p>
 <p>On Graphs based Transformer Models
 <a href="https://arxiv.org/pdf/2012.09699">https://arxiv.org/pdf/2012.09699</a></p>
+<h1 id="pde-on-graphs-and-if-neural-operators-dont-need-transformers">PDE on Graphs and if Neural operators don&rsquo;t need transformers</h1>
+<p><a href="https://arxiv.org/pdf/2609.32525">https://arxiv.org/pdf/2609.32525</a></p>
+<p>Posterior bench for benchmarking PDE like system.
+<a href="https://arxiv.org/pdf/2609.20794">https://arxiv.org/pdf/2609.20794</a></p>
 ]]></content:encoded>
     </item>
     
     <item>
       <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
-      <link>https://shashankkroy.github.io/projects/mose_complex/</link>
+      <link>https://shashankkroy.github.io/posts/mose_complex/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/mose_complex/</guid>
-      <description>Dive into the theory behind Morse Complex.</description>
-      <content:encoded><![CDATA[<h1 id="extract-a-graph-from-a-scalar-field-the-morse-complex">Extract a graph from a scalar field: The Morse Complex</h1>
-<p>Think of a way to characterize a scalar field contains topological information. Now in such a case, critical points of the functions can be used to define nodes or vertices. To connect one crticial point topologically to another, we need the information of the gradient along a path- the maximal path whose tangent vectors align with the gradient information along the path itself. This way, the Morse Complex gives us a structure that represents
-the gradient flow behavior and completely encapsulates the topology
-of level sets of a scalar function.  In short, what you will get is called a Morse Complex</p>
+      <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
+      <description>Understanding how we can extract a graph from a scalar field</description>
+      <content:encoded><![CDATA[<p>Think of a way to characterize a scalar field contains topological information. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
+the gradient flow behavior of the field in space.  We will call such a complex a Morse Complex.</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
       <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
-<h2 id="speaking-mathematically">Speaking Mathematically</h2>
+<h2 id="the-mathematical-descriptions-of-morse-complex">The Mathematical descriptions of Morse Complex</h2>
 <p>Let $f :
 M → R$ be a smooth function defined on a 2D manifold, where
 $\nabla f$ denotes its gradient. A point $x \in M$ is called a critical point
@@ -236,9 +255,9 @@ Morse-Smale function if the stable and unstable manifolds intersect
 transversally. Ascending and descending manifolds are obtained as clusters of integral lines having common origin and destination respectively.</p>
 <p>In Morse-Smale functions, the integral lines
 only connect critical points of different indices. The index of a critical point $p$ is defined by the number of negative eigen values of the hessian matrix at that point.</p>
-<p>Each critical point of index $n$ is the origin of a set of integral lines
-that forms an ascending $d −n$-manifold. Symmetrically, it is the destination of a set of integral lines that forms a descending n-manifold.
-All ascending and descending manifolds of a Morse-Smale function
+<p>Each critical point of index $p$ is the origin of a set of integral lines
+that forms an ascending $d −p$-manifold. It is also the destination of a set of integral lines that forms a descending $p-$manifold.</p>
+<p>All ascending and descending manifolds of a Morse-Smale function
 intersect transversally. Therefore, given two critical points $a$ and $b$,
 where the index of $a$ is one less than the index of $b$, the intersection of
 the ascending manifold of $a$ and the descending manifold of $b$ is either
@@ -252,8 +271,32 @@ domain into regions where gradient flow behaves coherently.</p>
 <h2 id="computing-morse-complex">Computing Morse Complex</h2>
 <p>A combinatorially correct MS complex is very challenging. These algorithms are memory-intensive and computationally expensive,
 restricting their use to smaller datasets.</p>
+<p><a href="https://proceedings.mlr.press/v97/grover19a.html">https://proceedings.mlr.press/v97/grover19a.html</a></p>
 <h2 id="discrete-morse-theory">Discrete Morse Theory</h2>
 <p>Now that we are comfortable with the ideas of morse complex for smooth fields, remeber that many scientific data are only available on unstructured meshes.</p>
+<h1 id="problem-1">Problem 1</h1>
+<p>Addressing Downward Memory Loss in Hierarchical GNN Forecasters Through
+Memory-Buffered Decoding[https://ijcai-preprints.s3.us-west-1.amazonaws.com/2026/4495.pdf]
+To bring imporvements in spatio-temporal forecasting, we need to model dynamics and interactions that are both local and global across different spatiotemporal scales.
+Graph Neural Network (GNN) forecasters primarily focues on local scales, limiting their ability to capture global system dynamics.
+Single resolution models struggle to reconcile fine-grained variability with broader global processes,
+A key finding &ldquo;the underlying cause of this information decay: the
+linearity of the coarse-to-fine transition mappings used in existing HGNNs. These linear mappings inherently oversmooth
+global features, erasing the distinctions needed for reliable
+global-to-local alignment.&rdquo;
+Simple HGNNs that only map from the coarse to fine grain overfit to the
+coarse information, while adding residual connections avoids overfitting, but at the cost of the loss of this coarse information, limiting
+the discovery of local trends. Accurate forecasting requires maintaining alignment between local patterns
+and the global drivers that influence their dynamics.</p>
+<h2 id="references">References</h2>
+<p><a href="https://www.sci.utah.edu/~beiwang/publications/Morse_uncertainty_BeiWang_2025.pdf">https://www.sci.utah.edu/~beiwang/publications/Morse_uncertainty_BeiWang_2025.pdf</a>
+This one applied to data from NS, and Real Ocean data of red sea.
+This one gives a nice idea of structural uncertainty.</p>
+<h1 id="functional-risk-minimization-for-morse-complex">Functional Risk minimization for Morse Complex</h1>
+<p><a href="https://arxiv.org/pdf/2412.21149">https://arxiv.org/pdf/2412.21149</a></p>
+<p>topological data analysis <a href="https://arxiv.org/pdf/2206.00606">https://arxiv.org/pdf/2206.00606</a>
+<a href="https://www.math3ma.com/blog/matrices-as-tensor-network-diagrams">https://www.math3ma.com/blog/matrices-as-tensor-network-diagrams</a></p>
+<h2 id="tools">Tools</h2>
 ]]></content:encoded>
     </item>
     
@@ -271,6 +314,8 @@ The core idea of the representation lies in directly mapping spatial coordinates
 <p>First, both geometric variations (represented by signed distance function fields) and output physical fields are encoded into compact latent representations. Second, a mapping between the input and output latent encodings is approximated by a separate neural network: the processor model. Despite proving good performance, such approaches face overfitting challenges on small datasets. The separate latent processing stage introduces an optimization that is decoupled from the final output field reconstruction: small regression errors in the latent space can induce larger errors in the decoded reconstructions.</p>
 <h2 id="refefences">Refefences:</h2>
 <p><a href="https://arxiv.org/html/2505.14704v1">https://arxiv.org/html/2505.14704v1</a></p>
+<h2 id="notebooks-and-collabs">Notebooks and collabs</h2>
+<p><a href="https://github.com/EceOzen/earth_systems_playground/blob/main/exploration_04_siren_climatebenchpress/earth_systems_playground_part4_merged_final.ipynb">https://github.com/EceOzen/earth_systems_playground/blob/main/exploration_04_siren_climatebenchpress/earth_systems_playground_part4_merged_final.ipynb</a></p>
 ]]></content:encoded>
     </item>
     
@@ -312,11 +357,23 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
 <a href="https://physicsbaseddeeplearning.org/intro.html">https://physicsbaseddeeplearning.org/intro.html</a></p>
 <p>Geometric deep learning and graph neural networks:
 <a href="https://geometricdeeplearning.com/lectures/">https://geometricdeeplearning.com/lectures/</a></p>
+<h1 id="agu-released-impactful-daatsets">AGU released Impactful daatsets</h1>
+<p><a href="https://data.agu.org/impactful-datasets/">https://data.agu.org/impactful-datasets/</a></p>
 <h2 id="resources-for-data-assimilation-and-uncertainty-quantification">Resources for Data Assimilation and Uncertainty Quantification</h2>
 <h2 id="ai4ocean">AI4OCEAN</h2>
 <p><a href="https://ai-for-ocean.github.io/workshop2026/">https://ai-for-ocean.github.io/workshop2026/</a></p>
+<h2 id="deep-learning-collection">Deep Learning Collection</h2>
+<p><a href="https://visionbook.mit.edu/backpropagation.html#alg-backpropagation-backprop_for_chains">https://visionbook.mit.edu/backpropagation.html#alg-backpropagation-backprop_for_chains</a></p>
+<h1 id="journal-to-submit-to">Journal to Submit to</h1>
+<p><a href="https://link.springer.com/collections/jfajjbiajd">https://link.springer.com/collections/jfajjbiajd</a></p>
+<h1 id="visionbookmit">Visionbookmit</h1>
+<p><a href="https://visionbook.mit.edu/backpropagation.html#alg-backpropagation-backprop_for_chains">https://visionbook.mit.edu/backpropagation.html#alg-backpropagation-backprop_for_chains</a></p>
 <h2 id="handbook-of-bayesian-deep-learning">Handbook of Bayesian Deep Learning</h2>
 <p><a href="https://zenodo.org/records/22114549">https://zenodo.org/records/22114549</a></p>
+<h1 id="thesis">Thesis</h1>
+<p>file:///C:/Users/Shashank/Downloads/Alet-alet-PhD-EECS-2022-thesis.pdf</p>
+<h1 id="on-writing">On writing</h1>
+<p><a href="https://www.microsoft.com/en-us/research/academic-program/how-to-write-a-great-research-proposal/">https://www.microsoft.com/en-us/research/academic-program/how-to-write-a-great-research-proposal/</a></p>
 ]]></content:encoded>
     </item>
     

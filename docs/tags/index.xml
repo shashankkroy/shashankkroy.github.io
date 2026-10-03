@@ -6,23 +6,53 @@
     <description>Recent content in Tags on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Graph Neural Networks</title>
-      <link>https://shashankkroy.github.io/tags/graph-neural-networks/</link>
-      <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+      <title>Agentic Systems</title>
+      <link>https://shashankkroy.github.io/tags/agentic-systems/</link>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/graph-neural-networks/</guid>
+      <guid>https://shashankkroy.github.io/tags/agentic-systems/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     
     <item>
-      <title>Graphs</title>
-      <link>https://shashankkroy.github.io/tags/graphs/</link>
+      <title>Memory Patterns</title>
+      <link>https://shashankkroy.github.io/tags/memory-patterns/</link>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/memory-patterns/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Multi-Agents</title>
+      <link>https://shashankkroy.github.io/tags/multi-agents/</link>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/multi-agents/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Explainable Machine Learning</title>
+      <link>https://shashankkroy.github.io/tags/explainable-machine-learning/</link>
       <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/tags/graphs/</guid>
+      <guid>https://shashankkroy.github.io/tags/explainable-machine-learning/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Neural Networks</title>
+      <link>https://shashankkroy.github.io/tags/neural-networks/</link>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/neural-networks/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -33,6 +63,76 @@
       <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/scientific-machine-learning/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Graph Neural Networks</title>
+      <link>https://shashankkroy.github.io/tags/graph-neural-networks/</link>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/graph-neural-networks/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Graphs</title>
+      <link>https://shashankkroy.github.io/tags/graphs/</link>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/graphs/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Deep Generative Models</title>
+      <link>https://shashankkroy.github.io/tags/deep-generative-models/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/deep-generative-models/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Flow-Matching</title>
+      <link>https://shashankkroy.github.io/tags/flow-matching/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/flow-matching/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Gen-Ai</title>
+      <link>https://shashankkroy.github.io/tags/gen-ai/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/gen-ai/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Mathematics</title>
+      <link>https://shashankkroy.github.io/tags/mathematics/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/mathematics/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Measure Theory</title>
+      <link>https://shashankkroy.github.io/tags/measure-theory/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/measure-theory/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -53,6 +153,16 @@
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/neural-implicit-representations/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Probability</title>
+      <link>https://shashankkroy.github.io/tags/probability/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/probability/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
@@ -133,6 +243,36 @@
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
       <guid>https://shashankkroy.github.io/tags/quantitative-finance/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>First Principles</title>
+      <link>https://shashankkroy.github.io/tags/first-principles/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/first-principles/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Thinking</title>
+      <link>https://shashankkroy.github.io/tags/thinking/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/thinking/</guid>
+      <description></description>
+      <content:encoded><![CDATA[]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Time</title>
+      <link>https://shashankkroy.github.io/tags/time/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/tags/time/</guid>
       <description></description>
       <content:encoded><![CDATA[]]></content:encoded>
     </item>

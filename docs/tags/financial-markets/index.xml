@@ -9,16 +9,20 @@
     <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/financial-markets/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Do markets slow down before they crash?</title>
-      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
+      <link>https://shashankkroy.github.io/posts/critical-slow-down/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
+      <guid>https://shashankkroy.github.io/posts/critical-slow-down/</guid>
       <description>On the behaviour of financial markets when a tipping point is near.</description>
       <content:encoded><![CDATA[<blockquote>
 <p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
 <p>In this article, we discuss briefly the ideas and mathematics behind the above hypothesis. The theory of <strong>critical transitions</strong> that originates from ecology and climate science asks whether financial markets behave the same way before a crash. The short answer is: <strong>not quite</strong> — but the detour through the math reveals something just as interesting.</p>
 <p>Complex systems have tipping points beyond which the stability of the system can shift abruptly. The financial crisis are generally preceded by a period of increasing volatility that could be an early warning signal of the impending crisis. Understanding if empirical observation of volatility signatures that appears in the data <strong>before</strong> the crash, a kind of &ldquo;early warning signal&rdquo; (EWS) that could alert investors and policymakers.
 System risk in financial systems is followed by increasing cross correlations or information dissipation across financial sectors. However, it is still an open question whether volatility can be used as a reliable early warning signal for financial crises.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/QWeWPemSLkc?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
 <h2 id="two-competing-views-of-crashes">Two Competing Views of Crashes</h2>
 <p><strong>View 1 — Efficient Markets:</strong>
 Economists have long disagreed about whether markets tip at all. The efficient-markets view holds that since markets are efficient and prices incorporate all available information, there is nothing to predict. Crashes are the result of unexpected external shocks — a surprise bankruptcy, a geopolitical event, a natural disaster. If the shock is truly unpredictable, then no early warning signals are possible.</p>

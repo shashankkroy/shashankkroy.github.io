@@ -8,17 +8,214 @@
     <language>en</language>
     <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>A quick intro to Measure theory by a lazy physicit</title>
+      <link>https://shashankkroy.github.io/posts/measure-theory/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/measure-theory/</guid>
+      <description>Building intutive understanding of measure theory and convergence with bare minimum math prerequisite.</description>
+      <content:encoded><![CDATA[<p>I am not going to assume a lot of technical backround for anyone reading this.
+For me, <strong>Mathematics</strong> is a subject about finiteness and how to define them followed by infinities and how to avoid them.
+So we will strip all unnecessary collections of abstract objects and build our intuition from the atoms.</p>
+<h1 id="sets-atoms-and-thier-collections">Sets: atoms and thier collections</h1>
+<p>A set is just a collection. Finite sets are those for which we can count the number of elements in them. Infinite sets are those for which we cannot count the number of elements in them. Since we are physicists, we will not worry about the technicalities of infinite sets and will only focus on finite sets.</p>
+<p>But why build a set at all in the first place. Sometimes, we do not collect the elements, but define a specific property. Anything that satisfies the property is an element of our set. This helps us because then it becomes easy to state what we mean by a certain set. For example, the set of all even numbers is defined by the property that a number is even if it is divisible by 2. So the set of people going to office everyday from 9 to 5, the set of all physicists that are poor in proving theorems, etc.</p>
+<p>$$S= {x| \text{the set of people reading this post}} \text{is a small and finite set}.$$</p>
+<h1 id="from-a-set-of-points-to-a-set-of-sets">From a set of points to a set of sets</h1>
+<h1 id="what-does-measure-theory-want-to-measure">What does measure theory want to measure?</h1>
+<h1 id="a-good-way-to-define-collecion-of-sets-before-we-can-measure-things-using-them">A good way to define collecion of sets before we can measure things using them</h1>
+<h1 id="measurable-functions">Measurable functions</h1>
+<h1 id="on-convergence-of-these-entities">On convergence of these entities</h1>
+<h1 id="and-their-world-is-pretty-complicated">And their world is pretty complicated</h1>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Graph Neural Networks for Scientific Machine Learning</title>
+      <link>https://shashankkroy.github.io/posts/graph/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/graph/</guid>
+      <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
+      <content:encoded><![CDATA[<p>From grids to Graph nodes: The motivation</p>
+<p>Observations that are obtained from satellites, radars, and other sources are often in the form of irregularly spaced data points. When the data sources are irregularly spaced, it is often more appropriate to represent the data as a graph, where the nodes represent the data points and the edges represent the relationships between them. The gridded products are obtained from these irregularly spaced data points through interpolation and other techniques. By representing the data as a graph, we can directly work with the observation network based data to capture the underlying relationships and dependencies between the data points.</p>
+<p>GNN: they allow us to encode relationships via connectivity, beyond purely spatial proximity. This is particularly useful in scientific applications where the relationships between data points may be complex and not solely based on their spatial locations. GraphCast was a recent work that used Graph Neural Networks for weather forecasting by Google.</p>
+<p>Reduced Gaussian Grid:</p>
+<ul>
+<li>lats are determined by the roots of the Legendre polynomial of degree N, where N is the number of latitudes. The lons are determined by dividing the circumference of the Earth into equal segments based on the number of longitudes. Thus the number of longitudes decreases as we move towards the pole. The reduced Gaussian grid is a type of grid that is used in numerical weather prediction and climate modeling. It is designed to reduce the number of grid points in regions where the data is less important, while maintaining a high resolution in regions where the data is more important. This allows for more efficient computations and better representation of important features in the data.</li>
+</ul>
+<p>A priori choice of the node connectivity is a challenge. We want to explore the use of topological descriptors, such as Morse Complex, to determine the connectivity of the graph nodes.</p>
+<ol>
+<li>
+<p>Bipartite Structure - Partition the graph into two sets of nodes, where one set represents the input features and the other set represents the output features. We create edgaes that pass information from the coarse grid to the fine grid.</p>
+</li>
+<li></li>
+</ol>
+<h1 id="positional-encoding-for-graphs">Positional encoding for Graphs:</h1>
+<p>In laguage tasks, we have positional encoding which captures the positional importance of different words and their order becomes important.
+For graphs, the design of unique node positions is challenging as there are symmetries which prevent canonical node positional information (Murphy et al. 2019). In fact, most of the GNNs which are trained on graph datasets learn structural node information that are invariant to the node position. Such an approach( such as GAT) where the attention is a function of local neighborhood connectivity are not comptetive.</p>
+<p>To learn both structural and positional features, the Laplacian eigenvectors of the graph structure can provide node positional
+information. Since Laplacian PEs encode distance-aware information (i.e., nearby nodes have similar positional features and farther nodes have dissimilar positional features), our choice is using the Laplacian eigenvectors as PE in Graph Transformer.
+We pre-compute the Laplacian eigenvectors of
+all graphs in the dataset. These eigenvectors are defined via the
+factorization of the graph Laplacian matrix.</p>
+<p>$$ \Delta = I - D^{-1/2} A D^{-1/2} $$
+where A is the adjecency matrix.</p>
+<h1 id="what-was-new-to-me">What was new to me:</h1>
+<p>The Laplacian matrix is defined as follows: Given a graph $G:=(V,E)$
+where $V:={v_1,v_2,…,v_n}$
+is the set of nodes/vertices and $E:={e_1,e_2,…,e_m}$
+is the set of edges, with an adjacency matrix $A∈{0,1}^{n×n}$
+, where</p>
+<p>$A_{i,j}:=1$,if there is an edge between $v_i$ and
+$v_j$<br>
+$ 0,$ otherwise</p>
+<p>Degree matrix $$D∈Z^{n×n}$$ where</p>
+<p>$D_{i,j}:=${degree(v_i), $0$,if i=jotherwise
+the Laplacian matrix is defined as</p>
+<p>$$L:=D−A$$
+This definition is super simple, but it describes something quite deep: it’s the discrete analogue to the Laplacian operator on multivariate continuous functions. How does such a simple definition capture such a complex idea? We will demonstrate this in the remainder of this post.</p>
+<h1 id="graph-transformer-architecture">Graph Transformer Architecture</h1>
+<p>GNNs are useful for modeling problems where there is unstructured data or data in form of a graph instead of regular gridded data. With transformer architecture has shown great skill in capturing complex relationship in language, expoliting it to extend it to graphs is natural. Original transformer does not
+not leverage the graph connectivity inductive bias. It can
+perform poorly when the graph topology is important and
+has not been encoded into the node features.</p>
+<p>Graph transformer extended the traditional transformer with four new properties:</p>
+<ul>
+<li>the attention mechanism is a function
+of the neighborhood connectivity for each node in the graph.</li>
+<li>the positional encoding is represented by the Laplacian eigenvectors, a generalization of the sinusoidal
+positional encodings in NLP.</li>
+<li>the layer normalization is replaced by a batch normalization layer for faster training and better generalization performance.</li>
+<li>extended to edge feature representation, which can be critical to tasks s.a. chemistry
+(bond type) or link prediction (entity relationship in knowledge graphs).</li>
+</ul>
+<p>Attentional Convolutional Networks (ACNs) are a type of neural network architecture that combines the strengths of convolutional neural networks (CNNs) and attention mechanisms.</p>
+<p>In transformer based models,</p>
+<p>** Project Ideas: **
+Downscaling the rainfall data in Indian region from the coarse resolution of the ERA5 reanalysis to a finer resolution using Graph Neural Networks. The goal is to improve the spatial resolution of the rainfall data while preserving important features and patterns in the data. This can be useful for applications such as hydrological modeling, flood forecasting, and climate impact assessments.</p>
+<p>** Project Ideas: extended analysis with morse complex built from the rainfall data **
+Related: Predicting the rainfall in the Indian region using Graph Neural Networks. The goal is to develop a model that can accurately predict rainfall patterns based on historical data and other relevant features. This can be useful for applications such as agriculture, water resource management, and disaster preparedness.</p>
+<p>** Project Ideas: Can you apply consistency model framework to the rainfall data where you leverage a pre-trained model on the ERA5 reanalysis data and fine-tune it on the rainfall data to improve the accuracy of the predictions.**</p>
+<p>What You will Learn:</p>
+<ul>
+<li>How to represent irregularly spaced data as a graph and work with graph-based representations.</li>
+<li>VIT : Visiion Transformer</li>
+<li>Graph Neural Networks (GNNs)</li>
+<li>Sparse Attention( quadratic scaling limits the number of tokens one can process, so we want to explore sparse attention mechanisms that can reduce the computational complexity while maintaining performance. This can be useful for processing large graphs with many nodes and edges, where the number of tokens can be very large.)</li>
+<li>Shared KV, Quantization, and other techniques to reduce the memory footprint of the model.</li>
+</ul>
+<p>Cons of Transformers: They require more data for the same task because of no inductive bias. They also have high memory footprints.</p>
+<h1 id="courses-running-in-2026">Courses (running in 2026)</h1>
+<p><a href="https://cis6270.github.io/">https://cis6270.github.io/</a></p>
+<p>References:</p>
+<ul>
+<li>GraphCast: <a href="https://arxiv.org/pdf/2603.08692">https://arxiv.org/pdf/2603.08692</a></li>
+<li>ECMWF Anemoi: <a href="https://anemoi.readthedocs.io/en/latest/">https://anemoi.readthedocs.io/en/latest/</a></li>
+</ul>
+<h1 id="tools">Tools</h1>
+<p><a href="https://pytorch-geometric.readthedocs.io/en/2.8.0/tutorial/graph_transformer.html">https://pytorch-geometric.readthedocs.io/en/2.8.0/tutorial/graph_transformer.html</a></p>
+<p>On Graphs based Transformer Models
+<a href="https://arxiv.org/pdf/2012.09699">https://arxiv.org/pdf/2012.09699</a></p>
+<h1 id="pde-on-graphs-and-if-neural-operators-dont-need-transformers">PDE on Graphs and if Neural operators don&rsquo;t need transformers</h1>
+<p><a href="https://arxiv.org/pdf/2609.32525">https://arxiv.org/pdf/2609.32525</a></p>
+<p>Posterior bench for benchmarking PDE like system.
+<a href="https://arxiv.org/pdf/2609.20794">https://arxiv.org/pdf/2609.20794</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
+      <link>https://shashankkroy.github.io/posts/mose_complex/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
+      <description>Understanding how we can extract a graph from a scalar field</description>
+      <content:encoded><![CDATA[<p>Think of a way to characterize a scalar field contains topological information. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
+the gradient flow behavior of the field in space.  We will call such a complex a Morse Complex.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
+<h2 id="the-mathematical-descriptions-of-morse-complex">The Mathematical descriptions of Morse Complex</h2>
+<p>Let $f :
+M → R$ be a smooth function defined on a 2D manifold, where
+$\nabla f$ denotes its gradient. A point $x \in M$ is called a critical point
+if $\nabla f(x) = 0$; otherwise, it is a regular point. A critical point is
+non-degenerate if its associated Hessian matrix is non-singular. A
+function $f$ is a Morse function if all of its critical points are nondegenerate and the critical points have distinct function values.</p>
+<p>At any regular point x, an integral line is a maximal
+path whose tangent vectors align with $\nabla f$. f increases along
+the integral line and each integral line originates and terminates at
+critical points, namely local minima, local maxima, or saddles.</p>
+<p>The stable manifold associated with a local maximum $p$ consists of the point itself and all regular points whose integral lines
+terminate at $p$. The unstable manifold associated with a local minimum $p$ is the point itself together with all regular points
+whose integral lines originate at $p$. A Morse function f is a
+Morse-Smale function if the stable and unstable manifolds intersect
+transversally. Ascending and descending manifolds are obtained as clusters of integral lines having common origin and destination respectively.</p>
+<p>In Morse-Smale functions, the integral lines
+only connect critical points of different indices. The index of a critical point $p$ is defined by the number of negative eigen values of the hessian matrix at that point.</p>
+<p>Each critical point of index $p$ is the origin of a set of integral lines
+that forms an ascending $d −p$-manifold. It is also the destination of a set of integral lines that forms a descending $p-$manifold.</p>
+<p>All ascending and descending manifolds of a Morse-Smale function
+intersect transversally. Therefore, given two critical points $a$ and $b$,
+where the index of $a$ is one less than the index of $b$, the intersection of
+the ascending manifold of $a$ and the descending manifold of $b$ is either
+empty or a $1$-manifold. The critical points and these $1$ manifolds are
+called nodes and arcs. The one-skeleton formed by the nodes and arcs
+forms the combinatorial structure of the MS complex.</p>
+<p>The combinatorial structure contains much of the semantic information of $f$ , and
+is useful for simplification and feature identification. The neighborhood of a node a of an MS complex $\Gamma $ is the set of nodes Na that are
+connected to a by an arc in $\Gamma$. Assuming transversality, the stable manifolds induce a decomposition of the domain into 2-cells, where local minima and saddles correspond to 0-cells, and the integral lines connecting them define 1-cells. The Morse complex segments the
+domain into regions where gradient flow behaves coherently.</p>
+<h2 id="computing-morse-complex">Computing Morse Complex</h2>
+<p>A combinatorially correct MS complex is very challenging. These algorithms are memory-intensive and computationally expensive,
+restricting their use to smaller datasets.</p>
+<p><a href="https://proceedings.mlr.press/v97/grover19a.html">https://proceedings.mlr.press/v97/grover19a.html</a></p>
+<h2 id="discrete-morse-theory">Discrete Morse Theory</h2>
+<p>Now that we are comfortable with the ideas of morse complex for smooth fields, remeber that many scientific data are only available on unstructured meshes.</p>
+<h1 id="problem-1">Problem 1</h1>
+<p>Addressing Downward Memory Loss in Hierarchical GNN Forecasters Through
+Memory-Buffered Decoding[https://ijcai-preprints.s3.us-west-1.amazonaws.com/2026/4495.pdf]
+To bring imporvements in spatio-temporal forecasting, we need to model dynamics and interactions that are both local and global across different spatiotemporal scales.
+Graph Neural Network (GNN) forecasters primarily focues on local scales, limiting their ability to capture global system dynamics.
+Single resolution models struggle to reconcile fine-grained variability with broader global processes,
+A key finding &ldquo;the underlying cause of this information decay: the
+linearity of the coarse-to-fine transition mappings used in existing HGNNs. These linear mappings inherently oversmooth
+global features, erasing the distinctions needed for reliable
+global-to-local alignment.&rdquo;
+Simple HGNNs that only map from the coarse to fine grain overfit to the
+coarse information, while adding residual connections avoids overfitting, but at the cost of the loss of this coarse information, limiting
+the discovery of local trends. Accurate forecasting requires maintaining alignment between local patterns
+and the global drivers that influence their dynamics.</p>
+<h2 id="references">References</h2>
+<p><a href="https://www.sci.utah.edu/~beiwang/publications/Morse_uncertainty_BeiWang_2025.pdf">https://www.sci.utah.edu/~beiwang/publications/Morse_uncertainty_BeiWang_2025.pdf</a>
+This one applied to data from NS, and Real Ocean data of red sea.
+This one gives a nice idea of structural uncertainty.</p>
+<h1 id="functional-risk-minimization-for-morse-complex">Functional Risk minimization for Morse Complex</h1>
+<p><a href="https://arxiv.org/pdf/2412.21149">https://arxiv.org/pdf/2412.21149</a></p>
+<p>topological data analysis <a href="https://arxiv.org/pdf/2206.00606">https://arxiv.org/pdf/2206.00606</a>
+<a href="https://www.math3ma.com/blog/matrices-as-tensor-network-diagrams">https://www.math3ma.com/blog/matrices-as-tensor-network-diagrams</a></p>
+<h2 id="tools">Tools</h2>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>Do markets slow down before they crash?</title>
-      <link>https://shashankkroy.github.io/posts/dynamical_systems/</link>
+      <link>https://shashankkroy.github.io/posts/critical-slow-down/</link>
       <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/dynamical_systems/</guid>
+      <guid>https://shashankkroy.github.io/posts/critical-slow-down/</guid>
       <description>On the behaviour of financial markets when a tipping point is near.</description>
       <content:encoded><![CDATA[<blockquote>
 <p><em>Financial crashes seem to arrive catastrophically and without warning. But do they? And more importantly — can mathematics tell us when one is coming?</em></p></blockquote>
 <p>In this article, we discuss briefly the ideas and mathematics behind the above hypothesis. The theory of <strong>critical transitions</strong> that originates from ecology and climate science asks whether financial markets behave the same way before a crash. The short answer is: <strong>not quite</strong> — but the detour through the math reveals something just as interesting.</p>
 <p>Complex systems have tipping points beyond which the stability of the system can shift abruptly. The financial crisis are generally preceded by a period of increasing volatility that could be an early warning signal of the impending crisis. Understanding if empirical observation of volatility signatures that appears in the data <strong>before</strong> the crash, a kind of &ldquo;early warning signal&rdquo; (EWS) that could alert investors and policymakers.
 System risk in financial systems is followed by increasing cross correlations or information dissipation across financial sectors. However, it is still an open question whether volatility can be used as a reliable early warning signal for financial crises.</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/QWeWPemSLkc?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
+    </div>
+
 <h2 id="two-competing-views-of-crashes">Two Competing Views of Crashes</h2>
 <p><strong>View 1 — Efficient Markets:</strong>
 Economists have long disagreed about whether markets tip at all. The efficient-markets view holds that since markets are efficient and prices incorporate all available information, there is nothing to predict. Crashes are the result of unexpected external shocks — a surprise bankruptcy, a geopolitical event, a natural disaster. If the shock is truly unpredictable, then no early warning signals are possible.</p>
@@ -136,6 +333,53 @@ Different bifurcations leave different fingerprints. The cubic normal form cover
     </item>
     
     <item>
+      <title>AI Engineering, Alignment and Evals: A shallow dive :) </title>
+      <link>https://shashankkroy.github.io/posts/ai_engineer/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/ai_engineer/</guid>
+      <description>My starting point to understanding to become an AI Engineer someday...</description>
+      <content:encoded><![CDATA[<p>Hypothesis: The Know-how in training models at scale is as scarce as compute, and it is one of the biggest bottlenecks for AI start-ups.</p>
+<p>Everything below is being written word-by-word, by a human( me) to make sure my understanding is not shortcircuited by AI.</p>
+<h1 id="introduction-the-game-of-who-is-the-best">Introduction: The game of &lsquo;who is the best?&rsquo;</h1>
+<p>In statistical learning theory and traditional machine learning, we learn that the empirical risk minimization is nothing but an expectation wrt the true data distribution.</p>
+<p>$$E_{p(\hat y ,y)} [l(\hat y,y) ]= \sum_{k} (\hat y_k-y_k)^2$$</p>
+<p>where, $p(x,y)$ is the probability distribution and the model output $
+\hat y = f_{\theta}(x).$</p>
+<p>The choice of loss function $l$ which measures the discrepancy of the model output from the true targets is equally important. Now consider a metric that is not able to distinguish between two probability distributions $p$ and $q$.</p>
+<p>$$D(p, q)=0 \implies p=q$$</p>
+<p>If maybe that sometimes for some p close enough to q. ELBO uses this idea for variational methods in deep learning by parameterising the distribution $p$ as $p_{\theta}$ and then minimizing bounds on KL.</p>
+<h1 id="convergence-and-sequences">Convergence and sequences:</h1>
+<p>Assume we have an iterative algorithm that furnish the parameters $\theta$ coming from a parameterized function or a neural network. As $n$ is a finite number of iteraions that bring us closer to the true distribution, it maybe that our metric is not able to read the discrepancy beyond a small value.
+This makes our metric not useful beyond that threshold and everything beyond it, it remains blind. Hence such an algorithm or procedure that relies on this metric will also behave in a similar fashion. Our choice of the metric is thus imporant not only at the end, but it also guides the iterative steps of our algorithm itself.</p>
+<p>One such example is a metric called RMSE which becomes blind and causes smooth and blurry outputs( in models where we predict fields on a grid.) Another example is KL divergence.</p>
+<p>A madeup exmaple is if one want to distinguish two distributions and the distance only depends on the mean. Then such a metric fails to distinguish between a Gaussian, a uniform distribution whose support is summetric about $0$, or anything that have the same mean. As you can see, this is why we will never make one.</p>
+<p>$$ $$</p>
+<h1 id="evals-saturation-when-evaluation-noise-exceeds-true-peformance-gap">Evals Saturation: When evaluation noise exceeds true peformance gap</h1>
+<p>Primary reason why benchmarks in LLMs are useful is that they help us decide the strength of one model over the other. But <a href="https://arxiv.org/pdf/2602.16763">When AI Benchmarks Plateau</a>, we are looking at a scenarios where a lot of them actually start to look similar in nature. Several benchmarking datasets exist that measure how good an LLM specific to different categories. When all models start to get very close to each other, they loose meaning and their distinguishing property.</p>
+<p>The value of such benchmark is then lost and it stops measuring any decisive contribution to decisions down the line. If is all sounds complicated, it just means that our measuring scale has divisions larger than the object we are trying to measure.</p>
+<p>If you want to know some examples of AI Benchmarks- Math-500, LiveBench, LiveCodeBench, TruthfulQA and Humanity&rsquo;s Last Exam.</p>
+<h1 id="error-models">Error models</h1>
+<p>Measurement resolution versus capability resolution. Since these models are stochastic in nature, every independent test will yield slighly different score and is caused by the evaluation noise. So seperating this noise from the true signal which the capability of the model needs to be filtered.
+I now come to a rough sketch of what a metric is before I go back to LLM world in discussions.
+These are some fundamental ideas in estimation theory. When we do linear regression, we are actually assuming a model for the error -</p>
+<p>When we peform Ridge regression, our error model is.
+All models try to fit to the data by understanding what is the structure of the error and then accordingly distinguish noise from signal.</p>
+<h1 id="joint-analysis-of-error-models">Joint Analysis of error models:</h1>
+<p>beyond the current paradigm in AI Benchmarks, focusing on differet granularity, multidimensional nature of tasks, increasing evaluation resolution etc could help us.</p>
+<h1 id="resources--interviews">Resources : interviews</h1>
+<p><a href="https://www.youtube.com/watch?v=XoGvCBRnwLs">https://www.youtube.com/watch?v=XoGvCBRnwLs</a>
+Umar Jamil has a lot of great content on his channel.</p>
+<h1 id="resources--papers">Resources : papers</h1>
+<h1 id="topic-wise">Topic Wise</h1>
+<h1 id="on-tokenization-a-short-video-on-why-we-use-subwords-here">On Tokenization: A short video on why we use subwords, here.</h1>
+<h1 id="jobs">Jobs</h1>
+<p>ARC: Alignment Research Center is hiring for a few positions. I am not affiliated with them, but I think they are doing some interesting work in the field of AI Alignment. If you are interested, check out their <a href="https://jobs.lever.co/alignment.org/617488b1-d742-4990-a037-b7f0e2ba68c9">job postings</a>.
+<a href="https://jobs.lever.co/alignment.org/617488b1-d742-4990-a037-b7f0e2ba68c9">https://jobs.lever.co/alignment.org/617488b1-d742-4990-a037-b7f0e2ba68c9</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
       <title>From stochastic differential equations to the stock market</title>
       <link>https://shashankkroy.github.io/posts/sde/</link>
       <pubDate>Fri, 12 Jul 2024 00:00:00 +0000</pubDate>
@@ -202,12 +446,56 @@ You will like this too.</p>
     
     <item>
       <title></title>
-      <link>https://shashankkroy.github.io/posts/navier_stokes/</link>
+      <link>https://shashankkroy.github.io/posts/earth/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/navier_stokes/</guid>
-      <description></description>
-      <content:encoded><![CDATA[]]></content:encoded>
+      <guid>https://shashankkroy.github.io/posts/earth/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://dataspace.copernicus.eu/news/2026-9-25-new-openeo-community-example-generate-terramind-embeddings-sentinel-1-and-sentinel-2&#34;&gt;https://dataspace.copernicus.eu/news/2026-9-25-new-openeo-community-example-generate-terramind-embeddings-sentinel-1-and-sentinel-2&lt;/a&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<p><a href="https://dataspace.copernicus.eu/news/2026-9-25-new-openeo-community-example-generate-terramind-embeddings-sentinel-1-and-sentinel-2">https://dataspace.copernicus.eu/news/2026-9-25-new-openeo-community-example-generate-terramind-embeddings-sentinel-1-and-sentinel-2</a></p>
+]]></content:encoded>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://shashankkroy.github.io/posts/neural_op/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/neural_op/</guid>
+      <description>&lt;h1 id=&#34;hypothesis&#34;&gt;Hypothesis&lt;/h1&gt;
+&lt;p&gt;Is a neural operator well trained?
+Is it sensitive to the boundary conditions or forcing conditions as the physical model?&lt;/p&gt;
+&lt;p&gt;Feature interactions&lt;/p&gt;
+&lt;p&gt;In many classification tasks, there
+are not trivial interactions
+between features, such that the
+importance of one feature much
+depends on the presence of
+another.&lt;/p&gt;
+&lt;h1 id=&#34;references&#34;&gt;References&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/abs/2609.36216&#34;&gt;https://arxiv.org/abs/2609.36216&lt;/a&gt;
+&lt;a href=&#34;https://arxiv.org/abs/2601.23072&#34;&gt;https://arxiv.org/abs/2601.23072&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;butterfly-effect-in-neural-operators-is-missing-the-sensitivity-of-the-neural-operator-to-small-changes-in-the-input-is-not-well-understood-this-can-lead-to-unexpected-behavior-and-poor-generalization&#34;&gt;Butterfly effect in neural operators is missing. The sensitivity of the neural operator to small changes in the input is not well understood. This can lead to unexpected behavior and poor generalization.&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://arxiv.org/pdf/2608.25835&#34;&gt;https://arxiv.org/pdf/2608.25835&lt;/a&gt;&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h1 id="hypothesis">Hypothesis</h1>
+<p>Is a neural operator well trained?
+Is it sensitive to the boundary conditions or forcing conditions as the physical model?</p>
+<p>Feature interactions</p>
+<p>In many classification tasks, there
+are not trivial interactions
+between features, such that the
+importance of one feature much
+depends on the presence of
+another.</p>
+<h1 id="references">References</h1>
+<p><a href="https://arxiv.org/abs/2609.36216">https://arxiv.org/abs/2609.36216</a>
+<a href="https://arxiv.org/abs/2601.23072">https://arxiv.org/abs/2601.23072</a></p>
+<h1 id="butterfly-effect-in-neural-operators-is-missing-the-sensitivity-of-the-neural-operator-to-small-changes-in-the-input-is-not-well-understood-this-can-lead-to-unexpected-behavior-and-poor-generalization">Butterfly effect in neural operators is missing. The sensitivity of the neural operator to small changes in the input is not well understood. This can lead to unexpected behavior and poor generalization.</h1>
+<p><a href="https://arxiv.org/pdf/2608.25835">https://arxiv.org/pdf/2608.25835</a></p>
+<h1 id="blogs">Blogs</h1>
+<p><a href="https://rbcborealis.com/research-blogs/neural-odes/">https://rbcborealis.com/research-blogs/neural-odes/</a></p>
+<h1 id="github-for-neural-operators-for-pdes">Github for neural operators for PDEs</h1>
+<p><a href="https://github.com/PHASE-MHD/PHASE">https://github.com/PHASE-MHD/PHASE</a></p>
+]]></content:encoded>
     </item>
     
   </channel>

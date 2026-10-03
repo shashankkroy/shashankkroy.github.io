@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Neural Networks on Home</title>
+    <link>https://shashankkroy.github.io/tags/neural-networks/</link>
+    <description>Recent content in Neural Networks on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/neural-networks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mis-Alignment in AI4Science</title>
+      <link>https://shashankkroy.github.io/projects/alignment/</link>
+      <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/alignment/</guid>
+      <description>We want to understand this for reliability in neural weather prediction model</description>
+      <content:encoded><![CDATA[<p>Numerical solutions to partial differential equations (PDEs) are the bedrock of scientific computing. They model a wide range of physical phenomena, from fluid dynamics to electromagnetism, from quantum mechanics to biology, from climate modeling to astrophysics. However, these methods tend to be computationally expensive when we solve such equations at scale, and still being only an approximation determined by the nature of chosen discretization, specific solver, and convergence rates dictaed by the stiffness of such equations.</p>
+<p>Neural emulators, trained on rich and quality simulation data have emerged as a faster way to approximate the solutions, although they often lack guarantees to be accurate or reliability beyond what the training data provides- specific regime, parameter space, and initial conditions. The imperative question is to ask if the neural emulators ensure that it will generalize well to unseen scenarios beyond training when deployed.
+The question is how do we know if the neural emulator is aligned with the true solution of the PDE, and how do we ensure that it will generalize well to unseen scenarios?</p>
+<p>This is taken further by a scientific foundation model, which is a large neural network trained on a wide range of scientific data and tasks. The goal of a scientific foundation model is to learn a general representation of the underlying physics that generalizes to a wide range of scientific problems. This is similar to how large language models (LLMs) are trained on a wide range of text data and can be used for a wide range of natural language processing tasks. A model that can be used for a large class of problems that share similar mathematics, conservation laws, are bounded and time evolving.</p>
+<p>Fun
+What makes a Scientific foundation model different from the LLM foundation models is that they are not be studied for emotions and consciousness :). So such discussions are not relevant to the scientific foundation model.</p>
+<h2 id="chain-of-thought-monitorability-in-ai-models">Chain-of-thought monitorability in AI models</h2>
+<p>COT became a popular technique to improve the performance of large language models (LLMs) on complex reasoning tasks. The model is asked to generate intermediate reasoning steps before producing a final answer which allows the model to break down complex problems into smaller, more manageable parts, and can lead to more accurate and reliable answers.
+AI developers and researchers have used of chain-of-thought for monitorability to understand the decision-making process of AI models. (rRecent research has shown that some models, such as Astra, have a significant decrease in chain-of-thought monitorability compared to previous models. This means that the model is better at performing tasks without verbalizing its thought process, which can make it more difficult to monitor and control its behavior.)</p>
+<h1 id="mis-alignment-in-ai4science">Mis-Alignment in AI4Science</h1>
+<p>The field of AI4Science has seen significant advancements in recent years, with the development of powerful machine learning models and techniques that have been applied to a wide range of scientific problems. However, there is a growing concern about the misalignment between the goals of AI researchers and the needs of the scientific community. This misalignment can lead to the development of models that are not well-suited to the specific challenges of scientific research, and can result in wasted resources and missed opportunities for scientific discovery.</p>
+<h1 id="interpretability">Interpretability</h1>
+<p>Frontier labs and researcher have been exploring the use of interpretability methods to understand the decision-making process of neural networks in scientific applications. These methods can help us visualize and interpret the learned representations in neural networks, and investigate the role of feature interactions in scientific datasets and how they affect model predictions.</p>
+<h1 id="interpretability-x-ai4science">Interpretability x AI4Science</h1>
+<p>Possible directions to explore:</p>
+<ul>
+<li>Understanding the decision-making process of neural networks in scientific applications.</li>
+<li>Developing methods to visualize and interpret the learned representations in neural networks.</li>
+<li>Can we interpretabiity be used to identify biases or errors in scientific datasets, such as those found in reanalysis products like ERA5?</li>
+</ul>
+<p><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387">https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387</a>
+<a href="https://arxiv.org/pdf/2603.29658">https://arxiv.org/pdf/2603.29658</a></p>
+<h1 id="physical-interpretability">Physical interpretability</h1>
+<p><a href="https://arxiv.org/pdf/2604.22580v1">https://arxiv.org/pdf/2604.22580v1</a>
+<a href="https://arxiv.org/pdf/2512.24440">https://arxiv.org/pdf/2512.24440</a></p>
+<h1 id="going-beyong-training-and-history">Going Beyong Training and History</h1>
+<p>AI models, largely trained on many physics based simulated data and observations ( or some combination of both) seem more capable and accurate, efficient than the physics based model. But the real question is how are we going to predict if they are aligned to our long term objectives of the true phenomenon rather than just the training distribution.</p>
+<p>Bad predictions from AI based models in future are of catastrophic consequences. Although they may not be a wedspread situation and assessed during training and testing, real world is more complex, doesn&rsquo;t guarentee that the future has signals which are statistically similar to the past, the distributions represented by the historical data will also hold in the future. Although there are several methods to address such challenges, they are yet far to establish guarentess and understanding that physics based models produce.</p>
+<p>Using Model&rsquo;s activation space to estimate the probability  of particular output of behaviour is crucial.</p>
+<p>A lot of interesting research areas are laid down here for reference:
+<a href="https://coefficientgiving.org/tais-rfp-research-areas/#17-white-box-estimation-of-rare-misbehavior">https://coefficientgiving.org/tais-rfp-research-areas/#17-white-box-estimation-of-rare-misbehavior</a></p>
+<p>They ask for a proposal with certain criteria to evaluate the work and benchmark.</p>
+<h1 id="career-transition-points">Career Transition points</h1>
+<p><a href="https://coefficientgiving.org/funds/global-catastrophic-risks-opportunities/career-development-and-transition-funding/">https://coefficientgiving.org/funds/global-catastrophic-risks-opportunities/career-development-and-transition-funding/</a>
+<a href="https://bluedot.org/">https://bluedot.org/</a></p>
+<h1 id="labs-working-in-similar-areas">Labs working in similar areas</h1>
+<p><a href="https://ri-lab.org/">https://ri-lab.org/</a></p>
+<h1 id="references">References</h1>
+<p><a href="https://www.auai.org/uai2026/tutorials">https://www.auai.org/uai2026/tutorials</a>
+<a href="https://www.matsprogram.org/faq/getting-into-mats">https://www.matsprogram.org/faq/getting-into-mats</a>
+<a href="https://coefficientgiving.org/funds/navigating-transformative-ai/request-for-proposals-technical-ai-safety-research/">https://coefficientgiving.org/funds/navigating-transformative-ai/request-for-proposals-technical-ai-safety-research/</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

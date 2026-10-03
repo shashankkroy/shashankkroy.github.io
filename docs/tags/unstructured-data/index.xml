@@ -9,20 +9,18 @@
     <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/unstructured-data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
-      <link>https://shashankkroy.github.io/projects/mose_complex/</link>
+      <link>https://shashankkroy.github.io/posts/mose_complex/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/mose_complex/</guid>
-      <description>Dive into the theory behind Morse Complex.</description>
-      <content:encoded><![CDATA[<h1 id="extract-a-graph-from-a-scalar-field-the-morse-complex">Extract a graph from a scalar field: The Morse Complex</h1>
-<p>Think of a way to characterize a scalar field contains topological information. Now in such a case, critical points of the functions can be used to define nodes or vertices. To connect one crticial point topologically to another, we need the information of the gradient along a path- the maximal path whose tangent vectors align with the gradient information along the path itself. This way, the Morse Complex gives us a structure that represents
-the gradient flow behavior and completely encapsulates the topology
-of level sets of a scalar function.  In short, what you will get is called a Morse Complex</p>
+      <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
+      <description>Understanding how we can extract a graph from a scalar field</description>
+      <content:encoded><![CDATA[<p>Think of a way to characterize a scalar field contains topological information. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
+the gradient flow behavior of the field in space.  We will call such a complex a Morse Complex.</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
       <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
 
-<h2 id="speaking-mathematically">Speaking Mathematically</h2>
+<h2 id="the-mathematical-descriptions-of-morse-complex">The Mathematical descriptions of Morse Complex</h2>
 <p>Let $f :
 M → R$ be a smooth function defined on a 2D manifold, where
 $\nabla f$ denotes its gradient. A point $x \in M$ is called a critical point
@@ -40,9 +38,9 @@ Morse-Smale function if the stable and unstable manifolds intersect
 transversally. Ascending and descending manifolds are obtained as clusters of integral lines having common origin and destination respectively.</p>
 <p>In Morse-Smale functions, the integral lines
 only connect critical points of different indices. The index of a critical point $p$ is defined by the number of negative eigen values of the hessian matrix at that point.</p>
-<p>Each critical point of index $n$ is the origin of a set of integral lines
-that forms an ascending $d −n$-manifold. Symmetrically, it is the destination of a set of integral lines that forms a descending n-manifold.
-All ascending and descending manifolds of a Morse-Smale function
+<p>Each critical point of index $p$ is the origin of a set of integral lines
+that forms an ascending $d −p$-manifold. It is also the destination of a set of integral lines that forms a descending $p-$manifold.</p>
+<p>All ascending and descending manifolds of a Morse-Smale function
 intersect transversally. Therefore, given two critical points $a$ and $b$,
 where the index of $a$ is one less than the index of $b$, the intersection of
 the ascending manifold of $a$ and the descending manifold of $b$ is either
@@ -56,8 +54,32 @@ domain into regions where gradient flow behaves coherently.</p>
 <h2 id="computing-morse-complex">Computing Morse Complex</h2>
 <p>A combinatorially correct MS complex is very challenging. These algorithms are memory-intensive and computationally expensive,
 restricting their use to smaller datasets.</p>
+<p><a href="https://proceedings.mlr.press/v97/grover19a.html">https://proceedings.mlr.press/v97/grover19a.html</a></p>
 <h2 id="discrete-morse-theory">Discrete Morse Theory</h2>
 <p>Now that we are comfortable with the ideas of morse complex for smooth fields, remeber that many scientific data are only available on unstructured meshes.</p>
+<h1 id="problem-1">Problem 1</h1>
+<p>Addressing Downward Memory Loss in Hierarchical GNN Forecasters Through
+Memory-Buffered Decoding[https://ijcai-preprints.s3.us-west-1.amazonaws.com/2026/4495.pdf]
+To bring imporvements in spatio-temporal forecasting, we need to model dynamics and interactions that are both local and global across different spatiotemporal scales.
+Graph Neural Network (GNN) forecasters primarily focues on local scales, limiting their ability to capture global system dynamics.
+Single resolution models struggle to reconcile fine-grained variability with broader global processes,
+A key finding &ldquo;the underlying cause of this information decay: the
+linearity of the coarse-to-fine transition mappings used in existing HGNNs. These linear mappings inherently oversmooth
+global features, erasing the distinctions needed for reliable
+global-to-local alignment.&rdquo;
+Simple HGNNs that only map from the coarse to fine grain overfit to the
+coarse information, while adding residual connections avoids overfitting, but at the cost of the loss of this coarse information, limiting
+the discovery of local trends. Accurate forecasting requires maintaining alignment between local patterns
+and the global drivers that influence their dynamics.</p>
+<h2 id="references">References</h2>
+<p><a href="https://www.sci.utah.edu/~beiwang/publications/Morse_uncertainty_BeiWang_2025.pdf">https://www.sci.utah.edu/~beiwang/publications/Morse_uncertainty_BeiWang_2025.pdf</a>
+This one applied to data from NS, and Real Ocean data of red sea.
+This one gives a nice idea of structural uncertainty.</p>
+<h1 id="functional-risk-minimization-for-morse-complex">Functional Risk minimization for Morse Complex</h1>
+<p><a href="https://arxiv.org/pdf/2412.21149">https://arxiv.org/pdf/2412.21149</a></p>
+<p>topological data analysis <a href="https://arxiv.org/pdf/2206.00606">https://arxiv.org/pdf/2206.00606</a>
+<a href="https://www.math3ma.com/blog/matrices-as-tensor-network-diagrams">https://www.math3ma.com/blog/matrices-as-tensor-network-diagrams</a></p>
+<h2 id="tools">Tools</h2>
 ]]></content:encoded>
     </item>
     

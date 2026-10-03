@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agentic Systems on Home</title>
+    <link>https://shashankkroy.github.io/tags/agentic-systems/</link>
+    <description>Recent content in Agentic Systems on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/agentic-systems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Scaling problems that arise for multi-aget memory</title>
+      <link>https://shashankkroy.github.io/projects/memory/</link>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/memory/</guid>
+      <description>Given a bunch of agents working together, how do you distribute the memeory, how do you update, what do you choose to remeber and how do you decide what to share and what not!</description>
+      <content:encoded><![CDATA[<h1 id="references">References</h1>
+<p>Multi-agent memory</p>
+<p><a href="https://arxiv.org/pdf/2603.10062">https://arxiv.org/pdf/2603.10062</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

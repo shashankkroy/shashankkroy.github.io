@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Time on Home</title>
+    <link>https://shashankkroy.github.io/tags/time/</link>
+    <description>Recent content in Time on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/time/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Engineering, Alignment and Evals: A shallow dive :) </title>
+      <link>https://shashankkroy.github.io/posts/ai_engineer/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/posts/ai_engineer/</guid>
+      <description>My starting point to understanding to become an AI Engineer someday...</description>
+      <content:encoded><![CDATA[<p>Hypothesis: The Know-how in training models at scale is as scarce as compute, and it is one of the biggest bottlenecks for AI start-ups.</p>
+<p>Everything below is being written word-by-word, by a human( me) to make sure my understanding is not shortcircuited by AI.</p>
+<h1 id="introduction-the-game-of-who-is-the-best">Introduction: The game of &lsquo;who is the best?&rsquo;</h1>
+<p>In statistical learning theory and traditional machine learning, we learn that the empirical risk minimization is nothing but an expectation wrt the true data distribution.</p>
+<p>$$E_{p(\hat y ,y)} [l(\hat y,y) ]= \sum_{k} (\hat y_k-y_k)^2$$</p>
+<p>where, $p(x,y)$ is the probability distribution and the model output $
+\hat y = f_{\theta}(x).$</p>
+<p>The choice of loss function $l$ which measures the discrepancy of the model output from the true targets is equally important. Now consider a metric that is not able to distinguish between two probability distributions $p$ and $q$.</p>
+<p>$$D(p, q)=0 \implies p=q$$</p>
+<p>If maybe that sometimes for some p close enough to q. ELBO uses this idea for variational methods in deep learning by parameterising the distribution $p$ as $p_{\theta}$ and then minimizing bounds on KL.</p>
+<h1 id="convergence-and-sequences">Convergence and sequences:</h1>
+<p>Assume we have an iterative algorithm that furnish the parameters $\theta$ coming from a parameterized function or a neural network. As $n$ is a finite number of iteraions that bring us closer to the true distribution, it maybe that our metric is not able to read the discrepancy beyond a small value.
+This makes our metric not useful beyond that threshold and everything beyond it, it remains blind. Hence such an algorithm or procedure that relies on this metric will also behave in a similar fashion. Our choice of the metric is thus imporant not only at the end, but it also guides the iterative steps of our algorithm itself.</p>
+<p>One such example is a metric called RMSE which becomes blind and causes smooth and blurry outputs( in models where we predict fields on a grid.) Another example is KL divergence.</p>
+<p>A madeup exmaple is if one want to distinguish two distributions and the distance only depends on the mean. Then such a metric fails to distinguish between a Gaussian, a uniform distribution whose support is summetric about $0$, or anything that have the same mean. As you can see, this is why we will never make one.</p>
+<p>$$ $$</p>
+<h1 id="evals-saturation-when-evaluation-noise-exceeds-true-peformance-gap">Evals Saturation: When evaluation noise exceeds true peformance gap</h1>
+<p>Primary reason why benchmarks in LLMs are useful is that they help us decide the strength of one model over the other. But <a href="https://arxiv.org/pdf/2602.16763">When AI Benchmarks Plateau</a>, we are looking at a scenarios where a lot of them actually start to look similar in nature. Several benchmarking datasets exist that measure how good an LLM specific to different categories. When all models start to get very close to each other, they loose meaning and their distinguishing property.</p>
+<p>The value of such benchmark is then lost and it stops measuring any decisive contribution to decisions down the line. If is all sounds complicated, it just means that our measuring scale has divisions larger than the object we are trying to measure.</p>
+<p>If you want to know some examples of AI Benchmarks- Math-500, LiveBench, LiveCodeBench, TruthfulQA and Humanity&rsquo;s Last Exam.</p>
+<h1 id="error-models">Error models</h1>
+<p>Measurement resolution versus capability resolution. Since these models are stochastic in nature, every independent test will yield slighly different score and is caused by the evaluation noise. So seperating this noise from the true signal which the capability of the model needs to be filtered.
+I now come to a rough sketch of what a metric is before I go back to LLM world in discussions.
+These are some fundamental ideas in estimation theory. When we do linear regression, we are actually assuming a model for the error -</p>
+<p>When we peform Ridge regression, our error model is.
+All models try to fit to the data by understanding what is the structure of the error and then accordingly distinguish noise from signal.</p>
+<h1 id="joint-analysis-of-error-models">Joint Analysis of error models:</h1>
+<p>beyond the current paradigm in AI Benchmarks, focusing on differet granularity, multidimensional nature of tasks, increasing evaluation resolution etc could help us.</p>
+<h1 id="resources--interviews">Resources : interviews</h1>
+<p><a href="https://www.youtube.com/watch?v=XoGvCBRnwLs">https://www.youtube.com/watch?v=XoGvCBRnwLs</a>
+Umar Jamil has a lot of great content on his channel.</p>
+<h1 id="resources--papers">Resources : papers</h1>
+<h1 id="topic-wise">Topic Wise</h1>
+<h1 id="on-tokenization-a-short-video-on-why-we-use-subwords-here">On Tokenization: A short video on why we use subwords, here.</h1>
+<h1 id="jobs">Jobs</h1>
+<p>ARC: Alignment Research Center is hiring for a few positions. I am not affiliated with them, but I think they are doing some interesting work in the field of AI Alignment. If you are interested, check out their <a href="https://jobs.lever.co/alignment.org/617488b1-d742-4990-a037-b7f0e2ba68c9">job postings</a>.
+<a href="https://jobs.lever.co/alignment.org/617488b1-d742-4990-a037-b7f0e2ba68c9">https://jobs.lever.co/alignment.org/617488b1-d742-4990-a037-b7f0e2ba68c9</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

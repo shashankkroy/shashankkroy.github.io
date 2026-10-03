@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Deep Generative Models on Home</title>
+    <link>https://shashankkroy.github.io/tags/deep-generative-models/</link>
+    <description>Recent content in Deep Generative Models on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/deep-generative-models/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>flow-matching: From first principals to building new algorithms</title>
+      <link>https://shashankkroy.github.io/projects/flow-matching/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>https://shashankkroy.github.io/projects/flow-matching/</guid>
+      <description>The notes will end abruptly at a point when I shift to overleaf for the manuscript</description>
+      <content:encoded><![CDATA[<h2 id="flow-matching-for-posterior-sampling-in-variational-data-assimilation">Flow matching for posterior sampling in variational data assimilation</h2>
+<span class="cv-badge cv-badge-solid">Open</span>
+
+<div class="cv-pills">
+  <span>flow matching</span>
+  <span>generative models</span>
+  <span>Bayesian inference</span>
+  <span>variational DA</span>
+</div>
+
+<p>Variational data assimilation gives a <em>mode</em> of the posterior; generative models can give <em>samples</em>. This project investigates bridging variational assimilation with flow matching so that the assimilation system produces genuine posterior samples — the direction I presented at the <a href="https://www.data-assimilation.no/workshops/EnKF-WS-2026">EnKF Workshop 2026</a>.</p>
+<p><strong>Literature &amp; running notes</strong></p>
+<div class="cv-timeline">
+
+
+<div class="cv-tl-item">
+  <span class="cv-tl-date">30 Aug 2026</span>
+  <p class="cv-tl-title">EnKF Workshop 2026 talk — Bridging Variational DA and Flow Matching for Posterior Sampling</p>
+  <p class="cv-tl-desc">My talk sketching the connection; the project is to develop this into a working method on a quasi-geostrophic testbed and compare against ensemble Kalman baselines.</p>
+</div>
+
+
+
+</div>
+
+<hr>
+<h1 id="references">References</h1>
+<p><a href="https://arxiv.org/abs/2510.02952">https://arxiv.org/abs/2510.02952</a></p>
+<h1 id="concepts-for-interpretability-physical-guidance-in-models">Concepts for interpretability, physical guidance in models</h1>
+<p>Concept bottleneck models (CBMs) offer a middle ground by routing predictions through an intermediate layer of
+interpretable concepts. They structurally embed physical reasoning into the model without
+over-constraining it. Tp recover the mechanistic drivers of marine heatwaves (MHWs) through
+prescribed concepts and a free concept that captures residual structure and regularizes
+prescription. By combining mixed supervision with an ensemble of CBMs, OceanCBM
+balances physical constraint, flexibility, and mechanistic interpretability.
+<a href="https://arxiv.org/pdf/2605.12639">https://arxiv.org/pdf/2605.12639</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>
