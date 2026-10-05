@@ -8,29 +8,6 @@
     <language>en</language>
     <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>A quick intro to Measure theory by a lazy physicit</title>
-      <link>https://shashankkroy.github.io/posts/measure-theory/</link>
-      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
-      
-      <guid>https://shashankkroy.github.io/posts/measure-theory/</guid>
-      <description>Building intutive understanding of measure theory and convergence with bare minimum math prerequisite.</description>
-      <content:encoded><![CDATA[<p>I am not going to assume a lot of technical backround for anyone reading this.
-For me, <strong>Mathematics</strong> is a subject about finiteness and how to define them followed by infinities and how to avoid them.
-So we will strip all unnecessary collections of abstract objects and build our intuition from the atoms.</p>
-<h1 id="sets-atoms-and-thier-collections">Sets: atoms and thier collections</h1>
-<p>A set is just a collection. Finite sets are those for which we can count the number of elements in them. Infinite sets are those for which we cannot count the number of elements in them. Since we are physicists, we will not worry about the technicalities of infinite sets and will only focus on finite sets.</p>
-<p>But why build a set at all in the first place. Sometimes, we do not collect the elements, but define a specific property. Anything that satisfies the property is an element of our set. This helps us because then it becomes easy to state what we mean by a certain set. For example, the set of all even numbers is defined by the property that a number is even if it is divisible by 2. So the set of people going to office everyday from 9 to 5, the set of all physicists that are poor in proving theorems, etc.</p>
-<p>$$S= {x| \text{the set of people reading this post}} \text{is a small and finite set}.$$</p>
-<h1 id="from-a-set-of-points-to-a-set-of-sets">From a set of points to a set of sets</h1>
-<h1 id="what-does-measure-theory-want-to-measure">What does measure theory want to measure?</h1>
-<h1 id="a-good-way-to-define-collecion-of-sets-before-we-can-measure-things-using-them">A good way to define collecion of sets before we can measure things using them</h1>
-<h1 id="measurable-functions">Measurable functions</h1>
-<h1 id="on-convergence-of-these-entities">On convergence of these entities</h1>
-<h1 id="and-their-world-is-pretty-complicated">And their world is pretty complicated</h1>
-]]></content:encoded>
-    </item>
-    
-    <item>
       <title>Graph Neural Networks for Scientific Machine Learning</title>
       <link>https://shashankkroy.github.io/posts/graph/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
@@ -131,8 +108,8 @@ Related: Predicting the rainfall in the Indian region using Graph Neural Network
       
       <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
       <description>Understanding how we can extract a graph from a scalar field</description>
-      <content:encoded><![CDATA[<p>Think of a way to characterize a scalar field contains topological information. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
-the gradient flow behavior of the field in space.  We will call such a complex a Morse Complex.</p>
+      <content:encoded><![CDATA[<p>Think of a way to characterize a smooth scalar field where the focus is to identify topological features and the information they contain. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
+the gradient flow behavior of the field in space.  The obtained structure gives us graph based view of the same field called the Morse Complex.</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
       <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>

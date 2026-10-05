@@ -14,8 +14,8 @@
       
       <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
       <description>Understanding how we can extract a graph from a scalar field</description>
-      <content:encoded><![CDATA[<p>Think of a way to characterize a scalar field contains topological information. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
-the gradient flow behavior of the field in space.  We will call such a complex a Morse Complex.</p>
+      <content:encoded><![CDATA[<p>Think of a way to characterize a smooth scalar field where the focus is to identify topological features and the information they contain. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
+the gradient flow behavior of the field in space.  The obtained structure gives us graph based view of the same field called the Morse Complex.</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
       <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/8VGRLNBjFSY?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
