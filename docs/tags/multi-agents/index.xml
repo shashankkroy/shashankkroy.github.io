@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Multi-Agents on Home</title>
-    <link>http://localhost:1313/tags/multi-agents/</link>
+    <link>https://shashankkroy.github.io/tags/multi-agents/</link>
     <description>Recent content in Multi-Agents on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/multi-agents/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/multi-agents/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scaling problems that arise for multi-aget memory</title>
-      <link>http://localhost:1313/projects/memory/</link>
+      <link>https://shashankkroy.github.io/projects/memory/</link>
       <pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/memory/</guid>
+      <guid>https://shashankkroy.github.io/projects/memory/</guid>
       <description>Given a bunch of agents working together, how do you distribute the memeory, how do you update, what do you choose to remeber and how do you decide what to share and what not!</description>
       <content:encoded><![CDATA[<h1 id="references">References</h1>
 <p>Multi-agent memory</p>

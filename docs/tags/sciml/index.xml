@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Sciml on Home</title>
-    <link>http://localhost:1313/tags/sciml/</link>
+    <link>https://shashankkroy.github.io/tags/sciml/</link>
     <description>Recent content in Sciml on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/sciml/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/sciml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Atmospheric Rivers and their Impact on Precipitation</title>
-      <link>http://localhost:1313/projects/atmospheric_rivers/</link>
+      <link>https://shashankkroy.github.io/projects/atmospheric_rivers/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/atmospheric_rivers/</guid>
+      <guid>https://shashankkroy.github.io/projects/atmospheric_rivers/</guid>
       <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
       <content:encoded><![CDATA[<p><span class="cv-badge cv-badge-solid">Open</span>
  <span class="cv-badge">Looking for students</span>
@@ -31,10 +31,10 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
     
     <item>
       <title>Resources for Scientific Machine Learning and Data Assimilation</title>
-      <link>http://localhost:1313/projects/resources/</link>
+      <link>https://shashankkroy.github.io/projects/resources/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/resources/</guid>
+      <guid>https://shashankkroy.github.io/projects/resources/</guid>
       <description>A collection of resources for scientific machine learning and data assimilation.</description>
       <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
 <p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview of this area and his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM. Their work on emulators also comes with a pytorch package for training neural emulators for PDEs.</p>
@@ -67,10 +67,10 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
     
     <item>
       <title>Turning LoRA into a General-purpose generative model for Scientific Machine Learning</title>
-      <link>http://localhost:1313/projects/lora/</link>
+      <link>https://shashankkroy.github.io/projects/lora/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/projects/lora/</guid>
+      <guid>https://shashankkroy.github.io/projects/lora/</guid>
       <description>Research project on transforming LoRA into a general-purpose generative model for scientific machine learning.</description>
       <content:encoded><![CDATA[<h2 id="hypothesis">Hypothesis:</h2>
 <p>The purpose is to use transfer learning to adapt a pre-trained generative model (e.g., Stable Diffusion) to scientific machine learning tasks, specifically for data assimilation and uncertainty quantification. By leveraging the low-rank adaptation capabilities of LoRA, we can fine-tune the model to generate samples that are consistent with the underlying physics of the system being studied. The transfer learning approach allows us to efficiently adapt the model to new scientific domains without requiring extensive retraining, making it a powerful tool for scientific machine learning applications. We know that LoRA has been used for fine-tuning text-to-image generation, but we want to explore its potential for scientific machine learning tasks, where the goal is to generate samples that are consistent with the underlying physics of the system being studied.</p>

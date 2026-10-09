@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Thinking on Home</title>
-    <link>http://localhost:1313/tags/thinking/</link>
+    <link>https://shashankkroy.github.io/tags/thinking/</link>
     <description>Recent content in Thinking on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/thinking/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/thinking/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI Engineering, Alignment and Evals: A shallow dive :) </title>
-      <link>http://localhost:1313/posts/ai_engineer/</link>
+      <link>https://shashankkroy.github.io/posts/ai_engineer/</link>
       <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/ai_engineer/</guid>
+      <guid>https://shashankkroy.github.io/posts/ai_engineer/</guid>
       <description>My starting point to understanding to become an AI Engineer someday...</description>
       <content:encoded><![CDATA[<p>Hypothesis: The Know-how in training models at scale is as scarce as compute, and it is one of the biggest bottlenecks for AI start-ups.</p>
 <p>Everything below is being written word-by-word, by a human( me) to make sure my understanding is not shortcircuited by AI.</p>

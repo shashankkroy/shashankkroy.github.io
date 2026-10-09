@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Unstructured Data on Home</title>
-    <link>http://localhost:1313/tags/unstructured-data/</link>
+    <link>https://shashankkroy.github.io/tags/unstructured-data/</link>
     <description>Recent content in Unstructured Data on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/unstructured-data/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/unstructured-data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
-      <link>http://localhost:1313/posts/mose_complex/</link>
+      <link>https://shashankkroy.github.io/posts/mose_complex/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/posts/mose_complex/</guid>
+      <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
       <description>Understanding how we can extract a graph from a scalar field</description>
       <content:encoded><![CDATA[<p>Think of a way to characterize a smooth scalar field where the focus is to identify topological features and the information they contain. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
 the gradient flow behavior of the field in space.  The obtained structure gives us graph based view of the same field called the Morse Complex.</p>
