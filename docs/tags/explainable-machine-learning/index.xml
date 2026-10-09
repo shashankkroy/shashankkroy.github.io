@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Explainable Machine Learning on Home</title>
-    <link>https://shashankkroy.github.io/tags/explainable-machine-learning/</link>
+    <link>http://localhost:1313/tags/explainable-machine-learning/</link>
     <description>Recent content in Explainable Machine Learning on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/explainable-machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/explainable-machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mis-Alignment in AI4Science</title>
-      <link>https://shashankkroy.github.io/projects/alignment/</link>
+      <link>http://localhost:1313/projects/alignment/</link>
       <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/alignment/</guid>
+      <guid>http://localhost:1313/projects/alignment/</guid>
       <description>We want to understand this for reliability in neural weather prediction model</description>
       <content:encoded><![CDATA[<p>Numerical solutions to partial differential equations (PDEs) are the bedrock of scientific computing. They model a wide range of physical phenomena, from fluid dynamics to electromagnetism, from quantum mechanics to biology, from climate modeling to astrophysics. However, these methods tend to be computationally expensive when we solve such equations at scale, and still being only an approximation determined by the nature of chosen discretization, specific solver, and convergence rates dictaed by the stiffness of such equations.</p>
 <p>Neural emulators, trained on rich and quality simulation data have emerged as a faster way to approximate the solutions, although they often lack guarantees to be accurate or reliability beyond what the training data provides- specific regime, parameter space, and initial conditions. The imperative question is to ask if the neural emulators ensure that it will generalize well to unseen scenarios beyond training when deployed.

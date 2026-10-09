@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Gen-Ai on Home</title>
-    <link>https://shashankkroy.github.io/tags/gen-ai/</link>
+    <link>http://localhost:1313/tags/gen-ai/</link>
     <description>Recent content in Gen-Ai on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/gen-ai/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/gen-ai/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>flow-matching: From first principals to building new algorithms</title>
-      <link>https://shashankkroy.github.io/projects/flow-matching/</link>
+      <link>http://localhost:1313/projects/flow-matching/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/flow-matching/</guid>
+      <guid>http://localhost:1313/projects/flow-matching/</guid>
       <description>The notes will end abruptly at a point when I shift to overleaf for the manuscript</description>
       <content:encoded><![CDATA[<h2 id="flow-matching-for-posterior-sampling-in-variational-data-assimilation">Flow matching for posterior sampling in variational data assimilation</h2>
 <span class="cv-badge cv-badge-solid">Open</span>

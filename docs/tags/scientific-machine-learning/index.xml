@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Scientific Machine Learning on Home</title>
-    <link>https://shashankkroy.github.io/tags/scientific-machine-learning/</link>
+    <link>http://localhost:1313/tags/scientific-machine-learning/</link>
     <description>Recent content in Scientific Machine Learning on Home</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shashankkroy.github.io/tags/scientific-machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 14 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/scientific-machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mis-Alignment in AI4Science</title>
-      <link>https://shashankkroy.github.io/projects/alignment/</link>
+      <link>http://localhost:1313/projects/alignment/</link>
       <pubDate>Mon, 14 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/alignment/</guid>
+      <guid>http://localhost:1313/projects/alignment/</guid>
       <description>We want to understand this for reliability in neural weather prediction model</description>
       <content:encoded><![CDATA[<p>Numerical solutions to partial differential equations (PDEs) are the bedrock of scientific computing. They model a wide range of physical phenomena, from fluid dynamics to electromagnetism, from quantum mechanics to biology, from climate modeling to astrophysics. However, these methods tend to be computationally expensive when we solve such equations at scale, and still being only an approximation determined by the nature of chosen discretization, specific solver, and convergence rates dictaed by the stiffness of such equations.</p>
 <p>Neural emulators, trained on rich and quality simulation data have emerged as a faster way to approximate the solutions, although they often lack guarantees to be accurate or reliability beyond what the training data provides- specific regime, parameter space, and initial conditions. The imperative question is to ask if the neural emulators ensure that it will generalize well to unseen scenarios beyond training when deployed.
@@ -60,10 +60,10 @@ AI developers and researchers have used of chain-of-thought for monitorability t
     
     <item>
       <title>AI based tropical cyclone track prediction in India</title>
-      <link>https://shashankkroy.github.io/projects/tc/</link>
+      <link>http://localhost:1313/projects/tc/</link>
       <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/tc/</guid>
+      <guid>http://localhost:1313/projects/tc/</guid>
       <description>We want to understand this and their impact on precipitation</description>
       <content:encoded><![CDATA[<h1 id="background">Background:</h1>
 <p>India is a country that is highly vulnerable to tropical cyclones, which can cause significant damage to infrastructure, agriculture, economy and human life. Accurate prediction of tropical cyclone is crucial for disaster management and mitigation strategies.</p>
@@ -74,10 +74,10 @@ The challenges of the physics based models in the coastal regions of India are d
     
     <item>
       <title>Topological study of evolving precipitation in India</title>
-      <link>https://shashankkroy.github.io/projects/raindeer/</link>
+      <link>http://localhost:1313/projects/raindeer/</link>
       <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/raindeer/</guid>
+      <guid>http://localhost:1313/projects/raindeer/</guid>
       <description>We want to understand this and their impact on precipitation</description>
       <content:encoded><![CDATA[<h1 id="background">Background:</h1>
 <p>Ideas:
@@ -132,10 +132,10 @@ Can we use topological descriptors to identify the changes in the rainfall patte
     
     <item>
       <title>Graph Neural Networks for Scientific Machine Learning</title>
-      <link>https://shashankkroy.github.io/posts/graph/</link>
+      <link>http://localhost:1313/posts/graph/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/graph/</guid>
+      <guid>http://localhost:1313/posts/graph/</guid>
       <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
       <content:encoded><![CDATA[<p>From grids to Graph nodes: The motivation</p>
 <p>Observations that are obtained from satellites, radars, and other sources are often in the form of irregularly spaced data points. When the data sources are irregularly spaced, it is often more appropriate to represent the data as a graph, where the nodes represent the data points and the edges represent the relationships between them. The gridded products are obtained from these irregularly spaced data points through interpolation and other techniques. By representing the data as a graph, we can directly work with the observation network based data to capture the underlying relationships and dependencies between the data points.</p>
@@ -226,10 +226,10 @@ Related: Predicting the rainfall in the Indian region using Graph Neural Network
     
     <item>
       <title>Morse Complex: A brief introduction to building topological features from smooth fields</title>
-      <link>https://shashankkroy.github.io/posts/mose_complex/</link>
+      <link>http://localhost:1313/posts/mose_complex/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/posts/mose_complex/</guid>
+      <guid>http://localhost:1313/posts/mose_complex/</guid>
       <description>Understanding how we can extract a graph from a scalar field</description>
       <content:encoded><![CDATA[<p>Think of a way to characterize a smooth scalar field where the focus is to identify topological features and the information they contain. Critical points of the function represented by the field can be used to define nodes or vertices. One can think of a way to connect one crticial point topologically to another, and for this we need the information of the gradients. This way, we get a set of nodes whose structure represents
 the gradient flow behavior of the field in space.  The obtained structure gives us graph based view of the same field called the Morse Complex.</p>
@@ -302,10 +302,10 @@ This one gives a nice idea of structural uncertainty.</p>
     
     <item>
       <title>Neural Fields: NNs to encode fields for unstructured data</title>
-      <link>https://shashankkroy.github.io/projects/neuralfields/</link>
+      <link>http://localhost:1313/projects/neuralfields/</link>
       <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/neuralfields/</guid>
+      <guid>http://localhost:1313/projects/neuralfields/</guid>
       <description>Can we use parameterized neural networks to encode fields for unstructured data, and use them for scientific machine learning tasks?</description>
       <content:encoded><![CDATA[<p>Operator learning is a promising paradigm for surrogate modeling by learning mappings between function spaces rather than discretized data points. Unlike CNNs and GNNs, Neural Operators learn and treat physical variables as continuous fields, enabling evaluation at any arbitrary point, removing any constraints on discretization. The Fourier Neural Operator (FNO) [29] does this by approximating the Greens Function: the integral of kernel of the unknown operator in a learned latent space using spectral methods. They are limited to uniform grids for efficient Fast Fourier Transform operations, limiting their applicability to unstructured meshes. FNOs are extended by Graph based counterparts - GINOs to handle non-uniform discretizations and geometric variability.</p>
 <p>Neural Fields, also known as Implicit Neural Representations (INRs), offer an alternative approach.
@@ -321,10 +321,10 @@ The core idea of the representation lies in directly mapping spatial coordinates
     
     <item>
       <title>Atmospheric Rivers and their Impact on Precipitation</title>
-      <link>https://shashankkroy.github.io/projects/atmospheric_rivers/</link>
+      <link>http://localhost:1313/projects/atmospheric_rivers/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/atmospheric_rivers/</guid>
+      <guid>http://localhost:1313/projects/atmospheric_rivers/</guid>
       <description>We want to understand this and their impact on precipitation and uncertainty quantification in weather and climate models.</description>
       <content:encoded><![CDATA[<p><span class="cv-badge cv-badge-solid">Open</span>
  <span class="cv-badge">Looking for students</span>
@@ -343,10 +343,10 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
     
     <item>
       <title>Resources for Scientific Machine Learning and Data Assimilation</title>
-      <link>https://shashankkroy.github.io/projects/resources/</link>
+      <link>http://localhost:1313/projects/resources/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/resources/</guid>
+      <guid>http://localhost:1313/projects/resources/</guid>
       <description>A collection of resources for scientific machine learning and data assimilation.</description>
       <content:encoded><![CDATA[<h2 id="resources-for-neural-emulators-and-scientific-machine-learning">Resources for Neural Emulators and Scientific Machine Learning</h2>
 <p>Thesis by <a href="https://arxiv.org/pdf/2608.24547">Felix Kohler</a> has a good overview of this area and his work. More work can be found by Prof. <a href="https://www.nthuerey.com/">Nils Thuerey</a> and his group at TUM. Their work on emulators also comes with a pytorch package for training neural emulators for PDEs.</p>
@@ -379,10 +379,10 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
     
     <item>
       <title>Turning LoRA into a General-purpose generative model for Scientific Machine Learning</title>
-      <link>https://shashankkroy.github.io/projects/lora/</link>
+      <link>http://localhost:1313/projects/lora/</link>
       <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
       
-      <guid>https://shashankkroy.github.io/projects/lora/</guid>
+      <guid>http://localhost:1313/projects/lora/</guid>
       <description>Research project on transforming LoRA into a general-purpose generative model for scientific machine learning.</description>
       <content:encoded><![CDATA[<h2 id="hypothesis">Hypothesis:</h2>
 <p>The purpose is to use transfer learning to adapt a pre-trained generative model (e.g., Stable Diffusion) to scientific machine learning tasks, specifically for data assimilation and uncertainty quantification. By leveraging the low-rank adaptation capabilities of LoRA, we can fine-tune the model to generate samples that are consistent with the underlying physics of the system being studied. The transfer learning approach allows us to efficiently adapt the model to new scientific domains without requiring extensive retraining, making it a powerful tool for scientific machine learning applications. We know that LoRA has been used for fine-tuning text-to-image generation, but we want to explore its potential for scientific machine learning tasks, where the goal is to generate samples that are consistent with the underlying physics of the system being studied.</p>
