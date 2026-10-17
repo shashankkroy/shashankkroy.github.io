@@ -1,0 +1,12 @@
+/* {{< img >}} shortcode */
+.post-content figure.img-sc img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-content figure.img-sc.img-center img { margin-left: auto; margin-right: auto; }
+.post-content figure.img-sc.img-center figcaption { text-align: center; }
+.post-content figure.img-sc.img-left img { margin-left: 0; margin-right: auto; }
+.post-content figure.img-sc.img-right img { margin-left: auto; margin-right: 0; }
+.post-content figure.img-sc.img-right figcaption { text-align: right; }

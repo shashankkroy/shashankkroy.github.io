@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Dynamical Systems, Machine Learning, Numerical Weather Prediction on Home</title>
+    <link>http://localhost:1313/tags/dynamical-systems-machine-learning-numerical-weather-prediction/</link>
+    <description>Recent content in Dynamical Systems, Machine Learning, Numerical Weather Prediction on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 25 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/dynamical-systems-machine-learning-numerical-weather-prediction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Disentangling location error from amplitude error in data assimilation</title>
+      <link>http://localhost:1313/projects/location_errors/</link>
+      <pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/location_errors/</guid>
+      <description>And how to correctly represent and model for them</description>
+      <content:encoded><![CDATA[<p>Location errors in data assimilation refer to discrepancies between the true locations of observed phenomena and their assigned locations in the model state. The amplitude and position errors are distinct, the right quantity when forecasted at a wrong location violates the assumtions of conditional distribution such as the observation likelihood. Such errors can arise from multiple sources, including measurement inaccuracies, model resolution limitations, and interpolation methods used in the assimilation process. When thinking about the impact of these errors, it is important to note that they can lead to significant biases in the analysis and forecast, as the model may incorrectly attribute observed features to the wrong locations.</p>
+<h2 id="the-amplitude-error-is-not-same-as-position-error">The amplitude error is not same as position error</h2>
+<p>Generally, the incorrect assimilation is observed when the first guess (or background) contains a feature that is not present in the observations, but a similar feature is present in the observations at a different location. In such cases, the assimilation process may struggle to reconcile the differences between the model and the observations, leading to an analysis that is distorted and does not accurately represent the true state of the system. This is why classical assimilation method (e.g.
+three-dimensional variational assimilation, or 3DVAR) end up distorting the first guess to fit the observations.</p>
+<h2 id="does-such-distortion-arise-because-of-spatially-extended-systems-or-can-they-also-arise-in-low-dimensional-systems">Does such distortion arise because of spatially extended systems or can they also arise in low-dimensional systems?</h2>
+<p>It doesn&rsquo;t happen for ODEs, because as the state components may be coupled, there is no notion of spatial distorition as each components of the state is a scaler quantity. The assimilation process can adjust the amplitude of each component independently to fit the observations. However, in spatially extended systems, the state is represented as a field that varies across space, and the assimilation process must account for both amplitude and position errors.</p>
+<p>Under such scenarios, distorted analyses are far from optimal, the proposed assimilation schemes are no longer able to correct for the forecasted state of the system. Further, such distortion of the physical fields lead to further degrade in forecast skill. correcting position errors with contemporary assimilation methods can lead to distortions. Addressing these errors is crucial for improving the accuracy and reliability of data assimilation systems, particularly in applications such as weather forecasting.</p>
+<h1 id="bayesian-da-to-address-both-amplitude-and-position-errors">Bayesian DA to address both amplitude and position errors</h1>
+<p>What if we not only want to correct the state amplitude error together with the position error? For this, we must estimate $X,q$, where $X$ is the state and $q$ is the deformation. This is a more complex problem than just estimating the state, as it requires us to account for both amplitude and position errors simultaneously.</p>
+<h2 id="alignment-methods">Alignment methods</h2>
+<p>Further, the alignment of features alone does not provide a framework for aligning the rest of the state unless
+additional constraints are imposed on the deformation.</p>
+<p>In the Bayesian framework, we can express the posterior distribution of the state and deformation given the observations as follows:
+$$p(X,q|y) \propto p(y|X,q)p(X)p(q)$$</p>
+<p>This is where the alignment methods come into play. These methods are designed to correct both amplitude and position errors simultaneously, providing a more accurate representation of the true state of the system. By incorporating additional constraints on the deformation, these methods can effectively align features while also ensuring that the rest of the state is properly represented.</p>
+<h2 id="the-solution-reformulating-the-classical-quadratic-objective-to-allow-position-adjustments">The solution: reformulating the classical quadratic objective to allow position adjustments</h2>
+<p>To address the position error problem, we reformulate the
+classical quadratic objective in a way that allows position
+adjustments in addition to amplitude adjustments. The key
+step in this new approach is to explicitly represent and
+minimize position errors. Therefore, we introduce auxiliary
+control variables (displacements) that are estimated along
+with amplitudes. The displacement variables are defined at
+each node of the grid representing the state and specify a
+deformation of the grid. By using this scheme we can control
+both amplitudes and positions.</p>
+<h1 id="references-to-build-upon">References to build upon</h1>
+<p><a href="https://www.alphaxiv.org/abs/2604.22580">https://www.alphaxiv.org/abs/2604.22580</a>
+<a href="https://arxiv.org/pdf/2608.25835">https://arxiv.org/pdf/2608.25835</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

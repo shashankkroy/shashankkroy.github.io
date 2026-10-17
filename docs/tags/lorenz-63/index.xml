@@ -25,12 +25,12 @@ $$
 \frac{dx}{dt}=\sigma \left(y-x\right),
 \frac{dy}{dt}=x\left(\rho-z\right)-y,
 \frac{dz}{dt}=xy-\beta z $$</p>
-<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/images/enhanced_L63_attr_12.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/research-statement/images/enhanced_L63_attr_12.png" alt="angle between the first two CLVs on top of the Lorenz attractor" /></p>
 <p>Plotting the first two components of the vectors is shown below. An interesting thing to note is that there is a gradual change in the directions of the vectors as we move along the trajectory. Moreover, two nearby points on the attractor have some degree of similarity in terms of the directions of the vectors themselves. Since there computation needs an underlying trajectory, some degree of their smoothness may be of some merit when applying some supervised machine learning methods to learn and predict them.</p>
 <p>Below is CLV 1, where we only ploy the X and Z component of the vectors.
-<img loading="lazy" src="/images/CLV1_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<img loading="lazy" src="/research-statement/images/CLV1_in_XZfor_truth.png" alt="angle between the first two CLVs on top of the Lorenz attractor" /></p>
 <p>Below is CLV 2, where we only ploy the X and Z component of the vectors.
-<img loading="lazy" src="/images/CLV2_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<img loading="lazy" src="/research-statement/images/CLV2_in_XZfor_truth.png" alt="angle between the first two CLVs on top of the Lorenz attractor" /></p>
 <h2 id="research-problem">Research Problem</h2>
 <p>The specific questions which we ask about lyapunov vectors and exponents in context of the filtering problem are as follows:</p>
 <ul>

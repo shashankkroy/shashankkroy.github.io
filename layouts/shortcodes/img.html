@@ -1,0 +1,64 @@
+{{- /*
+  Image with crop / resize / layout control.
+
+  {{< img src="images/enhanced_L63_attr_12.png" fill="800x500" anchor="top"
+          width="70%" align="center" caption="Lorenz-63 attractor" >}}
+
+  Where to find it:
+    src       path to the image (assets/images/, static/images/, page folder...)
+  Processing (generates a new image file at build time; assets/ or page folder only):
+    fill      "800x500"  scale + crop to exactly 800x500
+    crop      "800x500"  cut an 800x500 region from the original, no scaling
+    fit       "800x500"  shrink to fit inside 800x500, keep aspect ratio
+    resize    "800x" | "x500" | "800x500"
+    anchor    which part to keep for fill/crop: smart, center, top, bottom,
+              left, right, topleft, topright, bottomleft, bottomright
+    quality   1-100        rotate  90|180|270        format  webp|png|jpg
+  Display (CSS only, original file untouched; works for static/ images and SVGs too):
+    width     "600px" | "70%"       height  "300px"
+    ratio     "16/9" | "1/1"   crop the visible area to this aspect ratio
+    position  "50% 20%"        which point stays in view when using ratio
+                               (x% y%, like a focus point; default center)
+  Other:
+    alt, caption (markdown allowed), title, align (left|center|right),
+    link ("true" = open original on click, or a URL), class
+*/ -}}
+{{- $found := partial "image/find.html" (dict "page" .Page "dest" (.Get "src")) -}}
+{{- $orig := $found.img -}}
+{{- $img := $orig -}}
+{{- $src := $found.src -}}
+
+{{- $opts := dict -}}
+{{- range $k := slice "fill" "crop" "fit" "resize" "anchor" "quality" "rotate" "format" -}}
+  {{- with $.Get $k }}{{ $opts = merge $opts (dict $k .) }}{{ end -}}
+{{- end -}}
+{{- if $img -}}
+  {{- $img = partial "image/process.html" (dict "img" $img "opts" $opts) -}}
+  {{- $src = $img.RelPermalink -}}
+{{- end -}}
+
+{{- $style := slice -}}
+{{- with .Get "width" }}{{ $style = $style | append (printf "width:%s" .) }}{{ end -}}
+{{- with .Get "height" }}{{ $style = $style | append (printf "height:%s" .) }}{{ end -}}
+{{- with .Get "ratio" -}}
+  {{- $style = $style | append (printf "aspect-ratio:%s" .) "object-fit:cover" -}}
+  {{- if not ($.Get "width") }}{{ $style = $style | append "width:100%" }}{{ end -}}
+{{- end -}}
+{{- with .Get "position" }}{{ $style = $style | append (printf "object-position:%s" .) }}{{ end -}}
+
+{{- $link := .Get "link" -}}
+{{- if eq $link "true" -}}
+  {{- $link = $found.src -}}
+  {{- with $orig }}{{ $link = .RelPermalink }}{{ end -}}
+{{- end -}}
+
+{{- $alt := .Get "alt" | default (.Get "caption" | markdownify | plainify) -}}
+<figure class="img-sc{{ with .Get "align" }} img-{{ . }}{{ end }}{{ with .Get "class" }} {{ . }}{{ end }}">
+  {{- with $link }}<a href="{{ . | safeURL }}" target="_blank" rel="noopener">{{ end -}}
+  <img loading="lazy" src="{{ $src | safeURL }}" alt="{{ $alt }}"
+    {{- with .Get "title" }} title="{{ . }}"{{ end }}
+    {{- if and $img (ne $img.MediaType.SubType "svg") }} width="{{ $img.Width }}" height="{{ $img.Height }}"{{ end }}
+    {{- with $style }} style="{{ delimit . ";" | safeCSS }}"{{ end }} />
+  {{- with $link }}</a>{{ end -}}
+  {{- with .Get "caption" }}<figcaption><p>{{ . | markdownify }}</p></figcaption>{{ end }}
+</figure>

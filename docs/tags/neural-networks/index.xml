@@ -18,8 +18,6 @@
 <p>Neural emulators, trained on rich and quality simulation data have emerged as a faster way to approximate the solutions, although they often lack guarantees to be accurate or reliability beyond what the training data provides- specific regime, parameter space, and initial conditions. The imperative question is to ask if the neural emulators ensure that it will generalize well to unseen scenarios beyond training when deployed.
 The question is how do we know if the neural emulator is aligned with the true solution of the PDE, and how do we ensure that it will generalize well to unseen scenarios?</p>
 <p>This is taken further by a scientific foundation model, which is a large neural network trained on a wide range of scientific data and tasks. The goal of a scientific foundation model is to learn a general representation of the underlying physics that generalizes to a wide range of scientific problems. This is similar to how large language models (LLMs) are trained on a wide range of text data and can be used for a wide range of natural language processing tasks. A model that can be used for a large class of problems that share similar mathematics, conservation laws, are bounded and time evolving.</p>
-<p>Fun
-What makes a Scientific foundation model different from the LLM foundation models is that they are not be studied for emotions and consciousness :). So such discussions are not relevant to the scientific foundation model.</p>
 <h2 id="chain-of-thought-monitorability-in-ai-models">Chain-of-thought monitorability in AI models</h2>
 <p>COT became a popular technique to improve the performance of large language models (LLMs) on complex reasoning tasks. The model is asked to generate intermediate reasoning steps before producing a final answer which allows the model to break down complex problems into smaller, more manageable parts, and can lead to more accurate and reliable answers.
 AI developers and researchers have used of chain-of-thought for monitorability to understand the decision-making process of AI models. (rRecent research has shown that some models, such as Astra, have a significant decrease in chain-of-thought monitorability compared to previous models. This means that the model is better at performing tasks without verbalizing its thought process, which can make it more difficult to monitor and control its behavior.)</p>
@@ -36,9 +34,14 @@ AI developers and researchers have used of chain-of-thought for monitorability t
 </ul>
 <p><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387">https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387</a>
 <a href="https://arxiv.org/pdf/2603.29658">https://arxiv.org/pdf/2603.29658</a></p>
-<h1 id="physical-interpretability">Physical interpretability</h1>
-<p><a href="https://arxiv.org/pdf/2604.22580v1">https://arxiv.org/pdf/2604.22580v1</a>
-<a href="https://arxiv.org/pdf/2512.24440">https://arxiv.org/pdf/2512.24440</a></p>
+<h1 id="physical-interpretability-and-butterfly-effects-in-sci-foundation-models">Physical interpretability and butterfly effects in SCI-Foundation models</h1>
+<p><a href="https://arxiv.org/pdf/2604.22580v1">Explanation of Dynamic Physical Field Predictions
+using WassersteinGrad: Application to Autoregressive
+Weather Forecasting</a>
+<a href="https://arxiv.org/pdf/2610.00792v1">WEATHER JIU-JITSU: EXPLORING THE FEASIBILITY OF
+CONTROL PARADIGMS IN WEATHER FOUNDATION MODELS</a>
+<a href="https://arxiv.org/pdf/2512.24440">Towards mechanistic understanding in a data-driven weather
+model: internal activations reveal interpretable physical features</a></p>
 <h1 id="going-beyong-training-and-history">Going Beyong Training and History</h1>
 <p>AI models, largely trained on many physics based simulated data and observations ( or some combination of both) seem more capable and accurate, efficient than the physics based model. But the real question is how are we going to predict if they are aligned to our long term objectives of the true phenomenon rather than just the training distribution.</p>
 <p>Bad predictions from AI based models in future are of catastrophic consequences. Although they may not be a wedspread situation and assessed during training and testing, real world is more complex, doesn&rsquo;t guarentee that the future has signals which are statistically similar to the past, the distributions represented by the historical data will also hold in the future. Although there are several methods to address such challenges, they are yet far to establish guarentess and understanding that physics based models produce.</p>

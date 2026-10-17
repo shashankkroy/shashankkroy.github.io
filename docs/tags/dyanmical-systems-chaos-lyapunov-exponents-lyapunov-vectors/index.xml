@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Dyanmical Systems, Chaos, Lyapunov Exponents, Lyapunov Vectors on Home</title>
+    <link>http://localhost:1313/tags/dyanmical-systems-chaos-lyapunov-exponents-lyapunov-vectors/</link>
+    <description>Recent content in Dyanmical Systems, Chaos, Lyapunov Exponents, Lyapunov Vectors on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/dyanmical-systems-chaos-lyapunov-exponents-lyapunov-vectors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flutter of the butterfly wings and Lyapunov vectors</title>
+      <link>http://localhost:1313/posts/lyapunov_vectors_are_beautiful/</link>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/lyapunov_vectors_are_beautiful/</guid>
+      <description>The directions that the error loves to grow fastest</description>
+      <content:encoded><![CDATA[<h2 id="the-butterfly-effect-and-the-sensitivity-to-initial-conditions">The butterfly effect and the sensitivity to initial conditions</h2>
+<h2 id="applications-of-lyapunov-vectors-in-weather-forecasting-and-climate-modeling">Applications of Lyapunov vectors in weather forecasting and climate modeling</h2>
+<h2 id="what-are-lyapunov-vectors">What are Lyapunov vectors?</h2>
+<p>There is are special directions in the tangent space along which the errors grow the fastest. These directions are called Lyapunov vectors. They are local, meaning they change with time and</p>
+<h2 id="lyapunov-exponents-and-their-significance-in-understanding-chaos">Lyapunov exponents and their significance in understanding chaos</h2>
+<h2 id="covariant-lyanpunov-vectors">Covariant Lyanpunov vectors</h2>
+<h2 id="calculation-of-lyapunov-vectors-ginellis-algorithm">Calculation of Lyapunov vectors: Ginelli&rsquo;s algorithm</h2>
+<h2 id="covariant-lyapunov-fields-the-generalization-of-lyapunov-vectors-in-phase-space">Covariant Lyapunov Fields: The generalization of Lyapunov vectors in Phase space.</h2>
+<h2 id="many-systems-here-are-collected-and-simulated">Many Systems here are collected and simulated</h2>
+<p><a href="https://dynamicsandneuralsystems.github.io/1000x1000/#/quiz">https://dynamicsandneuralsystems.github.io/1000x1000/#/quiz</a></p>
+<h1 id="references">References</h1>
+<p><a href="https://iopscience.iop.org/article/10.1088/1751-8121/ae1f6d">https://iopscience.iop.org/article/10.1088/1751-8121/ae1f6d</a></p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

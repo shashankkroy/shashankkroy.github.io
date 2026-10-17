@@ -1,0 +1,60 @@
+{{- /*
+  Resolves an image path from any of the shared image folders.
+  Usage: partial "image/find.html" (dict "page" .Page "dest" "images/fig.png")
+  Returns: dict "img" (image resource, or false) "src" (URL string)
+
+  Accepts "fig.png", "images/fig.png", "/images/fig.png", "../images/fig.png".
+  Lookup order:
+    1. page bundle resources
+    2. current section's resources (e.g. content/posts/images/)
+    3. assets/ and assets/images/
+    4. static/ and static/images/  (served as-is, cannot be processed)
+*/ -}}
+{{- $page := .page -}}
+{{- $dest := .dest -}}
+{{- $url := urls.Parse $dest -}}
+{{- $img := false -}}
+{{- $src := "" -}}
+
+{{- if $url.Scheme -}}
+  {{- $src = $dest -}}
+{{- else -}}
+  {{- $clean := $url.Path | strings.TrimPrefix "./" | strings.TrimPrefix "../" | strings.TrimPrefix "/" -}}
+  {{- $base := path.Base $clean -}}
+  {{- $candidates := slice $clean (printf "images/%s" $base) $base -}}
+
+  {{- range $candidates -}}
+    {{- if not $img -}}
+      {{- with $page.Resources.GetMatch . -}}{{- $img = . -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $page.CurrentSection -}}
+    {{- range $candidates -}}
+      {{- if not $img -}}
+        {{- with $page.CurrentSection.Resources.GetMatch . -}}{{- $img = . -}}{{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range $candidates -}}
+    {{- if not $img -}}
+      {{- with resources.Get . -}}{{- $img = . -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if $img -}}
+    {{- $src = $img.RelPermalink -}}
+  {{- else -}}
+    {{- range $candidates -}}
+      {{- if and (not $src) (fileExists (printf "static/%s" .)) -}}
+        {{- $src = printf "/%s" . | relURL -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $src -}}
+    {{- warnf "Image %q not found for %s (looked in page bundle, section, assets/images and static/images)" $dest $page.File.Path -}}
+    {{- $src = $dest -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return (dict "img" $img "src" $src) -}}

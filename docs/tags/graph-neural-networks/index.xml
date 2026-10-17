@@ -56,7 +56,7 @@ Why? Temporal error in the reanalysis due to sparse observations taken later tha
 <p>What next for ML weather prediction models? We propose that during training they should use the uncertainty estimates provided with ERA5, as these indicate the quality of the reanalysis on a case-by-case basis.</p>
 <p>Why topological descriptors? When the error has a structural component, the pixel level analysis is not sufficient to capture the uncertainty in the system. We want to explore the use of topological descriptors, such as Morse Complex.</p>
 <h1 id="india">India</h1>
-<p></p>
+<p><img loading="lazy" src="/projects/rainfall_field_snapshot.png" alt="Rainfall Field Snapshot" /></p>
 <h1 id="preprocesssing-steps">Preprocesssing Steps:</h1>
 <p>Can we seperate the signatures - distinguish between multiple datasets of the same region?
 Can we seperate the signatures - distinguish between multiple datasets of the same region? Can we use topological descriptors to identify the differences in the rainfall patterns across different datasets?

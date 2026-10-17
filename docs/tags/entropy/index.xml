@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Entropy on Home</title>
+    <link>http://localhost:1313/tags/entropy/</link>
+    <description>Recent content in Entropy on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/entropy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Time, entropy and information</title>
+      <link>http://localhost:1313/posts/time_entropy_and_information/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/time_entropy_and_information/</guid>
+      <description>The fundamental concepts of time, entropy and information</description>
+      <content:encoded><![CDATA[<p>The goal of this article is not to answer, but to raise fundamental questions about the nature of time, entropy and information.</p>
+<h1 id="time-is-not-what-the-clock-measures">Time is not what the clock measures.</h1>
+<p>The candle on the table burns out over time. So time is the measure of change. But what if there is no change? Does time stop? Does it even exist?</p>
+<h1 id="time-is-relative-and-so-is-entropy">Time is relative, and so is entropy.</h1>
+<p>As the whole system, let us talk about the universe. Disorder is an energetically favourable state of the system. Equilibrium - the state where the system evolves to smooth out it&rsquo;s fluctuations, gradients, and evolve towards homogeneity - is the most probable state of the system. The second law of thermodynamics states that the entropy of an isolated system will always increase over time, and that the total entropy of a system and its surroundings will always increase over time. This means that the universe is constantly evolving towards a state of maximum disorder, and that the arrow of time points in the direction of increasing entropy.</p>
+<h1 id="information-is-the-reduction-of-uncertainty">Information is the reduction of uncertainty.</h1>
+<p>Information is often misunderstood. As a physicist, information can be thought of a way to prescribe the state of a system. But we cannot pin point the exact values when there is uncertainty(or errors).</p>
+<p>Mostly becasue our inability to measure, observe and the fundamental limitations that does not allow us to distinguish between two states.
+Can the electron of one hydrogen atom be tagged to be different and unique from the other hydrogen atom?</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

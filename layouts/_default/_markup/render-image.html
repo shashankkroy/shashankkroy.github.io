@@ -1,0 +1,34 @@
+{{- /*
+  Overrides the theme's render-image hook so images resolve from any of the
+  shared image folders (see partials/image/find.html).
+
+  Processing options can be passed as a query string, e.g.
+    ![Attractor](images/enhanced_L63_attr_12.png?fill=800x500&anchor=top)
+    ![Plot](images/fig1.png?resize=600x)
+  Options: see partials/image/process.html. For captions, alignment or a
+  display width, use the {{< img >}} shortcode instead.
+*/ -}}
+{{- $found := partial "image/find.html" (dict "page" .Page "dest" .Destination) -}}
+{{- $img := $found.img -}}
+{{- $src := $found.src -}}
+
+{{- if $img -}}
+  {{- $q := (urls.Parse .Destination).Query -}}
+  {{- $opts := dict -}}
+  {{- range $k := slice "fill" "crop" "fit" "resize" "anchor" "quality" "rotate" "format" -}}
+    {{- with $q.Get $k }}{{ $opts = merge $opts (dict $k .) }}{{ end -}}
+  {{- end -}}
+  {{- $img = partial "image/process.html" (dict "img" $img "opts" $opts) -}}
+  {{- $src = $img.RelPermalink -}}
+{{- end -}}
+
+{{- if and $img (eq $img.MediaType.MainType "video") -}}
+<figure>
+<video class="video-shortcode" preload="metadata" controls>
+  <source src="{{ $src }}">
+  There should have been a video here but your browser does not seem to support it.
+</video>
+</figure>
+{{- else -}}
+<img loading="lazy" src="{{ $src | safeURL }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }} />
+{{- end -}}

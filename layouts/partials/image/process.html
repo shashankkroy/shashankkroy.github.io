@@ -1,0 +1,55 @@
+{{- /*
+  Crops / resizes an image resource with Hugo's image processing.
+  Usage: partial "image/process.html" (dict "img" $img "opts" (dict "fill" "600x400" "anchor" "top"))
+  Returns the processed resource (or the original when no option is set or
+  the format can't be processed, e.g. SVG).
+
+  Options (pick one operation; precedence fill > crop > fit > resize):
+    fill    "600x400"  resize AND crop to exactly 600x400
+    crop    "600x400"  cut a 600x400 region out of the original, no scaling
+    fit     "600x400"  shrink to fit inside 600x400, keeps aspect ratio
+    resize  "600x" / "x400" / "600x400"  scale to the given width/height
+  Modifiers:
+    anchor  for fill/crop: smart, center, top, bottom, left, right,
+            topleft, topright, bottomleft, bottomright  (default: center)
+    quality 1-100 (JPEG/WebP)
+    rotate  90, 180, 270
+    format  webp, png, jpg
+*/ -}}
+{{- $img := .img -}}
+{{- $o := .opts | default dict -}}
+{{- $out := $img -}}
+{{- $processable := slice "jpeg" "png" "gif" "webp" "tiff" "bmp" -}}
+
+{{- if and $img (in $processable $img.MediaType.SubType) -}}
+  {{- $method := "" -}}
+  {{- $dims := "" -}}
+  {{- range slice "fill" "crop" "fit" "resize" -}}
+    {{- if and (not $method) (index $o .) -}}
+      {{- $method = . -}}
+      {{- $dims = index $o . -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $extra := slice -}}
+  {{- with $o.quality }}{{ $extra = $extra | append (printf "q%v" .) }}{{ end -}}
+  {{- with $o.rotate }}{{ $extra = $extra | append (printf "r%v" .) }}{{ end -}}
+  {{- with $o.format }}{{ $extra = $extra | append . }}{{ end -}}
+
+  {{- if $method -}}
+    {{- $spec := slice $dims -}}
+    {{- if in (slice "fill" "crop") $method -}}
+      {{- $spec = $spec | append ($o.anchor | default "center") -}}
+    {{- end -}}
+    {{- $spec = delimit ($spec | append $extra) " " -}}
+    {{- if eq $method "fill" }}{{ $out = $img.Fill $spec }}
+    {{- else if eq $method "crop" }}{{ $out = $img.Crop $spec }}
+    {{- else if eq $method "fit" }}{{ $out = $img.Fit $spec }}
+    {{- else }}{{ $out = $img.Resize $spec }}
+    {{- end -}}
+  {{- else if $extra -}}
+    {{- $out = $img.Process (delimit $extra " ") -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $out -}}

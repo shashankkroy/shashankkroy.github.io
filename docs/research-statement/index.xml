@@ -33,7 +33,7 @@
 <p>Large-scale position uncertainty (phase errors)</p>
 <p>Small-scale residual variability (amplitude errors)</p>
 <h2 id="4dvarnet-lu-an-ensemble-neural-data-assimilation-model">4DVarNet-LU: An ensemble neural data assimilation model</h2>
-<p><img loading="lazy" src="/images/4dvarnet-lu.png" type="" alt="4DVarNet Architecture"  /></p>
+<p><img loading="lazy" src="/images/4dvarnet-lu.png" alt="4DVarNet Architecture" /></p>
 <p>Building on this uncertainty framework, we introduce 4DVarNet-LU, an ensemble extension of 4DVarNet designed to handle Lagrangian uncertainty (LU).</p>
 <p>In 4DVarNet-LU:</p>
 <ul>
@@ -105,7 +105,7 @@ of parameters, these costs become prohibitive.</p>
 <p>The earth, the weather, the atmosphere and the oceans of the world are prime examples of highly nonlinear dynamical systems. Understanding them using physics behind their evolution in time relies on governing physical laws of conservation(mass, momentum,..), using numerical simulations. But these are infinite dimesnional systems, highly nonlinear, chaotic and predicting them means controlling the error in our estimate of their present, and future behaviour. To make the numerical representation of such systems follow the true system, we need a method to consolidate the real observations into the numerical models, so that what the numerical models shows/predicts is a good approximation of reality. <a href="https://www.ecmwf.int/en/research/data-assimilation">Data assimilation</a> algorithms are necessary to track or estimate the hidden state of chaotic systems through partial and noisy observations.
 <a href="https://link.springer.com/chapter/10.1007/978-3-030-96709-3_5">Variational data assimilation</a> aims to find a the best trajectory of the dynamical system which minimizes a certain cost function.</p>
 <h2 id="problem-statement-can-neural-network-models-replace-data-assimilation-for-a-cheaperfaster-alternative">Problem statement: Can neural network models replace data assimilation for a cheaper/faster alternative?</h2>
-<p><img loading="lazy" src="/images/vort_sf_obs_128.png" type="" alt="da_setup"  /></p>
+<p><img loading="lazy" src="/research-statement/images/vort_sf_obs_128.png" alt="da_setup" /></p>
 <p>For an observation window $i$ where the sequence of observations $Y^i=\left(y^i_0,y^i_1,&hellip;y^i_n\right)$ on $\left(\Omega^i_n\right) \in \Omega$ is given, we want to find the optimal trajectory  $X^i=\left(x^i_0,x^i_1,&hellip;x^i_n\right)$ of the true system that minimizes the following cost function.</p>
 <p>$$\mathcal{U}(x^i_0,x^i_1,&hellip;x^i_n)=\sum_{k=1} \alpha_{dyn} | x_k - \mathcal{M}(x_{k-1}) |^2+ \alpha_{ob} |y_i-\mathcal{H}(x_i)|^2$$</p>
 <p>This is the weak-4dvar cost function which needs ot be minimized.
@@ -121,7 +121,7 @@ In the supervised setting, we something similar happens when we have access to a
 <p>$$\mathcal{U_{\Phi}}= \alpha_{dyn} | X^{i} - \Phi({X^i}) |^2+ \alpha_{ob} |Y^i-\mathcal{H}(X^i)|^2$$</p>
 <p>Where we compactify the notations for the time series and $i$ here is the index of assimilation window.
 Note, that this cost has two parts, the first part learns a representation of the data, while the second part ensures that the observations are matched to the state. There is no background term in this formulation, as the network is expected to learn the correlations from the data.</p>
-<p><img loading="lazy" src="/images/4dvarnet-schematic.svg" type="" alt="4DVarNet Architecture"  /></p>
+<p><img loading="lazy" src="/research-statement/images/4dvarnet-schematic.svg" alt="4DVarNet Architecture" /></p>
 <p>The solver of this cost function is another neural network that learns the mapping from the observations to the optimal state. This is parameterized by an LSTM whose input is a gradients. We can see this solver as doing meta-learning. The solver is trained to minimize the cost function using a gradient-based descent algorithm, which is similar to the optimization process used in 4dvar.</p>
 <p>The parameterized cost function and it&rsquo;s solver are trained together in an end-to-end manner, allowing the network to learn the optimal mapping from the observations to the optimal state. The loss function that trains the whole architecture is the mean squared error between the predicted state and the true state, given by,</p>
 <p>$$\mathcal{L}(X^i, \hat{X}^i) = \frac{1}{N} \sum_{i=1}^{N} | X^i - \Psi_{\Phi,\Gamma}(Y^i,{X}^0) |^2$$</p>
@@ -143,7 +143,7 @@ These observations are available on masks which have been obtained from Nadir Sa
 <p>We finally create a dataset of observations and the true states, which can be used to train the 4DVarNet architecture. The dataset is created by simulating the QG model and generating observations at different times. The observations are then used to train the 4DVarNet architecture to learn the mapping from the observations to the true states.</p>
 <h2 id="results-work-in-progress">Results (Work in progress)</h2>
 <p>The standard 4DVarNet architecture only uses the observations as the input, and intializes the states from it. We refer to this as 4Dvarnet-No-IC. The 4DVarNet architecture where we provide additional guess for the initial conditions is referred to as 4DVarNet-IC. Using a simple metric called $\mu=1-\frac{RMSE(X)}{RMS(X)}$. The RMSE is the root mean square error between the predicted state and the true state, and RMS is the std. of the true state. When $\mu=1$, the model is perfect, and when $\mu=0$, the errors are of the same order of the natural variability of the field X.</p>
-<p><img loading="lazy" src="/images/4dvar-4dvarnet-plot.png" type="" alt="4DVarNet Results"  /></p>
+<p><img loading="lazy" src="/research-statement/images/4dvar-4dvarnet-plot.png" alt="4DVarNet Results" /></p>
 <p>The results of the 4DVarNet architecture are compared with the standard weak-4DVar algorithm, ( both solve the weak-4dvar problem).
 The results show that the 4DVarNet-IC architecture performs better than the 4DVarNet-No-IC architecture, which is expected since the initial guess is closer to the true state. The results also show that the 4DVarNet architecture is able to learn the mapping from the observations to the true states, and can be used for data assimilation and uncertainty quantification.</p>
 <h3 id="references">References</h3>
@@ -168,12 +168,12 @@ $$
 \frac{dx}{dt}=\sigma \left(y-x\right),
 \frac{dy}{dt}=x\left(\rho-z\right)-y,
 \frac{dz}{dt}=xy-\beta z $$</p>
-<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/images/enhanced_L63_attr_12.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<p>Here is a picture of the attractor of the Lorenz-63 system, where the angle between the first and the second clv is shown. Whenever the trajectory moves from the right to the left wing of this butterfly attractor, the first two CLVs become parallel and for left to right they become anti-parallel.<img loading="lazy" src="/research-statement/images/enhanced_L63_attr_12.png" alt="angle between the first two CLVs on top of the Lorenz attractor" /></p>
 <p>Plotting the first two components of the vectors is shown below. An interesting thing to note is that there is a gradual change in the directions of the vectors as we move along the trajectory. Moreover, two nearby points on the attractor have some degree of similarity in terms of the directions of the vectors themselves. Since there computation needs an underlying trajectory, some degree of their smoothness may be of some merit when applying some supervised machine learning methods to learn and predict them.</p>
 <p>Below is CLV 1, where we only ploy the X and Z component of the vectors.
-<img loading="lazy" src="/images/CLV1_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<img loading="lazy" src="/research-statement/images/CLV1_in_XZfor_truth.png" alt="angle between the first two CLVs on top of the Lorenz attractor" /></p>
 <p>Below is CLV 2, where we only ploy the X and Z component of the vectors.
-<img loading="lazy" src="/images/CLV2_in_XZfor_truth.png" type="" alt="angle between the first two CLVs on top of the Lorenz attractor"  /></p>
+<img loading="lazy" src="/research-statement/images/CLV2_in_XZfor_truth.png" alt="angle between the first two CLVs on top of the Lorenz attractor" /></p>
 <h2 id="research-problem">Research Problem</h2>
 <p>The specific questions which we ask about lyapunov vectors and exponents in context of the filtering problem are as follows:</p>
 <ul>
@@ -216,11 +216,11 @@ sensitivity of BLVs and CLVs for a particular system tells us the limitations of
 <h2 id="bayesian-filtering-algorithms-for-data-assimilation">Bayesian filtering algorithms for data assimilation</h2>
 <p>Bayesian filtering is defined as the sequential estimation of the conditional distribution in phase space of the state of a physical system coming from an assumed model taking into account the likelihood of new information arriving from the observations (Cohen(1997)).
 Filtering is followed by prediction, where the goal is to predict the the evolution of the system and it&rsquo;s flow dependent uncertainty accounting for possible source of errors which result may grow at later time in future. Below is a schematic picture of a bayeisan filtering mechanism.</p>
-<p><img loading="lazy" src="/images/enkf_schematic.png" type="" alt="schemati-cpicture"  /></p>
+<p><img loading="lazy" src="/research-statement/images/enkf_schematic.png" alt="schemati-cpicture" /></p>
 <p>At a given time $k$ , the probability density distribution of the true state conditioned on observations upto time $k$ is called the analysis probability density. This is then propagated in time by solving fokker-planck equation, or by using  monte-carlo methods to integate the ensembles representing the distribution to obtain prior distribution at time $k+1$, called forecast probability density distribution at time $k+1$, before using the information about the observation $y_{k+1}$. Assuming that given $x_{k+1}$, the observations $y_{K+1}$ is conditionally independent of all previous observations and states,  we get the likelihood for the observation $y_{k+1}$ is obtained using the observation model and the measurement noise distribtution is given by $\rho(y_{k+1}|x_{k+1})$. Using bayes&rsquo; theorem, we have</p>
 <p>$$\rho\left(x_{k+1}|Y_{k+1}\right)=\frac{\rho\left(y_{k+1}|x_{k+1}\right)\rho\left(x_{k+1}|Y_{k}\right)}{ \rho\left(y_{k+1}|Y_{k}\right)}$$</p>
 <p>since the true state is unknown, all filtering algorithms makes an arbitraty choice for $\rho(x_0)$ at the time of filter initialization. It becomes crucial that these distributions become independent of the initial choice used in initializing the filter so that quantities estimates using the posterior are eventually independent of our arbitrary and often wrong choice of $\rho(x_0)$. As an example, the following picture demonstrates how stability looks like in one of the component out of the whole state vector,</p>
-<p><img loading="lazy" src="/images/stabilit_enkf_picture_x36_cropped.png" type="" alt="A-schematic-plot-for-enkf"  /></p>
+<p><img loading="lazy" src="/research-statement/images/stabilit_enkf_picture_x36_cropped.png" alt="A-schematic-plot-for-enkf" /></p>
 <p>where we have two different initial distribution $\mu_1$ and $\mu_2$ both of which are far from $x_0$, the true initial condition. Over many assimilation, the two posterior ensembles starting with different initial distribution are seen to come closer to each other.</p>
 <h3 id="definition-of-filter-stability">Definition of filter stability</h3>
 <p>Filter stability is the property that the posterior distribution computed sequentially over long time is independent of the choice of the distribution at $k=0$ used to initialize the filtering algorithm. The rate at which the filter achieves this independece,  the better are the estimates of various quantities which utilize the posterior distribution.</p>
@@ -228,7 +228,7 @@ Filtering is followed by prediction, where the goal is to predict the the evolut
 Given two different initial distributions {$\nu_1, \nu_2$} for $x_0$ with $\hat\pi_n(\nu_1)$ and $\hat\pi_n(\nu_2)$ being the posterior obtained after assimilating all observation $y_{1:n}$ upto time $n$, then for filter stability to hold, we have
 $$\lim_{n\to\infty}\mathbf E[D(\hat\pi_n(\nu_1), \hat\pi_n(\nu_2))] = 0$$</p>
 <p>where, $D$ is a distance on $P(\mathcal{R}^d)$, the space of probability measures on $\mathcal{R}^d$ and the expectation is over observation noise accounting for different noise realizations (mandal(2021)).</p>
-<p><img loading="lazy" src="/images/stability_schematic-min.png" type="" alt=""  />
+<p><img loading="lazy" src="/research-statement/images/stability_schematic-min.png" alt="" />
 In our work, we have chosen Sinkhorn distance, a distance well motivated by the ideas of optimal transport, which has several merits over other distances such as total variation, apart from being computationally cheaper. This distace utilizes two samples from their respective distributions in order to compute the distance between them upto it&rsquo;s statistical errors.</p>
 <p>We have used <strong>Sinkhorn distance</strong>  to compute these distance. I talk about this distance in another post.</p>
 <h3 id="references">References</h3>

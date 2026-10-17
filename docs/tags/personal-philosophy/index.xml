@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Personal Philosophy on Home</title>
+    <link>http://localhost:1313/tags/personal-philosophy/</link>
+    <description>Recent content in Personal Philosophy on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 11 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/personal-philosophy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Heros of mine</title>
+      <link>http://localhost:1313/posts/heros-of-mine/</link>
+      <pubDate>Sun, 11 May 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/heros-of-mine/</guid>
+      <description>Different people who have inspired me in my journey of life and research. This post is about them.</description>
+      <content:encoded><![CDATA[<p>&ldquo;A scientist is a person who comes up with new ideas. An engineer is a person who makes something work with as few new ideas as possible.”
+Freeman Dyson</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

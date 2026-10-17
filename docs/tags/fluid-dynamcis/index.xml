@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Fluid Dynamcis on Home</title>
+    <link>http://localhost:1313/tags/fluid-dynamcis/</link>
+    <description>Recent content in Fluid Dynamcis on Home</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 07 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/fluid-dynamcis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why should I care about Navier-Stokes blowing up?</title>
+      <link>http://localhost:1313/posts/navier_stokes/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/navier_stokes/</guid>
+      <description>Dive into the theory behind the fundamental principles to make sense of what is, and what is not governed by Navrier Stokes</description>
+      <content:encoded><![CDATA[<p>Fluids deform under even inifinitesimal amount of shear stress. Hence they flow - an  the operational definition of fluids in general.
+What we call flow, is actually a response of the fluid particles to shear stress.</p>
+<p>Microscopically, a fluid is an enormous number of molecules in continuously bombarding agaisnt each other. A cubic centimetre of air at room conditions holds roughly \(2.5\times10^{19}\) molecules, and each one travels, on average, only about 70 nm before hitting another [1]. Analysing the behaviour of fluids via Newton&rsquo;s laws of motion will be a dead end(unless there is a concrete reason to study them under extraordinary conditions).</p>
+<p>When there are so many particles behaving under idential laws, we expect statistical nature of the collection to emerge. This statistical description helps us to stop thinking about the molecules and to formalize a mean field behaviour of different quantities : density $(\rho(\mathbf{x},t)$, velocity $\mathbf{u}(\mathbf{x},t)$, pressure $p(\mathbf{x},t)$ and temperature $T(\mathbf{x},t)$, each defined at every point of space and time.</p>
+<h3 id="21-the-cascade">2.1 The cascade</h3>
+<p>Turbulence is not merely irregular motion. The fundamental feature of turbulence is transfer of energy across scales. Energy is injected at a large scale $$L$ (the size of the pipe, the wing, the weather system), large eddies break up into smaller ones, and those into smaller ones still, until the eddies are so small that viscosity can convert their kinetic energy into heat. Richardson put it in verse in 1922; Kolmogorov put it in mathematics in 1941 [3].</p>
+<p>Kolmogorov&rsquo;s argument rests on one hypothesis: at scales far from both the forcing and the viscous cut-off, the statistics depend only on the energy flux \(\varepsilon\) (energy per unit mass per unit time passing down the cascade) and on the scale itself. Dimensional analysis then fixes the energy spectrum,</p>
+<p>$$
+E(k) = C_K,\varepsilon^{2/3},k^{-5/3},
+$$</p>
+<p>where $k$ is the wavenumber and $C_K\approx 1.5$ is an empirical constant [4]. The same dimensional reasoning gives the size of the smallest eddies, the <em>Kolmogorov scale</em></p>
+<p>$$
+\eta = \left(\frac{\nu^3}{\varepsilon}\right)^{1/4},
+\qquad
+\frac{L}{\eta}\sim \mathrm{Re}^{3/4}.
+$$</p>
+<p>The second relation is the one every computational fluid dynamicist feels in their budget. Resolving all scales in three dimensions needs \((L/\eta)^3\sim\mathrm{Re}^{9/4}\) grid points, before counting time steps. At \(\mathrm{Re}=10^6\) that is \(\sim 3\times10^{13}\) points, which is why industrial CFD models the small scales rather than resolving them.
+Continumm Hypothesis: When the length scale in the system is sufficiently large compare to the length scale define by the &lsquo;U/L&rsquo;.</p>
+<h1 id="a-brief-intro-to-the-beast-turbulence">A brief intro to the beast: Turbulence</h1>
+<h1 id="how-do-these-equations-come-into-existence">How do these equations come into existence</h1>
+<h1 id="what-does-it-mean-to-have-a-solution-and-what-is-numerical-solution">What does it mean to have a solution? And what is numerical solution?</h1>
+<h1 id="why-it-clay-mathematical-institute-declared-it-as-a-millenium-prize">Why it Clay Mathematical Institute declared it as a Millenium Prize?</h1>
+<h1 id="openais-claim">OpenAI&rsquo;s Claim</h1>
+<h1 id="towards-weak-solution">Towards weak solution</h1>
+<h1 id="references">References</h1>
+<h1 id="tools-in-python-using-jax-i-hate-fortran-not-my-cup-of-tea">Tools in Python using JAX (I HATE FORTRAN, not my CUP of TEA)</h1>
+<p><a href="https://arxiv.org/pdf/2402.05193">https://arxiv.org/pdf/2402.05193</a></p>
+<h1 id="generative-models-in-fluid">Generative models in Fluid</h1>
+<p><a href="https://journals.aps.org/prfluids/abstract/10.1103/qbw5-qqmg">https://journals.aps.org/prfluids/abstract/10.1103/qbw5-qqmg</a>
+<a href="https://arxiv.org/html/2505.14704v1">https://arxiv.org/html/2505.14704v1</a>
+<a href="https://lorenabarba.com/blog/cfd-python-12-steps-to-navier-stokes/">https://lorenabarba.com/blog/cfd-python-12-steps-to-navier-stokes/</a></p>
+<h1 id="can-i-simulate-turbulence-using-generative-models">Can I simulate turbulence using generative models?</h1>
+<p><a href="https://pdfs.semanticscholar.org/9a63/99725a8c2e1c6527a24cbad4c46cb52f93da.pdf">https://pdfs.semanticscholar.org/9a63/99725a8c2e1c6527a24cbad4c46cb52f93da.pdf</a>
+I might need non-stationary kernels <a href="https://arxiv.org/pdf/1705.08736">https://arxiv.org/pdf/1705.08736</a></p>
+<h1 id="my-learning-sprint">My learning sprint</h1>
+<p>file:///C:/Users/Shashank/Downloads/differentiable-physics-sprint.html</p>
+]]></content:encoded>
+    </item>
+    
+  </channel>
+</rss>

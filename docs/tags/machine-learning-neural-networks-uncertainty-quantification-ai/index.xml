@@ -33,7 +33,7 @@
 <p>Large-scale position uncertainty (phase errors)</p>
 <p>Small-scale residual variability (amplitude errors)</p>
 <h2 id="4dvarnet-lu-an-ensemble-neural-data-assimilation-model">4DVarNet-LU: An ensemble neural data assimilation model</h2>
-<p><img loading="lazy" src="/images/4dvarnet-lu.png" type="" alt="4DVarNet Architecture"  /></p>
+<p><img loading="lazy" src="/images/4dvarnet-lu.png" alt="4DVarNet Architecture" /></p>
 <p>Building on this uncertainty framework, we introduce 4DVarNet-LU, an ensemble extension of 4DVarNet designed to handle Lagrangian uncertainty (LU).</p>
 <p>In 4DVarNet-LU:</p>
 <ul>

@@ -31,8 +31,6 @@
 <p>Neural emulators, trained on rich and quality simulation data have emerged as a faster way to approximate the solutions, although they often lack guarantees to be accurate or reliability beyond what the training data provides- specific regime, parameter space, and initial conditions. The imperative question is to ask if the neural emulators ensure that it will generalize well to unseen scenarios beyond training when deployed.
 The question is how do we know if the neural emulator is aligned with the true solution of the PDE, and how do we ensure that it will generalize well to unseen scenarios?</p>
 <p>This is taken further by a scientific foundation model, which is a large neural network trained on a wide range of scientific data and tasks. The goal of a scientific foundation model is to learn a general representation of the underlying physics that generalizes to a wide range of scientific problems. This is similar to how large language models (LLMs) are trained on a wide range of text data and can be used for a wide range of natural language processing tasks. A model that can be used for a large class of problems that share similar mathematics, conservation laws, are bounded and time evolving.</p>
-<p>Fun
-What makes a Scientific foundation model different from the LLM foundation models is that they are not be studied for emotions and consciousness :). So such discussions are not relevant to the scientific foundation model.</p>
 <h2 id="chain-of-thought-monitorability-in-ai-models">Chain-of-thought monitorability in AI models</h2>
 <p>COT became a popular technique to improve the performance of large language models (LLMs) on complex reasoning tasks. The model is asked to generate intermediate reasoning steps before producing a final answer which allows the model to break down complex problems into smaller, more manageable parts, and can lead to more accurate and reliable answers.
 AI developers and researchers have used of chain-of-thought for monitorability to understand the decision-making process of AI models. (rRecent research has shown that some models, such as Astra, have a significant decrease in chain-of-thought monitorability compared to previous models. This means that the model is better at performing tasks without verbalizing its thought process, which can make it more difficult to monitor and control its behavior.)</p>
@@ -49,9 +47,14 @@ AI developers and researchers have used of chain-of-thought for monitorability t
 </ul>
 <p><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387">https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2026JH001387</a>
 <a href="https://arxiv.org/pdf/2603.29658">https://arxiv.org/pdf/2603.29658</a></p>
-<h1 id="physical-interpretability">Physical interpretability</h1>
-<p><a href="https://arxiv.org/pdf/2604.22580v1">https://arxiv.org/pdf/2604.22580v1</a>
-<a href="https://arxiv.org/pdf/2512.24440">https://arxiv.org/pdf/2512.24440</a></p>
+<h1 id="physical-interpretability-and-butterfly-effects-in-sci-foundation-models">Physical interpretability and butterfly effects in SCI-Foundation models</h1>
+<p><a href="https://arxiv.org/pdf/2604.22580v1">Explanation of Dynamic Physical Field Predictions
+using WassersteinGrad: Application to Autoregressive
+Weather Forecasting</a>
+<a href="https://arxiv.org/pdf/2610.00792v1">WEATHER JIU-JITSU: EXPLORING THE FEASIBILITY OF
+CONTROL PARADIGMS IN WEATHER FOUNDATION MODELS</a>
+<a href="https://arxiv.org/pdf/2512.24440">Towards mechanistic understanding in a data-driven weather
+model: internal activations reveal interpretable physical features</a></p>
 <h1 id="going-beyong-training-and-history">Going Beyong Training and History</h1>
 <p>AI models, largely trained on many physics based simulated data and observations ( or some combination of both) seem more capable and accurate, efficient than the physics based model. But the real question is how are we going to predict if they are aligned to our long term objectives of the true phenomenon rather than just the training distribution.</p>
 <p>Bad predictions from AI based models in future are of catastrophic consequences. Although they may not be a wedspread situation and assessed during training and testing, real world is more complex, doesn&rsquo;t guarentee that the future has signals which are statistically similar to the past, the distributions represented by the historical data will also hold in the future. Although there are several methods to address such challenges, they are yet far to establish guarentess and understanding that physics based models produce.</p>
@@ -120,7 +123,7 @@ Why? Temporal error in the reanalysis due to sparse observations taken later tha
 <p>What next for ML weather prediction models? We propose that during training they should use the uncertainty estimates provided with ERA5, as these indicate the quality of the reanalysis on a case-by-case basis.</p>
 <p>Why topological descriptors? When the error has a structural component, the pixel level analysis is not sufficient to capture the uncertainty in the system. We want to explore the use of topological descriptors, such as Morse Complex.</p>
 <h1 id="india">India</h1>
-<p></p>
+<p><img loading="lazy" src="/projects/rainfall_field_snapshot.png" alt="Rainfall Field Snapshot" /></p>
 <h1 id="preprocesssing-steps">Preprocesssing Steps:</h1>
 <p>Can we seperate the signatures - distinguish between multiple datasets of the same region?
 Can we seperate the signatures - distinguish between multiple datasets of the same region? Can we use topological descriptors to identify the differences in the rainfall patterns across different datasets?
@@ -276,8 +279,20 @@ ARs produce over 150mm/day along their central axis and mountain landfall locati
       <content:encoded><![CDATA[<h2 id="hypothesis">Hypothesis:</h2>
 <p>The purpose is to use transfer learning to adapt a pre-trained generative model (e.g., Stable Diffusion) to scientific machine learning tasks, specifically for data assimilation and uncertainty quantification. By leveraging the low-rank adaptation capabilities of LoRA, we can fine-tune the model to generate samples that are consistent with the underlying physics of the system being studied. The transfer learning approach allows us to efficiently adapt the model to new scientific domains without requiring extensive retraining, making it a powerful tool for scientific machine learning applications. We know that LoRA has been used for fine-tuning text-to-image generation, but we want to explore its potential for scientific machine learning tasks, where the goal is to generate samples that are consistent with the underlying physics of the system being studied.</p>
 <p>Given a pre-trained generative model (e.g., Stable Diffusion), we can use LoRA to learn a low-rank adaptation that captures the dynamics of a scientific system, enabling the model to generate samples that are consistent with the underlying physics.</p>
-<h1 id="the-idea-already-exsists--bayesian-lora-a-generative-model-for-scientific-machine-learning">The Idea already exsists- Bayesian LoRA: A generative model for scientific machine learning</h1>
-<p>$$y=W_o X + \theta_B \theta_A X$$, where $W_o$ is the pre-trained weight matrix, $B$ and $A$ are low-rank matrices learned during fine-tuning, and $X$ is the input data. The low-rank adaptation allows the model to fine tune the dynamics of the scientific system while leveraging the knowledge encoded in the pre-trained weights.</p>
+<p>#Bayesian LoRA: A generative model for scientific machine learning</p>
+<p>$$y=W_o X + \theta_B \theta_A X$$</p>
+<p>Where $\theta_A$ and $\theta_B$ are the low-rank adaptation matrices learned by LoRA. Small amount of data from the scientific domain of interest can used to train these parameters making them consistent with the underlying physics of the system being studied.</p>
+<p>From a geometrical point of view, standard
+LoRA constrains the weight update to a low-dimensional subspace of dimension $r \ll k$: the update $θ_B θ_A X$ first projects the input onto the $r-$dimensional
+row space of $θ_A$, and then lifts the result back to the k-dimensional output
+space via $θ_B$.</p>
+<p>By contruction, this allow for the expressivity of the learned adaptation post fine-tuning to be
+restricted to the column space of $θ_B$, denoted V = col($θ_B$) ⊂ $R^k$.</p>
+<p>We decide to inject noise via $\theta_A$ via the following way:</p>
+<p>$$\theta_A \sim \mathcal{N}(\theta_A, \alpha(X) \theta_A^2)$$</p>
+<p>where $\alpha(X)$ is a function that controls the variance of noise injected into the low-rank adaptation matrix $\theta_A$ based on the input $X$.</p>
+<p>The predictive distribution of the model can then be expressed as:</p>
+<p>$$p(y) = \mathcal{N}(y | W_o X + \theta_B \theta_A X, \alpha(X) \theta_B \text{ diag }(\theta_A^ X^2 )\theta_B^T)$$</p>
 <p>This when we are optimizing</p>
 <h2 id="literature-review">Literature Review:</h2>
 <ul>
